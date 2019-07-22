@@ -1,0 +1,58 @@
+body, html {
+  height: 100%;
+  width: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("../../img/icons/wallpaper1.png");
+
+  /* Full height */
+  height: 100%;
+
+
+  /* Center and scale the image nicely */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.bg2 {
+  /* The image used */
+   background-image: url("../../img/icons/wallpaper1faded.png");
+
+  /* Full height */
+  height: 100%;
+
+
+
+  /* Center and scale the image nicely */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.bgbanner {
+  /* The image used */
+  background-image: url("../../img/icons/BannerUP.png");
+
+  /* Full height */
+  height: 60%;
+
+
+  /* Center and scale the image nicely */
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
