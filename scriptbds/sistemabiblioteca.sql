@@ -761,10 +761,10 @@ CREATE TABLE `libros` (
 --
 
 INSERT INTO `libros` (`libcod`, `libtit`, `libdes`, `libpor`, `libfecedi`, `libnumpag`, `libisbn`, `libfecreg`, `autcod`, `dewcod`, `editcod`, `libtags`) VALUES
-(3, 'The Queen of Hearts', 'Story fantasy adventure following the trials of a group of heroes in search of a mithycal place told in legends', '../../../img/portadas/357218763449780399585050.jpg', '2019-06-11', 1220, '12354', '2019-06-14 17:59:33', 2, 1, 2, 'ciencia ficcion,misterio'),
-(4, 'The Way in the forest', 'Short tales format with multiple characters with a different set of motives', '../../../img/portadas/740915por2.jpg', '2019-06-13', 123, '1234213', '2019-06-14 18:15:00', 3, 1, 3, 'Terror'),
-(21, 'Dancing night', '123123213123123213123123213', '../../../img/portadas/595042five-feet-apart-9781534437333_hr-679x1024.jpg', '2019-06-12', 123, '543332', '2019-06-21 21:14:30', 3, 1, 1, 'romance,accion,suspenso'),
-(23, 'Book ', 'Testing Book for insert on catalogs', '../../../img/portadas/743313wallpaper11.jpg', '2019-07-10', 122, '12312312', '2019-07-19 00:19:14', 3, 1, 2, 'testing,tag');
+(3, 'The Queen of Hearts', 'Story fantasy adventure following the trials of a group of heroes in search of a mithycal place told in legends', 'img/portadas/357218763449780399585050.jpg', '2019-06-11', 1220, '12354', '2019-06-14 17:59:33', 2, 1, 2, 'ciencia ficcion,misterio'),
+(4, 'The Way in the forest', 'Short tales format with multiple characters with a different set of motives', 'img/portadas/740915por2.jpg', '2019-06-13', 123, '1234213', '2019-06-14 18:15:00', 3, 1, 3, 'Terror'),
+(21, 'Dancing night', '123123213123123213123123213', 'img/portadas/595042five-feet-apart-9781534437333_hr-679x1024.jpg', '2019-06-12', 123, '543332', '2019-06-21 21:14:30', 3, 1, 1, 'romance,accion,suspenso'),
+(23, 'Book ', 'Testing Book for insert on catalogs', 'img/portadas/743313wallpaper11.jpg', '2019-07-10', 122, '12312312', '2019-07-19 00:19:14', 3, 1, 2, 'testing,tag');
 
 -- --------------------------------------------------------
 
