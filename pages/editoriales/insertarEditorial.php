@@ -5,7 +5,7 @@
 	session_start();
 
 
-	$formeditorialnom=$_POST['formeditorialnom'];
+	$formeditorialnom=strtoupper($_POST['formeditorialnom']);
 	
 
 

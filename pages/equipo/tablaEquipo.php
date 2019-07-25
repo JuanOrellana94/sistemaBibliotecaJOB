@@ -2,11 +2,11 @@
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 
-	$limite = 20;
+	$limite = 5;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
-		$pagina=20; 
+		$pagina=5; 
 	};
 
 
@@ -16,13 +16,13 @@
 		$textBusqueda=""; 
 	};
 
-	$sql = "SELECT COUNT($varestcod) 
-      FROM $tablaEstante
+	$sql = "SELECT COUNT($varequicod) 
+      FROM $tablaEquipo
 		
       WHERE 
-		$varestcod LIKE '%$textBusqueda%' OR
-		$varestdes LIKE '%$textBusqueda%'		
-	ORDER BY $varestcod ";  
+		$varequicodifi LIKE '%$textBusqueda%' OR
+		$varequitip LIKE '%$textBusqueda%'
+	ORDER BY $varequicod ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -48,7 +48,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/estantes/tablaEstantes.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
+        $("#cargarTabla").load("pages/equipo/tablaEquipo.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
       });
 </script>
 
@@ -61,8 +61,9 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th>Indicador</th>
+							<th>Codigo Equipo</th>
+							<th>Tipo</th>
+							<th>Descripcion</th>
 							
 	
 							
@@ -74,11 +75,11 @@
 
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaEstante 
+							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaEquipo 
 								WHERE 
-								$varestcod LIKE '%$textBusqueda%' OR
-								$varestdes LIKE '%$textBusqueda%' 								
-								ORDER BY $varestcod
+							$varequicodifi LIKE '%$textBusqueda%' OR
+		                    $varequitip LIKE '%$textBusqueda%'
+								ORDER BY $varequicod
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
@@ -88,24 +89,38 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$varestcod];?> </td>						
-							<td><?php echo $dataLibros[$varestdes];?>  </td>							 
+							<td><?php echo $dataLibros[$varequicodifi];?> </td>
+							<td><?php echo $dataLibros[$varequitip];?> </td>						
+							<td><?php echo $dataLibros[$varequides];?>  </td>							 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarEstante"
-								 data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
-								 data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"								 					 
-								 title="Editar Estante">
+								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarequipo"
+								 data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								 data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
+								 data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
+								 data-varequides="<?php echo $dataLibros[$varequides];?>"							 					 
+								 title="Editar equipo">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEstante"
-								 	data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
-									data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"
-									title="Eliminar Estante">
+								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#imagenModal"
+								  data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								  data-varequimg="<?php echo $dataLibros[$varequimg];?> "
+								  data-varequitip="<?php echo  $dataLibros[$varequitip];?>"									  
+								  title="Portada del Libro"		
+								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
+
+								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>">Ver detalles</a> 
+
+								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarequipo"
+								 	data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								    data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
+								    data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
+								    data-varequides="<?php echo $dataLibros[$varequides];?>"
+									title="Eliminar equipo">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
-								 </button>
+								 </button> -->
 								</div>
 							</td>
 						</tr>
@@ -114,7 +129,7 @@
 					</tbody>
 				</table>
 
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
+				
 
 
 				

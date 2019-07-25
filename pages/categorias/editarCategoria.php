@@ -4,13 +4,14 @@
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
-	$editcategoriadewcod=$_POST['editcategoriadewcod'];
-	$editcategoriaclanom=$_POST['editcategoriaclanom'];	
+	$editcategoriacod=$_POST['editcategoriacod'];
+	$editcategoriaclanom=strtoupper($_POST['editcategoriaclanom']);
+	$editcategoriadewcod=$_POST['editcategoriadewcod'];	
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaDewey WHERE $vardewtipcla='$editcategoriaclanom'  AND $vardewcod!='$editcategoriadewcod';";
+$checkValidation="SELECT * FROM $tablaDewey WHERE $vardewtipcla='$editcategoriaclanom' OR $vardewcodcla='$editcategoriadewcod';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -26,8 +27,9 @@ $dataRow = mysqli_fetch_array($resultado);
 
 		$insRegistro=mysqli_query($conexion,"
 			UPDATE $tablaDewey SET
-			$vardewtipcla='$editcategoriaclanom'			
-			WHERE $vardewcod='$editcategoriadewcod';
+			$vardewtipcla='$editcategoriaclanom',
+			$vardewcodcla='$editcategoriadewcod'			
+			WHERE $vardewcod='$editcategoriacod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -43,7 +45,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'ha editado la categoria dewey: $editcategoriaclanom  Codigo: $editcategoriadewcod',
+		      'ha editado la categoria dewey: $editcategoriaclanom  Codigo: $editcategoriacod',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
