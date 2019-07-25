@@ -4,13 +4,15 @@
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
-	$estantecod=$_POST['editestantecod'];
-	$estantenom=strtoupper($_POST['editestantenom']);	
-
+	$editequiponom=strtoupper($_POST['editequiponom']);
+	$editequicodifi=$_POST['editequicodifi'];	
+	$editequipodes=strtoupper($_POST['editequipodes']);	
+    $editequicod=$_POST['editequicod'];
+    
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEstante WHERE $varestdes='$estantenom'  AND $varestcod!='$estantecod';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequicodifi='$editequicodifi'  OR $varequitip='$editequiponom';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -25,9 +27,11 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaEstante SET
-			$varestdes='$estantenom'			
-			WHERE $varestcod='$estantecod';
+			UPDATE $tablaEquipo SET
+			$varequicodifi='$editequicodifi',
+			$varequides='$editequipodes',
+			$varequitip='$editequiponom'			
+			WHERE $varequicod='$editequicod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -43,7 +47,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'ha editado el editorial: $estantenom  Codigo: $estantecod',
+		      'ha editado el equipo: $editequicodifi  Codigo: $editequiponom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")

@@ -5,8 +5,8 @@
 	session_start();
 
 	$libcod=$_POST['editlibcod'];
-	$libtit=$_POST['editlibtit'];
-	$libdes=$_POST['editlibdes'];
+	$libtit=strtoupper($_POST['editlibtit']);
+	$libdes=strtoupper($_POST['editlibdes']);
 	
 	$libfecedi=$_POST['editlibfecedi'];
 	$libnumpag=$_POST['editlibnumpag'];
@@ -14,7 +14,7 @@
 	$libgenaut=$_POST['editgenautcod'];
 	$libDew=$_POST['editdewcod'];
 	$libedit=$_POST['editeditcod'];
-	$libtags=$_POST['editlibtags'];
+	$libtags=strtoupper($_POST['editlibtags']);
 	$current_date=date("d-m-Y h:i:s");
 
 	$usuCodigo=$_SESSION['usuCodigo'];

@@ -49,7 +49,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
+        $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
       });
 </script>
 
@@ -216,7 +216,7 @@
 								 ?>
 								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuariodesACTIVAr"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="DesACTIVAr Cuenta">
+									title="Desactivar cuenta">
 								 	<img  src="img/icons/usuarioDesACTIVAr.png" width="35" height="30">
 								 </button>
 								 <!-- OPCION DE SUSPENDER / REANUDAR EN PROCESO -->
@@ -232,7 +232,7 @@
 								  ?>
 								  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuarioACTIVAr"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="ACTIVAr Cuenta">
+									title="activar cuenta">
 								 	<img  src="img/icons/usuarioACTIVAr.png" width="35" height="30">
 								 </button>
 								 <!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuariosuspender"

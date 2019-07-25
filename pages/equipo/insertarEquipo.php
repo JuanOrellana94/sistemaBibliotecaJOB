@@ -4,13 +4,17 @@
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
-	$estantecod=$_POST['editestantecod'];
-	$estantenom=strtoupper($_POST['editestantenom']);	
+
+	$formequiponom=strtoupper($_POST['formequiponom']);
+	$formequicodifi=$_POST['formequicodifi'];	
+	$formequipodes=strtoupper($_POST['formequipodes']);	
+	
+
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEstante WHERE $varestdes='$estantenom'  AND $varestcod!='$estantecod';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequitip='$formequiponom' AND $varequicodifi='formequicodifi';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -25,14 +29,19 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaEstante SET
-			$varestdes='$estantenom'			
-			WHERE $varestcod='$estantecod';
-		    ")
-	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
+		    INSERT INTO   $tablaEquipo(		    
+			   $varequitip,
+			   $varequides,
+			   $varequicodifi			   
+		      ) VALUES(
+		      '$formequiponom',
+		      '$formequipodes',
+		      '$formequicodifi'     
+		      );")
+		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
-// Memo: Campo Bitacora Descipcion  $varDesc debe ser extendida para evitar errores string too long
+
 
 		$insRegistro=mysqli_query($conexion,"
 		    INSERT INTO  $tablaBitacora(
@@ -43,11 +52,14 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'ha editado el editorial: $estantenom  Codigo: $estantecod',
+		      ' ingreso un nuevo equipo: $formequiponom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
+
+
+
 
 	echo "1";
 }

@@ -3,8 +3,8 @@
 
 
   $servidor="localhost";
-  $usuario="bibliocnx";
-  $clave="Biblioteca123$";
+  $usuario="root";
+  $clave="";
   $base="sistemabiblioteca";
 
   
@@ -13,7 +13,8 @@
   $a4="595x842";
   $oficio="612x1008";
 
-
+ // codigo instituto
+    $instituocodigo="88160-";
   //Nombre de tablas
   
   $tablaBitacora="bitacora";
@@ -87,7 +88,7 @@
     $varautcod="autcod";
 
    // TABLA EDITORIAL
-     $tablaEditoral="editorialeslibros";
+    $tablaEditoral="editorialeslibros";
  // 6 NOMBRE TABLA EDITORIAL editcod, editnom, editpai
 
     $vareditcod="editcod";   
@@ -118,7 +119,32 @@
     $varejemres="ejemres";
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
+    $varejemtipadq="ejemtipadq";
 
+ // TABLA EQUIPO
+      $tablaEquipo="equipo";
+//9 NOMBRE DE TABLA EQUIPO equicod,equitip, equimar, equides, equicodifi
+    $varequicod="equicod";
+    $varequitip="equitip";    
+    $varequimg="equimg";
+    $varequides="equides";
+    $varequicodifi="equicodifi";
+
+// TABLA existenciaequipo
+    $tablaExistenciaequipo="existenciaequipo";
+////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
+    $varexistcod="existcod";
+    $varexistcodreg="existcodreg";
+    $varexistfecadq="existfecadq";
+    $varexisttipadq="existtipadq";
+    $varexistdetadq="existdetadq";
+    $varexistpreuni="existpreuni";
+    $varexistestu="existestu";
+    $varexistmar="existmarca";    
+    $varexistconfis="existconfis";
+    $varexistdesest="existdesest";
+    $varestcod="estcod";
+    $varequicod="equicod";
 
   //solcod, usucod, libcod, solfec, libcantidad, solfecenviar CARRITO BOLSA DE LIBROS
     $varbolsaprestamo="bolsaprestamo";
