@@ -35,7 +35,7 @@
                     <div class="col-sm-5">
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Realizar busqueda" id="textBusqueda" name="textBusqueda"> 
+                          <input type="text" class="form-control" placeholder="Realizar busqueda" id="textBusqueda" name="textBusqueda"> 
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                           </div> 
@@ -96,9 +96,9 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="" onkeypress="return soloLetras(event);">
+                <input type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="">
                  <label for="TituloLabel">Codigo dewey de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategoriacod" id="formcategoriacod" aria-describedby="formcategoriacod" placeholder="" onkeypress="return soloNumeros(event);">
+                <input type="text" class="form-control" name="formcategoriacod" id="formcategoriacod" aria-describedby="formcategoriacod" placeholder="">
               </div>
              
             </div>          
@@ -136,11 +136,9 @@
             <div class="col-sm-10">
 
               <div class="form-group">
-                <label for="TituloLabel">Nombre de la categoria</label>                 
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriacod" id="editcategoriacod" aria-describedby="editcategoriacod" placeholder="" hidden>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" onkeypress="return soloLetras(event);">
-                <label for="TituloLabel">Codigo dewey de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriadewcod" id="editcategoriadewcod" aria-describedby="editcategoriadewcod" placeholder="" onkeypress="return soloNumeros(event);">
+                <label for="TituloLabel">Nombre</label>                 
+                <input type="text" class="form-control" name="editcategoriadewcod" id="editcategoriadewcod" aria-describedby="editcategoriadewcod" placeholder="" hidden>
+                <input type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" >
               </div>
              
             </div>
@@ -181,8 +179,8 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Eliminar categoria es una accion <b> Permanente </b> desea eliminar categoria:</label></div>                
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delcategoriacod" id="delcategoriacod" aria-describedby="delcategoriacod" placeholder="categoria" hidden="true">
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delcategorianom" id="delcategorianom" aria-describedby="delcategorianom" placeholder="categoria" hidden="true">
+                <input type="text" class="form-control" name="delcategoriacod" id="delcategoriacod" aria-describedby="delcategoriacod" placeholder="categoria" hidden="true">
+                <input type="text" class="form-control" name="delcategorianom" id="delcategorianom" aria-describedby="delcategorianom" placeholder="categoria" hidden="true">
                            
                   <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
@@ -272,11 +270,7 @@ function insertarcategoria(){
   if ($("#formcategorianom").val()==""){
     $("#respuestaNuevocategoria").show();
     $("#respuestaNuevocategoria").html("Campo de Nombre del categoria esta Vacio");  
-  }else if ($("#formcategoriacod").val()=="") {
-    $("#respuestaNuevocategoria").show();
-    $("#respuestaNuevocategoria").html("Campo Codigo de la categoria esta Vacio"); 
-  }
-  else {
+  }else {
     $("#respuestaNuevocategoria").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/categorias/insertarcategoria.php";
             $.ajax({
@@ -330,10 +324,10 @@ function editarcategoria(){
 
   if ($("#editcategoriadewcod").val()==""){
     $("#respuestaEditarcategoria").show();
-    $("#respuestaEditarcategoria").html("Campo Codigo de la categoria esta Vacio");
-  }else if ($("#editcategoriaclanom").val()==""){
+    $("#respuestaEditarcategoria").html("Campo de Nombre del categoria esta Vacio");
+  }else if ($("#editcategoriapais").val()==""){
     $("#respuestaEditarcategoria").show();
-    $("#respuestaEditarcategoria").html("Campo Nombre de la categoriae esta Vacio");
+    $("#respuestaEditarcategoria").html("Campo de Pais del categoriae esta Vacio");
   }
   else {
     $("#respuestaEditarcategoria").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
@@ -452,9 +446,7 @@ function deletecategoria(){
       modal.find('.modal-title').text('Editar categoria: ' + vardewcodcla );
      
       document.getElementById('editcategoriaclanom').value = vardewtipcla;
-      document.getElementById('editcategoriacod').value = vardewcod;
-      document.getElementById('editcategoriadewcod').value = vardewcodcla;
-
+      document.getElementById('editcategoriadewcod').value = vardewcod;
     
       
       
@@ -484,47 +476,5 @@ function deletecategoria(){
       
       
     })
-
-     //onkeypress="return soloLetras(event);" 
-
- function soloLetras(evt){
-       key = event.keyCode || evt.which;
-       tecla = String.fromCharCode(key).toLowerCase();
-       letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
-       especiales = "8";
-
-       tecla_especial = false
-       for(var i in especiales){
-            if(key == especiales[i]){
-                tecla_especial = true;
-                break;
-            }
-        }
-
-        if(letras.indexOf(tecla)==-1 && !tecla_especial){
-            return false;
-        }
-    }
-
-    //onkeypress="return soloNumeros(event);" 
-
- function soloNumeros(evt){
-       key = event.keyCode || evt.which;
-       tecla = String.fromCharCode(key).toLowerCase();
-       letras = "0123456789";
-       especiales = "8";
-
-       tecla_especial = false
-       for(var i in especiales){
-            if(key == especiales[i]){
-                tecla_especial = true;
-                break;
-            }
-        }
-
-        if(letras.indexOf(tecla)==-1 && !tecla_especial){
-            return false;
-        }
-    }
 
 </script>

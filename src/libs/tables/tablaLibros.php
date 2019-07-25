@@ -130,11 +130,10 @@
 
 								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#deleteBookModal"
 								  data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
-								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"                         
+								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
+
 								  title="Eliminar Libro"		
 								  ><img src="img/icons/BookEditWideDel.png" width="35" height="30"></button>
-
-								  <a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>
 								  
 								</div>
 							</td>
@@ -144,7 +143,7 @@
 					</tbody>
 				</table>
 
-				<!--  -->
+				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
 
 
 				

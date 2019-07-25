@@ -5,7 +5,7 @@
 	session_start();
 
 
-	$formcategorianom=strtoupper($_POST['formcategorianom']);
+	$formcategorianom=$_POST['formcategorianom'];
 	$formcategoriacod=$_POST['formcategoriacod'];
 	
 

@@ -5,7 +5,7 @@
 	session_start();
 
 	$estantecod=$_POST['editestantecod'];
-	$estantenom=strtoupper($_POST['editestantenom']);	
+	$estantenom=$_POST['editestantenom'];	
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];

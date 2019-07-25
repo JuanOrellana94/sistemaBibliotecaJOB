@@ -48,7 +48,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/estantes/tablaEstantes.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
+        $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
       });
 </script>
 

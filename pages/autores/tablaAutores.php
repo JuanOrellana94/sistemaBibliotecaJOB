@@ -11,20 +11,19 @@
 
 
 	if (isset($_GET["busqueda"])) { 
-		$textBusqueda  = $_GET['busqueda']; 
+		$textBusqueda  = $_GET["busqueda"]; 
 	} else {
 		$textBusqueda=""; 
 	};
 
 	$sql = "SELECT COUNT($varautcod) 
-      FROM $tablAutor		
-          WHERE   
-         concat_ws('',$varautnom,$varautape)
-		 LIKE '%$textBusqueda%' OR
-		 concat_ws('',$varautnom,$varautape)
-		 LIKE '%$textBusqueda%' OR
+      FROM $tablAutor
+		
+      WHERE 
+		$varautnom LIKE '%$textBusqueda%' OR
+		$varautape LIKE '%$textBusqueda%' OR
 		$varautseud LIKE '%$textBusqueda%'
-	ORDER BY $varautcod;";  
+	ORDER BY $varautcod; ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -76,13 +75,11 @@
 
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT * FROM $tablAutor 							
-								WHERE   
-                                   concat_ws('',$varautnom,$varautape) 
-	                              LIKE '%$textBusqueda%' OR
-		                           concat_ws('',$varautnom,$varautape)
-		                          LIKE '%$textBusqueda%' OR
-		                          $varautseud LIKE '%$textBusqueda%'
+							$selTable=mysqli_query($conexion,"SELECT * FROM $tablAutor 
+								WHERE 
+								$varautnom LIKE '%$textBusqueda%' OR
+								$varautape LIKE '%$textBusqueda%' OR
+								$varautseud LIKE '%$textBusqueda%'
 								ORDER BY $varautcod
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){

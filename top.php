@@ -61,10 +61,10 @@
           <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=autores">Autores</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=editoriales">Editoriales</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>        
+          <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
+          <a class="dropdown-item" href="catalogos.php?pageLocation=ejemplares">Ejemplares</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>

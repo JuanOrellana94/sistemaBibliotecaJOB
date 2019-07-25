@@ -30,7 +30,7 @@
 			
 			$insRegistro=mysqli_query($conexion,"
 			UPDATE $tablaLibros SET		
-			$varlibpor='img/portadas/$imagenSubir'
+			$varlibpor='$direccion'
 			WHERE $varlibcod='$libcod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));

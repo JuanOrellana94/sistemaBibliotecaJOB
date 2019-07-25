@@ -5,7 +5,7 @@
 	session_start();
 
 	$editorialcod=$_POST['editeditorialcod'];
-	$editorialnom=strtoupper($_POST['editeditorialnom']);	
+	$editorialnom=$_POST['editeditorialnom'];	
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
