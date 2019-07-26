@@ -2,10 +2,10 @@
   
 
 
-  $servidor="localhost";
-  $usuario="root";
-  $clave="";
-  $base="sistemabiblioteca";
+     $servidor="localhost";
+     $usuario="bibliocnx";
+     $clave="Biblioteca123$";
+     $base="sistemabiblioteca";
 
   
   $tabla2="...";
