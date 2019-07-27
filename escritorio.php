@@ -17,7 +17,7 @@
           <table align="center" >
             <tr>
               <td>
-              	  <div class="container">  <img src="img/icons/book.png" alt="Snow" style="width:100%">
+              	  <div class="container">  <img src="img/icons/Book.png" alt="Snow" style="width:100%">
                    <button class="btn btn-lg btn-block">Catalogos</button>
                   </div>
               </td>
@@ -26,7 +26,7 @@
               	  <div class="container">  <img src="img/icons/Ops.png" alt="Snow" style="width:100%">
                    <button class="btn btn-lg btn-block">Operaciones</button>
                   </div>
-               </td>
+              </td>
 
                <td>
               	  <div class="container">  <img src="img/icons/Est.png" alt="Snow" style="width:100%">
@@ -35,10 +35,10 @@
               </td>
 
                <td>
-              	   <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
+              	  <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
                    <button class="btn btn-lg btn-block">Utileria</button>
                   </div>
-              </td>   
+              </td>    
                       
             </tr>
            

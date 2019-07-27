@@ -501,7 +501,7 @@ function recargarTablaLimpiar(){
     var variablecod=$("#equipoCod").val();
 
   
-    $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod);
+    $("#cargarTabla").load("pages/Existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -537,7 +537,7 @@ function insertarExistencia(){
   else {
     $("#respuestaNuevoExistencia").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
 
-    var url = "pages/existencias/insertarExistencia.php";
+    var url = "pages/Existencias/insertarExistencia.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -602,7 +602,7 @@ function editarExistencia(){
   }
   else {
     $("#respuestaEditarExistencia").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/existencias/editarExistencia.php";
+    var url = "pages/Existencias/editarExistencia.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -667,7 +667,7 @@ function deleteExistencia(){
   }else {
     $("#labelBorrar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
 
-    var url = "pages/existencias/borrarExistencias.php";
+    var url = "pages/Existencias/borrarExistencia.php";
     $.ajax({
       type: "POST",
       url: url,

@@ -224,7 +224,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina=1&busqueda="+ busqueda);
+  $("#cargarTabla").load("pages/Editoriales/tablaEditoriales.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -241,7 +241,7 @@ function recargarTablaLimpiar(){
     var busqueda=$("#textBusqueda").val();
 
   
-    $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina=1&busqueda="+busqueda);
+    $("#cargarTabla").load("pages/Editoriales/tablaEditoriales.php?pagina=1&busqueda="+busqueda);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -266,7 +266,7 @@ function insertarEditorial(){
     $("#respuestaNuevoEditorial").html("Campo de Nombre del Editorial esta Vacio");  
   }else {
     $("#respuestaNuevoEditorial").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/editoriales/insertarEditorial.php";
+    var url = "pages/Editoriales/insertarEditorial.php";
             $.ajax({
               type: "POST",
               url: url,

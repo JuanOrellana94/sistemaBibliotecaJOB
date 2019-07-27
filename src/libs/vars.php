@@ -2,19 +2,19 @@
   
 
 
-     $servidor="localhost";
-     $usuario="bibliocnx";
-     $clave="Biblioteca123$";
-     $base="sistemabiblioteca";
+  $servidor="localhost";
+  $usuario="bibliocnx";
+  $clave="Biblioteca123$";
+  $base="sistemabiblioteca";
 
-  
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
   $oficio="612x1008";
 
- // codigo instituto
+  // codigo instituto
     $instituocodigo="88160-";
+
   //Nombre de tablas
   
   $tablaBitacora="bitacora";
@@ -88,7 +88,7 @@
     $varautcod="autcod";
 
    // TABLA EDITORIAL
-    $tablaEditoral="editorialeslibros";
+     $tablaEditoral="editorialeslibros";
  // 6 NOMBRE TABLA EDITORIAL editcod, editnom, editpai
 
     $vareditcod="editcod";   
@@ -102,7 +102,7 @@
     $varestcod="estcod";
     $varestdes="estdes";
 
-     // TABLA EJEMPLARES
+        // TABLA EJEMPLARES
      $tablaEjemplares="ejemplareslibros";
 
      
@@ -140,7 +140,7 @@
     $varexistdetadq="existdetadq";
     $varexistpreuni="existpreuni";
     $varexistestu="existestu";
-    $varexistmar="existmarca";    
+    $varexistmarca="existmarca";    
     $varexistconfis="existconfis";
     $varexistdesest="existdesest";
     $varestcod="estcod";
