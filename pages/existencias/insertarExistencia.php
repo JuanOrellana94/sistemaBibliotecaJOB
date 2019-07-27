@@ -37,6 +37,7 @@
           $newcodigo= $instituocodigo."".$datacodigo['codifi']."-".$datacodigo2['codigo'];
       }
     }
+
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 

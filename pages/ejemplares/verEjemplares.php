@@ -482,7 +482,7 @@ function recargarTabla(){
 
   var busqueda=$("#textBusqueda").val();
   var variablecod=$("#codigoLib").val();  
-  $("#cargarTabla").load("pages/Ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
+  $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
   
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -500,7 +500,7 @@ function recargarTablaLimpiar(){
     var variablecod=$("#codigoLib").val();
 
   
-    $("#cargarTabla").load("pages/Ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
+    $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -536,7 +536,7 @@ function insertarEjemplar(){
   else {
     $("#respuestaNuevoEjemplar").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
 
-    var url = "pages/Ejemplares/insertarEjemplar.php";
+    var url = "pages/ejemplares/insertarEjemplar.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -666,7 +666,7 @@ function deleteEjemplar(){
   }else {
     $("#labelBorrar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
 
-    var url = "pages/Ejemplares/borrarEjemplar.php";
+    var url = "pages/ejemplares/borrarEjemplar.php";
     $.ajax({
       type: "POST",
       url: url,

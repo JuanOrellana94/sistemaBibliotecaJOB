@@ -5,8 +5,8 @@
 	session_start();
 
 
-	$libtit=$_POST['libtit'];
-	$libdes=$_POST['libdes'];
+	$libtit=strtoupper($_POST['libtit']);
+	$libdes=strtoupper($_POST['libdes']);
 	$libpor="img/portadas/Default.jpg";
 	$libfecedi=$_POST['libfecedi'];
 	$libnumpag=$_POST['libnumpag'];
@@ -15,7 +15,7 @@
 	$libgenaut=$_POST['autnom'];
 	$libDew=$_POST['dewcod'];
 	$libedit=$_POST['editcod'];
-	$libtags=$_POST['libtags'];
+	$libtags=strtoupper($_POST['libtags']);
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];

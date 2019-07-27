@@ -228,7 +228,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/Estantes/tablaEstantes.php?pagina=1&busqueda="+ busqueda);
+  $("#cargarTabla").load("pages/estantes/tablaEstantes.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -245,7 +245,7 @@ function recargarTablaLimpiar(){
     var busqueda=$("#textBusqueda").val();
 
   
-    $("#cargarTabla").load("pages/Estantes/tablaEstantes.php?pagina=1&busqueda="+busqueda);
+    $("#cargarTabla").load("pages/estantes/tablaEstantes.php?pagina=1&busqueda="+busqueda);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -270,7 +270,7 @@ function insertarEstante(){
     $("#respuestaNuevoEstante").html("Campo de Nombre del Estante esta Vacio");  
   }else {
     $("#respuestaNuevoEstante").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/Estantes/insertarEstante.php";
+    var url = "pages/estantes/insertarEstante.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -326,7 +326,7 @@ function editarEstante(){
   }
   else {
     $("#respuestaEditarEstante").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/Estantes/editarEstante.php";
+    var url = "pages/estantes/editarEstante.php";
             $.ajax({
               type: "POST",
               url: url,
