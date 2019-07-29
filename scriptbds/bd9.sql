@@ -64,7 +64,7 @@ CREATE TABLE `bitacora` (
   `bitnomlib` varchar(45) DEFAULT NULL COMMENT 'Bitacora nombre libreria: nombre de la libreria',
   `bitnombre` varchar(45) NOT NULL,
   PRIMARY KEY (`bircod`)
-) ENGINE=InnoDB AUTO_INCREMENT=713 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=723 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bitacora`
@@ -784,7 +784,17 @@ INSERT INTO `bitacora` (`bircod`,`bitfec`,`bitdes`,`bitusucod`,`bitnomlib`,`bitn
  (709,'2019-07-29 09:05:08','Prestamo realizado','1','---','JOEL VILLALTA'),
  (710,'2019-07-29 09:05:36','Libro codigo 2 puesto en estado 1=prestado','1','---','JOEL VILLALTA'),
  (711,'2019-07-29 09:05:36','Libro codigo 3 puesto en estado 1=prestado','1','---','JOEL VILLALTA'),
- (712,'2019-07-29 09:05:37','Prestamo realizado','1','---','JOEL VILLALTA');
+ (712,'2019-07-29 09:05:37','Prestamo realizado','1','---','JOEL VILLALTA'),
+ (713,'2019-07-29 11:07:00','ingreso exitosamente al sistema','1','---','JOEL VILLALTA'),
+ (714,'2019-07-29 11:07:19','EQUIPO: 9555 devuelto PROCESO DE PRESTAMO: 45','1','---','JOEL VILLALTA'),
+ (715,'2019-07-29 11:07:19','Usuario puesto en activo, devolucion realizada en proceso: 45','1','---','JOEL VILLALTA'),
+ (716,'2019-07-29 11:07:24','EQUIPO: 9560 devuelto PROCESO DE PRESTAMO: 46','1','---','JOEL VILLALTA'),
+ (717,'2019-07-29 11:07:29','EQUIPO: 9557 devuelto PROCESO DE PRESTAMO: 46','1','---','JOEL VILLALTA'),
+ (718,'2019-07-29 11:07:29','Usuario puesto en activo, devolucion realizada en proceso: 46','1','---','JOEL VILLALTA'),
+ (719,'2019-07-29 11:07:53','Libro codigo 1 puesto en estado 1=prestado','1','---','JOEL VILLALTA'),
+ (720,'2019-07-29 11:07:53','Prestamo realizado','1','---','JOEL VILLALTA'),
+ (721,'2019-07-29 11:08:04','EQUIPO: 9555 devuelto PROCESO DE PRESTAMO: 47','1','---','JOEL VILLALTA'),
+ (722,'2019-07-29 11:08:04','Usuario puesto en activo, devolucion realizada en proceso: 47','1','---','JOEL VILLALTA');
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 
 
@@ -855,7 +865,7 @@ CREATE TABLE `detallesprestamoequipo` (
   KEY `fk_detallesPrestamoEquipo_existenciaEquipo1_idx` (`existcod`),
   CONSTRAINT `fk_detallesPrestamoEquipo_existenciaEquipo1` FOREIGN KEY (`existcod`) REFERENCES `existenciaequipo` (`existcod`),
   CONSTRAINT `fk_detallesPrestamoEquipo_resumenEquipoPrestamo1` FOREIGN KEY (`prestcodequi`) REFERENCES `resumenequipoprestamo` (`prestcodequi`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `detallesprestamoequipo`
@@ -895,7 +905,8 @@ INSERT INTO `detallesprestamoequipo` (`detcodequi`,`prestcodequi`,`existcod`,`de
  (60,44,1,0),
  (61,45,1,0),
  (62,46,2,0),
- (63,46,3,0);
+ (63,46,3,0),
+ (64,47,1,0);
 /*!40000 ALTER TABLE `detallesprestamoequipo` ENABLE KEYS */;
 
 
@@ -1062,7 +1073,6 @@ DROP TABLE IF EXISTS `equipo`;
 CREATE TABLE `equipo` (
   `equicod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Equipo codigo: llave primaria de la tabla equipo',
   `equitip` varchar(45) NOT NULL,
-  `equimar` varchar(45) DEFAULT NULL COMMENT 'Equipo marca: marca perteneciente al equipo',
   `equides` varchar(45) DEFAULT NULL COMMENT 'Equipo descripcion: Descripcion general del equipo',
   `equicodifi` varchar(100) DEFAULT NULL COMMENT 'Codificación para equipos: 01 MAQUINARIA Y EQUIPO DE OFICINA ',
   `equimg` varchar(450) DEFAULT NULL COMMENT 'Contiene la direccion de la imagen del equipo',
@@ -1074,8 +1084,8 @@ CREATE TABLE `equipo` (
 --
 
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
-INSERT INTO `equipo` (`equicod`,`equitip`,`equimar`,`equides`,`equicodifi`,`equimg`) VALUES 
- (1,'calculadora electronica',NULL,'se utiliza para calculos matematicos','0103','img/equipoimg/979063Azulapsd2.jpg');
+INSERT INTO `equipo` (`equicod`,`equitip`,`equides`,`equicodifi`,`equimg`) VALUES 
+ (1,'calculadora electronica','se utiliza para calculos matematicos','0103','img/equipoimg/979063Azulapsd2.jpg');
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
 
 
@@ -1109,7 +1119,7 @@ INSERT INTO `estante` (`estcod`,`estdes`) VALUES
 DROP TABLE IF EXISTS `existenciaequipo`;
 CREATE TABLE `existenciaequipo` (
   `existcod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Existencia Codigo: llave primaria de la tabla existenciaEquipo',
-  `existcodreg` int(30) NOT NULL COMMENT 'Existencia Codigo de registro: Codigo de registro de inventario de equipos',
+  `existcodreg` varchar(100) NOT NULL COMMENT 'Existencia Codigo de registro: Codigo de registro de inventario de equipos',
   `existfecadq` date NOT NULL COMMENT 'existencia fecha de adquisicion: feecha en la cual se adquirio el equipo',
   `existtipadq` int(11) NOT NULL COMMENT 'Existencia tipo adquisicion: registra el tipo de adquisicion del equipo  0=Donacion 1=Compra',
   `existdetadq` varchar(250) DEFAULT NULL COMMENT 'Existencia detalle adquisicion: descripcion acerca de los detalles de la aquisicion del equipo',
@@ -1119,6 +1129,7 @@ CREATE TABLE `existenciaequipo` (
   `existdesest` varchar(250) DEFAULT NULL COMMENT 'existencia descripcion equipo: descripcion detallada de las condiciones del quipo',
   `estcod` int(11) NOT NULL,
   `equicod` int(11) NOT NULL,
+  `existmarca` varchar(45) DEFAULT NULL COMMENT 'equipo marca del equipo',
   PRIMARY KEY (`existcod`),
   KEY `fk_existenciaEquipo_Estante1_idx` (`estcod`),
   KEY `fk_existenciaEquipo_Equipo1_idx` (`equicod`),
@@ -1131,10 +1142,10 @@ CREATE TABLE `existenciaequipo` (
 --
 
 /*!40000 ALTER TABLE `existenciaequipo` DISABLE KEYS */;
-INSERT INTO `existenciaequipo` (`existcod`,`existcodreg`,`existfecadq`,`existtipadq`,`existdetadq`,`existpreuni`,`existestu`,`existconfis`,`existdesest`,`estcod`,`equicod`) VALUES 
- (1,9555,'2019-07-27',0,'lolel','0.50',1,0,'melm',1,1),
- (2,9557,'2019-07-27',0,'lolel2','0.50',1,0,'melm2',1,1),
- (3,9560,'2019-07-28',0,'lolel3','0.50',1,0,'melm2',1,1);
+INSERT INTO `existenciaequipo` (`existcod`,`existcodreg`,`existfecadq`,`existtipadq`,`existdetadq`,`existpreuni`,`existestu`,`existconfis`,`existdesest`,`estcod`,`equicod`,`existmarca`) VALUES 
+ (1,'9555','2019-07-27',0,'lolel','0.50',0,0,'melm',1,1,NULL),
+ (2,'9557','2019-07-27',0,'lolel2','0.50',0,0,'melm2',1,1,NULL),
+ (3,'9560','2019-07-28',0,'lolel3','0.50',0,0,'melm2',1,1,NULL);
 /*!40000 ALTER TABLE `existenciaequipo` ENABLE KEYS */;
 
 
@@ -1217,7 +1228,7 @@ CREATE TABLE `resumenequipoprestamo` (
   PRIMARY KEY (`prestcodequi`),
   KEY `fk_resumenEquipoPrestamo_Usuario1_idx` (`usucod`),
   CONSTRAINT `fk_resumenEquipoPrestamo_Usuario1` FOREIGN KEY (`usucod`) REFERENCES `usuario` (`usucod`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `resumenequipoprestamo`
@@ -1248,8 +1259,9 @@ INSERT INTO `resumenequipoprestamo` (`prestcodequi`,`prestfecequi`,`prestdevequi
  (42,'2019-07-28 21:51:38','2019-07-30','Ningun Comentario',1,2,1),
  (43,'2019-07-28 22:16:22','2019-07-30','Ningun Comentario',1,2,1),
  (44,'2019-07-29 08:35:23','2019-07-30','Ningun Comentario',1,2,1),
- (45,'2019-07-29 08:54:40','2019-07-29','Ningun Comentario',0,2,1),
- (46,'2019-07-29 09:05:23','2019-07-29','Ningun Comentario',0,3,1);
+ (45,'2019-07-29 08:54:40','2019-07-29','Ningun Comentario',1,2,1),
+ (46,'2019-07-29 09:05:23','2019-07-29','Ningun Comentario',1,3,1),
+ (47,'2019-07-29 11:07:43','2019-07-29','Ningun Comentario',1,3,1);
 /*!40000 ALTER TABLE `resumenequipoprestamo` ENABLE KEYS */;
 
 
@@ -1344,8 +1356,8 @@ CREATE TABLE `usuario` (
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`usucod`,`usuprinom`,`ususegnom`,`usupriape`,`ususegape`,`usucarnet`,`usucorre`,`usuestcue`,`usuclave`,`usuaccnom`,`usuanobac`,`ususecaul`,`usutipbac`,`usunivel`) VALUES 
  (1,'JOEL','ALFONZO','VILLALTA','ROMERO','19001','MAIL@SAMPLES.COM',0,'f178151bb5b19ff12afedbff97983140','19001',0,'0',0,3),
- (2,'JUAN','DIEGO','MEDRANO','ORELLANA','19002','MAIL@GMAIL.COM',3,'5f2150c49f5aa191fdee5f8d26c3e50e','19002',0,'0',0,3),
- (3,'BRANDON','ISMAR','MELERA','GARCIA','19003','MAIL@TESTING',3,'1a81859544a7eff3e599b8c322559c00','19003',1,'1',0,3),
+ (2,'JUAN','DIEGO','MEDRANO','ORELLANA','19002','MAIL@GMAIL.COM',0,'5f2150c49f5aa191fdee5f8d26c3e50e','19002',0,'0',0,3),
+ (3,'BRANDON','ISMAR','MELERA','GARCIA','19003','MAIL@TESTING',0,'1a81859544a7eff3e599b8c322559c00','19003',1,'1',0,3),
  (4,'YOHALMO','ADONAY','RODRIGUEZ','ORELLANA','19004','MAIL@GMAIL.COM',0,'0e364cf4a1a53aa0afe4627cbc86d145','19004',1,'1',1,3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
