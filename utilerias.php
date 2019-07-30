@@ -3,7 +3,7 @@
   <?php
 
     include("top.php");
-    include("pages/catalogs/catbar.php");
+//    include("pages/catalogs/catbar.php");
 
 
 
