@@ -2,7 +2,7 @@
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 
-	$limite = 20;
+	$limite = 5;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
@@ -15,7 +15,22 @@
 	} else {
 		$textBusqueda=""; 
 	};
-
+	if (empty($_GET["ordenar"])) { 
+		$varordenar=$_GET["ordenar"];
+            switch ($varordenar) {
+              	case '0':
+              		   $textBusquedaorde  = $varautcod." ". "DESC" ;
+                break;
+                case '1':
+                	$textBusquedaorde  = $varautcod." ". "ASC" ;
+                break;              	
+              }  
+		
+		 
+	} else {
+		$textBusquedaorde =$varautcod; 
+	};
+ 
 	$sql = "SELECT COUNT($varautcod) 
       FROM $tablAutor		
           WHERE   
@@ -24,7 +39,7 @@
 		 concat_ws('',$varautnom,$varautape)
 		 LIKE '%$textBusqueda%' OR
 		$varautseud LIKE '%$textBusqueda%'
-	ORDER BY $varautcod;";  
+	ORDER BY $textBusquedaorde;";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -50,7 +65,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
+        $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val() + "&ordenar=" + $("#textBusquedaordenar").val());
       });
 </script>
 
@@ -83,7 +98,7 @@
 		                           concat_ws('',$varautnom,$varautape)
 		                          LIKE '%$textBusqueda%' OR
 		                          $varautseud LIKE '%$textBusqueda%'
-								ORDER BY $varautcod
+								ORDER BY $textBusquedaorde
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	

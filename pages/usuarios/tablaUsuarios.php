@@ -2,7 +2,7 @@
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 
-	$limite = 20;
+	$limite = 5;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {

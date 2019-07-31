@@ -41,6 +41,15 @@
                           </div> 
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
+                      </form> 
+                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small>
+                      <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                            <option value="0">ULTIMOS REGISTROS</option>
+                            <option value="1">PRIMEROS REGISTROS</option>
+                          </select>                          
+                        </div>                        
                       </form>                       
                     </div>
                     <div class="col-sm-3">
@@ -254,8 +263,9 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda);
+  var busqueda=$("#textBusqueda").val();
+  var ordenar=$("#textBusquedaordenar").val();  
+  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);

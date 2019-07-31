@@ -10,7 +10,7 @@
     $editUsuarioape1=strtoupper($_POST['editUsuarioape1']);
     $editUsuarioape2=strtoupper($_POST['editUsuarioape2']);
     $editUsuariomote=strtoupper($_POST['editUsuariomote']);
-    $editUsuariopass=md5($_POST['editUsuariopass']);
+    $editUsuariopass=$_POST['editUsuariopass'];
     $editUsuariobachi=$_POST['editUsuariobachi'];
     $editUsuarioaniobachi=$_POST['editUsuarioaniobachi'];
     $editUsuariocarnet=$_POST['editUsuariocarnet'];
@@ -34,11 +34,21 @@
 
 		} else {
 
+         
+         if (empty($editUsuariopass)) {
+         	# code...
+                    
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";
+         }else{
+
+         	$editUsuariopass=md5($editUsuariopass);
+            
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+
+         }
 
 
-		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod';
-		    ")
+        $insRegistro=mysqli_query($conexion,$sql)
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	

@@ -12,7 +12,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequicodifi='$editequicodifi'  OR $varequitip='$editequiponom';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE ($varequicodifi='$editequicodifi'  OR $varequitip='$editequiponom') and $varequicod!='$editequicod';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
