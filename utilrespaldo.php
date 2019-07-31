@@ -80,7 +80,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
-  session_start();
+
 
    if (!isset($_SESSION[ "autorizado" ]))
    {
