@@ -11,7 +11,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $varbolsaprestamo WHERE $varlibcodcar = '$insertlibcod';";
+$checkValidation="SELECT * FROM $varbolsaprestamo WHERE $varlibcodcar = '$insertlibcod' AND $varusucod='$usuCodigo';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -20,9 +20,34 @@ $dataRow = mysqli_fetch_array($resultado);
 	 
 	 if($dataRow>0) {
 		echo "0";
+		//EL LIBRO YA EXISTE EN LA LISTA DE PRESTAMO DE ESTE ESTUDIANTE/USUARIO 
 
 		} else {
-		$insRegistro=mysqli_query($conexion,"
+			//INGRESAR EL LIBRO + CANTIDAD DE EJEMPLARES  SELECT * FROM bolsaprestamo where usucod = 1;
+
+			$checkNumeroLibros="SELECT * FROM $varbolsaprestamo WHERE $varusucod = '$usuCodigo';";
+
+			$resultado=mysqli_query($conexion, $checkNumeroLibros) or die(mysqli_error($conexion));
+
+			//SUMAR EJEMPLARES DE CADA LIBRO REGISTRADO A LA CUENTA DEL USUARIO SOLICITANTE
+			$contador=0;
+
+			while ($dataLibros=mysqli_fetch_assoc($resultado)){
+				$contador=$contador+$dataLibros[$varlibcantidad];
+			}
+
+			$contador=$contador+$insertlibcantidad;
+
+
+		if ($contador>3 && $_SESSION['usuNivel']==3){
+			echo '2';
+			// 2 ERROR, EL ESTUDIANTE EXEDIO EL LIMITE DE LIBROS A PEDIR
+		} else if ( $_SESSION['usuNivel']<2) {
+			echo '3';
+			//  3 Cuentas Administrador no puede solicitar prestamos
+		} else {
+
+			$insRegistro=mysqli_query($conexion,"
 		    INSERT INTO  $varbolsaprestamo(
 		     $varusucod,
 		     $varlibcodcar,
@@ -57,5 +82,14 @@ $dataRow = mysqli_fetch_array($resultado);
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	echo "1";
+
+
+
+		}
+
+
+
+
+		
 }
  ?>

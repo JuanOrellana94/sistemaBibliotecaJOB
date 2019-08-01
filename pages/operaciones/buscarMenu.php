@@ -41,13 +41,16 @@
   
     <div class="row" style="margin-left: 1%; margin-right: 1%;">
       <div class="col-lg-10">
-        <nav class="navbar navbar-expand-md" style="background-color:#003764;">
-          <div >
-            <img src="img/icons/LogoSys.png" width="100" height="100" alt="">
+        <nav class="navbar navbar-expand-md" style="background-color:#003764;" >
+          <a href="menuopt.php">
+          <div>
+            <img src="img/icons/LogoSys.png" width="100" height="100" alt="" >
           </div>
+           </a> 
           <div style="vertical-align: middle; margin: 5px; color:white">
                <p class="font-weight-light"> <h3> Consultas</h3></p>       
-          </div>                       
+          </div>  
+                             
         </nav>
       </div>
       <div class="col-lg-2">
@@ -113,7 +116,7 @@
 
                 <form name="formBusqueda" id="formBusqueda">          
                   <div class="input-group ">               
-                    <input type="text" class="form-control form-control-lg" placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
+                    <input type="text" class="form-control form-control-lg" value='' placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                     </div> 
@@ -230,7 +233,7 @@
 
               <div class="col-sm-12">
                 <div id="respuestaPrestamo" style="color: red; font-weight: bold; text-align: center;"></div>
-                 <label for=""><h4>Tu lista de prestamo: </h4></label>   <div id="tablaPrestar"></div>
+                 <label for=""><h4> </h4></label>   <div id="tablaPrestar"></div>
 
               </div> 
                     
@@ -248,15 +251,14 @@
       <div class="modal-footer"  style="background-color:#003764;">
          
 
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
-         <button type="button" class="btn btn-success" onclick="insertarAutor()">Enviar Prestamo</button>
+        
       </div>
      
     </div>
   </div>
 </div>
 
-<!--MODAL PARA VER prestamos  SOLO-->
+<!--MODAL PARA VER prestamos  SOLO SIN INSERTAR NUEVO LIBRO-->
 <div class="modal fade" id="prestamosModalSimple" tabindex="-1" role="dialog" aria-labelledby="prestamosModalSimple" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" >
@@ -293,7 +295,7 @@
 
               <div class="col-sm-12">
                 <div id="respuestaPrestamo" style="color: red; font-weight: bold; text-align: center;"></div>
-                 <label for=""><h4>Tu lista de prestamo: </h4></label>   <div id="tablaPrestarSimple"></div>
+                 <label for=""><h4></h4></label>   <div id="tablaPrestarSimple"></div>
 
               </div> 
                     
@@ -310,8 +312,6 @@
       </div>
       <div class="modal-footer"  style="background-color:#003764;">
          
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
-         <button type="button" class="btn btn-success" onclick="activarPrestamo()">Realizar Prestamo</button>
       </div>
      
     </div>
@@ -391,6 +391,10 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();  
+
+
+  
+
   $("#cargarTabla").load("pages/operaciones/tablaConsultas.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
@@ -405,11 +409,65 @@ function cargarPrestamos(){
   $("#tablaPrestar").show();
   $("#tablaPrestar").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
   $("#tablaPrestar").load("pages/operaciones/tablaPrestamos.php");
+  $("#tablaPrestarSimple").show();
   $("#tablaPrestarSimple").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
   $("#tablaPrestarSimple").load("pages/operaciones/tablaPrestamos.php");
  
- 
 }
+
+
+function activarPrestamos(){
+
+  $("#tablaPrestar").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  $("#tablaPrestar").load("pages/operaciones/activarPrestamos.php"); 
+ 
+  $("#tablaPrestarSimple").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  $("#tablaPrestarSimple").load("pages/operaciones/activarPrestamos.php");
+
+
+   setTimeout(
+              function() {
+               $("#tablaPrestar").show();
+                $("#tablaPrestar").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+                $("#tablaPrestarSimple").show();
+                $("#tablaPrestarSimple").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+                $("#tablaPrestar").load("pages/operaciones/tablaPrestamos.php");
+                $("#tablaPrestarSimple").load("pages/operaciones/tablaPrestamos.php");
+ 
+ 
+              }, 4000);
+
+
+}
+
+function desactivarPrestamos(){
+
+  $("#tablaPrestar").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  $("#tablaPrestar").load("pages/operaciones/desactivarPrestamos.php"); 
+ 
+  $("#tablaPrestarSimple").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  $("#tablaPrestarSimple").load("pages/operaciones/desactivarPrestamos.php");
+
+
+   setTimeout(
+              function() {
+               $("#tablaPrestar").show();
+                $("#tablaPrestar").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+                $("#tablaPrestarSimple").show();
+                $("#tablaPrestarSimple").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+                $("#tablaPrestar").load("pages/operaciones/tablaPrestamos.php");
+                $("#tablaPrestarSimple").load("pages/operaciones/tablaPrestamos.php");
+ 
+ 
+              }, 4000);
+
+
+}
+
+  
+
+
+
 //insertar libro a la tabla de prestamos  carrito
 function insertarItem(){
 
@@ -427,7 +485,7 @@ function insertarItem(){
       if (data==0) {
         //error programado
         $("#respuestaPrestamo").show();
-        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='60' height='60'> Este libro ya se encuentra en tu listado de prestamo </div>");
+        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Este libro ya se encuentra en tu listado de prestamo </div>");
         setTimeout(
               function() {
                 $("#respuestaPrestamo").hide(500);     
@@ -435,7 +493,7 @@ function insertarItem(){
       } else if (data==1) {
 
         $("#respuestaPrestamo").show();
-        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='60' height='60'>Añadido a tu lista de prestamo </div>");
+        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'>Añadido a tu lista de prestamo </div>");
          //reload funcion tabla prestar()
          cargarPrestamos();         
           setTimeout(
@@ -445,6 +503,14 @@ function insertarItem(){
                
           }, 6000);
 
+      }else if (data==2) {
+ //error programado
+        $("#respuestaPrestamo").show();
+        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Tu prestamo excede tu limite de libros permitidos. (3 libros maximo por prestamo)</div>");
+        setTimeout(
+              function() {
+                $("#respuestaPrestamo").hide(500);     
+              }, 6000);
       } else {
         $("#respuestaPrestamo").show();
         $("#respuestaPrestamo").html(data);
