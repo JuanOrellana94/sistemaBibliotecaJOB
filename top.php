@@ -46,7 +46,7 @@
 <body> 
  
 <nav class="navbar navbar-expand-lg" style="background-color:#003764;"> <a class="navbar-brand text-white" href="escritorio.php" title="Inicio">  
-  <img src="img/icons/logoSimple.png" width="125" height="120"> </a>   
+  <img src="img/icons/LogoSimple.png" width="125" height="120"> </a>   
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <img src="img/icons/Collapse.png" width="65" height="65" alt="">
   </button>
