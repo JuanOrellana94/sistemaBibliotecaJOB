@@ -19,7 +19,7 @@
 
         <li class="nav-item">
           <a class="nav-link  text-white" href="catalogos.php?pageLocation=estantes"> <img src="img/icons/Bookstand.png" width="20" height="20" > Estantes</a>
-        </li>    
+        </li>
         <li class="nav-item">
           <a class="nav-link  text-white" href="catalogos.php?pageLocation=usuarios"> <img src="img/icons/Bookstand.png" width="20" height="20" > Usuarios</a>
         </li>

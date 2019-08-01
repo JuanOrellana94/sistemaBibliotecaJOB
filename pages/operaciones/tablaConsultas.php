@@ -30,8 +30,8 @@
 		$vardewtipcla  LIKE '%$textBusqueda%'
 	ORDER BY $varlibcod; ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
-      $filas = mysqli_fetch_row($filas_resultado);  
-      $todal_filas = $filas[0];  
+      $filas = mysqli_num_rows($filas_resultado);  
+      $todal_filas = $filas;  
       $total_paginas = ceil($todal_filas / $limite); 
   	?>                    
                      <nav aria-label="Page navigation">
@@ -116,6 +116,7 @@
 
 									 
 									 ><img src="img/icons/itemPr.png" width="65" height="50"></button>
+									</div>
 									 
 								</td>
 							</tr>

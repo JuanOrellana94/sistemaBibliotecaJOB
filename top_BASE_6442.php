@@ -27,7 +27,7 @@
     
 
   </head>
- <?php 
+<?php 
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
@@ -38,10 +38,6 @@
       header("location: inicio.php?login=Required");
    } else if ($_SESSION["autorizado"]=="renovar") {
       header("location: pages/ConfirmarClave.php");
-   }else if ( $_SESSION['usuNivelNombre']=='Personal' || $_SESSION['usuNivelNombre']=='Estudiante') {
-     # code...
-    // validacion de acceso, temporalmente redirigir a escritorio.php
-    echo '<script language="javascript">alert("Error de acceso, su cuenta solo permite realizar consultas");window.location.href="menuopt.php"</script>';
    }
 
    ?>     
@@ -59,16 +55,16 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/book.png" width="65" height="65" alt="">
+         <img src="img/icons/Book.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=autores">Autores</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=editoriales">Editoriales</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
+          <a class="dropdown-item" href="catalogos.php?pageLocation=ejemplares">Ejemplares</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>
@@ -103,9 +99,10 @@
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
+          
+          <a class="dropdown-item" href="#">Base de datos</a>
+          <a class="dropdown-item" href="#">Codigo de Barras</a>
+          <a class="dropdown-item" href="#">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>
