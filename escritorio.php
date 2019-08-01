@@ -18,28 +18,25 @@
             <tr>
               <td>
               	  <div class="container">  <img src="img/icons/book.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" onclick="window.location='catalogos.php?pageLocation=libros'">Catalogos</button>
+                   <button class="btn btn-lg btn-block">Catalogos</button>
                   </div>
               </td>
 
                <td>
               	  <div class="container">  <img src="img/icons/Ops.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" disabled="" 
-                   >Operaciones</button>
+                   <button class="btn btn-lg btn-block">Operaciones</button>
                   </div>
               </td>
 
                <td>
               	  <div class="container">  <img src="img/icons/Est.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" disabled="" 
-                   >Estadisticas</button>
+                   <button class="btn btn-lg btn-block">Estadisticas</button>
                   </div>
               </td>
 
                <td>
               	  <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" disabled="" 
-                   >Utileria</button>
+                   <button class="btn btn-lg btn-block">Utileria</button>
                   </div>
               </td>    
                       
