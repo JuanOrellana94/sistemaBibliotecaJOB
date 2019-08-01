@@ -14,6 +14,11 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //$servidor="localhost";
+    //$usuario="bibliocnx";
+    //$clave="Biblioteca123$";
+    //$base="sistemabiblioteca";
+
     $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
     $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
     echo exec("$comando");    

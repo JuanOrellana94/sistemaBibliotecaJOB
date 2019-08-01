@@ -100,8 +100,8 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="cbarras.php">Codigo de Barras</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
+          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
+          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>

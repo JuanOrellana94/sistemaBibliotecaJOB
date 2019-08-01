@@ -1,9 +1,6 @@
-<!--ASPECTO VISUAL DE LA PAGINA DE Estantes-->
-    <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
-
 <?php
 /*
-TODO: zip del archivo backup, subir el zip a un google drive administrado por el equipo de tesis, evaluar la conveniencia de una funcion de restore.
+TODO: 
 */
 //  include("top.php");
   include("src/libs/vars.php");
@@ -14,6 +11,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
     $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
     echo exec("$comando");    
