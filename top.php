@@ -99,16 +99,9 @@
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          
-<<<<<<< HEAD
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
           <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
           <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
-=======
-          <a class="dropdown-item" href="utilerias.php?pageLocation=respaldo">Respaldo de datos</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
->>>>>>> desarrollo2
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>
