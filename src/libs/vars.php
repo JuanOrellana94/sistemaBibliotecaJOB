@@ -146,6 +146,9 @@
     $varestcod="estcod";
     $varequicod="equicod";
 
+
+
+ //TABLA SOLICITUD DE PRESTAMO BOLSA PRESTAMO   BOLSAPRESTAMO
   //solcod, usucod, libcod, solfec, libcantidad, solfecenviar CARRITO BOLSA DE LIBROS
     $varbolsaprestamo="bolsaprestamo";
     $varsolcod="solcod";
@@ -154,6 +157,57 @@
     $varsolfec="solfec";
     $varlibcantidad="libcantidad";
     $varsolfecenviar="solfecenviar";
+    $varsolestado="solestado";
+
+    //TABLA RESUMEN DE LIBRO PRESTAMO
+//VARIABLES resumenlibroprestamo
+//prestcodlib, prestfeclib, prestdevlib, prestcomlib, prestestlib, prestrenlib, usuCodigo, usuCodBiblio   
+
+    $varresumenlibroprestamo="resumenlibroprestamo";
+    $varprestcod="prestcodlib";
+    $varprestfec="prestfeclib";
+    $varprestdev="prestdevlib";
+    $varprestcom="prestcomlib";
+    $varprestest="prestestlib";
+    $varprestren="prestrenlib";
+    $varusuCodigoF="usuCodigo";
+    $varusuCodBiblio="usuCodBiblio";
+
+  //VARIABLES detallesprestamolibro
+  //detcodlib, prestcodlib, ejemcod
+  //detcodlib, prestcodlib, ejemcod
+
+  $vardetallesprestamolibro="detallesprestamolibro";
+
+  $vardetcodlib="detcodlib";
+  $varprestcodlib="prestcodlib";
+  $varejemcodlib="ejemcod";
+
+//TABLA RESUMEN DE EQUIPO PRESTAMO
+//VARIABLES resumenequipoprestamo
+
+  //prestcodequi, prestfecequi, prestdevequi, prestcomequi, prestestequi, usucod
+    $varresumenequipoprestamo="resumenequipoprestamo";
+
+    $varprestcodequi="prestcodequi";
+    $varprestfecequi="prestfecequi";
+    $varprestdevequi="prestdevequi";
+    $varprestcomequi="prestcomequi";
+    $varprestestequi="prestestequi";
+    $varusuCodigoFEquipo="usucod";
+    $varusuCodBiblioEquipo="usuCodBiblioEquipo";
+
+
+//detallesprestamolibro; 
+  //detcodequi, prestcodequi, existcod
+  //detcodequi, prestcodequi, existcod, detequiest
+
+
+  $vardetallesprestamoequipo="detallesprestamoequipo";
+
+  $vardetcodequi="detcodequi";
+  $varprestcodequiDet="prestcodequi";
+  $varexistcodDet="existcod";
 
 
 
@@ -166,3 +220,4 @@
   $varNomPersona="bitnombre";
 
 ?>
+
