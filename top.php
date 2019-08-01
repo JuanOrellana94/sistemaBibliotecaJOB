@@ -55,7 +55,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/Book.png" width="65" height="65" alt="">
+         <img src="img/icons/book.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
