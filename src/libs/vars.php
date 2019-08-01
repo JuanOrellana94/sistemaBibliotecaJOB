@@ -7,12 +7,13 @@
   $clave="Biblioteca123$";
   $base="sistemabiblioteca";
 
-  
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
   $oficio="612x1008";
 
+  // codigo instituto
+    $instituocodigo="88160-";
 
   //Nombre de tablas
   
@@ -101,7 +102,7 @@
     $varestcod="estcod";
     $varestdes="estdes";
 
-     // TABLA EJEMPLARES
+        // TABLA EJEMPLARES
      $tablaEjemplares="ejemplareslibros";
 
      
@@ -118,8 +119,38 @@
     $varejemres="ejemres";
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
+    $varejemtipadq="ejemtipadq";
+
+ // TABLA EQUIPO
+      $tablaEquipo="equipo";
+//9 NOMBRE DE TABLA EQUIPO equicod,equitip, equimar, equides, equicodifi
+    $varequicod="equicod";
+    $varequitip="equitip";    
+    $varequimg="equimg";
+    $varequides="equides";
+    $varequicodifi="equicodifi";
 
 
+// TABLA existenciaequipo
+    $tablaExistenciaequipo="existenciaequipo";
+////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
+    $varexistcod="existcod";
+    $varexistcodreg="existcodreg";
+    $varexistfecadq="existfecadq";
+    $varexisttipadq="existtipadq";
+    $varexistdetadq="existdetadq";
+    $varexistpreuni="existpreuni";
+    $varexistestu="existestu";
+    $varexistmarca="existmarca";    
+    $varexistconfis="existconfis";
+    $varexistdesest="existdesest";
+    $varestcod="estcod";
+    $varequicodExist="equicod";//igual que varequicod pero usada en prestamos y devoluciones modulos
+    $varequicod="equicod";
+
+
+
+ //TABLA SOLICITUD DE PRESTAMO BOLSA PRESTAMO   BOLSAPRESTAMO
   //solcod, usucod, libcod, solfec, libcantidad, solfecenviar CARRITO BOLSA DE LIBROS
     $varbolsaprestamo="bolsaprestamo";
     $varsolcod="solcod";
@@ -128,6 +159,57 @@
     $varsolfec="solfec";
     $varlibcantidad="libcantidad";
     $varsolfecenviar="solfecenviar";
+    $varsolestado="solestado";
+
+    //TABLA RESUMEN DE LIBRO PRESTAMO
+//VARIABLES resumenlibroprestamo
+//prestcodlib, prestfeclib, prestdevlib, prestcomlib, prestestlib, prestrenlib, usuCodigo, usuCodBiblio   
+
+    $varresumenlibroprestamo="resumenlibroprestamo";
+    $varprestcod="prestcodlib";
+    $varprestfec="prestfeclib";
+    $varprestdev="prestdevlib";
+    $varprestcom="prestcomlib";
+    $varprestest="prestestlib";
+    $varprestren="prestrenlib";
+    $varusuCodigoF="usuCodigo";
+    $varusuCodBiblio="usuCodBiblio";
+
+  //VARIABLES detallesprestamolibro
+  //detcodlib, prestcodlib, ejemcod
+  //detcodlib, prestcodlib, ejemcod
+
+  $vardetallesprestamolibro="detallesprestamolibro";
+
+  $vardetcodlib="detcodlib";
+  $varprestcodlib="prestcodlib";
+  $varejemcodlib="ejemcod";
+
+//TABLA RESUMEN DE EQUIPO PRESTAMO
+//VARIABLES resumenequipoprestamo
+
+  //prestcodequi, prestfecequi, prestdevequi, prestcomequi, prestestequi, usucod
+    $varresumenequipoprestamo="resumenequipoprestamo";
+
+    $varprestcodequi="prestcodequi";
+    $varprestfecequi="prestfecequi";
+    $varprestdevequi="prestdevequi";
+    $varprestcomequi="prestcomequi";
+    $varprestestequi="prestestequi";
+    $varusuCodigoFEquipo="usucod";
+    $varusuCodBiblioEquipo="usuCodBiblioEquipo";
+
+
+//detallesprestamolibro; 
+  //detcodequi, prestcodequi, existcod
+  //detcodequi, prestcodequi, existcod, detequiest
+
+
+  $vardetallesprestamoequipo="detallesprestamoequipo";
+
+  $vardetcodequi="detcodequi";
+  $varprestcodequiDet="prestcodequi";
+  $varexistcodDet="existcod";
 
 
 
@@ -140,3 +222,4 @@
   $varNomPersona="bitnombre";
 
 ?>
+
