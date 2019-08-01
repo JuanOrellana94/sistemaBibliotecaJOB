@@ -83,7 +83,7 @@
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-md" style="background-color:#003764;">
               <a class="navbar-brand">
-                    <img src="img/icons/logoSimple.png" width="125" height="120" alt="">
+                    <img src="img/icons/LogoSimple.png" width="125" height="120" alt="">
               </a>   
           </nav>
         </div>
