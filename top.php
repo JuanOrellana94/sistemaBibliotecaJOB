@@ -27,7 +27,7 @@
     
 
   </head>
-<?php 
+ <?php 
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
@@ -38,6 +38,10 @@
       header("location: inicio.php?login=Required");
    } else if ($_SESSION["autorizado"]=="renovar") {
       header("location: pages/ConfirmarClave.php");
+   }else if ( $_SESSION['usuNivelNombre']=='Personal' || $_SESSION['usuNivelNombre']=='Estudiante') {
+     # code...
+    // validacion de acceso, temporalmente redirigir a escritorio.php
+    echo '<script language="javascript">alert("Error de acceso, su cuenta solo permite realizar consultas");window.location.href="menuopt.php"</script>';
    }
 
    ?>     
