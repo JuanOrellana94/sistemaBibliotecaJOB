@@ -12,7 +12,7 @@
   $a4="595x842";
   $oficio="612x1008";
 
-  // codigo instituto
+   // codigo instituto
     $instituocodigo="88160-";
 
   //Nombre de tablas
@@ -130,6 +130,7 @@
     $varequides="equides";
     $varequicodifi="equicodifi";
 
+
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
 ////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
@@ -144,6 +145,7 @@
     $varexistconfis="existconfis";
     $varexistdesest="existdesest";
     $varestcod="estcod";
+    $varequicodExist="equicod";//igual que varequicod pero usada en prestamos y devoluciones modulos
     $varequicod="equicod";
 
 
