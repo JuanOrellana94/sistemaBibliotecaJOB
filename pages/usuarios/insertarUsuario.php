@@ -20,8 +20,8 @@
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
-
-$checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$formUsuariocarnet';";
+    
+$checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$formUsuariocarnet' and $varAccNombre='$formUsuariomote';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -33,14 +33,20 @@ $dataRow = mysqli_fetch_array($resultado);
 		echo "0";
 
 		} else {
+         if ($formUsuariotipo=='3') {
+         	# code...
+         	$sql="
+		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCarnet , $varCorreo, $varContrasena, $varAccNombre, $varAnoBachi, $varSecAula, $varTipBachi, $varNivel) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocarnet','$formUsuariocorreo','$formUsuariopass','$formUsuariomote','$formUsuarioanio', '$formUsuarioseccion','$formUsuariobachi','$formUsuariotipo');";
+         }else{
+         	$sql="
+		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCorreo, $varContrasena, $varAccNombre, $varNivel) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocorreo','$formUsuariopass','$formUsuariomote','$formUsuariotipo');";
+         }
 
-
-		$insRegistro=mysqli_query($conexion,"
-		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCarnet , $varCorreo, $varContrasena, $varAccNombre, $varAnoBachi, $varSecAula, $varTipBachi,$varNivel) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocarnet','$formUsuariocorreo','$formUsuariopass','$formUsuariomote','$formUsuarioanio','$formUsuarioseccion','$formUsuariobachi','$formUsuariotipo');")
-		    or die ('ERROR INS-INS'.mysqli_error($conexion));
+		$insRegistro=mysqli_query($conexion,$sql)
+		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
-
+    
 
 		$insRegistro=mysqli_query($conexion,"
 		    INSERT INTO  $tablaBitacora(
@@ -63,3 +69,4 @@ $dataRow = mysqli_fetch_array($resultado);
 	echo "1";
 }
  ?>
+ 

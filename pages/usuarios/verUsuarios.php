@@ -1,5 +1,6 @@
 <!--ASPECTO VISUAL DE LA PAGINA DE Usuarios-->
     <!--CONTENEDOR PARA TABLA DE Usuarios/MODALES PARA AGREGAR Y ELIMINAR Usuarios--> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <?php
        
@@ -55,7 +56,7 @@
                           <img src="img/icons/actualizarUsuario.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newUsuarioModal"  >
+                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#modalNuevoUsuario"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Usuario" src="img/icons/usuarioNuevo.png" width="45" height="45">
                         </button>
                         
@@ -79,18 +80,18 @@
 
 
 <!--MODAL PARA INSERTAR NUEVO Usuario-->
-<div class="modal fade" id="newUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="newUsuarioModal" aria-hidden="true">
+<div class="modal fade" id="modalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="modalNuevoUsuario" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newUsuarioModal"><img src="img/icons/usuarioNuevo.png" width="30" height="30"> Nuevo Usuario</h5>
+        <h5 class="modal-title" id="modalNuevoUsua"><img src="img/icons/usuarioNuevo.png" width="30" height="30"> Nuevo Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="background: #D5D9DF;">
-        <form id="formNuevoUsuario" name="formNuevoUsuario">
-          <div class="row">           
+         <div class="modal-body">
+                 <form id="formNuevoUsuario" name="formNuevoUsuario">
+          <div class="row">        
           
             <table class="table">
             <tr>              
@@ -98,16 +99,16 @@
               <th>Segundo Nombre</th>              
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="formUsuarionom1" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder=""></td>
-              <td><input type="text" class="form-control" name="formUsuarionom2" id="formUsuarionom2" aria-describedby="formUsuarionom2" placeholder=""></td>
+              <td><input type="text" class="form-control" name="formUsuarionom1" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="formUsuarionom2" id="formUsuarionom2" aria-describedby="formUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
             <tr>              
               <th>Primer Apellido</th>
               <th>Segundo Apellido</th>              
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder=""></td>
-              <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder=""></td>
+              <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
             <tr>              
               <th>Usuario</th>
@@ -117,74 +118,73 @@
               <td><input type="text" class="form-control" name="formUsuariomote" id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
               <td><input type="password" class="form-control" name="formUsuariopass" id="formUsuariopass" aria-describedby="formUsuariopass" placeholder=""></td>
             </tr>
-            <tr>              
+            <tr>
               <th>Correo</th>
-              <th>Bachillerato</th>              
+              <th>Tipo de cuenta</th> 
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="formUsuariocorreo" id="formUsuariocorreo" aria-describedby="formUsuariocorreo" placeholder=""></td>
+              <td><select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
+                             <option value="">Seleccione tipo</option>
+                             <option value="3">ESTUDIANTE</option> 
+                             <option value="0">ADMINISTRADOR</option>
+                             <option value="1">BIBLIOTECARIO</option>
+                             <option value="2">PERSONAL ADMINISTRATIVO</option>
+                             <option value="2">AUXILIAR</option>                             
+                                                       
+                 </select> </td>                 
+            </tr>
+            <tr>          
+              <th>Bachillerato</th> 
+               <th>Seccion</th>             
+            </tr>
+            <tr>             
               <td>
-                <select class="form-control" name='formUsuariobachi' id='formUsuariobachi'>
-                             <option value="0" selected>SALUD</option>
+                <select class="form-control " name='formUsuariobachi' id='formUsuariobachi' disabled="">
+                             <option value="">Seleccione bachillerato</option>
+                             <option value="0">SALUD</option>
                              <option value="1">MECANICA</option>
                              <option value="2">CONTADURIA</option>                            
                                                        
-                 </select> </td>              
-            </tr>
-             <tr>              
-              <th>Seccion</th>
-              <th>Año</th>              
-            </tr>
-            <tr>
-           <td>
-                <select class="form-control" name='formUsuarioseccion' id='formUsuarioseccion'>
-                             <option value="0" selected>SECCION A</option>
+                 </select> </td> 
+                 <td> <select class="form-control" name='formUsuarioseccion' id='formUsuarioseccion' disabled="">
+                             <option value="">Seleccione la seccion</option>
+                             <option value="0">SECCION A</option>
                              <option value="1">SECCION B</option>
                              <option value="2">SECCION C</option>                            
                              <option value="3">SECCION D</option>                            
                                                        
-                 </select></td>
+                 </select></td>             
+            </tr>
+             <tr>             
+              <th>Año</th> 
+              <th>Carnet</th>                
+            </tr>
+            <tr>         
             <td>           
-              <select class="form-control" name='formUsuarioanio' id='formUsuarioanio'>
-                             <option value="0" selected>PRIMER AÑO</option>
+              <select class="form-control" name='formUsuarioanio' id='formUsuarioanio' disabled="">
+                             <option value="">Seleccione el año</option>
+                             <option value="0">PRIMER AÑO</option>
                              <option value="1">SEGUNDO AÑO</option>
                              <option value="2">TERCER AÑO</option>                         
                                                        
-                 </select> </td>  
+                 </select> </td> 
+            <td><input type="text" class="form-control" name="formUsuariocarnet" id="formUsuariocarnet" aria-describedby="formUsuariocarnet" placeholder="" disabled=""></td> 
             </tr>             
-             <tr>              
-              <th>Carnet</th>
-              <th>Tipo de cuenta</th>              
-            </tr>
-            <tr>
-              <td><input type="text" class="form-control" name="formUsuariocarnet" id="formUsuariocarnet" aria-describedby="formUsuariocarnet" placeholder=""></td>
-              <td>
-                 <select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
-                             <option value="0" selected>ADMINISTRADOR</option>
-                             <option value="1">BIBLIOTECARIO</option>
-                             <option value="2">PERSONAL ADMINISTRATIVO</option>
-                             <option value="3" selected>ESTUDIANTE</option> 
-                                                       
-                 </select> 
-             
-
-              </td>
-            </tr>
               
-          
           </table>  
            </div>        
             
         </form>
-
-      </div>
+            </div>
+     
       <div class="modal-footer" style="background: #D5D9DF;">
          <div id="respuestaNuevoUsuario" style="color: red; font-weight: bold; text-align: center;"></div>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="insertarUsuario()">Insertar</button>
       </div>
-     
+      </div>
     </div>
   </div>
 </div>
@@ -195,7 +195,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newUsuarioModal"><img src="img/icons/Bookstand.png" width="30" height="30">Editar Usuario</h5>
+        <h5 class="modal-title" id="editUsuarioModal"><img src="img/icons/Bookstand.png" width="30" height="30">Editar Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -213,16 +213,16 @@
               <th>Segundo Nombre</th>              
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="editUsuarionom1" id="editUsuarionom1" aria-describedby="editUsuarionom1" placeholder=""></td>
-              <td><input type="text" class="form-control" name="editUsuarionom2" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder=""></td>
+              <td><input type="text" class="form-control" name="editUsuarionom1" id="editUsuarionom1" aria-describedby="editUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarionom2" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
             <tr>              
               <th>Primer Apellido</th>
               <th>Segundo Apellido</th>              
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder=""></td>
-              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder=""></td>
+              <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
             <tr>              
               <th>Usuario</th>
@@ -234,55 +234,59 @@
             </tr>
             <tr>              
               <th>Correo</th>
-              <th>Bachillerato</th>              
+              <th>Tipo de cuenta</th>             
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="editUsuariocorreo" id="editUsuariocorreo" aria-describedby="editUsuariocorreo" placeholder=""></td>   
-
+              <td><input type="text" class="form-control" name="editUsuariocorreo" id="editUsuariocorreo" aria-describedby="editUsuariocorreo" placeholder=""></td> 
               <td>
-                <select class="form-control" name='editUsuariobachi' id='editUsuariobachi'>
-                             <option value="0" selected>SALUD</option>
-                             <option value="1">MECANICA</option>
-                             <option value="2">CONTADURIA</option>                            
-                                                       
-                 </select> </td>   
-            </tr>
-             <tr>              
-              <th>Seccion</th>
-              <th>Año</th>              
-            </tr>
-            <tr>              
-              <td>
-                <select class="form-control" name='editUsuarioseccion' id='editUsuarioseccion'>
-                             <option value="0" selected>SECCION A</option>
-                             <option value="1">SECCION B</option>
-                             <option value="2">SECCION C</option>                            
-                             <option value="3">SECCION D</option>                            
-                                                       
-                 </select></td>
-             
-              <td>           
-              <select class="form-control" name='editUsuarioaniobachi' id='editUsuarioaniobachi'>
-                             <option value="0" selected>PRIMER AÑO</option>
-                             <option value="1">SEGUNDO AÑO</option>
-                             <option value="2">TERCER AÑO</option>                         
-                                                       
-                 </select> </td>  
-            </tr>             
-             <tr>              
-              <th>Carnet</th>
-              <th>Tipo de cuenta</th>              
-            </tr>
-            <tr>
-              <td><input type="text" class="form-control" name="editUsuariocarnet" id="editUsuariocarnet" aria-describedby="editUsuariocarnet" placeholder=""></td>
-              <td>
-                <select class="form-control" name='editUsuarionivel' id='editUsuarionivel'>
+                <select class="form-control js-Dropdown-Busqueda" name='editUsuariotipo' id='editUsuariotipo'>
                              <option value="0" selected>Administrador</option>
                              <option value="1">Bibliotecario</option>
                              <option value="2">Personal Administrativo</option>
                              <option value="3" selected>Estudiante</option> 
                                                        
-                 </select></td>              
+                 </select></td>             
+            </tr>
+             <tr>              
+              <th>Bachillerato</th> 
+              <th>Seccion</th>              
+            </tr>
+            <tr> 
+              <td>
+                <select class="form-control js-Dropdown-Busqueda" name='editUsuariobachi' id='editUsuariobachi' 
+                >
+                             <option value="0">SALUD</option>
+                             <option value="1">MECANICA</option>
+                             <option value="2">CONTADURIA</option>                            
+                                                       
+                 </select> </td>             
+              <td>
+                <select class="form-control js-Dropdown-Busqueda" name='editUsuarioseccion' id='editUsuarioseccion' 
+                >
+                             <option value="0">SECCION A</option>
+                             <option value="1">SECCION B</option>
+                             <option value="2">SECCION C</option>                            
+                             <option value="3">SECCION D</option>                            
+                                                       
+                 </select></td>             
+               
+            </tr>             
+             <tr>              
+              <th>Año</th> 
+              <th>Carnet</th>               
+            </tr>
+            <tr>
+              <td>           
+              <select class="form-control js-Dropdown-Busqueda" name='editUsuarioaniobachi' id='editUsuarioaniobachi'  
+              >
+                             <option value="0">PRIMER AÑO</option>
+                             <option value="1">SEGUNDO AÑO</option>
+                             <option value="2">TERCER AÑO</option>                         
+                                                       
+                 </select> </td> 
+              <td><input type="text" class="form-control" name="editUsuariocarnet" id="editUsuariocarnet" aria-describedby="editUsuariocarnet" placeholder="" 
+                ></td>
+                          
 
               
             </tr>
@@ -300,7 +304,7 @@
 
       </div>
       <div class="modal-footer" style="background: #D5D9DF;">
-         <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div>
+         <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div><br>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="editarUsuario()">Editar</button>
@@ -354,7 +358,7 @@
 <!-- Modal alerta de activar cuenta -->
 
 <div class="modal fade" id="modalusuarioactivar" tabindex="-1" role="dialog" aria-labelledby="modalusuarioactivar" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">      
       </div>
@@ -366,7 +370,7 @@
                   <div id="labelActivar" style="color: black; font-weight: bold; text-align: center;"></div>
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;">
             <div class="form-group" >
-         <label for="TituloLabel"> <h2>Esta apunto de ACTIVAR esta cuenta:</h2></label>       
+         <label for="TituloLabel"> <h6>Desea</h6><h4><b>ACTIVAR</b></h4><h6>la cuenta:</h6> </label>       
                <div id="respuestaactivarusuario" style="color: red; font-weight: bold; text-align: center;"></div>
                     <input type="hidden" class="form-control" name="varactivarusuariocod" id="varactivarusuariocod" aria-describedby="varactivarusuariocod" placeholder=""> 
                     
@@ -379,7 +383,7 @@
       </div>
       <div class="modal-footer" style="background: #D5D9DF;">
       <div id="respuestausuarioActivar" style="color: red; font-weight: bold; text-align: center;"></div>         
-            <button type="button"  id="activarButton" name="activarButton" class="btn btn-success" onclick="activarUsuario()">Aceptar</button>
+            <button type="button"  id="activarButton" name="activarButton" class="btn btn-success" onclick="activarUsuario()">ACTIVAR</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <div class="modal-footer" style="background: #D5D9DF;">
                
@@ -393,7 +397,7 @@
 <!-- Modal alerta de desactivar cuenta -->
 
 <div class="modal fade" id="modalusuariodesactivar" tabindex="-1" role="dialog" aria-labelledby="modalusuariodesactivar" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">      
       </div>
@@ -405,7 +409,7 @@
                   <div id="labeDesactivar" style="color: black; font-weight: bold; text-align: center;"></div>
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;">
             <div class="form-group" >
-         <label for="TituloLabel"> <h2>Esta apunto de DESACTIVAR esta cuenta:</h2></label>       
+         <label for="TituloLabel">  <h6>Desea</h6><h4><b>DESACTIVAR</b></h4><h6>la cuenta:</h6></label>       
                <div id="respuestadesactivarusuario" style="color: red; font-weight: bold; text-align: center;"></div>
                      <input type="hidden" class="form-control" name="vardesactivarusuariocod" id="vardesactivarusuariocod" aria-describedby="vardesactivarusuariocod" placeholder=""> 
                     
@@ -418,7 +422,7 @@
       </div>
       <div class="modal-footer" style="background: #D5D9DF;">
       
-            <button type="button"  id="desactivarButton" name="desactivarButton" class="btn btn-success" onclick="desactivarUsuario()">Aceptar</button>
+            <button type="button"  id="desactivarButton" name="desactivarButton" class="btn btn-danger" onclick="desactivarUsuario()">Aceptar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <div class="modal-footer" style="background: #D5D9DF;">
                
@@ -435,8 +439,9 @@
 <!--Script para recargar tabla al abrir esta pagina el scrip esta incluido en <top.php> dir src/js/tables/loader.js-->
 <script>
     window.onload = function () {     
-        
+
       recargarTabla();
+       setSelect2();
 
       $(window).keydown(function(event){
         if(event.keyCode == 13) {
@@ -454,7 +459,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/Usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda);
+  $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -471,7 +476,7 @@ function recargarTablaLimpiar(){
     var busqueda=$("#textBusqueda").val();
 
   
-    $("#cargarTabla").load("pages/Usuarios/tablaUsuarios.php?pagina=1&busqueda="+busqueda);
+    $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+busqueda);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -548,12 +553,94 @@ function desactivarUsuario(){
 //INSERTAR NUEVO Usuario
 function insertarUsuario(){
 
-  if ($("#formUsuarioape").val()==""){
+  if ($("#formUsuarionom1").val()==""){
     $("#respuestaNuevoUsuario").show();
-    $("#respuestaNuevoUsuario").html("Campo de Nombre del Usuario esta Vacio");  
-  }else {
+    $("#respuestaNuevoUsuario").html("Campo de Primer Nombre del Usuario esta Vacio");  
+  }else if ($("#formUsuarionom2").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo de Segundo Nombre del Usuario esta Vacio");
+  }else if ($("#formUsuarioape1").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo de Primer Apellido del Usuario esta Vacio");
+  }else if ($("#formUsuarioape2").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo de Segundo Apellido del Usuario esta Vacio");
+  }else if ($("#formUsuariomote").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo Usuario esta Vacio");
+  }else if ($("#formUsuariopass").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo de Contraseña del Usuario esta Vacio");
+  }else if ($("#formUsuariotipo").val()=="") {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Campo Tipo de Usuario esta Vacio");
+
+  }else if ($("#formUsuariotipo").val()=="3") {
+
+       if ($("#formUsuariobachi").val()=="") {
+              $("#respuestaNuevoUsuario").show();
+              $("#respuestaNuevoUsuario").html("Campo tipo de bachillerato esta Vacio");
+        }else if ($("#formUsuarioanio").val()=="") {
+              $("#respuestaNuevoUsuario").show();
+              $("#respuestaNuevoUsuario").html("Campo Año esta Vacio");
+        }else if ($("#formUsuarioseccion").val()=="") {
+              $("#respuestaNuevoUsuario").show();
+              $("#respuestaNuevoUsuario").html("Campo Seccion esta Vacio");
+        }else if ($("#formUsuariocarnet").val()=="") {
+              $("#respuestaNuevoUsuario").show();
+              $("#respuestaNuevoUsuario").html("Campo Carnet esta Vacio");        
+            }
+             else {
+                $("#respuestaNuevoUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
+                 var url = "pages/usuarios/insertarUsuario.php";
+                 $.ajax({
+              type: "POST",
+              url: url,
+              data: $("#formNuevoUsuario").serialize(),
+              success: function (data){
+                if (data==1) {
+                    //success
+                    $("#accionFeedback").show();
+                    $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Nuevo Usuario agregado </div>");
+                     recargarTabla();                    
+                      setTimeout(
+                        function() {
+                          
+                          $("#accionFeedback").hide(500);          
+                    }, 6000);
+                    $("#respuestaNuevoUsuario").hide(500);
+                    $("#modalNuevoUsuario").modal('hide');
+
+                } else if (data==0) {
+                  //error
+                  $("#respuestaNuevoUsuario").show();
+                  $("#respuestaNuevoUsuario").html("<div class='alert alert-warning' role='alert'>Esta Usuario ya ha sido agregado </div>");
+                     recargarTabla();
+                    setTimeout(
+                        function() {
+                          $("#respuestaNuevoUsuario").hide(500);                                
+                    }, 6000);
+                    
+
+                } else{
+                  $("#respuestaNuevoUsuario").show();
+                  $("#respuestaNuevoUsuario").html(data);
+                     recargarTabla();
+
+                    setTimeout(
+                        function() {
+                          $("#respuestaNuevoUsuario").hide(500);                                
+                    }, 6000);
+                }
+
+              }
+            });
+
+            }
+     }
+ else {
     $("#respuestaNuevoUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/Usuarios/insertarUsuario.php";
+    var url = "pages/usuarios/insertarUsuario.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -563,15 +650,14 @@ function insertarUsuario(){
                     //success
                     $("#accionFeedback").show();
                     $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Nuevo Usuario agregado </div>");
-                     recargarTabla();
-                     limpiarFormularioUsuario();
+                     recargarTabla();                     
                     setTimeout(
                         function() {
                           
-                          $("#accionFeedback").hide(500);          
+                    $("#accionFeedback").hide(500);          
                     }, 6000);
                     $("#respuestaNuevoUsuario").hide(500);
-                    $('#newUsuarioModal').modal('hide');
+                    $("#modalNuevoUsuario").modal('hide');
 
                 } else if (data==0) {
                   //error
@@ -603,10 +689,93 @@ function insertarUsuario(){
 //EDITAR Usuario
 function editarUsuario(){
 
-  if ($("#editUsuarionom").val()==""){
+  if ($("#editUsuarionom1").val()==""){
     $("#respuestaEditarUsuario").show();
-    $("#respuestaEditarUsuario").html("Campo de Indicador del Usuario esta Vacio");
-  }
+    $("#respuestaEditarUsuario").html("Campo de Primer Nombre del Usuario esta Vacio");  
+  }else if ($("#editUsuarionom2").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo de Segundo Nombre del Usuario esta Vacio");
+  }else if ($("#editUsuarioape1").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo de Primer Apellido del Usuario esta Vacio");
+  }else if ($("#editUsuarioape2").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo de Segundo Apellido del Usuario esta Vacio");
+  }else if ($("#editUsuariomote").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo Usuario esta Vacio");
+  }else if ($("#editUsuariopass").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo de Contraseña del Usuario esta Vacio");
+  }else if ($("#editUsuariotipo").val()=="") {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Campo Tipo de Usuario esta Vacio");
+
+  }else if ($("#editUsuariotipo").val()=="3") {
+
+       if ($("#editUsuariobachi").val()=="") {
+              $("#respuestaEditarUsuario").show();
+              $("#respuestaEditarUsuario").html("Campo tipo de bachillerato esta Vacio");
+        }else if ($("#editUsuarioanio").val()=="") {
+              $("#respuestaEditarUsuario").show();
+              $("#respuestaEditarUsuario").html("Campo Año esta Vacio");
+        }else if ($("#editUsuarioseccion").val()=="") {
+              $("#respuestaEditarUsuario").show();
+              $("#respuestaEditarUsuario").html("Campo Seccion esta Vacio");
+        }else if ($("#editUsuariocarnet").val()=="") {
+              $("#respuestaEditarUsuario").show();
+              $("#respuestaEditarUsuario").html("Campo Carnet esta Vacio");        
+            }
+            else{
+                $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
+    var url = "pages/usuarios/editarUsuario.php";
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: $("#formEditUsuario").serialize(),
+              success: function (data){               
+                if (data==1) {
+                  //success
+                  $("#accionFeedback").show();
+                  $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Usuario ha sido editado </div>");
+                  recargarTabla();
+                  setTimeout(
+                      function() {
+                        $("#accionFeedback").hide(500);
+                        
+                  }, 6000);
+                  $("#respuestaEditarUsuario").hide(500);    
+                  $("#modalEditarUsuario").modal('hide');
+
+                } else if (data==0) {
+                  //error
+                  $("#respuestaEditarUsuario").show();
+                  $("#respuestaEditarUsuario").html("<div class='alert alert-warning' role='alert'>Otro Usuario ya esta registrado con estos datos(carnet o correo) </div>");    
+                  setTimeout(
+                      function() {
+                        $("#respuestaEditarUsuario").hide(500);
+                        
+                       
+                  }, 6000);
+                  
+                } else {
+                  //any other error
+                  $("#respuestaEditarUsuario").show();
+                  $("#respuestaEditarUsuario").html(data);                  
+                  setTimeout(
+                      function() {
+                        $("#respuestaEditarUsuario").hide(500);
+                        
+                       
+                  }, 6000);
+                }
+                  
+
+
+              }
+            });
+            }        
+         }
   else {
     $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/usuarios/editarUsuario.php";
@@ -658,63 +827,6 @@ function editarUsuario(){
 
   }
 }
-//BORRAR FORMULARIO DE NUEVO Usuario
-function limpiarFormularioUsuario(){
-   document.getElementById("formNuevoUsuario").reset();
-
-}
-
-//BORRAR Usuario
-function deleteUsuario(){
-  $("#borrarButton").attr("disabled", true);
-
-  if ($("#varUsuariocod").val()==""){
-    $("#respuestaBorrarUsuario").show();
-    $("#respuestaBorrarUsuario").html("Codigo de Usuario necesario");
-  }else {
-    $("#labelBorrar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
-    var url = "pages/Usuarios/borrarUsuario.php";
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: $("#deleteForm").serialize(),
-      success: function (data){
-        recargarTabla()
-        if (data=="0"){
-          // ERROR, Usuario TIENE LIBROS INSCRITOS
-          var url = "pages/Usuarios/requisitosBorrarUsuario.php";
-           $.ajax({
-              type: "POST",
-              url: url,
-              data: $("#deleteForm").serialize(),
-              success: function (data){
-                  $("#labelBorrar").show();
-                  $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar el Usuario. contiene ejemplares ubicados en el:");
-                  $("#cargarTablaRequisito").show();
-                  $("#cargarTablaRequisito").html(data);                           
-              }
-            });
-        }else if (data=="1"){  
-
-          $("#labelBorrar").show();
-          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
-          $("#labelBorrar").html("<h5>Usuario ha sido eliminado</h5>");
-
-          $("#modalBorrarUsuario").modal('hide');
-           //success
-          $("#accionFeedback").show();
-          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Usuario Eliminado </div>");
-           setTimeout(
-              function() {
-                 $("#accionFeedback").hide(500);                         
-           }, 6000);
-         
-        }            
-      }
-    });
-  }
-}
 
  $('#modalEditarUsuario').on('show.bs.modal', function (event) {var button = $(event.relatedTarget) // Button that triggered the modal
       var varusuariocod = button.data('varusuariocod')
@@ -723,7 +835,7 @@ function deleteUsuario(){
       var varusuarioape1 = button.data('varusuarioape1')
       var varusuarioape2 = button.data('varusuarioape2')
       var varusuariocarnet = button.data('varusuariocarnet')
-      var varusuariocorreo = button.data('varusuariocorreo')
+      var varusuariocorreo = button.data('varusuariocorreo')     
       var varusuariomote = button.data('varusuariomote')
       var varusuarioaniobachi = button.data('varusuarioaniobachi')
       var varusuarioaula = button.data('varusuarioaula')
@@ -742,15 +854,19 @@ function deleteUsuario(){
        document.getElementById('editUsuarioape1').value = varusuarioape1;
        document.getElementById('editUsuarioape2').value = varusuarioape2;
        document.getElementById('editUsuariocarnet').value = varusuariocarnet;
-       document.getElementById('editUsuariocorreo').value = varusuariocorreo;
+       document.getElementById('editUsuariocorreo').value = varusuariocorreo;      
        document.getElementById('editUsuariomote').value = varusuariomote;
-     //  document.getElementById('editUsuarioaniobachi').value = varusuarioaniobachi;
-     //  document.getElementById('editUsuarioseccion').value = varusuarioaula;
-     //  document.getElementById('editUsuariobachi').value = varusuariobachi;
-      // document.getElementById('editUsuarionivel').value = varusuarionivel;
-     //  document.getElementById('editUsuarioestado').value = varusuarioestado;
+       document.getElementById('editUsuarioaniobachi').value = varusuarioaniobachi;
+       document.getElementById('editUsuarioseccion').value = varusuarioaula;
+       document.getElementById('editUsuariobachi').value = varusuariobachi;
+       document.getElementById('editUsuariotipo').value = varusuarionivel;
+       
 
       
+        
+    $('.js-Dropdown-Busqueda').select2({
+        "selected": true
+     });
       
       
     })
@@ -797,8 +913,65 @@ function deleteUsuario(){
       
     })
   
-  
+       //onkeypress="return soloLetras(event);" 
 
+ function soloLetras(evt){
+       key = event.keyCode || evt.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8";
 
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+
+    //onkeypress="return soloNumeros(event);" 
+
+ function soloNumeros(evt){
+       key = event.keyCode || evt.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "0123456789";
+       especiales = "8";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }  
+// deshabilitar dependiendo del tipo de cuenta en insertar
+$( function() {
+    $("#formUsuariotipo").change( function() {
+        if ($(this).val() == "3") {
+            $("#formUsuariobachi").prop("disabled", false);
+            $("#formUsuarioseccion").prop("disabled", false);
+            $("#formUsuarioanio").prop("disabled", false);
+            $("#formUsuariocarnet").prop("disabled", false);       
+            // si selecciona donado, borra lo que contiene el input de precio:
+            document.getElementById('formUsuariocarnet').value="";
+        } else {
+            $("#formUsuariobachi").prop("disabled", true);
+            $("#formUsuarioseccion").prop("disabled", true);
+            $("#formUsuarioanio").prop("disabled", true);
+            $("#formUsuariocarnet").prop("disabled", true);
+            document.getElementById('formUsuariocarnet').value="";
+        }
+    });
+});
 
 </script>

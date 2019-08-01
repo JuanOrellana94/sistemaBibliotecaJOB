@@ -31,7 +31,7 @@
                     <div class="col-sm-5">
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <input type="text" class="form-control" placeholder="Realizar busqueda" id="textBusqueda" name="textBusqueda"> 
+                          <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Realizar busqueda" id="textBusqueda" name="textBusqueda"> 
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                           </div> 
@@ -92,7 +92,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre del editorial</label>
-                <input type="text" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
               </div>
              
             </div>          
@@ -131,8 +131,8 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                 <input type="text" class="form-control" name="editeditorialcod" id="editeditorialcod" aria-describedby="editeditorialcod" placeholder="" hidden>
-                <input type="text" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
+                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editeditorialcod" id="editeditorialcod" aria-describedby="editeditorialcod" placeholder="" hidden>
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
               </div>
              
             </div>
@@ -173,8 +173,8 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Eliminar Editorial es una accion <b> Permanente </b> desea eliminar Editorial:</label></div>                
-                <input type="text" class="form-control" name="deleditorialcod" id="deleditorialcod" aria-describedby="deleditorialcod" placeholder="Editorial" hidden="true">
-                <input type="text" class="form-control" name="deleditorialnom" id="deleditorialnom" aria-describedby="deleditorialnom" placeholder="Editorial" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="deleditorialcod" id="deleditorialcod" aria-describedby="deleditorialcod" placeholder="Editorial" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="deleditorialnom" id="deleditorialnom" aria-describedby="deleditorialnom" placeholder="Editorial" hidden="true">
                            
                   <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
@@ -224,7 +224,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/Editoriales/tablaEditoriales.php?pagina=1&busqueda="+ busqueda);
+  $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -241,7 +241,7 @@ function recargarTablaLimpiar(){
     var busqueda=$("#textBusqueda").val();
 
   
-    $("#cargarTabla").load("pages/Editoriales/tablaEditoriales.php?pagina=1&busqueda="+busqueda);
+    $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina=1&busqueda="+busqueda);
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -266,7 +266,7 @@ function insertarEditorial(){
     $("#respuestaNuevoEditorial").html("Campo de Nombre del Editorial esta Vacio");  
   }else {
     $("#respuestaNuevoEditorial").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/Editoriales/insertarEditorial.php";
+    var url = "pages/editoriales/insertarEditorial.php";
             $.ajax({
               type: "POST",
               url: url,
@@ -470,4 +470,45 @@ function deleteEditorial(){
       
     })
 
+    //onkeypress="return soloLetras(event);" 
+
+ function soloLetras(evt){
+       key = event.keyCode || evt.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+
+    //onkeypress="return soloNumeros(event);" 
+
+ function soloNumeros(evt){
+       key = event.keyCode || evt.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "0123456789";
+       especiales = "8";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
 </script>

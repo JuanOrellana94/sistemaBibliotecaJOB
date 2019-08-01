@@ -41,6 +41,15 @@
                           </div> 
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
+                      </form> 
+                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small>
+                      <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                            <option value="0">ULTIMOS REGISTROS</option>
+                            <option value="1">PRIMEROS REGISTROS</option>
+                          </select>                          
+                        </div>                        
                       </form>                       
                     </div>
                     <div class="col-sm-3">
@@ -93,19 +102,16 @@
           <div class="row">
            
             <div class="col-sm-6">
-
-
-
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="">
+                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="return soloLetras(event);">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="formautape" placeholder="">
+                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="formautape" placeholder="" onkeypress="return soloLetras(event);" >
               </div>
 
             </div>
@@ -153,14 +159,14 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input type="text" class="form-control" name="editautcod" id="editautcod" aria-describedby="editautcod" placeholder="" hidden>
-                <input type="text" class="form-control" name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="">
+                <input type="text" class="form-control" name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="return soloLetras(event);">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="editautape" id="editautape" aria-describedby="editautape" placeholder="">
+                <input type="text" class="form-control" name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="return soloLetras(event);">
               </div>
 
             </div>
@@ -257,8 +263,9 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda);
+  var busqueda=$("#textBusqueda").val();
+  var ordenar=$("#textBusquedaordenar").val();  
+  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -516,5 +523,47 @@ function borrarAutor(){
       
       
     })
+
+     // SOLO NUMEROS Y SOLO LETRAS
+
+ function isNumberKey(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+
+
+function isNumberSysmbolKey(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode != 45 && charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+
+//onkeypress="return soloLetras(event);" 
+
+ function soloLetras(evt){
+       key = event.keyCode || evt.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+
+    
 
 </script>

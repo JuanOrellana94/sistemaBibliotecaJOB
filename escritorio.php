@@ -17,7 +17,7 @@
           <table align="center" >
             <tr>
               <td>
-              	  <div class="container">  <img src="img/icons/Book.png" alt="Snow" style="width:100%">
+              	  <div class="container">  <img src="img/icons/book.png" alt="Snow" style="width:100%">
                    <button class="btn btn-lg btn-block">Catalogos</button>
                   </div>
               </td>

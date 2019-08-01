@@ -55,7 +55,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/book.png" width="65" height="65" alt="">
+         <img src="img/icons/Book.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
@@ -64,7 +64,6 @@
           <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>
@@ -75,8 +74,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Prestar</a>
-          <a class="dropdown-item" href="#">Devoluciones</a>
+          <a class="dropdown-item" href="acciones.php?pageLocation=prestamos">Prestar</a>
+          <a class="dropdown-item" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
           <a class="dropdown-item" href="#">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
@@ -100,15 +99,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-<<<<<<< HEAD
-          <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
-=======
           <a class="dropdown-item" href="utilerias.php?pageLocation=respaldo">Respaldo de datos</a>
           <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
           <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
->>>>>>> desarrollo2
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>

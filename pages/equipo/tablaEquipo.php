@@ -6,40 +6,23 @@
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
-		$pagina=1; 
+		$pagina=5; 
 	};
 
 
 	if (isset($_GET["busqueda"])) { 
-		$textBusqueda  = $_GET['busqueda']; 
+		$textBusqueda  = $_GET["busqueda"]; 
 	} else {
 		$textBusqueda=""; 
 	};
-	if (empty($_GET["ordenar"])) { 
-		$varordenar=$_GET["ordenar"];
-            switch ($varordenar) {
-              	case '0':
-              		   $textBusquedaorde  = $varautcod." ". "DESC" ;
-                break;
-                case '1':
-                	$textBusquedaorde  = $varautcod." ". "ASC" ;
-                break;              	
-              }  
+
+	$sql = "SELECT COUNT($varequicod) 
+      FROM $tablaEquipo
 		
-		 
-	} else {
-		$textBusquedaorde =$varautcod; 
-	};
- 
-	$sql = "SELECT COUNT($varautcod) 
-      FROM $tablAutor		
-          WHERE   
-         concat_ws('',$varautnom,$varautape)
-		 LIKE '%$textBusqueda%' OR
-		 concat_ws('',$varautnom,$varautape)
-		 LIKE '%$textBusqueda%' OR
-		$varautseud LIKE '%$textBusqueda%'
-	ORDER BY $textBusquedaorde;";  
+      WHERE 
+		$varequicodifi LIKE '%$textBusqueda%' OR
+		$varequitip LIKE '%$textBusqueda%'
+	ORDER BY $varequicod ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -65,7 +48,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val() + "&ordenar=" + $("#textBusquedaordenar").val());
+        $("#cargarTabla").load("pages/equipo/tablaEquipo.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
       });
 </script>
 
@@ -78,9 +61,10 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th> Nombre del Autor</th>
-							<th>Pseudonimo</th>
+							<th>Codigo Equipo</th>
+							<th>Tipo</th>
+							<th>Descripcion</th>
+							
 	
 							
 							<th class="aTable">Opciones</th>
@@ -91,14 +75,11 @@
 
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT * FROM $tablAutor 							
-								WHERE   
-                                   concat_ws('',$varautnom,$varautape) 
-	                              LIKE '%$textBusqueda%' OR
-		                           concat_ws('',$varautnom,$varautape)
-		                          LIKE '%$textBusqueda%' OR
-		                          $varautseud LIKE '%$textBusqueda%'
-								ORDER BY $textBusquedaorde
+							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaEquipo 
+								WHERE 
+							$varequicodifi LIKE '%$textBusqueda%' OR
+		                    $varequitip LIKE '%$textBusqueda%'
+								ORDER BY $varequicod
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
@@ -108,28 +89,38 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$varautcod];?> </td>						
-							<td><?php echo $dataLibros[$varautnom]." ".$dataLibros[$varautape];?>  </td>
-							<td><?php echo $dataLibros[$varautseud];?></td> 
+							<td><?php echo $dataLibros[$varequicodifi];?> </td>
+							<td><?php echo $dataLibros[$varequitip];?> </td>						
+							<td><?php echo $dataLibros[$varequides];?>  </td>							 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarAutor"
-								 data-varautcod="<?php echo $dataLibros[$varautcod];?>"
-								 data-varautnom="<?php echo  $dataLibros[$varautnom];?>"
-								 data-varautape="<?php echo  $dataLibros[$varautape];?>"								
-								 data-varautseud="<?php echo $dataLibros[$varautseud];?>"
-								 title="Editar Autor">
+								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarequipo"
+								 data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								 data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
+								 data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
+								 data-varequides="<?php echo $dataLibros[$varequides];?>"							 					 
+								 title="Editar equipo">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarAutor"
-								 	data-varautcod="<?php echo $dataLibros[$varautcod];?>"
-									data-varautnom="<?php echo  $dataLibros[$varautnom];?>"
-									data-varautape="<?php echo  $dataLibros[$varautape];?>"	
-									title="Eliminar Autor">
+								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#imagenModal"
+								  data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								  data-varequimg="<?php echo $dataLibros[$varequimg];?> "
+								  data-varequitip="<?php echo  $dataLibros[$varequitip];?>"									  
+								  title="Portada del Libro"		
+								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
+
+								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>">Ver detalles</a> 
+
+								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarequipo"
+								 	data-varequicod="<?php echo $dataLibros[$varequicod];?>"
+								    data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
+								    data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
+								    data-varequides="<?php echo $dataLibros[$varequides];?>"
+									title="Eliminar equipo">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
-								 </button>
+								 </button> -->
 								</div>
 							</td>
 						</tr>
@@ -138,7 +129,7 @@
 					</tbody>
 				</table>
 
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
+				
 
 
 				

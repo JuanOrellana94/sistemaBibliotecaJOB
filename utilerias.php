@@ -3,7 +3,11 @@
   <?php
 
     include("top.php");
+<<<<<<< HEAD
 //    include("pages/catalogs/catbar.php");
+=======
+    include("pages/catalogs/catbar.php");
+>>>>>>> desarrollo2
 
 
 
