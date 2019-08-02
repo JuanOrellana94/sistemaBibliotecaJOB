@@ -2,6 +2,7 @@
   
 
 
+ 
   $servidor="localhost";
   $usuario="bibliocnx";
   $clave="Biblioteca123$";
@@ -12,7 +13,7 @@
   $a4="595x842";
   $oficio="612x1008";
 
- // codigo instituto
+  // codigo instituto
     $instituocodigo="88160-";
 
   //Nombre de tablas
@@ -130,7 +131,6 @@
     $varequides="equides";
     $varequicodifi="equicodifi";
 
-
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
 ////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
@@ -145,7 +145,7 @@
     $varexistconfis="existconfis";
     $varexistdesest="existdesest";
     $varestcod="estcod";
-    $varequicodExist="equicod";//igual que varequicod pero usada en prestamos y devoluciones modulos
+    $varequicodExist="equicod";
     $varequicod="equicod";
 
 
@@ -161,7 +161,7 @@
     $varsolfecenviar="solfecenviar";
     $varsolestado="solestado";
 
-    //TABLA RESUMEN DE LIBRO PRESTAMO
+//TABLA RESUMEN DE LIBRO PRESTAMO
 //VARIABLES resumenlibroprestamo
 //prestcodlib, prestfeclib, prestdevlib, prestcomlib, prestestlib, prestrenlib, usuCodigo, usuCodBiblio   
 
@@ -221,5 +221,8 @@
   $varNomLibreria="bitnomlib";
   $varNomPersona="bitnombre";
 
-?>
 
+
+
+
+?>
