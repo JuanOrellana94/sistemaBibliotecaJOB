@@ -434,6 +434,44 @@
 </div>
 
 
+<!-- modal para visualizar codigo de barra -->
+<div class="modal fade" id="vercbarra" tabindex="-1" role="dialog" aria-labelledby="vercbarra" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">      
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="vercbarra" name="vercbarra">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                  <div id="labeDesactivar" style="color: black; font-weight: bold; text-align: center;"></div>
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;">
+            <div class="form-group" >
+         <label for="TituloLabel">  <h6>Desea</h6><h4><b>DESACTIVAR</b></h4><h6>la cuenta:</h6></label>       
+               <div id="respuestadesactivarusuario" style="color: red; font-weight: bold; text-align: center;"></div>
+                     <input type="hidden" class="form-control" name="vardesactivarusuariocod" id="vardesactivarusuariocod" aria-describedby="vardesactivarusuariocod" placeholder=""> 
+                    
+                  </div>
+                 </div>
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+      
+            <button type="button"  id="desactivarButton" name="desactivarButton" class="btn btn-danger" onclick="desactivarUsuario()">Aceptar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <div class="modal-footer" style="background: #D5D9DF;">
+               
+      </div>
+     
+    </div>
+  </div>
+  </div>
+</div>
+<!-- fin de modal para visualizar codigo de barra -->
 
 
 <!--Script para recargar tabla al abrir esta pagina el scrip esta incluido en <top.php> dir src/js/tables/loader.js-->

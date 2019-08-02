@@ -203,6 +203,9 @@
 								 title="Editar Usuario">
 									<img  src="img/icons/usuarioEditar.png" width="35" height="30">
 								</button>
+								<!-- opcion para generar codigo de barras -->
+								 <?php echo "<a href=\"vercbusuario.php?codusu=" . $dataLibros[$varUsuCodigo]. "\">CB</a>"; ?>
+
                      <!-- Opcion de eliminar -->
 							<!-- 	<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEstante"
 								 	data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"

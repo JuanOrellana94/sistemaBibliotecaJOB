@@ -206,6 +206,8 @@
 
 									<img  src="img/icons/verEjemplar.png" width="35" height="30">
 								</button>
+								 <?php echo "<a href=\"vercbejemplar.php?codeje=" . $dataLibros['CodigoReg']. "\">CB</a>"; ?>
+
 <!-- BOTON BORRAR DESHABILITADO DE MOMENTO -->
 								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEjemplar"
 								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
