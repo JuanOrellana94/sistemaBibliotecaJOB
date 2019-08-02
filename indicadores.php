@@ -1,3 +1,65 @@
+<!--ASPECTO VISUAL DE LA PAGINA DE Estantes-->
+    <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
+
+<?php
+  include("src/libs/vars.php");
+  include("src/libs/sessionControl/conection.php");
+  date_default_timezone_set("America/El_Salvador");
+  if(!isset($_SESSION)){
+      session_start();    
+  }
+
+  if (isset($_GET['consulta']) == true) {
+    $xconsulta = $_GET['consulta'];
+    switch ($xconsulta) {
+      case '1':
+        $sql = "SELECT count(libcod) As campo1 from libros"; 
+        $linea = "Cantidad total de libros registrados: ";
+        break;
+      
+      case '2':
+        $sql = "SELECT count(ejemcod) As campo1 from ejemplareslibros"; 
+        $linea = "Cantidad total de ejemplares registrados: ";        
+        break;
+
+      case '3':
+        $sql = "SELECT count(ejemcod) As campo1  from ejemplareslibros WHERE ejemtipadq = 0"; 
+        $linea = "Cantidad total de ejemplares donados: ";
+        break;
+
+      case '4':
+        $sql = "SELECT count(ejemcod) As campo1  from ejemplareslibros WHERE ejemestu = 3"; 
+        $linea = "Cantidad total de ejemplares extraviados: ";        
+        break;
+
+      case '5':
+        $sql = "SELECT count(ejemcod) As campo1 from ejemplareslibros WHERE ejemconfis > 1"; 
+        $linea = "Cantidad total de ejemplares en condicion de sustitucion: ";        
+        break;
+
+      case '6':
+        $sql = "SELECT deweyclasificacion.dewtipcla As campo1, count(libros.libcod) As campo2 FROM libros INNER JOIN deweyclasificacion ON deweyclasificacion.dewcod = libros.dewcod"; 
+        $linea = "Cantidad de libros por categorias: ";        
+        break;
+
+      case '7':
+        $sql = "SELECT Count(usucod) As campo1 FROM usuario"; 
+        $linea = "Cantidad total de cuentas de usuario registrados: ";        
+        break;
+
+      case '8':
+        $sql = "SELECT Count(usucod) As campo1 FROM usuario WHERE usuestcue = 2"; 
+        $linea = "Cantidad total de cuentas de usuario suspendidas: ";        
+        break;                                        
+
+      default:
+        # code...
+        break;
+    }//fin de switch
+   $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));    
+  } //fin de if    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +93,7 @@
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
-  session_start();
+
 
    if (!isset($_SESSION[ "autorizado" ]))
    {
@@ -64,7 +126,6 @@
           <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>
@@ -75,9 +136,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-        <a class="dropdown-item" href="acciones.php?pageLocation=historial">Historial</a>  
-        <a class="dropdown-item" href="acciones.php?pageLocation=prestamos">Prestar</a>
-        <a class="dropdown-item" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
+          <a class="dropdown-item" href="#">Prestar</a>
+          <a class="dropdown-item" href="#">Devoluciones</a>
+          <a class="dropdown-item" href="#">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -88,7 +149,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="indicadores.php">Indicadores</a>
+          <a class="dropdown-item" href="#">Indicadores</a>
           <a class="dropdown-item" href="#">Reportes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Estadistica</a>
@@ -99,9 +160,10 @@
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
+          <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
+          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>
@@ -131,6 +193,69 @@
   </div>
 </nav>
 
+<!--DIRECCION DE LA UBICACION ACTUAL-->     
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
+      <li class="breadcrumb-item">Estadistica</li>   
+      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
+      <li class="breadcrumb-item" active  >Indicadores</li>
+    </ol>
+  </nav>        
 
+<!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
+<div class="container-fluid" > 
+    <div class="col-sm-12">  
+      <div class="card">   
+        <div class="card-header">
+          <div class="row mx-auto">
+            <div style="vertical-align: middle; margin: 5px">
+               <p class="font-weight-light"> <h3>  Cuadro de Indicadores Basicos</h3>  Seleccione alguna de los siguientes indicadores disponibles: </p>       
+            </div>           
+          </div>     
+        </div>
+        <!--Cuerpo del panel--> 
+        <div class="card-body">              
+          <div class="row">            
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <a href="indicadores.php?consulta=1">1. Total de libros registrados</a>&nbsp; | 
+                      <a href="indicadores.php?consulta=2">2. Total de ejemplares registrados</a>&nbsp; |
+                      <a href="indicadores.php?consulta=3">3. Total de ejemplares donados</a>&nbsp; |                                            
+                      <a href="indicadores.php?consulta=4">4. Ejemplares extraviados</a>&nbsp; |<br>                  
+                      <a href="indicadores.php?consulta=5">5. Ejemplares en condicion de sustitucion</a>&nbsp; | 
+                      <a href="indicadores.php?consulta=6">6. Total de Libros por Categoria</a>&nbsp; | <br>
+                      <a href="indicadores.php?consulta=7">7. Total de cuentas de usuario registradas</a>&nbsp; |                                            
+                      <a href="indicadores.php?consulta=8">8. Cuentas de usuarios suspendidas</a>&nbsp; |                                            
+                    </div>
+                </div>
 
-  
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <?php
+                          while($indicador = mysqli_fetch_assoc($resultado)) {          
+                            if($xconsulta !=6){
+                              echo $linea . "<b>" . $indicador['campo1'] . "</b>";
+                            }
+                            else{
+                              echo $indicador['campo1'] . "&nbsp;<b>" . $indicador['campo2'] . "</b>"; 
+                            }
+                          }
+                      ?>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+         <!--Fin delcuerpo del panel-->
+       </form>
+      </div>
+       <!--Fin Panel/card para el catalogo de libros-->
+    </div>
+</div>
+</form>
+</html>
