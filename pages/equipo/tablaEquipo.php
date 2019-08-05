@@ -1,6 +1,13 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 
 	$limite = 5;
 	if (isset($_GET["pagina"])) { 
@@ -95,7 +102,7 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarequipo"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarequipo"
 								 data-varequicod="<?php echo $dataLibros[$varequicod];?>"
 								 data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
 								 data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
@@ -104,7 +111,7 @@
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#imagenModal"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#imagenModal"
 								  data-varequicod="<?php echo $dataLibros[$varequicod];?>"
 								  data-varequimg="<?php echo $dataLibros[$varequimg];?> "
 								  data-varequitip="<?php echo  $dataLibros[$varequitip];?>"									  

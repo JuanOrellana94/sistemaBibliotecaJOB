@@ -2,7 +2,12 @@
     <!--CONTENEDOR PARA TABLA DE Ejemplares/MODALES PARA AGREGAR Y ELIMINAR Ejemplares--> 
 
     <?php
-     
+     if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
@@ -110,7 +115,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newEjemplarModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newEjemplarModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Ejemplar" src="img/icons/Bookadd.png" width="45" height="45">
                         </button>
                         
@@ -276,14 +281,14 @@
                     <label>Tipo de ingreso:</label>
                   
                       <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="hidden" name="editejemplarcodigo" id="editejemplarcodigo" />                     
-                      <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control js-Dropdown-Busqueda" name='editejemplartipoingreso' id='editejemplartipoingreso'>
+                      <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control js-Dropdown-Busqueda" name='editejemplartipoingreso' id='editejemplartipoingreso' onchange="bloquearselect()">
                              <option value="0">DONACION</option>
                              <option value="1">COMPRA</option>                            
                          </select>
                       <p>Ingrese el detalle de ingreso:</p>
                            <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputdetalle" id="inputdetalle"  /> 
                      <p>Ingrese el precio unitario:</p>
-                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputprecio" id="inputprecio"  />
+                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  type="" name="inputprecio" id="inputprecio"  />
                                                
                  
                   </td> 
@@ -724,7 +729,13 @@ function deleteEjemplar(){
        
       var modal = $(this)
       modal.find('.modal-title').text('Editar Ejemplar: ' + varejemplartitulo );
-     
+       if (button.data('varejemplartipoingreso')== 0) {
+              $("#inputprecio").prop("disabled", true);
+              $("#inputdetalle").prop("disabled", false);
+       }else{
+              $("#inputprecio").prop("disabled", false);
+              $("#inputdetalle").prop("disabled", true);
+       }
         
        document.getElementById('editejemplarcomentario').value = varejemplarcomentario;      
        document.getElementById('editejemplarcodigo').value = varejemplarcod; 
@@ -802,14 +813,25 @@ $( function() {
             $("#formprecio").prop("disabled", true);
             $("#formdetalle").prop("disabled", false);
             // si selecciona donado, borra lo que contiene el input de precio:
-            document.getElementById('inputprecio').value="";
+            document.getElementById('formprecio').value="";
         } else {
             $("#formprecio").prop("disabled", false);
             $("#formdetalle").prop("disabled", true);
             document.getElementById('formdetalle').value="";
         }
     });
-});
+}); 
+// en editar
+ function bloquearselect(){
+    if (document.getElementById('editejemplartipoingreso').value == 0) {
+      $("#inputprecio").prop("disabled", true);
+      $("#inputdetalle").prop("disabled", false);   
+
+    }else{
+      $("#inputprecio").prop("disabled", false);
+      $("#inputdetalle").prop("disabled", true);      
+    }
+ }
   
 // dejar los inmputs en mayusculas
 
@@ -867,5 +889,6 @@ $("#inputUpCase").keydown(function(event) {
             return false;
         }
     }
+  
 
 </script>

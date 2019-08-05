@@ -1,6 +1,13 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 
 	$limite = 20;
 	if (isset($_GET["pagina"])) { 
@@ -62,7 +69,7 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
+							
 							<th> Nombre del Editorial</th>
 							
 	
@@ -90,19 +97,19 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$vareditcod];?> </td>						
+												
 							<td><?php echo $dataLibros[$vareditnom];?>  </td>							 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarEditorial"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarEditorial"
 								 data-vareditorialcod="<?php echo $dataLibros[$vareditcod];?>"
 								 data-vareditorialnom="<?php echo  $dataLibros[$vareditnom];?>"								 					 
 								 title="Editar Editorial">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEditorial"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalBorrarEditorial"
 								 	data-vareditorialcod="<?php echo $dataLibros[$vareditcod];?>"
 									data-vareditorialnom="<?php echo  $dataLibros[$vareditnom];?>"
 									title="Eliminar Editorial">

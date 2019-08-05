@@ -2,7 +2,12 @@
     <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
 
     <?php
-     
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
@@ -55,7 +60,7 @@
                           <img src="img/icons/BookstandReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newEstanteModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newEstanteModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Estante" src="img/icons/Bookstand+.png" width="45" height="45">
                         </button>
                         

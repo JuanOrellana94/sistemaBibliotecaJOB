@@ -1,6 +1,10 @@
-  
-     <?php
-     
+     <?php      
+        if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+           $bloqueo="";
+       }   
      ?>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -54,7 +58,7 @@
                          <button class="btn btn-light float-right" type="button" onclick="recargarTablaLimpiar();" data-toggle="tooltip" data-placement="top" title="Recargar Tabla">
                           <img src="img/icons/Bookreload.png" width="45" height="45">
                         </button>
-                        <button type="button" class="btn btn-light " data-toggle="modal" data-target="#newBookModal">
+                        <button type="button" class="btn btn-light " <?php echo $bloqueo ?> data-toggle="modal" data-target="#newBookModal">
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Libro" src="img/icons/Bookadd.png" width="45" height="45">
                         </button>
                        

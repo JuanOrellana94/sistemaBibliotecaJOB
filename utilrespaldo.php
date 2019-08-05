@@ -118,9 +118,10 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Prestar</a>
-          <a class="dropdown-item" href="#">Devoluciones</a>
-          <a class="dropdown-item" href="#">Historial</a>
+             
+        <a class="dropdown-item" href="acciones.php?pageLocation=historial">Historial</a>  
+        <a class="dropdown-item" href="acciones.php?pageLocation=prestamos">Prestar</a>
+        <a class="dropdown-item" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -142,10 +143,9 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
+          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
+          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>

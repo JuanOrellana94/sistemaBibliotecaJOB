@@ -2,7 +2,12 @@
     <!--CONTENEDOR PARA TABLA DE AUTORES/MODALES PARA AGREGAR Y ELIMINAR AUTORES--> 
 
     <?php
-     
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       } 
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
@@ -64,7 +69,7 @@
                           <img src="img/icons/BookauthorReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newAuthorModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?> data-toggle="modal" data-target="#newAuthorModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Autor" src="img/icons/Bookauthor+png.png" width="45" height="45">
                         </button>
                         
@@ -280,10 +285,8 @@ function recargarTablaLimpiar(){
       $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
     var busqueda=$("#textBusqueda").val();
-
-  
-    $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+busqueda);
-
+    var ordenar=$("#textBusquedaordenar").val();  
+  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
                            

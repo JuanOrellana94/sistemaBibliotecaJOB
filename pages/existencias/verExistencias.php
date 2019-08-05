@@ -2,7 +2,12 @@
     <!--CONTENEDOR PARA TABLA DE Existencias/MODALES PARA AGREGAR Y ELIMINAR Existencias--> 
 
     <?php
-     
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       } 
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
@@ -110,7 +115,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newExistenciaModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newExistenciaModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Existencia" src="img/icons/Bookadd.png" width="45" height="45">
                         </button>
                         

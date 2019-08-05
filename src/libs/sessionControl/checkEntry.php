@@ -18,7 +18,8 @@ $UsuPassword=md5($_POST['usuContrasena']);
 
 
 
-$checkValidation="SELECT * from $tablaUsuarios WHERE $varCarnet='$usuAccount' AND $varContrasena='$UsuPassword'";
+$checkValidation="SELECT * from $tablaUsuarios WHERE $varContrasena='$UsuPassword' AND 
+$varCarnet='$usuAccount' OR $varAccNombre='$usuAccount'";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 

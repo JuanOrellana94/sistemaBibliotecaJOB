@@ -1,43 +1,63 @@
-<?php
-/*
-TODO: 
-*/
-//  include("top.php");
-  include("src/libs/vars.php");
+<!--ASPECTO VISUAL DE LA PAGINA DE Estantes-->
+    <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
 
+<?php
+  include("src/libs/vars.php");
+  include("src/libs/sessionControl/conection.php");
   date_default_timezone_set("America/El_Salvador");
   if(!isset($_SESSION)){
       session_start();    
   }
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_GET['consulta']) == true) {
+    $xconsulta = $_GET['consulta'];
+    switch ($xconsulta) {
+      case '1':
+        $sql = "SELECT count(libcod) As campo1 from libros"; 
+        $linea = "Cantidad total de libros registrados: ";
+        break;
+      
+      case '2':
+        $sql = "SELECT count(ejemcod) As campo1 from ejemplareslibros"; 
+        $linea = "Cantidad total de ejemplares registrados: ";        
+        break;
 
-    $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
-    $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
-    echo exec("$comando");    
-    try{
-        fwrite($archivo_manejador, $comando);
-        fclose($archivo_manejador);
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($archivo));
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($archivo));
-        ob_clean();
-        flush();
-        readfile($archivo);
-        unlink($archivo);      
-        //header('Location: utilrespaldo.php');
-        exit();
-        
-      }catch(\Exception $e){
-        echo 'error en el proceso de bk' . $e->getMessage(); //TODO: favor incluir en la bitacora global del sistema
-      }//fin de catch
+      case '3':
+        $sql = "SELECT count(ejemcod) As campo1  from ejemplareslibros WHERE ejemtipadq = 0"; 
+        $linea = "Cantidad total de ejemplares donados: ";
+        break;
 
-  }     
+      case '4':
+        $sql = "SELECT count(ejemcod) As campo1  from ejemplareslibros WHERE ejemestu = 3"; 
+        $linea = "Cantidad total de ejemplares extraviados: ";        
+        break;
+
+      case '5':
+        $sql = "SELECT count(ejemcod) As campo1 from ejemplareslibros WHERE ejemconfis > 1"; 
+        $linea = "Cantidad total de ejemplares en condicion de sustitucion: ";        
+        break;
+
+      case '6':
+        $sql = "SELECT deweyclasificacion.dewtipcla As campo1, count(libros.libcod) As campo2 FROM libros INNER JOIN deweyclasificacion ON deweyclasificacion.dewcod = libros.dewcod"; 
+        $linea = "Cantidad de libros por categorias: ";        
+        break;
+
+      case '7':
+        $sql = "SELECT Count(usucod) As campo1 FROM usuario"; 
+        $linea = "Cantidad total de cuentas de usuario registrados: ";        
+        break;
+
+      case '8':
+        $sql = "SELECT Count(usucod) As campo1 FROM usuario WHERE usuestcue = 2"; 
+        $linea = "Cantidad total de cuentas de usuario suspendidas: ";        
+        break;                                        
+
+      default:
+        # code...
+        break;
+    }//fin de switch
+   $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));    
+  } //fin de if    
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +93,9 @@ TODO:
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
-  if (!isset($_SESSION[ "autorizado" ]))
+
+
+   if (!isset($_SESSION[ "autorizado" ]))
    {
       header("location: inicio.php?login=Required");
    } else if ($_SESSION["autorizado"]=="renovar") {
@@ -86,7 +108,7 @@ TODO:
 <body> 
  
 <nav class="navbar navbar-expand-lg" style="background-color:#003764;"> <a class="navbar-brand text-white" href="escritorio.php" title="Inicio">  
-  <img src="img/icons/logoSimple.png" width="125" height="120"> </a>   
+  <img src="img/icons/LogoSimple.png" width="125" height="120"> </a>   
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <img src="img/icons/Collapse.png" width="65" height="65" alt="">
   </button>
@@ -95,7 +117,7 @@ TODO:
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/Book.png" width="65" height="65" alt="">
+         <img src="img/icons/book.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
@@ -139,9 +161,10 @@ TODO:
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
+          <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
+          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>
@@ -175,9 +198,9 @@ TODO:
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Utilerias</li>   
+      <li class="breadcrumb-item">Estadistica</li>   
       <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Respaldo de Datos</li>
+      <li class="breadcrumb-item" active  >Indicadores</li>
     </ol>
   </nav>        
 
@@ -188,27 +211,42 @@ TODO:
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Respaldo de Datos</h3>  Operaciones de respaldo y recuperacion de datos: <br>
-                Para realizar una copia de la ultima version de la base de datos del sistema presione el boton <b>Respaldo de Datos</b></p>       
+               <p class="font-weight-light"> <h3>  Cuadro de Indicadores Basicos</h3>  Seleccione alguna de los siguientes indicadores disponibles: </p>       
             </div>           
           </div>     
         </div>
         <!--Cuerpo del panel--> 
-         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="card-body">              
           <div class="row">            
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-5">
-                      <form name="formBusqueda" id="formBusqueda">          
-                        <div class="input-group">               
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-info" type="submit"> Respaldo de Datos </button>
-                          </div> 
-                        </div>
-                      </form>                       
+                    <div class="col-sm-10">
+                      <a href="indicadores.php?consulta=1">1. Total de libros registrados</a>&nbsp; | 
+                      <a href="indicadores.php?consulta=2">2. Total de ejemplares registrados</a>&nbsp; |
+                      <a href="indicadores.php?consulta=3">3. Total de ejemplares donados</a>&nbsp; |                                            
+                      <a href="indicadores.php?consulta=4">4. Ejemplares extraviados</a>&nbsp; |<br>                  
+                      <a href="indicadores.php?consulta=5">5. Ejemplares en condicion de sustitucion</a>&nbsp; | 
+                      <a href="indicadores.php?consulta=6">6. Total de Libros por Categoria</a>&nbsp; | <br>
+                      <a href="indicadores.php?consulta=7">7. Total de cuentas de usuario registradas</a>&nbsp; |                                            
+                      <a href="indicadores.php?consulta=8">8. Cuentas de usuarios suspendidas</a>&nbsp; |                                            
+                    </div>
+                </div>
+
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <?php
+                        
+                          while($indicador = mysqli_fetch_assoc($resultado)) {          
+                            if($xconsulta !=6){
+                              echo $linea . "<b>" . $indicador['campo1'] . "</b>";
+                            }
+                            else{
+                              echo $indicador['campo1'] . "&nbsp;<b>" . $indicador['campo2'] . "</b>"; 
+                            }
+                          }                          
+                      ?>
                     </div>
                 </div>
               </div>

@@ -80,8 +80,6 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
   include("src/libs/vars.php");
   include("src/libs/sessionControl/conection.php");
 
-  session_start();
-
    if (!isset($_SESSION[ "autorizado" ]))
    {
       header("location: inicio.php?login=Required");
@@ -113,6 +111,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
           <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
+          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>
@@ -147,10 +146,9 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          
           <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=cbarras">Codigo de Barras</a>
-          <a class="dropdown-item" href="utilerias.php?pageLocation=historial">Historial</a>
+          <a class="dropdown-item" href="cbestudiante.php">Codigo de Barras Estudiantes</a>
+          <a class="dropdown-item" href="cbejemplar.php">Codigo de Barras Ejemplares</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>

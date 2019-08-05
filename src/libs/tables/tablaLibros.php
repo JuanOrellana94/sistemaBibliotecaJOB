@@ -1,4 +1,5 @@
-	<?php 
+	<?php
+	session_start(); 
 	include("../vars.php");
 	include("../sessionControl/conection.php");
 	$limite = 20;
@@ -7,7 +8,12 @@
 	} else {
 	 $pagina=1; 
 	};
-
+     if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 
 	if (isset($_GET["busqueda"])) { 
 		$textBusqueda  = $_GET["busqueda"]; 
@@ -107,7 +113,7 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editBookModal"
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#editBookModal"
 								 data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
 								 data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"							
 								 data-varlibdes="<?php echo $dataLibros[$varlibdes];?>"
@@ -121,21 +127,21 @@
 								 title="Editar Libro"								 
 								 ><img src="img/icons/BookEditWide.png" width="35" height="30"></button>
 
-								  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#fotografiaModal"
+								  <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#fotografiaModal"
 								  data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
 								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
 								  data-varlibpor="<?php echo $dataLibros[$varlibpor];?>"
 								  title="Portada del Libro"		
 								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
 
-								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#deleteBookModal"
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#deleteBookModal"
 								  data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
 								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
 
 								  title="Eliminar Libro"		
 								  ><img src="img/icons/BookEditWideDel.png" width="35" height="30"></button>
 
-<a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>
+                                 <a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>
 								  
 								</div>
 							</td>

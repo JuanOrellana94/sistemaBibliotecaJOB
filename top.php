@@ -38,6 +38,9 @@
       header("location: inicio.php?login=Required");
    } else if ($_SESSION["autorizado"]=="renovar") {
       header("location: pages/ConfirmarClave.php");
+   }else if ($_SESSION["usuNivelNombre"]=="Personal" || $_SESSION["usuNivelNombre"]=="Estudiante" ) {
+     echo ("<script LANGUAGE='JavaScript'>   window.alert('Su nivel de cuenta solo permite ingresar a consultas: verifique sus credenciales');
+    window.location.href='menuopt.php';  </script>");      
    }
 
    ?>     
@@ -75,9 +78,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Prestar</a>
-          <a class="dropdown-item" href="#">Devoluciones</a>
-          <a class="dropdown-item" href="#">Historial</a>
+        <a class="dropdown-item" href="acciones.php?pageLocation=historial">Historial</a>  
+        <a class="dropdown-item" href="acciones.php?pageLocation=prestamos">Prestar</a>
+        <a class="dropdown-item" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -88,7 +91,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Indicadores</a>
+          <a class="dropdown-item" href="indicadores.php">Indicadores</a>
           <a class="dropdown-item" href="#">Reportes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Estadistica</a>

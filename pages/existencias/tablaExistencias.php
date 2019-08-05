@@ -1,7 +1,13 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
-    
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     } 
     ?>
     
     <?php  
@@ -69,9 +75,7 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th>Fecha</th>
-							<th>Nombre</th>
+							<th>Codigo</th>								
 							<th>Ubicacion</th>
 							<th>Ingreso</th>
 							<th>Precio</th>
@@ -164,9 +168,7 @@
 						      ?>
 						<tr > 
 
-							<td><?php echo $dataLibros['CodigoReg'];?> </td>						
-							<td><?php echo $dataLibros['Fecha'];?>  </td>
-							<td><?php echo $dataLibros['existnom'];?> </td>
+							<td><?php echo $dataLibros['CodigoReg'];?> </td>			
 							<td><?php echo $dataLibros['Estante'];?>  </td>
 							<td><?php echo "$Ingreso";?>  </td>
 							<td><?php                                   
@@ -182,7 +184,7 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarExistencia"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarExistencia"
 								 data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
 								 data-varexistenciacodlib="<?php echo $dataLibros['Codigo'];?>"
 								 data-varexistenciafecha="<?php echo  $dataLibros['Fecha'];?>"	

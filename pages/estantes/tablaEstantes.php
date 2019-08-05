@@ -1,7 +1,13 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
-
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 	$limite = 20;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
@@ -61,8 +67,8 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th>Indicador</th>
+							
+							<th>Indicador o nombre del estante</th>
 							
 	
 							
@@ -88,19 +94,19 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$varestcod];?> </td>						
+												
 							<td><?php echo $dataLibros[$varestdes];?>  </td>							 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarEstante"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarEstante"
 								 data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
 								 data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"								 					 
 								 title="Editar Estante">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEstante"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalBorrarEstante"
 								 	data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
 									data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"
 									title="Eliminar Estante">

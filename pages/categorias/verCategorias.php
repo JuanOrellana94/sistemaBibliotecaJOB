@@ -2,7 +2,12 @@
     <!--CONTENEDOR PARA TABLA DE categorias/MODALES PARA AGREGAR Y ELIMINAR categorias--> 
 
     <?php
-     
+     if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }  
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
@@ -55,7 +60,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newcategoriaModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newcategoriaModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo categoria" src="img/icons/Bookcatego+.png" width="45" height="45">
                         </button>
                         

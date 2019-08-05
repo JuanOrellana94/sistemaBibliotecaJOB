@@ -1,7 +1,15 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
-	include("../../src/libs/sessionControl/conection.php");
-    
+	include("../../src/libs/sessionControl/conection.php"); 
+  //validacion por nivel de usuaruio
+	  if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
+	  	    
     ?>
     
     <?php  
@@ -38,7 +46,7 @@
                         <ul class='pagination justify-content-center"' id="pagination">
                         <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
                             if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href="pagination.php?page=<?php echo $i;?>"><?php echo $i;?></a></li> 
+                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link"  href="pagination.php?page=<?php echo $i;?>"><?php echo $i;?></a></li> 
                             <?php else:?>
                             <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href="pagination.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
                             <?php endif;?>    
@@ -68,9 +76,7 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th>Fecha</th>
-							<th>Titulo</th>
+							<th>Codigo</th>						
 							<th>Ubicacion</th>
 							<th>Ingreso</th>
 							<th>Precio</th>
@@ -161,9 +167,7 @@
 						      ?>
 						<tr > 
 
-							<td><?php echo $dataLibros['CodigoReg'];?> </td>						
-							<td><?php echo $dataLibros['Fecha'];?>  </td>
-							<td><?php echo $dataLibros['Titulo'];?>  </td>
+							<td><?php echo $dataLibros['CodigoReg'];?> </td>			
 							<td><?php echo $dataLibros['Estante'];?>  </td>
 							<td><?php echo "$Ingreso";?>  </td>
 							<td><?php                                   
@@ -179,7 +183,7 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarEjemplar"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarEjemplar"
 								 data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
 								 data-varejemplarcodlib="<?php echo $dataLibros['CodigoLib'];?>"
 								 data-varejemplarfecha="<?php echo  $dataLibros['Fecha'];?>"	
@@ -194,18 +198,19 @@
 								 title="Editar Ejemplar">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
-
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalVerEjemplar"														 			  data-varejemplarportada="<?php echo  $dataLibros['Portada'];?>"
+                                  
+								<button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalVerEjemplar"	data-varejemplarportada="<?php echo  $dataLibros['Portada'];?>"
 								      data-varejemplartitulo="<?php echo $dataLibros['Titulo'];?>"    		
 								      data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>"      		
 								      data-varejemplartipadqui="<?php echo $Ingreso ;?>"
 						              data-varejemplardetadqui="<?php echo  $dataLibros['detalleIngreso'];?>"	
 								      data-varejemplardesfisica="<?php echo $dataLibros['Comentario'];?>"
-
-								 title="Ver Ejemplar">
-
+								      title="Ver Ejemplar">
 									<img  src="img/icons/verEjemplar.png" width="35" height="30">
+
 								</button>
+                                 <?php echo "<a href=\"vercbejemplar.php?codeje=" . $dataLibros['CodigoReg']. "\">CB</a>"; ?>
+
 <!-- BOTON BORRAR DESHABILITADO DE MOMENTO -->
 								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEjemplar"
 								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"

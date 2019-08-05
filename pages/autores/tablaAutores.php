@@ -1,7 +1,14 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 
+        if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 	$limite = 5;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
@@ -78,7 +85,6 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
 							<th> Nombre del Autor</th>
 							<th>Pseudonimo</th>
 	
@@ -108,13 +114,13 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$varautcod];?> </td>						
+												
 							<td><?php echo $dataLibros[$varautnom]." ".$dataLibros[$varautape];?>  </td>
 							<td><?php echo $dataLibros[$varautseud];?></td> 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarAutor"
+								<button type="button"  class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarAutor"
 								 data-varautcod="<?php echo $dataLibros[$varautcod];?>"
 								 data-varautnom="<?php echo  $dataLibros[$varautnom];?>"
 								 data-varautape="<?php echo  $dataLibros[$varautape];?>"								
@@ -123,7 +129,7 @@
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarAutor"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalBorrarAutor"
 								 	data-varautcod="<?php echo $dataLibros[$varautcod];?>"
 									data-varautnom="<?php echo  $dataLibros[$varautnom];?>"
 									data-varautape="<?php echo  $dataLibros[$varautape];?>"	

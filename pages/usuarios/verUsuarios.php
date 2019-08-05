@@ -1,4 +1,13 @@
+<!-- INICIANDO SESSION PARA LA VALIDACION DE ROLES -->
 <!--ASPECTO VISUAL DE LA PAGINA DE Usuarios-->
+<?php 
+   if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       } 
+ ?>
     <!--CONTENEDOR PARA TABLA DE Usuarios/MODALES PARA AGREGAR Y ELIMINAR Usuarios--> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -42,7 +51,33 @@
                           </div> 
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
-                      </form>                       
+                      </form> 
+                      <?php 
+                        if ($_SESSION['usuNivelNombre']=='Administrador') {
+                          # code...                       
+                       ?>
+                      <small id="dateHelp" class="form-text text-muted">Usuarios a mostrar</small>
+                      <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                            <option value="3">MOSTRAR TODOS</option>                            
+                            <option value="4">MOSTRAR AUXILIARES</option>
+                            <option value="5">MOSTRAR BIBLIOTECARIOS</option>
+                          </select>                          
+                        </div>                        
+                      </form> 
+
+                      <?php }else{ ?>
+                        <small id="dateHelp" class="form-text text-muted">Usuarios a mostrar</small>
+                        <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select id="textBusquedaordenar" onchange="recargarTabla()">         
+                            <option value="1">MOSTRAR PERSONAL</option>
+                            <option value="2" selected="">MOSTRAR ESTUDIANTES</option>
+                          </select>                          
+                        </div>                        
+                      </form> 
+                      <?php } ?>                        
                     </div>
                     <div class="col-sm-3">
                       <div name="cargandoFeedback" id="cargandoFeedback" align="left"> </div>
@@ -56,7 +91,7 @@
                           <img src="img/icons/actualizarUsuario.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#modalNuevoUsuario"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#modalNuevoUsuario"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Usuario" src="img/icons/usuarioNuevo.png" width="45" height="45">
                         </button>
                         
@@ -124,15 +159,25 @@
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="formUsuariocorreo" id="formUsuariocorreo" aria-describedby="formUsuariocorreo" placeholder=""></td>
-              <td><select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
-                             <option value="">Seleccione tipo</option>
-                             <option value="3">ESTUDIANTE</option> 
-                             <option value="0">ADMINISTRADOR</option>
-                             <option value="1">BIBLIOTECARIO</option>
-                             <option value="2">PERSONAL ADMINISTRATIVO</option>
-                             <option value="2">AUXILIAR</option>                             
+              <td>
+               <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
+                 # code...
+                 ?> 
+                <select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
+                             <option value="">Seleccione tipo</option>                            
+                             <option value="1">BIBLIOTECARIO</option>                             
+                             <option value="4">AUXILIAR</option>                             
                                                        
-                 </select> </td>                 
+                 </select> </td> 
+                 <?php 
+                 }else{ ?> 
+                      <select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
+                             <option value="">Seleccione tipo</option>
+                             <option value="3">ESTUDIANTE</option>                                
+                             <option value="2">PERSONAL ADMINISTRATIVO</option>           
+                                                       
+                 </select> </td> 
+                 <?php } ?>               
             </tr>
             <tr>          
               <th>Bachillerato</th> 
@@ -239,19 +284,30 @@
             <tr>
               <td><input type="text" class="form-control" name="editUsuariocorreo" id="editUsuariocorreo" aria-describedby="editUsuariocorreo" placeholder=""></td> 
               <td>
-                <select class="form-control js-Dropdown-Busqueda" name='editUsuariotipo' id='editUsuariotipo'>
-                             <option value="0" selected>Administrador</option>
-                             <option value="1">Bibliotecario</option>
-                             <option value="2">Personal Administrativo</option>
-                             <option value="3" selected>Estudiante</option> 
+                <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
+                  # code...
+                 ?>
+
+                <select class="form-control js-Dropdown-Busqueda" name='editUsuarionivel' id='editUsuarionivel' onchange="bloquearselect()">                             
+                             <option value="1">BIBLIOTECARIO</option>                            
+                             <option value="4">AUXILIAR</option>  
                                                        
-                 </select></td>             
+                 </select></td> 
+              <?php 
+              }else{?>   
+                <select class="form-control js-Dropdown-Busqueda" name='editUsuarionivel' id='editUsuarionivel' onchange="bloquearselect()">                             
+                             <option value="2">PERSONAL ADMINISTRATIVO</option>
+                             <option value="3">ESTUDIANTE</option>                   
+                                                       
+                 </select></td> 
+              <?php } ?>         
             </tr>
              <tr>              
               <th>Bachillerato</th> 
               <th>Seccion</th>              
             </tr>
             <tr> 
+
               <td>
                 <select class="form-control js-Dropdown-Busqueda" name='editUsuariobachi' id='editUsuariobachi' 
                 >
@@ -306,7 +362,7 @@
       <div class="modal-footer" style="background: #D5D9DF;">
          <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div><br>
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="editarUsuario()">Editar</button>
       </div>
      
@@ -458,8 +514,9 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
-  $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda);
+  var busqueda=$("#textBusqueda").val();
+  var ordenar=$("#textBusquedaordenar").val();   
+  $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -474,10 +531,8 @@ function recargarTablaLimpiar(){
       $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
     var busqueda=$("#textBusqueda").val();
-
-  
-    $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+busqueda);
-
+  var ordenar=$("#textBusquedaordenar").val();   
+  $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
                            
@@ -602,7 +657,8 @@ function insertarUsuario(){
                     //success
                     $("#accionFeedback").show();
                     $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Nuevo Usuario agregado </div>");
-                     recargarTabla();                    
+                     recargarTabla();
+                     limpiarFormularioUsuario();                    
                       setTimeout(
                         function() {
                           
@@ -650,7 +706,8 @@ function insertarUsuario(){
                     //success
                     $("#accionFeedback").show();
                     $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Nuevo Usuario agregado </div>");
-                     recargarTabla();                     
+                     recargarTabla();
+                     limpiarFormularioUsuario();                     
                     setTimeout(
                         function() {
                           
@@ -704,14 +761,11 @@ function editarUsuario(){
   }else if ($("#editUsuariomote").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Usuario esta Vacio");
-  }else if ($("#editUsuariopass").val()=="") {
-    $("#respuestaEditarUsuario").show();
-    $("#respuestaEditarUsuario").html("Campo de Contraseña del Usuario esta Vacio");
-  }else if ($("#editUsuariotipo").val()=="") {
+  }else if ($("#editUsuarionivel").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Tipo de Usuario esta Vacio");
 
-  }else if ($("#editUsuariotipo").val()=="3") {
+  }else if ($("#editUsuarionivel").val()=="3") {
 
        if ($("#editUsuariobachi").val()=="") {
               $("#respuestaEditarUsuario").show();
@@ -738,7 +792,7 @@ function editarUsuario(){
                   //success
                   $("#accionFeedback").show();
                   $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Usuario ha sido editado </div>");
-                  recargarTabla();
+                  recargarTabla();                  
                   setTimeout(
                       function() {
                         $("#accionFeedback").hide(500);
@@ -828,6 +882,11 @@ function editarUsuario(){
   }
 }
 
+ //BORRAR FORMULARIO DE NUEVO USUARIO
+function limpiarFormularioUsuario(){
+   document.getElementById("formNuevoUsuario").reset();
+}
+
  $('#modalEditarUsuario').on('show.bs.modal', function (event) {var button = $(event.relatedTarget) // Button that triggered the modal
       var varusuariocod = button.data('varusuariocod')
       var varusuarionom1 = button.data('varusuarionom1')
@@ -844,9 +903,24 @@ function editarUsuario(){
       var varusuarioestado = button.data('varusuarioestado')
 
 
+
+
         
       var modal = $(this)
       modal.find('.modal-title').text('Editar Usuario: ' + varusuarionom1 );
+
+      if (button.data('varusuarionivel') == 3) {
+        $("#editUsuariobachi").prop("disabled", false);
+        $("#editUsuarioaniobachi").prop("disabled", false);
+        $("#editUsuarioseccion").prop("disabled", false);
+        $("#editUsuariocarnet").prop("disabled", false);    
+
+      }else{
+        $("#editUsuariobachi").prop("disabled", true);
+        $("#editUsuarioaniobachi").prop("disabled", true);
+        $("#editUsuarioseccion").prop("disabled", true);
+        $("#editUsuariocarnet").prop("disabled", true);       
+      }
      
        document.getElementById('editUsuariocod').value = varusuariocod;
        document.getElementById('editUsuarionom1').value = varusuarionom1;
@@ -859,7 +933,7 @@ function editarUsuario(){
        document.getElementById('editUsuarioaniobachi').value = varusuarioaniobachi;
        document.getElementById('editUsuarioseccion').value = varusuarioaula;
        document.getElementById('editUsuariobachi').value = varusuariobachi;
-       document.getElementById('editUsuariotipo').value = varusuarionivel;
+       document.getElementById('editUsuarionivel').value = varusuarionivel;
        
 
       
@@ -974,4 +1048,19 @@ $( function() {
     });
 });
 
+//validacion de editar usuario
+ function bloquearselect(){
+    if (document.getElementById('editUsuarionivel').value == 3) {
+      $("#editUsuariobachi").prop("disabled", false);
+      $("#editUsuarioaniobachi").prop("disabled", false);
+      $("#editUsuarioseccion").prop("disabled", false);
+      $("#editUsuariocarnet").prop("disabled", false);    
+
+    }else{
+      $("#editUsuariobachi").prop("disabled", true);
+      $("#editUsuarioaniobachi").prop("disabled", true);
+      $("#editUsuarioseccion").prop("disabled", true);
+      $("#editUsuariocarnet").prop("disabled", true);     
+    }
+ }
 </script>
