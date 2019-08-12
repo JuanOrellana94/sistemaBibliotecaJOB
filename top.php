@@ -78,9 +78,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-        <a class="dropdown-item" href="acciones.php?pageLocation=historial">Historial</a>  
-        <a class="dropdown-item" href="acciones.php?pageLocation=prestamos">Prestar</a>
-        <a class="dropdown-item" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
+        <a class="dropdown-item disabled" href="acciones.php?pageLocation=historial">Historial</a>  
+        <a class="dropdown-item disabled" href="acciones.php?pageLocation=prestamos">Prestar</a>
+        <a class="dropdown-item disabled" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -91,8 +91,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="indicadores.php">Indicadores</a>
-          <a class="dropdown-item" href="#">Reportes</a>
+          <a class="dropdown-item disabled" href="indicadores.php">Indicadores</a>
+          <a class="dropdown-item disabled" href="#">Reportes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Estadistica</a>
         </div>

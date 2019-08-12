@@ -91,7 +91,7 @@
                           <img src="img/icons/actualizarUsuario.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#modalNuevoUsuario"  >
+                        <button type="button" class="btn btn-light float-right" data-toggle="modal" data-target="#modalNuevoUsuario"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Usuario" src="img/icons/usuarioNuevo.png" width="45" height="45">
                         </button>
                         
@@ -489,6 +489,37 @@
   </div>
 </div>
 
+<!-- Modal Ver codigo de barra -->
+
+<div class="modal fade" id="modalBarraUsuario" tabindex="-1" role="dialog" aria-labelledby="modalBarraUsuario" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+       <div class="modal-header" style="background: #D5D9DF;">
+           <label id="codigobarra"></label>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+           </button>  
+       </div> 
+       <div class="modal-body">       
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">             
+           
+              <div align="center" id="cargarcodigodebarra"></div>         
+                         
+               </div>              
+              </div>
+            </div>
+        </div>
+             <div class="modal-footer" style="background: #D5D9DF;">              
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
+             </div>
+          </div>    
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>                   
 
 
 
@@ -987,7 +1018,7 @@ function limpiarFormularioUsuario(){
       
     })
   
-       //onkeypress="return soloLetras(event);" 
+//onkeypress="return soloLetras(event);" 
 
  function soloLetras(evt){
        key = event.keyCode || evt.which;
@@ -1063,4 +1094,23 @@ $( function() {
       $("#editUsuariocarnet").prop("disabled", true);     
     }
  }
+ //ver codigo de barra
+
+ $('#modalBarraUsuario').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) //
+      var varusuariocod  = button.data('varusuariocod')      
+      var varusuariocarnet  = button.data('varusuariocarnet')       
+      var varusuariomote = button.data('varusuariomote')
+          
+
+      var modal = $(this)
+       
+          
+       $("#cargarcodigodebarra").load("vercbusuario.php?codusu="+varusuariocod); 
+       $("#codigobarra").html('<h4 align=center> Usuario carnet #'+varusuariocarnet+' '+'<h4> ')      
+
+        
+       
+      
+    }) 
 </script>

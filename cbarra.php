@@ -17,7 +17,7 @@ $xcodigo=$_GET['xvalor'];
 	   } 
 	  }
 	  
-		  $img 		= imagecreate(395,73);    
+		  $img 		= imagecreate(150,75);    
 		  $cl_black = imagecolorallocate($img, 0, 0, 0); 
 		  $cl_white = imagecolorallocate($img, 255, 255, 255); 
 	

@@ -109,6 +109,7 @@
 							$color="";
 
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
+								$numejemplar= substr($dataLibros['CodigoReg'],-5); 
 						?>
 					
 							   <?php 
@@ -183,7 +184,8 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarEjemplar"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" 
+								 data-target="#modalEditarEjemplar"
 								 data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
 								 data-varejemplarcodlib="<?php echo $dataLibros['CodigoLib'];?>"
 								 data-varejemplarfecha="<?php echo  $dataLibros['Fecha'];?>"	
@@ -192,14 +194,15 @@
 								 data-varejemplartipoingreso="<?php echo  $dataLibros['Ingreso'];?>"
 								 data-varejemplardetaingreso="<?php echo  $dataLibros['detalleIngreso'];?>"
 								 data-varejemplarcomentario="<?php echo  $dataLibros['Comentario'];?>"
-								  data-varejemplarcondicion="<?php echo $dataLibros['Condicion'];?>"	
+								 data-varejemplarcondicion="<?php echo $dataLibros['Condicion'];?>"	
 								 data-varejemplarprecio="<?php echo $dataLibros['Precio'];?>"
 								 data-varejemplarestado="<?php echo  $dataLibros['Estado'];?>"								 					 
 								 title="Editar Ejemplar">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
                                   
-								<button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalVerEjemplar"	data-varejemplarportada="<?php echo  $dataLibros['Portada'];?>"
+								<button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalVerEjemplar"	
+								      data-varejemplarportada="<?php echo  $dataLibros['Portada'];?>"
 								      data-varejemplartitulo="<?php echo $dataLibros['Titulo'];?>"    		
 								      data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>"      		
 								      data-varejemplartipadqui="<?php echo $Ingreso ;?>"
@@ -209,7 +212,16 @@
 									<img  src="img/icons/verEjemplar.png" width="35" height="30">
 
 								</button>
-                                 <?php echo "<a href=\"vercbejemplar.php?codeje=" . $dataLibros['CodigoReg']. "\">CB</a>"; ?>
+								<button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalBarraEjemplar"
+							        	data-varejemplartitulo="<?php echo $dataLibros['Titulo'];?>"
+							        	data-varejemplarcodlib="<?php echo $dataLibros['CodigoLib'];?>"	
+								        data-varejemplarcodigoreg="<?php echo  $dataLibros['CodigoReg'];?>"								        
+								        data-varejemplarnumero="<?php echo  $numejemplar; ?>"							     
+								      title="Ver Codigo de barra">
+									<img  src="img/icons/barras.png" width="35" height="30">
+
+								</button>
+                                 <!-- <?php echo "<a href=\"vercbejemplar.php?codeje=" . $dataLibros['CodigoReg']. "\">CB</a>"; ?> -->
 
 <!-- BOTON BORRAR DESHABILITADO DE MOMENTO -->
 								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEjemplar"

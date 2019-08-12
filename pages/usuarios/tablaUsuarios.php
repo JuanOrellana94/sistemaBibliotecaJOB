@@ -171,6 +171,7 @@
 						<?php
                                  // Nivel del Usuario 
                                   $Nivel=""; 
+                                  $barra="disabled";
 						           switch ($dataLibros[$varNivel]) {
                                            case '0':
                                                $Nivel="ADMINISTRADOR";
@@ -183,9 +184,11 @@
                                            break;
                                            case '3':
                                                $Nivel="ESTUDIANTE";
+                                               $barra="";
                                            break;
                                            case '4':
                                                $Nivel="AUXILIAR";
+
                                            break;
                                            default:
                                                 $Nivel=" ";
@@ -349,7 +352,15 @@
 							
                                  }
 							 ?>	
-							     <?php echo "<a href=\"vercbusuario.php?codusu=" . $dataLibros[$varUsuCodigo]. "\">CB</a>"; ?>
+							     <button type="button" class="btn btn-light"   data-toggle="modal" <?php echo $barra ?> data-target="#modalBarraUsuario"
+							        	data-varusuariomote="<?php echo $dataLibros[$varAccNombre];?>"
+							        	data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"	
+								        data-varusuariocarnet="<?php echo  $dataLibros[$varCarnet];?>"								     
+								      title="Ver Codigo de barra">
+									<img  src="img/icons/barras.png" width="35" height="30">
+
+								</button>
+							     <!-- <?php echo "<a href=\"vercbusuario.php?codusu=" . $dataLibros[$varUsuCodigo]. "\">CB</a>"; ?> -->
 							     
 								</div>
 

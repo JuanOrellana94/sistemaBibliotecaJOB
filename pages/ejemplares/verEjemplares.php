@@ -412,12 +412,16 @@
 <div class="modal fade" id="modalVerEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalVerEjemplar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-       <div class="modal-body" style="background: #D5D9DF;">
-        <form id="deleteForm" name="deleteForm">
+      <div class="modal-header" style="background: #D5D9DF;">
+          <label id="verEjemplartit"></label>        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <div class="modal-body" style="background: #D5D9DF;">        
           <div class="row">         
             <div class="col-sm-12">
-              <div class="form-group">            
-                   <label id="verEjemplartit"></label>                             
+              <div class="form-group">                                             
                    <div id="contenedordiv"></div>
                     <div class="row">
                      <div class="col">
@@ -454,9 +458,39 @@
     </div>
   </div>
 </div>
-      
+
                                         
-                   
+<!-- Modal Ver codigo de barra -->
+
+<div class="modal fade" id="modalBarraEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalBarraEjemplar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+       <div class="modal-header" style="background: #D5D9DF;">
+           <label id="codigobarra"></label>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+           </button>  
+       </div> 
+       <div class="modal-body">       
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">             
+           
+              <div align="center" id="cargarcodigodebarra"></div>         
+                         
+               </div>              
+              </div>
+            </div>
+        </div>
+             <div class="modal-footer" style="background: #D5D9DF;">              
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
+             </div>
+          </div>    
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>                   
 
 
 
@@ -582,7 +616,7 @@ function insertarEjemplar(){
                           $("#respuestaNuevoEjemplar").hide(500);                                
                     }, 6000);
                 }
-
+ 
               }
             });
 
@@ -765,8 +799,8 @@ function deleteEjemplar(){
       var varejemplartitulo = button.data('varejemplartitulo')     
 
       $('#borrarButton').attr("disabled", false);  
-
-
+      
+      
       var modal = $(this)
 
        $("#notificationLabel").html('Esta es una accion <h5> Permanente. </h5> Desea Eliminar registro?:');
@@ -801,6 +835,27 @@ $('#modalVerEjemplar').on('show.bs.modal', function (event) {
        $("#verEjemplartipadqui").html('<h6 align=center>'+varejemplartipadqui+' '+'<h6> '); 
        $("#verEjemplardetadqui").html('<h6 align=center>'+varejemplardetadqui+' '+'<h6> '); 
        $("#verEjemplardesfisica").html('<h6 align=center>'+varejemplardesfisica+' '+'<h6> ');  
+       
+      
+    })
+//ver codigo de barra
+$('#modalBarraEjemplar').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) //
+      var varejemplarcodlib  = button.data('varejemplarcodlib')      
+      var varejemplarcodigoreg  = button.data('varejemplarcodigoreg')       
+      var varejemplartitulo = button.data('varejemplartitulo')
+      var varejemplarnumero = button.data('varejemplarnumero')
+      
+
+          
+varejemplarnumero
+      var modal = $(this)
+       
+          
+       $("#cargarcodigodebarra").load("vercbejemplar.php?codeje="+varejemplarcodigoreg); 
+       $("#codigobarra").html('<h4 align=center>'+varejemplartitulo+', Ejemplar #'+varejemplarnumero+' '+'<h4> ')      
+
+        
        
       
     })

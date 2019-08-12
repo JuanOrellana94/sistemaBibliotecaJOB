@@ -2,49 +2,11 @@
     <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
 
 <?php
-/*
-TODO: zip del archivo backup, subir el zip a un google drive administrado por el equipo de tesis, evaluar la conveniencia de una funcion de restore.
-*/
-//  include("top.php");
   include("src/libs/vars.php");
-
   date_default_timezone_set("America/El_Salvador");
   if(!isset($_SESSION)){
       session_start();    
-  }
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //$servidor="localhost";
-    //$usuario="bibliocnx";
-    //$clave="Biblioteca123$";
-    //$base="sistemabiblioteca";
-
-    $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
-    $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
-    echo exec("$comando");    
-    try{
-        fwrite($archivo_manejador, $comando);
-        fclose($archivo_manejador);
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($archivo));
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($archivo));
-        ob_clean();
-        flush();
-        readfile($archivo);
-        unlink($archivo);      
-        //header('Location: utilrespaldo.php');
-        exit();
-        
-      }catch(\Exception $e){
-        echo 'error en el proceso de bk' . $e->getMessage(); //TODO: favor incluir en la bitacora global del sistema
-      }//fin de catch
-
-  }     
+  }   
 ?>
 
 <!DOCTYPE html>
@@ -122,9 +84,9 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Prestar</a>
-          <a class="dropdown-item" href="#">Devoluciones</a>
-          <a class="dropdown-item" href="#">Historial</a>
+          <a class="dropdown-item disabled" href="#">Prestar</a>
+          <a class="dropdown-item disabled" href="#">Devoluciones</a>
+          <a class="dropdown-item disabled" href="#">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -135,8 +97,8 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Indicadores</a>
-          <a class="dropdown-item" href="#">Reportes</a>
+          <a class="dropdown-item disabled" href="#">Indicadores</a>
+          <a class="dropdown-item disabled" href="#">Reportes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Estadistica</a>
         </div>
@@ -188,34 +150,47 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
     </ol>
   </nav>        
 
-<!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
+<!--INICIO CONTENEDOR DE CATALOGO DE  CODIGO DE BARRA LIBROS-->    
 <div class="container-fluid" > 
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Respaldo de Datos</h3>  Operaciones de respaldo y recuperacion de datos: <br>
-                Para realizar una copia de la ultima version de la base de datos del sistema presione el boton <b>Respaldo de Datos</b></p>       
+               <p class="font-weight-light"> <h3>  Codigo de barra</h3>  Seleccione un libro: <br>
+                Para mostrar el pdf de todos los ejemplares de un libro , seleecione por titulo del libro y realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     
         </div>
-        <!--Cuerpo del panel--> 
-         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <!--Cuerpo del panel-->         
         <div class="card-body">              
           <div class="row">            
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-5">
-                      <form name="formBusqueda" id="formBusqueda">          
+                    <div class="col-sm-5">                     
                         <div class="input-group">               
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-info" type="submit"> Respaldo de Datos </button>
+                          <table>
+                            <tr>
+                            <div id="formcod" name="formcod"  > 
+                            <?php 
+                                     $selTable=mysqli_query($conexion,"SELECT * from $tablaLibros");                            
+                             ?>
+                             <td>
+                              <select class="form-control js-Dropdown-Busqueda" name='codlib' id='codlib'>
+                                <option value="">Seleccione un libro</option>
+                               <?php  while ($dataLibros=mysqli_fetch_assoc($selTable)){  ?>                              
+                               <option value="<?php echo $dataLibros['libcod'];  ?>"><?php echo $dataLibros['libtit'];  ?></option>
+                               <?php } ?>                                                    
+                               </select> </td><td>                            
+                               <button type="submit" class="btn btn-primary" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
+                             </div> 
+                             <td><div id="respuesta" style="color: red; font-weight: bold; text-align: center;"></div></td>
+                           </tr>
+                           </table>                    
                           </div> 
-                        </div>
-                      </form>                       
+                        </div>                                      
                     </div>
                 </div>
               </div>
@@ -223,10 +198,52 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
           </div>  
         </div>
          <!--Fin delcuerpo del panel-->
-       </form>
+    <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
       </div>
        <!--Fin Panel/card para el catalogo de libros-->
     </div>
 </div>
-</form>
 </html>
+<script type="text/javascript">
+
+    $('.js-Dropdown-Busqueda').select2({
+        "selected": true
+     });
+     window.onload = function () {    
+
+    
+       setSelect2();
+
+      
+  };
+
+  function setSelect2(){
+
+  $('.js-Dropdown-Busqueda').select2();
+    $('.js-Dropdown-Busqueda').select2({
+    theme: 'bootstrap4',
+
+            })
+
+        }
+
+  function generarpdf(){
+
+  if ($("#codlib").val()==""){
+    $("#respuesta").show();
+    $("#respuesta").html("&nbsp;&nbsp;Seleccione un titulo de libro"); 
+      }else{
+       var codlib = document.getElementById('codlib').value;
+          var url = 'cbarraxloteejempdf.php?codlib='+codlib;
+          $(location).attr('href',url);         
+         
+         
+          }
+
+      }  
+                   
+    
+
+
+
+</script>;

@@ -9,35 +9,7 @@ TODO:
   if(!isset($_SESSION)){
       session_start();    
   }
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
-    $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
-    echo exec("$comando");    
-    try{
-        fwrite($archivo_manejador, $comando);
-        fclose($archivo_manejador);
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($archivo));
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($archivo));
-        ob_clean();
-        flush();
-        readfile($archivo);
-        unlink($archivo);      
-        //header('Location: utilrespaldo.php');
-        exit();
-        
-      }catch(\Exception $e){
-        echo 'error en el proceso de bk' . $e->getMessage(); //TODO: favor incluir en la bitacora global del sistema
-      }//fin de catch
-
-  }     
+  
 ?>
 
 <!DOCTYPE html>
@@ -115,9 +87,9 @@ TODO:
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Prestar</a>
-          <a class="dropdown-item" href="#">Devoluciones</a>
-          <a class="dropdown-item" href="#">Historial</a>
+          <a class="dropdown-item disabled" href="#">Prestar</a>
+          <a class="dropdown-item disabled" href="#">Devoluciones</a>
+          <a class="dropdown-item disabled" href="#">Historial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Operaciones</a>
         </div>
@@ -128,8 +100,8 @@ TODO:
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="#">Indicadores</a>
-          <a class="dropdown-item" href="#">Reportes</a>
+          <a class="dropdown-item disabled" href="#">Indicadores</a>
+          <a class="dropdown-item disabled" href="#">Reportes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Estadistica</a>
         </div>
@@ -181,34 +153,64 @@ TODO:
     </ol>
   </nav>        
 
-<!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
+<!--INICIO CONTENEDOR DE CATALOGO DE  CODIGO DE BARRA LIBROS-->    
 <div class="container-fluid" > 
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Respaldo de Datos</h3>  Operaciones de respaldo y recuperacion de datos: <br>
-                Para realizar una copia de la ultima version de la base de datos del sistema presione el boton <b>Respaldo de Datos</b></p>       
+               <p class="font-weight-light"> <h3>  Codigo de barra</h3>  Seleccione el tipo de bachillerato, la seccion y el año: <br>
+                Para mostrar el pdf de todos los estudiantes inscritos, posteriormente  realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     
         </div>
-        <!--Cuerpo del panel--> 
-         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <!--Cuerpo del panel-->         
         <div class="card-body">              
           <div class="row">            
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-5">
-                      <form name="formBusqueda" id="formBusqueda">          
+                    <div class="col-sm-5">                     
                         <div class="input-group">               
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-info" type="submit"> Respaldo de Datos </button>
+                          <table>
+                            <tr>
+                            <div id="formcod" name="formcod"  >
+                             <td>
+                             <select class="form-control js-Dropdown-Busqueda " name='bachi' id='bachi'>
+                             <option value="">Seleccione bachillerato</option>
+                             <option value="0">SALUD</option>
+                             <option value="1">MECANICA</option>
+                             <option value="2">CONTADURIA</option>                                                
+                             </select> </td>                             
+                             <td><select class="form-control js-Dropdown-Busqueda" name='seccion' id='seccion'>
+                             <option value="">Seleccione un libro</option>
+                             <option value="0">SECCION A</option>
+                             <option value="1">SECCION B</option>
+                             <option value="2">SECCION C</option>                            
+                             <option value="3">SECCION D</option>                            
+                                                       
+                             </select></td> <td>
+                              <select class="form-control js-Dropdown-Busqueda" name='anio' id='anio'>
+                             <option value="">Seleccione un libro</option>    
+                             <option value="0">PRIMER AÑO</option>
+                             <option value="1">SEGUNDO AÑO</option>
+                             <option value="2">TERCER AÑO</option>                         
+                                                       
+                              </select>                               
+
+                             </td>
+
+                             <td>                            
+                               <button type="submit" class="btn btn-primary" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
+                             </div> 
+                             <td><div id="respuesta" style="color: red; font-weight: bold; text-align: center;"></div></td>
+                             <td><div id="respuesta2" style="color: green; font-weight: bold; text-align: center;"></div></td>
+                           </tr>
+                           </table>                    
                           </div> 
-                        </div>
-                      </form>                       
+                        </div>                                      
                     </div>
                 </div>
               </div>
@@ -216,10 +218,64 @@ TODO:
           </div>  
         </div>
          <!--Fin delcuerpo del panel-->
-       </form>
+    <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
       </div>
        <!--Fin Panel/card para el catalogo de libros-->
     </div>
 </div>
-</form>
 </html>
+<script type="text/javascript">
+
+    $('.js-Dropdown-Busqueda').select2({
+        "selected": true
+     });
+     window.onload = function () {    
+
+    
+       setSelect2();
+
+      
+  };
+
+  function setSelect2(){
+
+  $('.js-Dropdown-Busqueda').select2();
+    $('.js-Dropdown-Busqueda').select2({
+    theme: 'bootstrap4',
+
+            })
+
+        }
+
+  function generarpdf(){
+    if($("#bachi").val()==""){
+           $("#respuesta").show();
+           $("#respuesta").html("&nbsp;&nbsp;Seleccione el tipo bachillerato para continuar"); 
+      }else if ($("#seccion").val()==""){
+          $("#respuesta").show();
+          $("#respuesta").html("&nbsp;&nbsp;Seleccione una seccion para continuar"); 
+      } else if($("#anio").val()==""){
+           $("#respuesta").show();
+           $("#respuesta").html("&nbsp;&nbsp;Seleccione una año para continuar"); 
+      } 
+      else{
+       var seccion = document.getElementById('seccion').value;
+       var anio = document.getElementById('anio').value;
+       var bachi = document.getElementById('bachi').value;
+       $("#respuesta").hide();
+         $("#respuesta2").show();
+           $("#respuesta2").html("&nbsp;&nbsp;PDF generado con exito");
+            $("#respuesta2").hide(5000);
+          var url = 'cbarraxloteusupdf.php?codseccion='+seccion+"&codanio="+anio+"&codbachi="+bachi;
+          $(location).attr('href',url);         
+         
+         
+          }
+
+      }  
+                   
+    
+
+
+
+</script>;
