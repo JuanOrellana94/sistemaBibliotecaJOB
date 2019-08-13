@@ -103,7 +103,7 @@
                 <label for="TituloLabel">CODIGO</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequicodifi" id="formequicodifi" aria-describedby="formequicodifi" placeholder="" onkeypress="return soloNumeros(event);" ><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress="return soloLetras(event);"><br>
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequipodes" id="formequipodes" aria-describedby="formequipodes" placeholder="" >
               </div>
@@ -147,7 +147,7 @@
                 <label for="TituloLabel">CODIGO</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequicodifi" id="editequicodifi" aria-describedby="editequicodifi" placeholder="" onkeypress="return soloNumeros(event);"><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress="return soloLetras(event);"><br>
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequipodes" id="editequipodes" aria-describedby="editequipodes" placeholder="" >
               </div>
