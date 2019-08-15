@@ -1106,7 +1106,7 @@ $( function() {
       var modal = $(this)
        
           
-       $("#cargarcodigodebarra").load("vercbusuario.php?codusu="+varusuariocod); 
+       $("#cargarcodigodebarra").load("pages/codbarras/vercbusuario.php?codusu="+varusuariocod); 
        $("#codigobarra").html('<h4 align=center> Usuario carnet #'+varusuariocarnet+' '+'<h4> ')      
 
         

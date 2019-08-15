@@ -1,6 +1,7 @@
 <?php
-  include("src/libs/vars.php");
-  include("src/libs/sessionControl/conection.php");
+  require '../../fpdf/fpdf.php'; 
+  include("../../src/libs/vars.php");
+  include("../../src/libs/sessionControl/conection.php");
   date_default_timezone_set("America/El_Salvador");
   if(!isset($_SESSION)){
       session_start();    
@@ -18,11 +19,11 @@
       while($usuario = mysqli_fetch_assoc($resultado)) {          
           echo $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape'] ."<br>";
           $codbarra =$xusuario . $usuario['usucarnet'] . '1234567890'; 
-          echo "<img src='cbarra.php?xvalor=".$codbarra. "'>";          
+          echo "<img src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'>";          
       }
       echo "<br>" . $codbarra;
      ?>
-    <?php echo "<br><br><a href=\"cbarrausupdf.php?codusu=" . $xusuario. "\">Mostrar PDF</a>"; ?>
+    <?php echo "<br><br><a href=\"pages/codbarras/cbarrausupdf.php?codusu=" . $xusuario. "\">Mostrar PDF</a>"; ?>
 </p>
 </body>
 </html>

@@ -852,7 +852,7 @@ varejemplarnumero
       var modal = $(this)
        
           
-       $("#cargarcodigodebarra").load("vercbejemplar.php?codeje="+varejemplarcodigoreg); 
+       $("#cargarcodigodebarra").load("pages/codbarras/vercbejemplar.php?codeje="+varejemplarcodigoreg); 
        $("#codigobarra").html('<h4 align=center>'+varejemplartitulo+', Ejemplar #'+varejemplarnumero+' '+'<h4> ')      
 
         
