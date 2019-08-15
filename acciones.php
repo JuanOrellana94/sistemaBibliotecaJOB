@@ -14,10 +14,28 @@
 
  if ($pageLocation=="busqueda") {
     include("pages/operaciones/buscarMenu.php");
- } else if ($pageLocation=="none") {
+ } else if ($pageLocation=="prestamos") {
  	 include("top.php");
+ 	 include("pages/operaciones/opPrestamos.php");
+ 	# code...
+ }  else if ($pageLocation=="devoluciones") {
+ 	 include("top.php");
+ 	 include("pages/operaciones/opDevoluciones.php");
+ 	# code...
+ }  else if ($pageLocation=="historial") {
+ 	 include("top.php");
+ 	 include("pages/historial/verHistorial.php");
+ 	# code...
+ } else if ($pageLocation=="codbarras") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbestudiante.php");
+ 	# code...
+ } else if ($pageLocation=="cbejemplar") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbejemplar.php");
  	# code...
  }
+
 
 
 

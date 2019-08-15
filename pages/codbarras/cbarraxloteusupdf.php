@@ -1,6 +1,6 @@
 <?php 
-   require 'fpdf/fpdf.php';
-   include("src/libs/vars.php");
+   require '../../fpdf/fpdf.php';
+   include("../../src/libs/vars.php");
    include 'barcode.php';
    $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
    mysqli_select_db($conexion,"$base");
