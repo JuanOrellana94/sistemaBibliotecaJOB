@@ -17,7 +17,7 @@
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Codigo de barra</h3>  Seleccione un libro: <br>
+               <p class="font-weight-light"> <h3>  Codigo de barra de ejemplaresr</h3>  Seleccione un libro: <br>
                 Para mostrar el pdf de todos los ejemplares de un libro , seleecione por titulo del libro y realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     
@@ -31,7 +31,7 @@
                   <div class="row">
                     <div class="col-sm-5">                     
                         <div class="input-group">               
-                          <table>
+                          <table class="table">
                             <tr>
                             <div id="formcod" name="formcod"  > 
                             <?php 
@@ -43,9 +43,10 @@
                                <?php  while ($dataLibros=mysqli_fetch_assoc($selTable)){  ?>                              
                                <option value="<?php echo $dataLibros['libcod'];  ?>"><?php echo $dataLibros['libtit'];  ?></option>
                                <?php } ?>                                                    
-                               </select> </td><td>                            
-                               <button type="submit" class="btn btn-primary" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
-                             </div> 
+                               </select> </td></tr><tr> 
+                              <td>                        
+                               <button type="submit" class="btn btn-primary btn-block" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
+                             </div></tr><tr>
                              <td><div id="respuesta" style="color: red; font-weight: bold; text-align: center;"></div></td>
                            </tr>
                            </table>                    

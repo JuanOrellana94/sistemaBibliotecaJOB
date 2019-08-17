@@ -65,7 +65,7 @@
 
 	?>		
 				
-					<table class="table table-hover table-responsive"  style="background-color: #FFFFFF; width: 100%">
+					<table class="table table-hover"  style="background-color: #FFFFFF;width: 100%">
 						<tbody>
 
 
@@ -95,11 +95,8 @@
 								<td>Titulo: <?php echo $dataLibros[$varlibtit];?> <br>
 									Autor: <?php echo $dataLibros[$varautnom]." ".$dataLibros[$varautape];?><br>
 									Editorial: <?php echo $dataLibros[$vareditnom];?> 
-								</td> 						
-								<td> Informacion:<br>
-									<?php echo $dataLibros[$varlibdes]?>
-										
-								</td>
+								</td> 					
+								
 								<td>Etiquetas:<br>
 									<?php echo $dataLibros[$varlibtags];?>
 										
@@ -116,6 +113,16 @@
 
 									 
 									 ><img src="img/icons/itemPr.png" width="65" height="50"></button>
+
+									 <button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalVerInformacion"	
+								      data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
+									  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
+									  data-varlibpor="<?php echo $dataLibros[$varlibpor];?>"
+									  data-varlibdes="<?php echo $dataLibros[$varlibdes];?>"	 
+								      title="Ver Informacion">
+									<img  src="img/icons/pregunta.png" width="35" height="30">
+
+								</button>
 									</div>
 									 
 								</td>

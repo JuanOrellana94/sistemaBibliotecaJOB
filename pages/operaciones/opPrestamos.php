@@ -85,6 +85,8 @@
   </div>
 </div>
 
+
+
 <!--Script para recargar tabla al abrir esta pagina el scrip esta incluido en <top.php> dir src/js/tables/loader.js-->
 <script>
     window.onload = function () {
@@ -402,5 +404,6 @@ function crearPrestamo(){
   }
 
 }
+
 
 </script>

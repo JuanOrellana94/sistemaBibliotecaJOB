@@ -74,7 +74,7 @@
 
 	     }
 
-	$limite = 5;
+	$limite = 8;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
@@ -94,7 +94,8 @@
       WHERE $restriccion AND (
 		$varUsuCodigo LIKE '%$textBusqueda%' OR
 		$varAccNombre LIKE '%$textBusqueda%'	OR
-		$varCorreo LIKE '%$textBusqueda%' )	
+		$varCorreo LIKE '%$textBusqueda%' OR
+		$varPriNombre LIKE '%$textBusqueda%')	
 	ORDER BY $varUsuCodigo DESC";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -158,7 +159,8 @@
 								WHERE  $restriccion AND (
                                 $varUsuCodigo LIKE '%$textBusqueda%' OR
 		                        $varAccNombre LIKE '%$textBusqueda%'	OR
-		                           $varCorreo LIKE '%$textBusqueda%') 						
+		                        $varCorreo LIKE '%$textBusqueda%' OR
+		                        $varPriNombre LIKE '%$textBusqueda%') 						
 								ORDER BY $varUsuCodigo DESC
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){

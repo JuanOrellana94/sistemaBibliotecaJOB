@@ -47,10 +47,10 @@
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
                       </form> 
-                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small>
+                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small><br>
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">
                             <option value="0">ULTIMOS REGISTROS</option>
                             <option value="1">PRIMEROS REGISTROS</option>
                           </select>                          

@@ -354,7 +354,47 @@
     </div>
   </div>
 </div>
+<!-- Modal Ver Libro -->
 
+<div class="modal fade" id="modalVerInformacion" tabindex="-1" role="dialog" aria-labelledby="modalVerInformacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">    
+      <div class="modal-header" style="background-color:#003764; color:white;" >
+        <h5 class="modal-title" id="prestamosModal"><img src="img/icons/pregunta.png" width="30" height="30"> Informacion del libro </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <div class="modal-body" style="background: #D5D9DF;">        
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">                                             
+                   <div id="contenedordiv"></div>
+                    <div class="row">
+                     <div class="col">
+                      <table class="table" cellspacing="2" cellpadding="1">                   
+                       <tr align="left">
+                         <td><h5>Descripcion:</h5></td>
+                       </tr><tr>
+                         <td colspan="3"> <label id="varlibdes"></label></td>                      
+                       </tr>               
+                     </table>
+                   </div>                    
+                   </div>   
+                         
+               </div>              
+              </div>
+            </div>
+           </div> 
+             <div class="modal-footer"  style="background-color:#003764;">              
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
+             </div>
+            
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>
 
 
 
@@ -640,6 +680,23 @@ function borrarItem(){
       document.getElementById('delsolcodigo').value = varsolcod;
 
       
+      
+    })
+
+   //Ver libro
+
+$('#modalVerInformacion').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+
+       var varlibpor  = button.data('varlibpor')
+       $("#contenedordiv").html('<img align=left src="'+varlibpor+'" width=200 height=350>')         
+       var varlibdes = button.data('varlibdes')    
+
+
+      var modal = $(this)   
+                
+       $("#varlibdes").html('<h6 align=center>'+varlibdes+' '+'<h6> ');       
+       
       
     })
 

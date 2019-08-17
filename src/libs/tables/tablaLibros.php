@@ -133,15 +133,13 @@
 								  data-varlibpor="<?php echo $dataLibros[$varlibpor];?>"
 								  title="Portada del Libro"		
 								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
-
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#deleteBookModal"
 								  data-varlibcod="<?php echo $dataLibros[$varlibcod];?>"
 								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
 
 								  title="Eliminar Libro"		
 								  ><img src="img/icons/BookEditWideDel.png" width="35" height="30"></button>
-
-                                 <a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>
+                                 <a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>" title="ver ejemplares"><img src="img/icons/detalle.png" align="center" width="40" height="35"></a>
 								  
 								</div>
 							</td>

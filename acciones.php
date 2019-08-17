@@ -34,6 +34,10 @@
  	 include("top.php");
  	 include("pages/codbarras/cbejemplar.php");
  	# code...
+ }else if ($pageLocation=="restaurar") {
+ 	 include("top.php");
+ 	 include("pages/restaurar/restaurarbd.php");
+ 	# code...
  }
 
 

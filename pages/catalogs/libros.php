@@ -483,9 +483,10 @@
             </div>
           </div>    
         </form>
+        <div id="answerDeletePrint" style="color: red; font-weight: bold; text-align: center;"></div>
       </div>
       <div class="modal-footer" style="background: #D5D9DF;">
-         <div id="answerDeletePrint" style="color: red; font-weight: bold; text-align: center;"></div>
+         
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-danger" onclick="deleteBook()">Eliminar</button>
       </div>

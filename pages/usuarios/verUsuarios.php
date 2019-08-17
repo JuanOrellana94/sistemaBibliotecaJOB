@@ -59,7 +59,7 @@
                       <small id="dateHelp" class="form-text text-muted">Usuarios a mostrar</small>
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">
                             <option value="3">MOSTRAR TODOS</option>                            
                             <option value="4">MOSTRAR AUXILIARES</option>
                             <option value="5">MOSTRAR BIBLIOTECARIOS</option>
@@ -71,7 +71,7 @@
                         <small id="dateHelp" class="form-text text-muted">Usuarios a mostrar</small>
                         <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <select id="textBusquedaordenar" onchange="recargarTabla()">         
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">         
                             <option value="1">MOSTRAR PERSONAL</option>
                             <option value="2" selected="">MOSTRAR ESTUDIANTES</option>
                           </select>                          

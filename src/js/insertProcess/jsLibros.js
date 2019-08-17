@@ -386,7 +386,7 @@ function deleteBook(){
 						$('#deleteBookModal').modal('hide');
 					} else if (data==0) {
 						$("#answerDeletePrint").show();
-						$("#answerDeletePrint").html("<div class='alert alert-danger' role='alert'> El libro ya ha sido eliminado </div>");
+						$("#answerDeletePrint").html("<div class='alert alert-danger' role='alert'>Error al eliminar: el libro contiene ejemplares registrados </div>");
 						recargarTabla();
 						setTimeout(
 						   	function() {

@@ -102,10 +102,11 @@
          <img src="img/icons/utils.png" width="65" height="65" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>
+          <a class="dropdown-item disabled" href="utilrespaldo.php">Respaldo de datos</a>
+          <a class="dropdown-item disabled" href="acciones.php?pageLocation=restaurar">Restaurar datos</a>
           <div class="dropdown-divider"></div>
+          <a class="dropdown-item disabled" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
+          <a class="dropdown-item disabled" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>          
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>
       </li>

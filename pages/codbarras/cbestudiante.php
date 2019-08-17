@@ -16,7 +16,7 @@
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Codigo de barra</h3>  Seleccione el tipo de bachillerato, la seccion y el año: <br>
+               <p class="font-weight-light"> <h3>  Codigo de barra estudiantes</h3>  Seleccione el tipo de bachillerato, la seccion y el año: <br>
                 Para mostrar el pdf de todos los estudiantes inscritos, posteriormente  realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     
@@ -30,7 +30,7 @@
                   <div class="row">
                     <div class="col-sm-5">                     
                         <div class="input-group">               
-                          <table>
+                          <table class="table">
                             <tr>
                             <div id="formcod" name="formcod"  >
                              <td>
@@ -39,16 +39,20 @@
                              <option value="0">SALUD</option>
                              <option value="1">MECANICA</option>
                              <option value="2">CONTADURIA</option>                                                
-                             </select> </td>                             
+                             </select> </td>
+                             </tr>
+                             <tr>                            
                              <td><select class="form-control js-Dropdown-Busqueda" name='seccion' id='seccion'>
                              <option value="">Seleccione un libro</option>
                              <option value="0">SECCION A</option>
                              <option value="1">SECCION B</option>
                              <option value="2">SECCION C</option>                            
-                             <option value="3">SECCION D</option>                            
+                             <option value="3">SECCION D</option>                  
                                                        
-                             </select></td> <td>
-                              <select class="form-control js-Dropdown-Busqueda" name='anio' id='anio'>
+                             </select></td>
+                             </tr>
+                             <tr>  
+                             <td> <select class="form-control js-Dropdown-Busqueda" name='anio' id='anio'>
                              <option value="">Seleccione un libro</option>    
                              <option value="0">PRIMER AÑO</option>
                              <option value="1">SEGUNDO AÑO</option>
@@ -57,13 +61,14 @@
                               </select>                               
 
                              </td>
-
+                             </tr><tr>
                              <td>                            
-                               <button type="submit" class="btn btn-primary" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
+                               <button type="submit" class="btn btn-primary btn-block" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
                              </div> 
+                             </tr><tr>
                              <td><div id="respuesta" style="color: red; font-weight: bold; text-align: center;"></div></td>
-                             <td><div id="respuesta2" style="color: green; font-weight: bold; text-align: center;"></div></td>
-                           </tr>
+                              <td><div id="respuesta2" style="color: green; font-weight: bold; text-align: center;"></div></td>
+                              </tr>
                            </table>                    
                           </div> 
                         </div>                                      

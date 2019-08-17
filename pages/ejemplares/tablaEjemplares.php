@@ -8,12 +8,42 @@
 	  	     $bloqueo="disabled";
 	     }else{
 	     	$bloqueo="";
-	     }   
+	     }
+	 $bloqueo=""; 
+	 $bloqueo2="";
+	 $bloqueo3="style='display: none;'";
+	 $bloqueo4="style='display: none;'";
+	 $bloqueo5="style='display: none;'";
+		$varordenar=$_GET["ordenar"];
+            switch ($varordenar) {
+              	case '0':
+              		   $textBusquedaorde = '0';
+                break;
+                case '1':
+                	   $textBusquedaorde  = '1';
+                	   $bloqueo2="style='display: none;'";
+                	   $bloqueo3="style='display: true;'";
+                break;
+                case '2':
+                	   $textBusquedaorde  = '2';
+                	   $bloqueo="disabled";
+                	   $bloqueo2="style='display: none;'";
+                	   $bloqueo4="style='display: true;'";
+                break;
+                case '3':
+                	   $textBusquedaorde  = '3';
+                	   $bloqueo="disabled";
+                	   $bloqueo2=" style='display: none;' "; 
+                	   $bloqueo5="style='display: true;'";               	   
+                break;              	
+              }  		
+		 
+
 	  	    
     ?>
     
     <?php  
-	$limite = 5;
+	$limite = 6;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
@@ -25,15 +55,15 @@
 		$textBusqueda  = $_GET["busqueda"]; 
 	} else {
 		$textBusqueda=""; 
-	};
+	}
 	
-	 $CodigoLibPrincipal=$_GET["codigoLib"]; 	
+	$CodigoLibPrincipal=$_GET["codigoLib"]; 	
 	
 
 		
 	$sql = "SELECT COUNT( t1.$varejemcod ) as Codigo, t3.$varlibpor as Portada, t1.$varejemdetcon as Comentario, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
       WHERE 
-         t3.$varlibcod = '$CodigoLibPrincipal' AND
+         t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND
 		 t3.$varlibtit LIKE '%$textBusqueda%'   
 
 	ORDER BY 'Codigo' ";  
@@ -63,7 +93,7 @@
       $(this).addClass('active');
          var paginaNumero = this.id;       
 
-        $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val()+"&codigoLib="+$("#codigoLib").val());
+        $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val()+"&codigoLib="+$("#codigoLib").val()+ "&ordenar=" + $("#textBusquedaordenar").val());
       });
 </script>
 
@@ -95,7 +125,7 @@
 					     
 					     $selTable=mysqli_query($conexion,"SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t2.$varestcod as EstanteCodigo, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
                                    WHERE 	
-                                  t3.$varlibcod = '$CodigoLibPrincipal' AND                    
+                                  t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND                  
 		                          $varejemcodreg LIKE '%$textBusqueda%'	
 	                       ORDER BY 'CodigoReg'
                             LIMIT $inicia_desde, $limite;");
@@ -223,13 +253,33 @@
 								</button>
                                  <!-- <?php echo "<a href=\"vercbejemplar.php?codeje=" . $dataLibros['CodigoReg']. "\">CB</a>"; ?> -->
 
-<!-- BOTON BORRAR DESHABILITADO DE MOMENTO -->
-								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEjemplar"
+
+								<button type="button" class="btn btn-light" <?php echo $bloqueo2 ?> data-toggle="modal" data-target="#modalBorrarEjemplar"
 								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
 									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
 									title="Eliminar Ejemplar">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
-								 </button> -->
+								 </button>
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo3 ?> data-toggle="modal" data-target="#modalReportarEjemplar"
+								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									title="Reportar ejemplar">
+								 	<img  src="img/icons/laberinto.png" width="35" height="30">
+								 </button>
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo4 ?> data-toggle="modal" data-target="#modalReanudarEjemplar"
+								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									title="Reanudar ejemplar">
+								 	<img  src="img/icons/reanudar.png" width="35" height="30">
+								 </button>
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo5 ?> data-toggle="modal" data-target="#modalEncontrarEjemplar"
+								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									title="Ejemplar encontrado">
+								 	<img  src="img/icons/encontrado.png" width="35" height="30">
+								 </button>
+
+
 								</div>
 							</td>
 						</tr>
