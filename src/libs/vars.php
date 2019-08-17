@@ -4,8 +4,8 @@
 
  
   $servidor="localhost";
-  $usuario="root";
-  $clave="";
+  $usuario="bibliocnx";
+  $clave="Biblioteca123$";
   $base="sistemabiblioteca";
 
   $tabla2="...";
