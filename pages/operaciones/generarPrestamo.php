@@ -147,7 +147,7 @@
 							      $varNomPersona
 							      ) VALUES(
 							     NOW(),
-							      'Prestamo realizado',
+							      'Prestamo realizado Registro: $varprestcodequis',
 							      '$usuCodigo',
 							      '---',
 							      '$bitPersonaName');")
@@ -279,7 +279,7 @@
 					      $varNomPersona
 					      ) VALUES(
 					     NOW(),
-					      'Prestamo realizado',
+					      'Prestamo realizado, codigo registro: $varprestcodlibs',
 					      '$usuCodigo',
 					      '---',
 					      '$bitPersonaName');")

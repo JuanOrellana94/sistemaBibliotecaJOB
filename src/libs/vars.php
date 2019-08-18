@@ -172,7 +172,8 @@
     $varprestest="prestestlib";
     $varprestren="prestrenlib";
     $varusuCodigoF="usuCodigo";
-    $varusuCodBiblio="usuCodBiblio";
+    $varusuCodBiblio="usuCodBiblio"; 
+    $varprestfechafin="prestfechafin";
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod
@@ -197,6 +198,7 @@
     $varprestestequi="prestestequi";
     $varusuCodigoFEquipo="usucod";
     $varusuCodBiblioEquipo="usuCodBiblioEquipo";
+     $varprestfechafinEquipo="prestfechafinEquipo";
 
 
 //detallesprestamolibro; 

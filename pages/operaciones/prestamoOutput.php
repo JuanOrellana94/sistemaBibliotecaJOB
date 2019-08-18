@@ -3,7 +3,7 @@
     	<div class="row">
     	
 	       <h5 class="card-title" > <a class="navbar-brand" href="acciones.php?pageLocation=devoluciones">
-             <img src="img/icons/Book.png" width="45" height="45" alt="" style="margin-left:15%;"> </a>  Informacion del prestamo </h5>
+             <img src="img/icons/book.png" width="45" height="45" alt="" style="margin-left:15%;"> </a>  Informacion del prestamo </h5>
 	       
 	    </div>
 

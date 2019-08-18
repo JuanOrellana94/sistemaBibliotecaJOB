@@ -24,7 +24,7 @@
  	# code...
  }  else if ($pageLocation=="historial") {
  	 include("top.php");
- 	 include("pages/operaciones/opDevoluciones.php");
+ 	 include("pages/historial/verHistorial.php");
  	# code...
  }
 
