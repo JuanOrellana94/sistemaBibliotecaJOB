@@ -19,19 +19,13 @@
 	 $textBusqueda=""; 
 	};
 
-	$sql = "SELECT COUNT($varlibcod) 
-      FROM $tablaLibros as libro 
-		inner join $tablaDewey as dewey on libro.$varlibDew = dewey.$vardewcod 
-		inner join $tablaEditoral as edito on libro.$varlibedit = edito.$vareditcod 								
-		inner join $tablAutor as aut on libro.$varautcod=aut.$varautcod 
-      WHERE 
-		$varlibtit LIKE '%$textBusqueda%' OR
-		$varautnom LIKE '%$textBusqueda%' OR
-		$vareditnom LIKE '%$textBusqueda%' OR
-		$vardewtipcla LIKE '%$textBusqueda%' OR
-		$varlibtags LIKE '%$textBusqueda%' OR
-		$vardewtipcla  LIKE '%$textBusqueda%'
-	ORDER BY $varlibcod; ";  
+	$sql = "SELECT COUNT(libro.$varlibcod) 
+     FROM $tablaLibros as libro
+		inner join $tablAutor as autor on libro.$varlibgenaut = autor.$varautcod
+		inner join $varbolsaprestamo as carrito on libro.$varlibcod = carrito.$varlibcodcar
+		inner join $tablaUsuarios as usuario on usuario.$varUsuCodigo = carrito.$varusucod
+		WHERE 
+		carrito.$varusucod='$usuCodigo'";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  

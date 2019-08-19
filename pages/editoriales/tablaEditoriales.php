@@ -21,8 +21,7 @@
 		
       WHERE 
 		$vareditcod LIKE '%$textBusqueda%' OR
-		$vareditnom LIKE '%$textBusqueda%' OR
-		$vareditpai LIKE '%$textBusqueda%'
+		$vareditnom LIKE '%$textBusqueda%'
 	ORDER BY $vareditcod ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -78,8 +77,8 @@
 							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaEditoral 
 								WHERE 
 								$vareditcod LIKE '%$textBusqueda%' OR
-								$vareditnom LIKE '%$textBusqueda%' OR
-								$vareditpai LIKE '%$textBusqueda%'
+								$vareditnom LIKE '%$textBusqueda%'
+								
 								ORDER BY $vareditcod
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){

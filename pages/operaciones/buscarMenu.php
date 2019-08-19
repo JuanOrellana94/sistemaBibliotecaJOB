@@ -291,7 +291,7 @@
 
             <form id="formCarritoCompras" name="formCarritoCompras"> 
 
-            <div class="row border">
+            <div class="row">
 
               <div class="col-sm-12">
                 <div id="respuestaPrestamo" style="color: red; font-weight: bold; text-align: center;"></div>
@@ -507,6 +507,14 @@ function insertarItem(){
  //error programado
         $("#respuestaPrestamo").show();
         $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Tu prestamo excede tu limite de libros permitidos. (3 libros maximo por prestamo)</div>");
+        setTimeout(
+              function() {
+                $("#respuestaPrestamo").hide(500);     
+              }, 6000);
+      }else if (data==3) {
+ //error programado
+        $("#respuestaPrestamo").show();
+        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Esta cuenta no puede realizar pedidos</div>");
         setTimeout(
               function() {
                 $("#respuestaPrestamo").hide(500);     
