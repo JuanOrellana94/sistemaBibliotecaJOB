@@ -30,7 +30,7 @@ $dataRow = mysqli_fetch_array($resultado);
 			UPDATE $tablAutor SET
 			$varautnom='$autnom',
 			$varautape='$autape',
-			$varautseud='$autseud'
+			$varautseud='$autseud'		
 			WHERE $varautcod='$autcod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));

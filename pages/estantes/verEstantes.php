@@ -390,7 +390,7 @@ function limpiarFormularioEstante(){
 function deleteEstante(){
   $("#borrarButton").attr("disabled", true);
 
-  if ($("#varestantecod").val()==""){
+  if ($("#delestantecod").val()==""){
     $("#respuestaBorrarEstante").show();
     $("#respuestaBorrarEstante").html("Codigo de Estante necesario");
   }else {

@@ -8,7 +8,7 @@ $borrarbase=mysqli_query($conexion,"DROP DATABASE sistemabiblioteca;") or die ('
 $crearnueva=mysqli_query($conexion,"CREATE DATABASE sistemabiblioteca;") or die ('ERROR INS-INS:'.mysqli_error($conexion));  
 
  $filename = 'bdrespaldo.sql';
- import_tables('localhost','root','','sistemabiblioteca',$filename);
+ import_tables('localhost','bibliocnx','Biblioteca123$','sistemabiblioteca',$filename);
 
 function import_tables($host,$uname,$pass,$database, $filename,$tables = '*'){
     $connection = mysqli_connect($host,$uname,$pass)
@@ -32,8 +32,8 @@ foreach ($lines as $line){
         
   }
   $servidor="localhost";
-  $usuario="root";
-  $clave="";
+  $usuario="bibliocnx";
+  $clave="Biblioteca123$";
   $base="sistemabiblioteca";
     $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
     mysqli_select_db($conexion,"$base");
