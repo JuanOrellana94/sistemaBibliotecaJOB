@@ -41,7 +41,7 @@ if(isset($dataRow)){
 
 
 
-  }else if($dataRow[$varCueEstatus]=="0"){
+  }else if($dataRow[$varCueEstatus]=="0" || $dataRow[$varCueEstatus]=="3" ){
     //Condiciones de acceso cumplidas, session starts
     session_start();
     $_SESSION['usuCodigo']=$dataRow[$varUsuCodigo];
