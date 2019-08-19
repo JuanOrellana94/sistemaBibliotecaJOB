@@ -95,7 +95,11 @@
 		$varUsuCodigo LIKE '%$textBusqueda%' OR
 		$varAccNombre LIKE '%$textBusqueda%'	OR
 		$varCorreo LIKE '%$textBusqueda%' OR
-		$varPriNombre LIKE '%$textBusqueda%')	
+		'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%')
+		)
 	ORDER BY $varUsuCodigo DESC";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -159,8 +163,11 @@
 								WHERE  $restriccion AND (
                                 $varUsuCodigo LIKE '%$textBusqueda%' OR
 		                        $varAccNombre LIKE '%$textBusqueda%'	OR
-		                        $varCorreo LIKE '%$textBusqueda%' OR
-		                        $varPriNombre LIKE '%$textBusqueda%') 						
+		                        $varCorreo LIKE '%$textBusqueda%' OR		                      
+								'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%') )		
 								ORDER BY $varUsuCodigo DESC
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){

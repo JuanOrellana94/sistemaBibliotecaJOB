@@ -429,11 +429,10 @@ function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
-
-  var busqueda=$("#textBusqueda").val();  
-
-
   
+  var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20'); 
+ 
 
   $("#cargarTabla").load("pages/operaciones/tablaConsultas.php?pagina=1&busqueda="+ busqueda);
 

@@ -269,6 +269,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   var ordenar=$("#textBusquedaordenar").val();  
   $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 

@@ -546,7 +546,8 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
-  var ordenar=$("#textBusquedaordenar").val();   
+  var ordenar=$("#textBusquedaordenar").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 
   setTimeout( function() {

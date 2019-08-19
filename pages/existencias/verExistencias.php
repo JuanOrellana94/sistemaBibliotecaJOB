@@ -487,7 +487,8 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
-  var variablecod=$("#equipoCod").val();  
+  var variablecod=$("#equipoCod").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod);
   
   setTimeout( function() {

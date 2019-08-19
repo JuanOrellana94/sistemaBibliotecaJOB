@@ -653,7 +653,8 @@ function recargarTabla(){
 
   var busqueda=$("#textBusqueda").val();
   var variablecod=$("#codigoLib").val();
-  var ordenar=$("#textBusquedaordenar").val();  
+  var ordenar=$("#textBusquedaordenar").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar);
   
   setTimeout( function() {
