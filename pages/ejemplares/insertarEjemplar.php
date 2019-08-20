@@ -26,8 +26,7 @@
 	};
 		
     
-    // select lpad(ejemcod,5,'0') from ejemplareslibros;
-   // obtener codigo del ejemplar
+   
 
      $sql=("SELECT t1.$vardewcodcla as dewe FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod WHERE t2.$varlibcod = $formejemplarcodlib");
      $sql2=("SELECT lpad(count($varejemcod)+1,5,'0') as codigo from $tablaEjemplares where $varlibcod = $formejemplarcodlib");
@@ -38,32 +37,30 @@
           $newcodigo= $instituocodigo."".$datacodigo['dewe']."-".$datacodigo2['codigo'];
       }
     }
+
+   $sql1 = ("SELECT  ejemcod+1 as codigo from ejemplareslibros order by ejemcod desc limit 1");
+    $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+     while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo) ."". '1234';
+              
+        }
+   
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-// $checkValidation="SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';";
 
-// $resultado=mysqli_query($conexion, $checkValidation) or die("SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';".mysqli_error($conexion));
-
-
-// $dataRow = mysqli_fetch_array($resultado);	
-
-	 
-// 	 if($dataRow>0) {
-// 		echo "0";
-
-// 		} else {
-
-
+       
 		$insRegistro=mysqli_query($conexion,"
 			INSERT INTO 
 			$tablaEjemplares($varejemcodreg, $varejemfecadq, $varejemtipadq,
-			 $varejemdetaqu, $varejempruni, $varejemconfis, $varejemdetcon, $varestcod, $varlibcod) 
+			 $varejemdetaqu, $varejempruni, $varejemconfis, $varejemdetcon, $varestcod, $varlibcod, $varejemcodbar) 
 			 VALUES ('$newcodigo','$formejemplarfecha','$formejemplaringreso',
-			 '$formdetalle','$formprecio','$formejemplarestado','$formejemplarcomentario','$formestantcod','$formejemplarcodlib');")
+			 '$formdetalle','$formprecio','$formejemplarestado','$formejemplarcomentario','$formestantcod','$formejemplarcodlib','$formejemplarcodbarra');")
 		    or die ('ERROR INS-INS: '.mysqli_error($conexion));
+          
+	 
 
-	
+  
 
 		$insRegistro=mysqli_query($conexion,"
 		    INSERT INTO  $tablaBitacora(
@@ -84,5 +81,5 @@
 
 
 	echo "1";
-    // }
+  
  ?>

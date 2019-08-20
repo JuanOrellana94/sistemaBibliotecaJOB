@@ -65,7 +65,7 @@
 	$sql = "SELECT COUNT( t1.$varejemcod ) as Codigo, t3.$varlibpor as Portada, t1.$varejemdetcon as Comentario, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
       WHERE 
          t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND
-		 t3.$varlibtit LIKE '%$textBusqueda%'   
+		 t3.$varlibtit LIKE '%$textBusqueda%' OR  t1.$varejemcodbar LIKE '%$textBusqueda%'
 
 	ORDER BY 'Codigo' ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
@@ -127,7 +127,7 @@
 					     $selTable=mysqli_query($conexion,"SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t2.$varestcod as EstanteCodigo, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
                                    WHERE 	
                                   t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND                  
-		                          $varejemcodreg LIKE '%$textBusqueda%'	
+		                          $varejemcodreg LIKE '%$textBusqueda%'	OR  t1.$varejemcodbar LIKE '%$textBusqueda%'
 	                       ORDER BY 'CodigoReg'
                             LIMIT $inicia_desde, $limite;");
 	                       
@@ -217,7 +217,7 @@
 								<div class="btn-group" role="group" aria-label="Opciones">
 								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" 
 								 data-target="#modalEditarEjemplar"
-								 data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+								 data-varejemplarcod="<?php echo $dataLibros['Codigo'];?>"
 								 data-varejemplarcodlib="<?php echo $dataLibros['CodigoLib'];?>"
 								 data-varejemplarfecha="<?php echo  $dataLibros['Fecha'];?>"	
 								 data-varejemplartitulo="<?php echo $dataLibros['Titulo'];?>"
@@ -256,26 +256,30 @@
 
 
 								<button type="button" class="btn btn-light" <?php echo $bloqueo2 ?> data-toggle="modal" data-target="#modalBorrarEjemplar"
-								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varejemplarcod="<?php echo $dataLibros['Codigo'];?>"
 									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+								    data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>" 
 									title="Eliminar Ejemplar">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
 								 </button>
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo3 ?> data-toggle="modal" data-target="#modalReportarEjemplar"
-								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varejemplarcod="<?php echo $dataLibros['Codigo'];?>"
 									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>" 
 									title="Reportar ejemplar">
 								 	<img  src="img/icons/laberinto.png" width="35" height="30">
 								 </button>
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo4 ?> data-toggle="modal" data-target="#modalReanudarEjemplar"
-								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varejemplarcod="<?php echo $dataLibros['Codigo'];?>"
 									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>" 
 									title="Reanudar ejemplar">
 								 	<img  src="img/icons/reanudar.png" width="35" height="30">
 								 </button>
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo5 ?> data-toggle="modal" data-target="#modalEncontrarEjemplar"
-								 	data-varejemplarcod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varejemplarcod="<?php echo $dataLibros['Codigo'];?>"
 									data-varejemplarnom="<?php echo  $dataLibros['Titulo'];?>"
+									data-varejemplarcodreg="<?php echo $dataLibros['CodigoReg'];?>" 
 									title="Ejemplar encontrado">
 								 	<img  src="img/icons/encontrado.png" width="35" height="30">
 								 </button>

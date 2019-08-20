@@ -1055,7 +1055,7 @@ function deleteEjemplar(){
       var button = $(event.relatedTarget) // 
       var varejemplarcod = button.data('varejemplarcod')
       var varejemplarnom = button.data('varejemplarnom')     
-
+      var varejemplarcodreg = button.data('varejemplarcodreg')  
       $('#borrarButton').attr("disabled", false);  
       
       
@@ -1065,7 +1065,7 @@ function deleteEjemplar(){
     
 
 
-      $("#labelBorrar").html('<h5> '+varejemplarcod+' '+'<h5> ');
+      $("#labelBorrar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
       document.getElementById('delEjemplarcod').value = varejemplarcod;
       document.getElementById('delEjemplarnom').value = varejemplarnom;
       
@@ -1077,7 +1077,8 @@ function deleteEjemplar(){
      $('#modalReanudarEjemplar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varejemplarcod = button.data('varejemplarcod')
-      var varejemplarnom = button.data('varejemplarnom')     
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1088,7 +1089,7 @@ function deleteEjemplar(){
     
 
 
-      $("#labelreanudar").html('<h5> '+varejemplarcod+' '+'<h5> ');
+      $("#labelreanudar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
       document.getElementById('reaEjemplarcod').value = varejemplarcod;
       document.getElementById('reaEjemplarnom').value = varejemplarnom;
       
@@ -1101,7 +1102,8 @@ function deleteEjemplar(){
      $('#modalReportarEjemplar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varejemplarcod = button.data('varejemplarcod')
-      var varejemplarnom = button.data('varejemplarnom')     
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1112,7 +1114,7 @@ function deleteEjemplar(){
     
 
 
-      $("#labelreportar").html('<h5> '+varejemplarcod+' '+'<h5> ');
+      $("#labelreportar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
       document.getElementById('repoEjemplarcod').value = varejemplarcod;
       document.getElementById('repoEjemplarnom').value = varejemplarnom;
       
@@ -1125,7 +1127,8 @@ function deleteEjemplar(){
      $('#modalEncontrarEjemplar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varejemplarcod = button.data('varejemplarcod')
-      var varejemplarnom = button.data('varejemplarnom')     
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1136,7 +1139,7 @@ function deleteEjemplar(){
     
 
 
-      $("#labelencontrar").html('<h5> '+varejemplarcod+' '+'<h5> ');
+      $("#labelencontrar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
       document.getElementById('reanuEjemplarcod').value = varejemplarcod;
       document.getElementById('reanuEjemplarnom').value = varejemplarnom;
       

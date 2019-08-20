@@ -28,11 +28,16 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-     $checkValidation="SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t3.$varlibtit as Titulo FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod   WHERE   $varejemcodreg = '$editejemplarcodigo'";
+     $checkValidation="SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t3.$varlibtit as Titulo FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod   WHERE   $varejemcod = '$editejemplarcodigo'";
 
-    $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
+     $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
 
+$sql=("SELECT  $varejemcod as codigo, $varejemcodreg as CodigoReg FROM $tablaEjemplares WHERE $varejemcod = $editejemplarcodigo");    
+    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
+    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
+         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['CodigoReg']) ."". '1234';
+      }
 	
 
 	 
@@ -48,9 +53,9 @@
 			$varejemtipadq='$editejemplartipoingreso',
 			$varejemdetcon='$editejemplarcomentario',
 			$varestcod='$editestantcod',
-			$varejemdetaqu='$inputdetalle'
-
-			WHERE $varejemcodreg ='$editejemplarcodigo';
+			$varejemdetaqu='$inputdetalle',
+			$varejemcodbar='$formejemplarcodbarra'
+			WHERE $varejemcod ='$editejemplarcodigo';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 

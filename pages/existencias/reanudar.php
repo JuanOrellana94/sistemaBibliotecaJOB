@@ -13,7 +13,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
- $checkValidation="SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg='$reaExistenciacod' and $varexistestua='1';";
+ $checkValidation="SELECT * FROM $tablaExistenciaequipo WHERE $varexistcod='$reaExistenciacod' and $varexistestu='1';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -30,7 +30,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		} else {
 
 		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaExistenciaequipo SET $varexistestu='0'	WHERE 	$varexistcodreg='$reaExistenciacod'	    
+			UPDATE $tablaExistenciaequipo SET $varexistestu='0'	WHERE 	$varexistcod='$reaExistenciacod'	    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -46,7 +46,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'Reanudo el Equipo $reaExistencianom',
+		      'Reanudado el Equipo $reaExistencianom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")

@@ -13,7 +13,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemcodreg='$repoEjemplarcod' and $varejemestu!='1';";
+$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemcod='$repoEjemplarcod' and $varejemestu!='1';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -31,7 +31,7 @@ $dataRow = mysqli_fetch_array($resultado);
 
 		$insRegistro=mysqli_query($conexion,"
 			UPDATE  $tablaEjemplares
-			SET $varejemestu='3' WHERE 	$varejemcodreg='$repoEjemplarcod'	    
+			SET $varejemestu='3' WHERE 	$varejemcod='$repoEjemplarcod'	    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));	
 

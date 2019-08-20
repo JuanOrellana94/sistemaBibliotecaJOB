@@ -220,8 +220,8 @@
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
 								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarExistencia"
-								 data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
-								 data-varexistenciacodlib="<?php echo $dataLibros['Codigo'];?>"
+								 data-varexistenciacod="<?php echo $dataLibros['Codigo'];?>"
+								 data-varexistenciacodreg="<?php echo $dataLibros['CodigoReg'];?>"
 								 data-varexistenciafecha="<?php echo  $dataLibros['Fecha'];?>"	
 								 data-varexistencianombre="<?php echo  $dataLibros['existnom'];?>" 
 								 data-varexistenciaestante="<?php echo $dataLibros['codEstante'];?>"
@@ -257,26 +257,30 @@
 								</button>						
 
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo2 ?> data-toggle="modal" data-target="#modalBorrarExistencia"
-								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varexistenciacod="<?php echo $dataLibros['Codigo'];?>"
 									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									data-varexistenciacodreg="<?php echo $dataLibros['CodigoReg'];?>"
 									title="Eliminar Existencia">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
 								 </button> 							
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo3 ?> data-toggle="modal" data-target="#modalReportarExistencia"
-								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varexistenciacod="<?php echo $dataLibros['Codigo'];?>"
 									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									data-varexistenciacodreg="<?php echo $dataLibros['CodigoReg'];?>"
 									title="Reportar existencia">
 								 	<img  src="img/icons/laberinto.png" width="35" height="30">
 								 </button>
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo4 ?> data-toggle="modal" data-target="#modalReanudarExistencia"
-								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varexistenciacod="<?php echo $dataLibros['Codigo'];?>"
 									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									data-varexistenciacodreg="<?php echo $dataLibros['CodigoReg'];?>"
 									title="Reanudar existencia">
 								 	<img  src="img/icons/reanudar.png" width="35" height="30">
 								 </button>
 								 <button type="button" class="btn btn-light" <?php echo $bloqueo5 ?> data-toggle="modal" data-target="#modalEncontrarExistencia"
-								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+								 	data-varexistenciacod="<?php echo $dataLibros['Codigo'];?>"
 									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									data-varexistenciacodreg="<?php echo $dataLibros['CodigoReg'];?>"
 									title="existencia encontrado">
 								 	<img  src="img/icons/encontrado.png" width="35" height="30">
 								 </button>

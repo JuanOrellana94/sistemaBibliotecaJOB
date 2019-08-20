@@ -1049,7 +1049,8 @@ function deleteExistencia(){
      $('#modalBorrarExistencia').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varexistenciacod = button.data('varexistenciacod')
-      var varexistencianom = button.data('varexistencianom')     
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
 
       $('#borrarButton').attr("disabled", false);  
 
@@ -1060,7 +1061,7 @@ function deleteExistencia(){
        $("#cargarTablaRequisito").html('');
 
 
-      $("#labelBorrar").html('<h5> '+varexistencianom+' '+'<h5> ');
+      $("#labelBorrar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
       document.getElementById('delExistenciacod').value = varexistenciacod;
       document.getElementById('delExistencianom').value = varexistencianom;
       
@@ -1074,6 +1075,7 @@ function deleteExistencia(){
       var button = $(event.relatedTarget) // 
       var varexistenciacod = button.data('varexistenciacod')
       var varexistencianom = button.data('varexistencianom')     
+      var varexistenciacodreg = button.data('varexistenciacodreg')
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1084,7 +1086,7 @@ function deleteExistencia(){
     
 
 
-      $("#labelreanudar").html('<h5> '+varexistenciacod+' '+'<h5> ');
+      $("#labelreanudar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
       document.getElementById('reaExistenciacod').value = varexistenciacod;
       document.getElementById('reaExistencianom').value = varexistencianom;
       
@@ -1097,7 +1099,8 @@ function deleteExistencia(){
      $('#modalReportarExistencia').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varexistenciacod = button.data('varexistenciacod')
-      var varexistencianom = button.data('varexistencianom')     
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1108,7 +1111,7 @@ function deleteExistencia(){
     
 
 
-      $("#labelreportar").html('<h5> '+varexistenciacod+' '+'<h5> ');
+      $("#labelreportar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
       document.getElementById('repoExistenciacod').value = varexistenciacod;
       document.getElementById('repoExistencianom').value = varexistencianom;
       
@@ -1121,7 +1124,8 @@ function deleteExistencia(){
      $('#modalEncontrarExistencia').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varexistenciacod = button.data('varexistenciacod')
-      var varexistencianom = button.data('varexistencianom')     
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
 
       $('#borrarButton').attr("disabled", false);  
       
@@ -1132,7 +1136,7 @@ function deleteExistencia(){
     
 
 
-      $("#labelencontrar").html('<h5> '+varexistenciacod+' '+'<h5> ');
+      $("#labelencontrar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
       document.getElementById('reanuExistenciacod').value = varexistenciacod;
       document.getElementById('reanuExistencianom').value = varexistencianom;
       

@@ -106,8 +106,8 @@
         // TABLA EJEMPLARES
      $tablaEjemplares="ejemplareslibros";
 
-     
- // 8 NOMBRE TABLA EJEMPLARESLIBROS ejemcod, ejemcodreg, ejemfecadq, ejemtipadq, ejemdetaqu, ejempruni, ejemestu, ejemconfis, ejemdetcon, ejemres, estcod, libcod
+  
+ // 8 NOMBRE TABLA EJEMPLARESLIBROS ejemcod, ejemcodreg, ejemfecadq, ejemtipadq, ejemdetaqu, ejempruni, ejemestu, ejemconfis, ejemdetcon, ejemres, estcod, libcod, ejemcodbar
 
     $varejemcod="ejemcod";
     $varejemcodreg="ejemcodreg";
@@ -117,6 +117,7 @@
     $varejemestu="ejemestu";
     $varejemconfis="ejemconfis";
     $varejemdetcon="ejemdetcon";
+    $varejemcodbar='ejemcodbar';
     $varejemres="ejemres";
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";

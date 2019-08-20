@@ -330,11 +330,7 @@ function insertAuthor(){
 	if ($("#formautnom").val()==""){
 		$("#answerAuthorPrint").show();
 		$("#answerAuthorPrint").html("Nombre del Autor vacio");
-	} else if ($("#formautape").val()==""){
-		$("#answerAuthorPrint").show();
-		$("#answerAuthorPrint").html("Apellido del Autor vacio");
-	} else 
-	if ($("#formautseud").val()==""){
+	}else if ($("#formautseud").val()==""){
 		$("#answerAuthorPrint").show();
 		$("#answerAuthorPrint").html("Pseudonimo del Autor vacio");
 	} else {
