@@ -43,14 +43,14 @@
 	$inicia_desde = ($pagina-1) * $limite;  
 
 	?>			
-				<table class="table table-info table-hover table-responsive"  style=" cursor: pointer;">
+				<table class="table table-info table-hover"  style=" cursor: pointer;">
 
 
 					<tbody>
 
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT SUM($varlibcantidad) as cantidad,$varPriNombre,$varPriApellido
+							$selTable=mysqli_query($conexion,"SELECT SUM($varlibcantidad) as 'cantidad' ,$varPriNombre,$varPriApellido,$varCarnet,$varAccNombre
 						      	FROM $varbolsaprestamo as bolsaprestamo 
 								inner join $tablaLibros as libro on bolsaprestamo.$varlibcodcar = libro.$varlibcod
 								inner join $tablaUsuarios as usuario on bolsaprestamo.$varusucod = usuario.$varUsuCodigo
@@ -69,14 +69,24 @@
 							 No hay consultas en este momento</div>";
 						} else{
 
+							
+
+
 							while ($datosTabla=mysqli_fetch_assoc($selTable)){
+								if ($datosTabla[$varCarnet]=="" || !empty($datosTabla[$varCarnet])) {
+									$userBar=$datosTabla[$varAccNombre];
+								}else{
+									$userBar=$datosTabla[$varCarnet];
+								}
+
 						?>
-						<tr>
-							<td><div style="height:25px; "><small> <?php echo $datosTabla[$varPriNombre].' '.$datosTabla[$varPriApellido];?> 
-							 <br>
-							 <?php echo $datosTabla[$varCarnet]?>
-							</small></div></td>
-							<td><div style="height:25px; "><img src="img/icons/sendReq.png" width="35" height="30"></div></td>	
+						<tr id="<?php  echo $userBar; ?>" onclick="cargarSolicitud('<?php  echo $userBar; ?>')">
+							<td> <small> <?php echo $datosTabla[$varPriNombre].' '.$datosTabla[$varPriApellido];?> </div>
+								<br>
+							
+							<?php echo $datosTabla[$varCarnet]." - ".$datosTabla['cantidad']." Libro(s)"?>
+							</small></td>
+							
 
 						</tr>
 						
@@ -86,17 +96,59 @@
 						} ?>
 					</tbody>
 				</table>
-				 <nav aria-label="Page navigation">
-                        <ul class='pagination justify-content-center"' id="pagination">
-                        <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
-                            if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li> 
-                            <?php else:?>
-                            <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
-                            <?php endif;?>    
-                        <?php endfor;endif;?>
-                           </ul>
-                      </nav>		
+				<nav aria-label="Page navigation">
+					<ul class='pagination  pagination-sm justify-content-center"' id="pagination">
+                    	<?php
+
+                    	$printEnd=0;
+                    	$rangoLeash='1';//TEMP                   	
+                    	if ($pagina<=$rangoLeash+2) {
+                    		$rangoInferior='1';
+                    	}else{
+                    		$rangoInferior= $pagina-$rangoLeash;
+                    		?>
+                    			<li class='page-item'  id="1"> <a class="page-link" href='pagination.php?page=1'> 1 </a> </li>
+                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>    
+                    		<?php
+                    	}
+
+                    	if ($pagina>=($total_paginas-$rangoLeash)){
+                    		$rangoSuperior=$total_paginas;
+                    	}else{
+                    		$rangoSuperior= $pagina+$rangoLeash;
+                    		$printEnd=1;
+
+                    	}  
+
+
+
+                    		if(!empty($total_paginas)){
+                    			for($i=$rangoInferior; $i<=$rangoSuperior; $i++){ 
+									if($i == $pagina){ ?>
+										<li class='page-item active'  id="<?php echo $i;?>"> <a class="page-link" href='pagination.php?page=<?php echo $i;?>'>
+											<?php echo $i;?></a>
+										</li> 
+                    			
+                            	<?php } else {?>
+                            	<li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                            <?php }?>    
+                        <?php }
+                    }//Here
+
+                    if ($printEnd==1) {
+                    	
+                 
+                    ?>
+
+                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>
+                    			<li class='page-item'  id="<?php echo $total_paginas;?>"> <a class="page-link" href='pagination.php?page=1'> <?php echo $total_paginas;?> </a> </li>
+                    			    
+                    		<?php
+                    }
+
+                    ?>
+					</ul>
+				 </nav>		
 
  <script>
                       	

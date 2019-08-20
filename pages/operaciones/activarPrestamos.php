@@ -39,12 +39,12 @@
 		      '$bitPersonaName');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
-	echo "<div class='alert alert-success' role='alert'> Has realizado tu prestamo! (ActivarPrestamo.php Mensaje)</div>";
+	echo "<div class='alert alert-success' role='alert'> Has realizado tu prestamo!</div>";
 
 		
 	} else {
 		//condicion no hay libros añadidos
-		echo "<div class='alert alert-info' role='alert'> Agrega un libro a tu lista de pedido primero (ActivarPrestamo.php Mensaje)</div>";
+		echo "<div class='alert alert-info' role='alert'> Agrega un libro a tu lista de pedido primero</div>";
 		
 
 

@@ -111,7 +111,9 @@
 						<tbody>
 
 
-							<?php 
+							<?php
+							 $idNothing=0;
+
 								$selTable=mysqli_query($conexion,"SELECT * FROM $tablaLibros as libro
 									inner join $tablAutor as autor on libro.$varlibgenaut = autor.$varautcod
 									inner join $varbolsaprestamo as carrito on libro.$varlibcod = carrito.$varlibcodcar
@@ -122,7 +124,9 @@
 
 							if (mysqli_num_rows($selTable)==0){
 							 echo "<div class='alert alert-info' role='alert'> No has agregado ningun libro a tu lista </div>";
+							 
 							} else{
+								$idNothing=1;
 								while ($dataLibros=mysqli_fetch_assoc($selTable)){
 							?>
 							<tr>
@@ -164,14 +168,23 @@
                             <?php endif;?>    
                         <?php endfor;endif;?>
                            </ul>
-                      </nav>	
+                      </nav>
+
+                      <?php
+
+                      if ($idNothing==1) {
+                      	 ?>                  
 
                    		<div>
 				         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
-				         <button type="button" class="btn btn-success" onclick="activarPrestamos()">Realizar Solicitud</button>
+				         <button type="button" class="btn btn-success" onclick="activarPrestamos()">Realizar Solicitud</button>				       
 				        </div>
 
 					<?php
+                      	
+                      }
+
+                     
 					}
 ?>		    
 <br>

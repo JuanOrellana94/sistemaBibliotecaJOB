@@ -1,6 +1,7 @@
 <?php
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
+	date_default_timezone_set("America/El_Salvador");
 ?>  
 	<div class="dropdown-divider"></div>
 	<div style="text-align: center"> <p class="text-muted">Libros - Actividades de hoy</p> </div>

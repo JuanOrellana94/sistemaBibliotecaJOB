@@ -16,6 +16,7 @@
 	 $textBusqueda=""; 
 	};
 
+
 	$sql = "SELECT COUNT($varlibcod) 
       FROM $tablaLibros as libro 
 		inner join $tablaDewey as dewey on libro.$varlibDew = dewey.$vardewcod 

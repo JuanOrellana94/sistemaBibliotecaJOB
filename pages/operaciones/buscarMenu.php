@@ -116,7 +116,7 @@
 
                 <form name="formBusqueda" id="formBusqueda">          
                   <div class="input-group ">               
-                    <input type="text" class="form-control form-control-lg" value='' placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
+                    <input type="text" class="form-control form-control-lg"  placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                     </div> 
@@ -390,10 +390,10 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val(); 
+  busqueda=busqueda.trim().replace(/ /g, '%20');
 
 
-  
 
   $("#cargarTabla").load("pages/operaciones/tablaConsultas.php?pagina=1&busqueda="+ busqueda);
 
@@ -493,7 +493,7 @@ function insertarItem(){
       } else if (data==1) {
 
         $("#respuestaPrestamo").show();
-        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'>Añadido a tu lista de prestamo </div>");
+        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'> &nbsp; Añadido a tu lista de prestamo </div>");
          //reload funcion tabla prestar()
          cargarPrestamos();         
           setTimeout(

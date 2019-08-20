@@ -3,18 +3,10 @@
     <?php
 
      ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Operaciones</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Prestar</li>
-    </ol>
-  </nav>        
 
 <!--INICIO CONTENEDOR DE PRESTAMOS-->    
 <div class="container-fluid">
+  <br>
   
   
   <div class="row">
@@ -92,6 +84,8 @@
       recargarPendientes();
       cargarContendorPrincipal();
       cargarContendorSalida();
+
+      
 
 
 
@@ -224,14 +218,10 @@ function buscarCodUsu(){
   $("#cargandoFeedbackUsuario").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textUsuario").val();  
-  $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
 
-  setTimeout( function() {
-    cargarCodigoTransaccion();
-    cargarListadoLibros();
-    
-      $("#cargandoFeedbackUsuario").hide(500);                          
-   }, 2000);
+  $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
+  cargarCodigoTransaccionVariableMode(busqueda);
+  cargarListadoLibrosVariableMode(busqueda);   
 }
 
 
@@ -370,6 +360,8 @@ function crearPrestamo(){
             //sucess
             $("#mensajeFinal").show();
             $("#mensajeFinal").html("<div class='alert alert-success' role='alert'> Prestamo registrado</div>");
+            recargarPendientes()
+            recargarSolicitudes()
             alertConfirmacion();
           
             
@@ -401,6 +393,95 @@ function crearPrestamo(){
     });
   }
 
+}
+
+function cargarSolicitud(x){
+
+  $("#contenedorSalida").load("pages/operaciones/prestamoOutput.php");
+  
+  setTimeout( function() {
+    $("#infoBolsaPrestamo").show();
+    $("#infoBolsaPrestamo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+
+    var busqueda=x;
+    buscarCodUsuVariableMode(busqueda);
+    $("#infoBolsaPrestamo").load("pages/operaciones/detalleSolicitud.php?busqueda="+ busqueda);
+
+  }, 100);
+}
+function cargarPendiente(x){
+  $("#contenedorSalida").load("pages/operaciones/prestamoOutput.php");
+  
+  setTimeout( function() {
+    $("#cargandoFeedbackUsuario").show();
+    $("#cargandoFeedbackUsuario").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+    var busqueda=x;  
+    document.getElementById('textUsuario').value = busqueda;
+    document.getElementById("textUsuario").disabled = true;
+
+   //var busqueda=x;
+    //buscarCodUsu();
+    var busqueda=x;
+    buscarCodUsuVariableMode(busqueda); 
+  }, 100);
+}
+
+function cargarListadoLibrosVariableMode(x){
+
+  var usuario=x;
+  
+  $("#infoLista").load("pages/operaciones/infoListaLibros.php?pagina=1&usuario="+ usuario);
+
+  setTimeout( function() {
+      $("#cargandoFeedbackEjemplar").hide(500);                          
+   }, 1000);
+}
+
+function cargarCodigoTransaccionVariableMode(x){
+  //detalles del libro como el codigo dela transaccion
+
+  var usuario=x;  
+  document.getElementById('textUsuario').value = usuario;
+  document.getElementById("textUsuario").disabled = true;
+
+
+  
+  $("#infoDetalles").load("pages/operaciones/infoDetalle.php?usuario="+ usuario);
+
+  setTimeout( function() {
+      $("#cargandoFeedbackEjemplar").hide(500);                          
+   }, 1000);
+}
+
+function buscarCodUsuVariableMode(x){
+   
+  $("#cargandoFeedbackUsuario").show();
+  $("#cargandoFeedbackUsuario").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
+
+  var busqueda=x;  
+  $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
+  cargarCodigoTransaccionVariableMode(busqueda);
+  cargarListadoLibrosVariableMode(busqueda);   
+
+  setTimeout( function() {
+    
+  
+      $("#cargandoFeedbackUsuario").hide(500);                          
+   }, 500);
+}
+
+function borrarSolicitud(x){
+
+  var busqueda=x;
+  
+  $("#infoBolsaPrestamo").load("pages/operaciones/borrarSolicitud.php?&busqueda="+ busqueda);
+
+  setTimeout( function() {
+
+      reiniciarFormPrestamo();               
+      recargarSolicitudes();
+      recargarPendientes();  
+   }, 2000);
 }
 
 </script>

@@ -2,6 +2,8 @@
     <!--CONTENEDOR PARA MENU DE PRESTAMOS HACER PRESTAMOS--> 
     <?php
 
+    date_default_timezone_set("America/El_Salvador");
+
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <br/>
