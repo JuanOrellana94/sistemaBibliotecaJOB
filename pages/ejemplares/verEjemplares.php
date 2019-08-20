@@ -490,7 +490,7 @@
           <div class="row">         
             <div class="col-sm-12">
               <div class="form-group">             
-           
+             <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" value="<?php echo $_GET['codigoLib']; ?>" id="codigoLib" name="codigoLib" hidden> 
               <div align="center" id="cargarcodigodebarra"></div>         
                          
                </div>              
@@ -616,7 +616,7 @@
       <div class="modal-footer" style="background: #D5D9DF;">
         <div id="respuestaEncontrarEjemplar" style="color: red; font-weight: bold; text-align: center;"></div>         
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-danger" onclick="encontrarEjemplar()">encontrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-success" onclick="encontrarEjemplar()">encontrar</button>
       </div>
      
     </div>
@@ -848,7 +848,7 @@ function deleteEjemplar(){
           // ERROR, Ejemplar TIENE LIBROS INSCRITOS
                   $("#labelBorrar").show();
                   $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar a este Ejemplar. porque esta en prestamo:");
+                  $("#labelBorrar").html("No se puede borrar a este Ejemplar. Porque esta en prestamo:");
                                         
             
         }else if (data=="1"){  
@@ -1181,8 +1181,8 @@ $('#modalBarraEjemplar').on('show.bs.modal', function (event) {
 varejemplarnumero
       var modal = $(this)
        
-          
-       $("#cargarcodigodebarra").load("pages/codbarras/vercbejemplar.php?codeje="+varejemplarcodigoreg); 
+       var codigoLib=$("#codigoLib").val();   
+       $("#cargarcodigodebarra").load("pages/codbarras/vercbejemplar.php?codeje="+varejemplarcodigoreg+"&codigoLib=" + codigoLib); 
        $("#codigobarra").html('<h4 align=center>'+varejemplartitulo+', Ejemplar #'+varejemplarnumero+' '+'<h4> ')      
 
         

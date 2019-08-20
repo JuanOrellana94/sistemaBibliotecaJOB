@@ -96,7 +96,10 @@
 									Autor: <?php echo $dataLibros[$varautnom]." ".$dataLibros[$varautape];?><br>
 									Editorial: <?php echo $dataLibros[$vareditnom];?> 
 								</td> 					
-								
+								<td>Numero de paginas:<br>
+									<?php echo $dataLibros[$varlibnumpag];?>
+
+								</td>
 								<td>Etiquetas:<br>
 									<?php echo $dataLibros[$varlibtags];?>
 										

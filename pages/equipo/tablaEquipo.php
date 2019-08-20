@@ -118,7 +118,7 @@
 								  title="Portada del Libro"		
 								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
 
-								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>" title="ver equipos"><img  src="img/icons/ver-detalles.png" width="40" height="35"></a> 
+								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>" title="ver equipos"><img src="img/icons/ver-detalles.png" width="40" height="35"></a> 
 
 								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarequipo"
 								 	data-varequicod="<?php echo $dataLibros[$varequicod];?>"

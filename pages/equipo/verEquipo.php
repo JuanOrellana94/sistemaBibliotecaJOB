@@ -356,7 +356,7 @@ function insertarequipo(){
                 } else if (data==0) {
                   //error
                   $("#respuestaNuevoequipo").show();
-                  $("#respuestaNuevoequipo").html("<div class='alert alert-warning' role='alert'>Esta equipo ya ha sido agregado </div>");
+                  $("#respuestaNuevoequipo").html("<div class='alert alert-warning' role='alert'>Este equipo ya ha sido agregado </div>");
                      recargarTabla();
                     setTimeout(
                         function() {

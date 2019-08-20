@@ -3,13 +3,14 @@
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php"); 
   //validacion por nivel de usuaruio
+	  $bloqueo=""; 
 	  if ($_SESSION['usuNivelNombre']=='Administrador') {
 	     	# code...
 	  	     $bloqueo="disabled";
 	     }else{
 	     	$bloqueo="";
 	     }
-	 $bloqueo=""; 
+	 
 	 $bloqueo2="";
 	 $bloqueo3="style='display: none;'";
 	 $bloqueo4="style='display: none;'";

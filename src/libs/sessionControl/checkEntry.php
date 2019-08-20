@@ -66,6 +66,8 @@ if(isset($dataRow)){
       $_SESSION['usuNivelNombre']="Personal";
     }else  if( $_SESSION['usuNivel'] == 3 ){
       $_SESSION['usuNivelNombre']="Estudiante";
+    }else  if( $_SESSION['usuNivel'] == 4 ){
+      $_SESSION['usuNivelNombre']="Auxiliar";
     }
 
 

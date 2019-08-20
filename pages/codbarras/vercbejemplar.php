@@ -5,7 +5,8 @@
   date_default_timezone_set("America/El_Salvador");  
 
   $xejemplar = $_GET['codeje'];
-  $sql = "SELECT ejemcod, ejemcodreg, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE ejemplareslibros.ejemcodreg = '" . $xejemplar . "'";
+  $codigoLib = $_GET['codigoLib'];
+  $sql = "SELECT ejemcod, ejemcodreg, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE libros.libcod = '$codigoLib' AND  ejemplareslibros.ejemcodreg =  '$xejemplar' ";
    $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));      
 ?>
 

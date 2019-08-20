@@ -2,12 +2,46 @@
 	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
+	//Validacion por nivel
+	$bloqueo="";  
        if ($_SESSION['usuNivelNombre']=='Administrador') {
 	     	# code...
 	  	     $bloqueo="disabled";
 	     }else{
 	     	$bloqueo="";
 	     } 
+
+	 
+	 $bloqueo2="";
+	 $bloqueo3="style='display: none;'";
+	 $bloqueo4="style='display: none;'";
+	 $bloqueo5="style='display: none;'";
+		$varordenar=$_GET["ordenar"];
+            switch ($varordenar) {
+              	case '0':
+              		   $textBusquedaorde = '0';
+                break;
+                case '1':
+                	   $textBusquedaorde  = '1';
+                	   $bloqueo2="style='display: none;'";
+                	   $bloqueo3="style='display: true;'";
+                break;
+                case '2':
+                	   $textBusquedaorde  = '2';
+                	   $bloqueo="disabled";
+                	   $bloqueo2="style='display: none;'";
+                	   $bloqueo4="style='display: true;'";
+                break;
+                case '3':
+                	   $textBusquedaorde  = '3';
+                	   $bloqueo="disabled";
+                	   $bloqueo2=" style='display: none;' "; 
+                	   $bloqueo5="style='display: true;'";               	   
+                break;              	
+              }  		
+		 
+
+
     ?>
     
     <?php  
@@ -33,7 +67,7 @@
       WHERE 
          t3.$varequicod = '$equipoCodPrincipal' AND
 		 (t3.$varequitip LIKE '%$textBusqueda%'  OR
-		 t1.$varexistcodreg LIKE '%$textBusqueda%')  
+		 t1.$varexistcodreg LIKE '%$textBusqueda%')  AND  t1.$varexistestu = '$textBusquedaorde'
 
 	ORDER BY 'Codigo' ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
@@ -62,7 +96,7 @@
       $(this).addClass('active');
          var paginaNumero = this.id;       
 
-        $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val()+"&equipoCod="+$("#equipoCod").val());
+        $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val()+"&equipoCod="+$("#equipoCod").val()+ "&ordenar=" + $("#textBusquedaordenar").val());
       });
 </script>
 
@@ -94,9 +128,9 @@
 					     
 					     $selTable=mysqli_query($conexion,"SELECT t1.$varexistcod as Codigo, t1.$varexistcodreg as CodigoReg, t1.$varexistfecadq as Fecha, t1.$varexisttipadq as Ingreso, t1.$varexistdetadq as detalleIngreso, t1.$varexistpreuni as Precio, t1.$varexistestu as Estado, t1.$varexistconfis as Condicion, t1.$varexistdesest as Comentario, t1.$varequicod as codEquipo, t2.$varestdes as Estante , t2.$varestcod as codEstante, t3.$varequitip as existnom, t3.$varequimg as Imagen FROM $tablaExistenciaequipo as t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaEquipo as t3 on t3.$varequicod = t1.$varequicod 		
                                    WHERE 	
-                                  t3.$varequicod = '$equipoCodPrincipal' AND
+                                  t3.$varequicod = '$equipoCodPrincipal'  AND
 		                          (t3.$varequitip LIKE '%$textBusqueda%'	OR
-		                          t1.$varexistcodreg LIKE '%$textBusqueda%')
+		                          t1.$varexistcodreg LIKE '%$textBusqueda%') AND  t1.$varexistestu = '$textBusquedaorde'
 		                          
 	                       ORDER BY 'CodigoReg'
                             LIMIT $inicia_desde, $limite;");
@@ -110,6 +144,7 @@
 							$color="";
 
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
+								$numequipo= substr($dataLibros['CodigoReg'],-5); 
 						?>
 					
 							   <?php 
@@ -211,13 +246,40 @@
 
 									<img  src="img/icons/verEjemplar.png" width="35" height="30">
 								</button>
-<!-- BOTON BORRAR DESHABILITADO DE MOMENTO -->
-								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarExistencia"
+									<button type="button" class="btn btn-light"   data-toggle="modal" data-target="#modalBarraequipo"
+							        	data-varequipotitulo="<?php echo $dataLibros['existnom'];?>"
+							        	data-varequipocodlib="<?php echo $dataLibros['Codigo'];?>"	
+								        data-varequipocodigoreg="<?php echo  $dataLibros['CodigoReg'];?>"								        
+								        data-varequiponumero="<?php echo  $numequipo; ?>"							     
+								      title="Ver Codigo de barra">
+									<img  src="img/icons/barras.png" width="35" height="30">
+
+								</button>						
+
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo2 ?> data-toggle="modal" data-target="#modalBorrarExistencia"
 								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
 									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
 									title="Eliminar Existencia">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
-								 </button> -->
+								 </button> 							
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo3 ?> data-toggle="modal" data-target="#modalReportarExistencia"
+								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									title="Reportar existencia">
+								 	<img  src="img/icons/laberinto.png" width="35" height="30">
+								 </button>
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo4 ?> data-toggle="modal" data-target="#modalReanudarExistencia"
+								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									title="Reanudar existencia">
+								 	<img  src="img/icons/reanudar.png" width="35" height="30">
+								 </button>
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo5 ?> data-toggle="modal" data-target="#modalEncontrarExistencia"
+								 	data-varexistenciacod="<?php echo $dataLibros['CodigoReg'];?>"
+									data-varexistencianom="<?php echo  $dataLibros['existnom'];?>"
+									title="existencia encontrado">
+								 	<img  src="img/icons/encontrado.png" width="35" height="30">
+								 </button>
 								</div>
 							</td>
 						</tr>

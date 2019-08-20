@@ -5,16 +5,15 @@
 	session_start();
 
 
-	$formequiponom=strtoupper($_POST['formequiponom']);
-	$formequicodifi=$_POST['formequicodifi'];	
-	$formequipodes=strtoupper($_POST['formequipodes']);	
+	$repoExistenciacod=$_POST['repoExistenciacod'];
+	$repoExistencianom=$_POST['repoExistencianom'];
 	
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequitip='$formequiponom' OR $varequicodifi='$formequicodifi';";
+ $checkValidation="SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg='$repoExistenciacod' and $varexistestu!='1';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -23,21 +22,16 @@ $dataRow = mysqli_fetch_array($resultado);
 
 	 
 	 if($dataRow>0) {
-		echo "0";
 
+
+	 	echo "0";
+
+	 	
 		} else {
 
-
 		$insRegistro=mysqli_query($conexion,"
-		    INSERT INTO   $tablaEquipo(		    
-			   $varequitip,
-			   $varequides,
-			   $varequicodifi			   
-		      ) VALUES(
-		      '$formequiponom',
-		      '$formequipodes',
-		      '$formequicodifi'     
-		      );")
+			UPDATE $tablaExistenciaequipo SET $varexistestu='3'	WHERE 	$varexistcodreg='$repoExistenciacod'	    
+		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
@@ -52,7 +46,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      ' ingreso un nuevo equipo: $formequiponom',
+		      'Reporto como perdido el Equipo $repoExistencianom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
@@ -62,5 +56,8 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 	echo "1";
+
+	
 }
+
  ?>
