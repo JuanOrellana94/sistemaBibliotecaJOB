@@ -48,24 +48,24 @@
 
 	$textBusqueda=$_GET['busqueda'];
 	$filterall=$_GET['filter'];
-	$sql = "SELECT COUNT($varprestcod) as Contador
-      FROM $varresumenlibroprestamo  
+	$sql = "SELECT COUNT($varprestcodequi) as Contador
+      FROM $varresumenequipoprestamo  
       WHERE ";
 
     if ($filterall=='0'){
-    	$sql .= "  $varprestcod >= '0' ";
+    	$sql .= "  $varprestcodequi >= '0' ";
     }
      else if ($filterall=='1'){
-     	$sql .= "  $varprestest='0'";
+     	$sql .= "  $varprestestequi='0'";
      	
     } else if ($filterall=='2') {
-    	$sql .= "  $varprestest='1' ";    	
+    	$sql .= "  $varprestestequi='1' ";    	
     } else if ($filterall=='3') {
-    	$sql .= "  $varprestest='0' AND $varprestfec < NOW() ";
+    	$sql .= "  $varprestestequi='0' AND $varprestfecequi < NOW() ";
     }
 
    if($textBusqueda && !empty($textBusqueda)){
-		$sql .= " AND $varprestcod = '$textBusqueda'";
+		$sql .= " AND $varprestcodequi = '$textBusqueda'";
 	}
 
 	$sql .= ";";
@@ -78,16 +78,15 @@
 
   	?>                    
          	
-
- <script>
-                      	
+<script>
+                        
     $("#pagination li").on('click',function(e){
     e.preventDefault();
-      $("#historialTabla").html('<img src="img/structures/replace.gif" style="max-width: 50%">');
+      $("#historialTablaEquipo").html('<img src="img/structures/replace.gif" style="max-width: 50%">');
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#historialTabla").load("pages/historial/historialGeneral.php?pagina="+ paginaNumero +"&busqueda=" + $("#codigoLibro").val() + "&filter="+ $('input[name=filtroSearch]:checked').val());
+        $("#historialTablaEquipo").load("pages/historial/historialGeneralEquipos.php?pagina="+ paginaNumero +"&busqueda=" + $("#codigoLibro").val() + "&filter="+ $('input[name=filtroSearchEquipo]:checked').val());
       });
 </script>
 
@@ -97,7 +96,7 @@
 	$inicia_desde = ($pagina-1) * $limite;  
 
 	?>			
-				<table class="table table-hover" id="tablaGeneral" style=" cursor: pointer;">
+				<table class="table table-hover" id="tablaGeneralEquipo" style=" cursor: pointer;">
 					<thead>
 						<tr>
 							
@@ -113,32 +112,30 @@
 
 						<?php
 						 	$formatDateSend= "%Y % c %d";
-							$sql="SELECT resumen.$varprestcod, resumen.$varprestdev,resumen.$varprestfec, resumen.$varprestest, resumen.$varprestren, usuarios.$varPriNombre, usuarios.$varPriApellido, usuarios.$varAccNombre, COUNT(detalles.$vardetcodlib) as contadorLibros 
-								FROM $varresumenlibroprestamo AS resumen
-								INNER JOIN $vardetallesprestamolibro as detalles on resumen.$varprestcod =detalles.$varprestcodlib
-								INNER JOIN $tablaUsuarios as usuarios on resumen.$varusuCodigoF = usuarios.$varUsuCodigo ";
+							$sql="SELECT resumen.$varprestcodequi, resumen.$varprestdevequi,resumen.$varprestfecequi, resumen.$varprestestequi, usuarios.$varPriNombre, usuarios.$varPriApellido, usuarios.$varAccNombre, COUNT(detalles.$varexistcodDet) as contadorLibros 
+								FROM $varresumenequipoprestamo AS resumen
+								INNER JOIN $vardetallesprestamoequipo as detalles on resumen.$varprestcodequi =detalles.$varprestcodequiDet
+								INNER JOIN $tablaUsuarios as usuarios on resumen.$varusuCodigoFEquipo = usuarios.$varUsuCodigo ";
 
 								    if ($filterall=='4'){
-								    	$sql .= " WHERE resumen.$varprestcod >= '0' ";
+								    	$sql .= " WHERE resumen.$varprestcodequi >= '0' ";
 								    }
 								     else if ($filterall=='1'){
-								     	$sql .= " WHERE resumen.$varprestest='0' ";
+								     	$sql .= " WHERE resumen.$varprestestequi='0' ";
 								     	
 								    } else if ($filterall=='2') {
-								    	$sql .= " WHERE resumen.$varprestest='1' ";    	
+								    	$sql .= " WHERE resumen.$varprestestequi='1' ";    	
 								    } else if ($filterall=='3') {
-								    	$sql .= " WHERE (resumen.$varprestest='0' AND  DATE_FORMAT(resumen.$varprestdev,'$formatDateSend') < DATE_FORMAT(NOW(), '$formatDateSend' )) ";
+								    	$sql .= " WHERE (resumen.$varprestestequi='0' AND  DATE_FORMAT(resumen.$varprestdevequi,'$formatDateSend') < DATE_FORMAT(NOW(), '$formatDateSend')) ";
 								    }
-
-
-									
+	
 
 								   if($textBusqueda && !empty($textBusqueda)){
-										$sql .= " AND resumen.$varprestcod = '$textBusqueda' ";
+										$sql .= " AND resumen.$varprestcodequi = '$textBusqueda' ";
 									}
 
-								$sql .= " GROUP by resumen.$varprestcod	
-								ORDER BY resumen.$varprestfec DESC							
+								$sql .= " GROUP by resumen.$varprestcodequi	
+								ORDER BY resumen.$varprestfecequi DESC							
 								LIMIT $inicia_desde, $limite
 								;";
 
@@ -156,16 +153,16 @@
                                   $Estado="Error";
 						   
                                     $color="white";
-                                    $fechaColor = strtotime($dataLibros[$varprestdev]);
+                                    $fechaColor = strtotime($dataLibros[$varprestdevequi]);
                                     $fechaHoyColor = date("d-m-Y");
 
-                                    if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
+                                    if ($dataLibros[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
                                     	$color="#ecf9ec";//Greenish ACTIVO SIN RETRASOS AUN
                                     	$Estado="Prestado";
-                                    } else if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+                                    } else if ($dataLibros[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
                                     	$color="#ffe6e6";//redish RETRASO
                                     	$Estado="En retraso";
-                                    }else if ($dataLibros[$varprestest]=='1') {
+                                    }else if ($dataLibros[$varprestestequi]=='1') {
                                     	$color="#e6f9ff";//blue finalizado
                                     	 $Estado="Devuelto";
                                     }else if ($dataLibros[$varprestest]=='3') {
@@ -176,15 +173,15 @@
 
 						 ?>
 						 <script> 	
-						 	var valueID = "<?php  echo $dataLibros[$varprestcod]; ?>";
+						 	var valueID = "<?php  echo $dataLibros[$varprestcodequi]; ?>";
 						 </script>
-						 <tr style="background-color: <?php echo $color; ?>" id="<?php  echo $dataLibros[$varprestcod]; ?>" onclick="cargarDetalles('<?php  echo $dataLibros[$varprestcod]; ?>')">
+						 <tr style="background-color: <?php echo $color; ?>" id="<?php  echo $dataLibros[$varprestcodequi]; ?>" onclick="cargarDetallesEquipo('<?php  echo $dataLibros[$varprestcodequi]; ?>')">
 							
-							<td> <?php echo $dataLibros[$varprestcod]?></td>
+							<td> <?php echo $dataLibros[$varprestcodequi]?></td>
 							<td> <?php echo $dataLibros[$varPriNombre]." ".$dataLibros[$varPriApellido];?>
 							</td>	
 							<td><?php 
-								  fechaFormato($dataLibros[$varprestfec]);
+								  fechaFormato($dataLibros[$varprestfecequi]);
 									?> 
 							</td>	
 							<td>
@@ -197,61 +194,59 @@
 					</tbody>
 				</table>
 
-				<nav aria-label="Page navigation">
-					<ul class='pagination justify-content-center' id="pagination">
-                    	<?php
+				  <nav aria-label="Page navigation">
+          <ul class='pagination justify-content-center' id="pagination">
+                      <?php
 
-                    	$printEnd=0;
-                    	$rangoLeash='4';//TEMP                   	
-                    	if ($pagina<=$rangoLeash+2) {
-                    		$rangoInferior='1';
-                    	}else{
-                    		$rangoInferior= $pagina-$rangoLeash;
-                    		?>
-                    			<li class='page-item'  id="1"> <a class="page-link" href='pagination.php?page=1'> 1 </a> </li>
-                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>    
-                    		<?php
-                    	}
+                      $printEnd=0;
+                      $rangoLeash='4';//TEMP                    
+                      if ($pagina<=$rangoLeash+2) {
+                        $rangoInferior='1';
+                      }else{
+                        $rangoInferior= $pagina-$rangoLeash;
+                        ?>
+                          <li class='page-item'  id="1"> <a class="page-link" href='pagination.php?page=1'> 1 </a> </li>
+                          <li class='page-item'  > <a class="page-link"> ... </a> </li>    
+                        <?php
+                      }
 
-                    	if ($pagina>=($total_paginas-$rangoLeash)){
-                    		$rangoSuperior=$total_paginas;
-                    	}else{
-                    		$rangoSuperior= $pagina+$rangoLeash;
-                    		$printEnd=1;
+                      if ($pagina>=($total_paginas-$rangoLeash)){
+                        $rangoSuperior=$total_paginas;
+                      }else{
+                        $rangoSuperior= $pagina+$rangoLeash;
+                        $printEnd=1;
 
-                    	}  
+                      }  
 
 
 
-                    		if(!empty($total_paginas)){
-                    			for($i=$rangoInferior; $i<=$rangoSuperior; $i++){ 
-									if($i == $pagina){ ?>
-										<li class='page-item active'  id="<?php echo $i;?>"> <a class="page-link" href='pagination.php?page=<?php echo $i;?>'>
-											<?php echo $i;?></a>
-										</li> 
-                    			
-                            	<?php } else {?>
-                            	<li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                        if(!empty($total_paginas)){
+                          for($i=$rangoInferior; $i<=$rangoSuperior; $i++){ 
+                  if($i == $pagina){ ?>
+                    <li class='page-item active'  id="<?php echo $i;?>"> <a class="page-link" href='pagination.php?page=<?php echo $i;?>'>
+                      <?php echo $i;?></a>
+                    </li> 
+                          
+                              <?php } else {?>
+                              <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
                             <?php }?>    
                         <?php }
                     }//Here
 
                     if ($printEnd==1) {
-                    	
+                      
                  
                     ?>
 
-                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>
-                    			<li class='page-item'  id="<?php echo $total_paginas;?>"> <a class="page-link" href='pagination.php?page=1'> <?php echo $total_paginas;?> </a> </li>
-                    			    
-                    		<?php
+                          <li class='page-item'  > <a class="page-link"> ... </a> </li>
+                          <li class='page-item'  id="<?php echo $total_paginas;?>"> <a class="page-link" href='pagination.php?page=1'> <?php echo $total_paginas;?> </a> </li>
+                              
+                        <?php
                     }
 
                     ?>
-					</ul>
-				 </nav>
-              
-
+          </ul>
+         </nav>
 				  
 
 				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->

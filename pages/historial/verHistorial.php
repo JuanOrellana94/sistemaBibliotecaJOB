@@ -80,10 +80,10 @@
           <div class="card-body">
             <ul class="nav  nav-pills">
                  <li class="nav-item" style="max-width: 30%;">
-                    <a class="nav-link active" id="libro-tab"  data-toggle="tab" href="#librosTab" role="tab" aria-controls="libros" aria-selected="true"><img src="img/icons/Booklight.png" style="max-width: 15%;"> Libros</a>
+                    <a class="nav-link active" id="libro-tab"  data-toggle="tab" href="#librosTab"  onclick="recargarPrestamosGeneral()" role="tab" aria-controls="libros" aria-selected="true"><img src="img/icons/Booklight.png" style="max-width: 15%;"> Libros</a>
                   </li>
                   <li class="nav-item"  style="max-width: 30%;">
-                    <a class="nav-link"  id="equipo-tab" data-toggle="tab" href="#equipoTab" role="tab" aria-controls="equipo" aria-selected="false"><img src="img/icons/equipment.png" style="max-width: 15%;"> Equipo</a>
+                    <a class="nav-link"  id="equipo-tab" data-toggle="tab" href="#equipoTab" onclick="recargarPrestamosGeneralEquipo()" role="tab" aria-controls="equipo" aria-selected="false"><img src="img/icons/equipment.png" style="max-width: 15%;"> Equipo</a>
                   </li>
             </ul>
             
@@ -120,39 +120,46 @@
                            <label class="btn btn-outline-danger" onclick="recargarPrestamosGeneral()">
                             <input type="radio" value='3' name="filtroSearch" id="over" ><small>En retraso</small> &nbsp; <span class="badge badge-danger"><?php  echo $count[0];?></span>  
                           </label>
-                        </div>
+                        </div>                
                          
-                    
-                  
-
-                      <!-- 
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="radioTodos" name="filtroradio" class="custom-control-input">
-                          <label class="custom-control-label" for="radioTodos">Todos</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="radioPrestados" name="filtroradio" class="custom-control-input">
-                          <label class="custom-control-label" for="radioPrestados">Prestados</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="radioPrestados" name="filtroradio" class="custom-control-input">
-                          <label class="custom-control-label" for="radioDevueltos">Devueltos</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="radioPrestados" name="filtroradio" class="custom-control-input">
-                          <label class="custom-control-label" for="radioRestraso">En retraso</label>
-                        </div>-->
-
-                   
-                   
-                   
-                    
-                
                 </form>
                 <div id="historialTabla"></div>
               </div>
               <div class="tab-pane fade" id="equipoTab" role="tabpanel" aria-labelledby="equipo-tab">
+                <form method="GET" class="form-inline" id="formBusquedaLibroCodigo" style="margin-top: 1%;">
+                 
+                    
+                       <div class="btn-group btn-group-toggle " data-toggle="buttons">
+
+                    
+                      <input type="input"  id="codigoEquipo" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
+                      
+
+                        <button class="btn btn-primary" onclick="recargarPrestamosGeneralEquipo()" type="button"> <small> Buscar  </small></button>
+
+                        <?php
+                           $formatDateSend= "%Y % c %d";
+                          $sqlTable="SELECT COUNT($varprestcodequi) FROM $varresumenequipoprestamo WHERE $varprestestequi = '0' AND  DATE_FORMAT($varprestdevequi ,'$formatDateSend') < DATE_FORMAT(NOW(), '$formatDateSend' );";
+                          $profileDataTable=mysqli_query($conexion,$sqlTable);
+                          $countTable = mysqli_fetch_array($profileDataTable);
+                        ?>
+
+                        
+                          <label class="btn btn-outline-secondary active" onclick="recargarPrestamosGeneralEquipo()">
+                            <input type="radio" value='0' name="filtroSearchEquipo" id="all"  checked> <small>Todos</small>
+                          </label>
+                          <label class="btn btn-outline-primary"  onclick="recargarPrestamosGeneralEquipo()">
+                            <input type="radio" value='1' name="filtroSearchEquipo"  id="out"  > <small>Prestados</small>
+                          </label>
+                          <label class="btn btn-outline-success" onclick="recargarPrestamosGeneralEquipo()">
+                            <input type="radio" value='2' name="filtroSearchEquipo"  id="in"  > <small>Devueltos</small>
+                          </label>
+                           <label class="btn btn-outline-danger" onclick="recargarPrestamosGeneralEquipo()">
+                            <input type="radio" value='3' name="filtroSearchEquipo" id="over" ><small>En retraso</small> &nbsp; <span class="badge badge-danger"><?php  echo $countTable[0];?></span>  
+                          </label>
+                        </div>                
+                         
+                </form>
                
                  <div id="historialTablaEquipo"></div>
               </div>
@@ -188,7 +195,9 @@
     window.onload = function () {
 
       recargarPrestamosGeneral()
+    
       recargarIndicadoresGeneral()
+
 
       $(window).keydown(function(event){
         if(event.keyCode == 13) {
@@ -206,6 +215,7 @@
 
 //Funcion para cargar y recargar tabla de solicitudes
 function recargarPrestamosGeneral(){
+   $("#historialTablaEquipo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
    
   $("#historialTabla").show();
   $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
@@ -248,12 +258,15 @@ function recargarPrestamosGeneralEmpty(){
   //  }, 1000);
 }
 function recargarPrestamosGeneralEquipo(){
-   
-  $("#historialTabla").show();
   $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
-  var busqueda=$("#textSolicitudes").val();  
-  $("#historialTabla").load("pages/historial/historialGeneralEquipo.php?pagina=1");
+   
+  $("#historialTablaEquipo").show();
+  $("#historialTablaEquipo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+
+  var busqueda=$("#codigoEquipo").val();  
+  var filterall=$('input[name=filtroSearchEquipo]:checked').val(); 
+  $("#historialTablaEquipo").load("pages/historial/historialGeneralEquipos.php?pagina=1&busqueda="+ busqueda +"&filter="+ filterall);
 
   //setTimeout( function() {
   //    $("#solicitudesUsuarios").hide(500);                          
@@ -349,6 +362,18 @@ function cargarDetalles(x){
 
   var busqueda=x;
   $("#cargarDetallesInfo").load("pages/historial/detallesPrestamo.php?busqueda="+ busqueda);
+
+
+
+}
+
+function cargarDetallesEquipo(x){
+
+   $("#cargarDetallesInfo").show();
+  $("#cargarDetallesInfo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+
+  var busqueda=x;
+  $("#cargarDetallesInfo").load("pages/historial/detallesPrestamoEquipo.php?busqueda="+ busqueda);
 
 
 

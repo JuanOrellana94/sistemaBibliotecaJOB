@@ -7,14 +7,19 @@
 	<div style="text-align: center"> <p class="text-muted">Libros - Actividades de hoy</p> </div>
 	<div class="dropdown-divider"></div> 
 <?php
+	$count=0;
     $formatDateSend= "%Y % c %d";
     $sql="SELECT COUNT($varprestcod) FROM $varresumenlibroprestamo WHERE DATE_FORMAT($varprestfec,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
     $profileData=mysqli_query($conexion,$sql);
     $count = mysqli_fetch_array($profileData);
+    $sql="SELECT COUNT($varprestcodequi) FROM $varresumenequipoprestamo WHERE DATE_FORMAT($varprestfecequi,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
+    $profileData=mysqli_query($conexion,$sql);
+    $countEquip= mysqli_fetch_array($profileData);
+    $countPrint=$count[0]+$countEquip[0];
 ?>
 		<div class="row">
 			<button type="button" class="btn btn-info btn-block" data-toggle="tooltip" data-placement="right" title="Total de Prestamos realizados este dia">
-				<span class="badge badge-light"><?php  echo $count[0];?></span> <small>  Prestamos Realizados </small>
+				<span class="badge badge-light"><?php  echo $countPrint;?></span> <small>  Prestamos Realizados </small>
 		 	</button>
 		</div>
 	

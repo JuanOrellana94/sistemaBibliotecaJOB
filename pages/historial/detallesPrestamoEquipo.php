@@ -19,11 +19,12 @@
 		$pagina=1; 
 	};
 
-	$sql = "SELECT COUNT(ejemplar.$varejemcod) FROM $varresumenlibroprestamo as resumen
-			INNER JOIN $vardetallesprestamolibro as detalle on resumen.$varprestcod=detalle.$varprestcodlib
-			INNER JOIN $tablaEjemplares as ejemplar on detalle.$varejemcodlib = ejemplar.$varejemcod
-			INNER JOIN $tablaLibros as libro on ejemplar.$varejemlibcod = libro.$varlibcod
-			WHERE resumen.$varprestcod='$textBusqueda'";
+	$sql = "SELECT COUNT(existencia.$varexistcod) FROM $varresumenequipoprestamo as resumen
+			INNER JOIN $vardetallesprestamoequipo as detalle on resumen.$varprestcodequi=detalle.$varprestcodequiDet
+			INNER JOIN $tablaExistenciaequipo as existencia on detalle.$varexistcodDet = existencia.$varexistcod
+			INNER JOIN $tablaEquipo as equipo on existencia.$varequicodExist = equipo.$varequicod
+			WHERE resumen.$varprestcodequi='$textBusqueda';";
+			
 
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -41,7 +42,7 @@
 	      $("#pagination li").removeClass('active');
 	      $(this).addClass('active');
 	          var paginaNumero = this.id;
-	        $("#cargarDetallesInfo").load("pages/historial/detallesPrestamo.php?busqueda="+valueID+"&pagina="+paginaNumero);
+	        $("#cargarDetallesInfo").load("pages/historial/detallesPrestamoEquipo.php?busqueda="+valueID+"&pagina="+paginaNumero);
 	      });
 	</script>
 
@@ -53,27 +54,27 @@
 
 
 	$formatDateSend= "%Y % c %d";
-	$sql="SELECT * FROM $varresumenlibroprestamo as resumen
-		INNER JOIN $vardetallesprestamolibro as detalle on resumen.$varprestcod=detalle.$varprestcodlib
-		INNER JOIN $tablaUsuarios as usuario on resumen.$varusuCodigoF = usuario.$varUsuCodigo
-		WHERE resumen.$varprestcod='$textBusqueda'
+	$sql="SELECT * FROM $varresumenequipoprestamo as resumen
+		INNER JOIN $vardetallesprestamoequipo as detalle on resumen.$varprestcodequi=detalle.$varprestcodequiDet
+		INNER JOIN $tablaUsuarios as usuario on resumen.$varusuCodigoFEquipo = usuario.$varUsuCodigo
+		WHERE resumen.$varprestcodequi='$textBusqueda'
 	;";
 	$profileData=mysqli_query($conexion,$sql);
 	$dateItems=mysqli_fetch_assoc($profileData);
 
-	$fechaColor = strtotime($dateItems[$varprestdev]);
+	$fechaColor = strtotime($dateItems[$varprestdevequi]);
     $fechaHoyColor = date("d-m-Y");
-    $Estado='nin';
-    if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
+
+    if ($dateItems[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
     
     	$Estado="Prestado";
-    } else if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+    } else if ($dateItems[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
     	
     	$Estado="En retraso";
-    }else if ($dateItems[$varprestest]=='1') {
+    }else if ($dateItems[$varprestestequi]=='1') {
     	
     	 $Estado="Devuelto";
-    }else if ($dateItems[$varprestest]=='3') {
+    }else if ($dateItems[$varprestestequi]=='3') {
     	
     	$Estado="En espera";
     }
@@ -120,16 +121,16 @@
 
 			?>
 
-			<p> P: <?php  fechaFormato($dateItems[$varprestfec]);?>  / D: <?php  fechaFormato($dateItems[$varprestdev]);?></p>
+			<p> P: <?php  fechaFormato($dateItems[$varprestfecequi]);?>  / D: <?php  fechaFormato($dateItems[$varprestdevequi]);?></p>
 			
 			<?php
 
-			 $fechaColor = strtotime($dateItems[$varprestdev]);
+			 $fechaColor = strtotime($dateItems[$varprestdevequi]);
              $fechaHoyColor = date("d-m-Y");
 
-			 if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {          	
+			 if ($dateItems[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {          	
             	$Estado="Prestado";
-            	$OldDate = strtotime($dateItems[$varprestdev]);
+            	$OldDate = strtotime($dateItems[$varprestdevequi]);
             	$NewDate = date('M j, Y', $OldDate);
             	$diff = date_diff(date_create($NewDate),date_create(date("M j, Y")));
 
@@ -138,42 +139,12 @@
 					Restan  <?php echo $diff->format('%D dia(s)');?> para hacer la devolucion
 				</div>
 				
-	          		<div class="dropdown-divider"></div>
-				
-					<form id="formRenovacion" name="formRenovacion" class="form-inline">
-						
-							
-							<input type="text" name="codigoPrestamo" id="codigoPrestamo" value=<?php echo $dateItems[$varprestcod]?> hidden=true>	
-						
-						<div class="form-group mb-2">				
-							<label for="renoFechaOriginal" >Fecha Original</label>&nbsp;
-							<input disabled type="date" id="renoFechaOriginal" data-toggle="tooltip" data-placement="right" title="Fecha de devolucion original" name="renoFechaOriginal"	value=<?php echo $dateItems[$varprestdev]?>>
-						</div>
-							<div class="form-group mb-2">
-							<label for="renoFechaOriginal" >Nueva Fecha </label> &nbsp;
-							<input type="date" id="renoFechaMew" name="renoFechaMew" data-toggle="tooltip" data-placement="right" title="Seleccionar nueva fecha de devolucion" >
-						</div>
-
-					
-						
-						
-
-						<div id="mensajeRenovacion"></div>
-						
-
-						<button type="button" onclick="renovarLibro()" class="btn btn-primary btn-block"> Hacer renovacion</button>
-						
-
-					</form>
-
-
-		        
 
             	<?php
 
-            } else if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+            } else if ($dateItems[$varprestestequi]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
 
-            	$OldDate = strtotime($dateItems[$varprestdev]);
+            	$OldDate = strtotime($dateItems[$varprestdevequi]);
             	$NewDate = date('M j, Y', $OldDate);
             	$diff = date_diff(date_create($NewDate),date_create(date("M j, Y")));
 
@@ -189,16 +160,16 @@
               	</button>
 
             	<?php
-            }else if ($dateItems[$varprestest]=='1') {
+            }else if ($dateItems[$varprestestequi]=='1') {
             	
             	 $Estado="Devuelto";
 
             	 ?>
 
             	<div class="alert alert-success" role="alert">
-					  Todos los libros en este prestamo fueron entregados el:
+					  Todos los equipos en este prestamo fueron entregados el:
 					  <?php
-					   fechaFormato($dateItems[$varprestfechafin]);
+					   fechaFormato($dateItems[$varprestfechafinEquipo]);
 					  ?>
 				</div>
 
@@ -207,7 +178,7 @@
               	</button>
 
             	<?php
-            }else if ($dateItems[$varprestest]=='3') {            	
+            }else if ($dateItems[$varprestestequi]=='3') {            	
             	$Estado="En espera";
             }
 
@@ -216,12 +187,12 @@
 			?>
 
 
-				<table class="table table-hover"  id="tablaEquipo">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th></th>
-							<th>Ejemplar</th>
-							<th>Libro</th>
+							<th>Existencia</th>
+							<th>Equipo</th>
 						</tr>
 					</thead>
 
@@ -229,13 +200,16 @@
 
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT ejemplar.$varejemcodreg,ejemplar.$varejemestu,libro.$varlibtit FROM $varresumenlibroprestamo as resumen
-								INNER JOIN $vardetallesprestamolibro as detalle on resumen.$varprestcod=detalle.$varprestcodlib
-								INNER JOIN $tablaEjemplares as ejemplar on detalle.$varejemcodlib = ejemplar.$varejemcod
-								INNER JOIN $tablaLibros as libro on ejemplar.$varejemlibcod = libro.$varlibcod
-								WHERE resumen.$varprestcod='$textBusqueda'
+						$sql="SELECT existencia.$varexistcodreg, existencia.$varexistestu,equipo.$varequitip FROM $varresumenequipoprestamo as resumen
+								INNER JOIN $vardetallesprestamoequipo as detalle on resumen.$varprestcodequi=detalle.$varprestcodequiDet
+								INNER JOIN $tablaExistenciaequipo as existencia on detalle.$varexistcodDet = existencia.$varexistcod
+								INNER JOIN $tablaEquipo as equipo on existencia.$varequicodExist = equipo.$varequicod
+								WHERE resumen.$varprestcodequi='$textBusqueda'
 								LIMIT $inicia_desde, $limite
-								;");
+								;";
+							$selTable=mysqli_query($conexion,$sql);
+
+							
 
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
@@ -243,21 +217,21 @@
 						} else{
 							// 0=Disponible  1=Prestado 2=No disponible 3=Extraviado
 
-							while ($dataLibros=mysqli_fetch_assoc($selTable)){
-								if ($dataLibros[$varejemestu]==0) {
+							while ($dataEquipos=mysqli_fetch_assoc($selTable)){
+								if ($dataEquipos[$varexistestu]==0) {
 									$icon='devGreen.png';
-								} else if ($dataLibros[$varejemestu]==1) {
+								} else if ($dataEquipos[$varexistestu]==1) {
 									$icon='devBlue.png';
-								} else if ($dataLibros[$varejemestu]==2) {
+								} else if ($dataEquipos[$varexistestu]==2) {
 									$icon='devGray.png';
-								} else if ($dataLibros[$varejemestu]==3) {
+								} else if ($dataEquipos[$varexistestu]==3) {
 									$icon='devRed.png';
 								}
 						?>
 						<tr>
 							<td><img src="img/icons/<?php echo $icon;?>" style="max-width:40px"></td>
-							<td><?php echo $dataLibros[$varejemcodreg];?> </td>
-							<td><?php echo $dataLibros[$varlibtit];?> </td>					
+							<td><?php echo $dataEquipos[$varexistcodreg];?> </td>
+							<td><?php echo $dataEquipos[$varequitip];?> </td>					
 							 
 							
 						
@@ -321,7 +295,7 @@
 					</ul>
 				 </nav>
 
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
+				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataEquipos[$varequicod];?>">Ver detalles</a>  -->
 
    <!--MODAL PARA CONFIRMAR EL PRESTAMO REALIZADO item-->
   <div class="modal fade" id="renovacionModal" name="renovacionModal" tabindex="-1" role="dialog" aria-labelledby="renovacionModal" aria-hidden="true">
