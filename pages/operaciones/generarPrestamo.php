@@ -126,14 +126,6 @@
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 
-							//LISTA DE PEDIDOS ES ELIMINADA
-							$insRegistro=mysqli_query($conexion,"
-								DELETE FROM $varbolsaprestamo
-							    WHERE $varusucod='$usuCodigoPrestamista';")
-							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
-
-
-
 							//Prestamo estado libro: estado del prestamo 0=Activo 1=Renovado 2=Finalizado 3=en espera
 							$insRegistro=mysqli_query($conexion,"
 								UPDATE $varresumenequipoprestamo SET
@@ -273,6 +265,12 @@
 						$varprestdev='$fechaDevolucion'		
 					    WHERE $varprestcodlib='$varprestcodlibs';")
 					   or die ('ERROR INS-INS:'.mysqli_error($conexion));
+
+					   //LISTA DE PEDIDOS ES ELIMINADA
+						$insRegistro=mysqli_query($conexion,"
+							DELETE FROM $varbolsaprestamo
+						    WHERE $varusucod='$usuCodigoPrestamista';")
+						 or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 				
 
