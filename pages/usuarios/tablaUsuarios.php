@@ -95,6 +95,7 @@
 		$varUsuCodigo LIKE '%$textBusqueda%' OR
 		$varAccNombre LIKE '%$textBusqueda%'	OR
 		$varCorreo LIKE '%$textBusqueda%' OR
+		$varusucodbar LIKE '%$textBusqueda%' OR
 		'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
@@ -163,7 +164,8 @@
 								WHERE  $restriccion AND (
                                 $varUsuCodigo LIKE '%$textBusqueda%' OR
 		                        $varAccNombre LIKE '%$textBusqueda%'	OR
-		                        $varCorreo LIKE '%$textBusqueda%' OR		                      
+		                        $varCorreo LIKE '%$textBusqueda%' OR
+		                        $varusucodbar LIKE '%$textBusqueda%' OR	                      
 								'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR

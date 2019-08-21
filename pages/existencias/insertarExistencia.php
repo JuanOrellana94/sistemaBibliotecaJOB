@@ -38,29 +38,24 @@
       }
     }
 
+    $sql1 = ("SELECT  $varexistcod+1 as codigo from $tablaExistenciaequipo order by $varexistcod desc limit 1");
+    $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+     while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo) ."". '1234';
+              
+        }
+
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-// $checkValidation="SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';";
-
-// $resultado=mysqli_query($conexion, $checkValidation) or die("SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';".mysqli_error($conexion));
-
-
-// $dataRow = mysqli_fetch_array($resultado);	
-
-	 
-// 	 if($dataRow>0) {
-// 		echo "0";
-
-// 		} else {
 
 
 		$insRegistro=mysqli_query($conexion,"
 			INSERT INTO 
 			$tablaExistenciaequipo($varexistcodreg, $varexistfecadq, $varexisttipadq,
-			 $varexistdetadq, $varexistpreuni, $varexistconfis, $varexistdesest, $varestcod, $varequicod) 
+			 $varexistdetadq, $varexistpreuni, $varexistconfis, $varexistdesest, $varestcod, $varequicod, $varexistcodbar) 
 			 VALUES ('$newcodigo','$formExistenciafecha','$formExistenciaingreso',
-			 '$formdetalle','$formprecio','$formExistenciastado','$formExistenciacomentario','$formestantcod','$formExistenciaequipoCod');")
+			 '$formdetalle','$formprecio','$formExistenciastado','$formExistenciacomentario','$formestantcod','$formExistenciaequipoCod','$formejemplarcodbarra');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
@@ -84,5 +79,5 @@
 
 
 	echo "1";
-    // }
+   
  ?>

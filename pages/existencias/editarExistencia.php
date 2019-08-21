@@ -21,7 +21,11 @@ $checkValidation="SELECT  t1.$varexistcod as Codigo, t1.$varexistcodreg as Codig
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
-
+ $sql=("SELECT  $varexistcod as codigo, $varexistcodreg as CodigoReg FROM $tablaExistenciaequipo WHERE $varexistcod = $editexistenciacodigo");    
+    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
+    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
+         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['CodigoReg']) ."". '1234';
+      }
 	
 
 	 
@@ -38,7 +42,8 @@ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexi
 			$varexistdetadq='$editexistenciacomentario',
 			$varestcod='$editestantcod',
 			$varexistdetadq='$inputdetalle',
-			$varexistfecadq='$editexistenciafecha'
+			$varexistfecadq='$editexistenciafecha',
+			$varexistcodbar='$formejemplarcodbarra'
 
 
 			WHERE $varexistcod ='$editexistenciacodigo';

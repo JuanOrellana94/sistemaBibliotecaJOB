@@ -39,6 +39,7 @@
    $varSegApellido="ususegape";
    $varCarnet="usucarnet";
    $varCorreo="usucorre";
+   $varusucodbar="usucodbar";
    $varCueEstatus="usuestcue";
    $varAnoBachi="usuanobac";
    $varSecAula="ususecaul";
@@ -134,7 +135,7 @@
 
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
-////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
+////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod,existcodbar
     $varexistcod="existcod";
     $varexistcodreg="existcodreg";
     $varexistfecadq="existfecadq";
@@ -142,6 +143,7 @@
     $varexistdetadq="existdetadq";
     $varexistpreuni="existpreuni";
     $varexistestu="existestu";
+    $varexistcodbar='existcodbar';
     $varexistmarca="existmarca";    
     $varexistconfis="existconfis";
     $varexistdesest="existdesest";

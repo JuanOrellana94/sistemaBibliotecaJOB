@@ -32,7 +32,13 @@
             $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
 
-      $dataRow = mysqli_fetch_array($resultado);	
+        $dataRow = mysqli_fetch_array($resultado);	
+
+        $sql=("SELECT  $varUsuCodigo as codigo, $varCarnet as Carnet FROM $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");    
+    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
+    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
+         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['Carnet']) ."". '1234567890';
+      }
 
 	 
 	 if($dataRow>0) {
@@ -42,12 +48,12 @@
           if (empty($_POST['editUsuariopass'])) {
          	# code...
                     
-			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";
          }else{
 
          	$editUsuariopass=md5($_POST['editUsuariopass']);
             
-            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";	    
 
          }
 
