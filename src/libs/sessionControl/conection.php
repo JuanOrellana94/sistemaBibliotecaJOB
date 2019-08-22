@@ -5,6 +5,9 @@
 	mysqli_select_db($conexion,"$base");
 
 
+	$conexion->set_charset("utf8")
+
+
 	//$passwordUser=md5("19001");
 	//echo $passwordUser."            as   ";
 
