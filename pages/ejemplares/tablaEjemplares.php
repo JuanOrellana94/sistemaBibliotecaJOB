@@ -37,9 +37,7 @@
                 	   $bloqueo2=" style='display: none;' "; 
                 	   $bloqueo5="style='display: true;'";               	   
                 break;              	
-              }  		
-		 
-
+              }  	
 	  	    
     ?>
     
@@ -96,6 +94,17 @@
 
         $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val()+"&codigoLib="+$("#codigoLib").val()+ "&ordenar=" + $("#textBusquedaordenar").val());
       });
+
+
+     function colorder(x){
+    	var orderby = x
+    	var ordenar=$("#textBusquedaordenar").val();
+    	var variablecod=$("#codigoLib").val();
+    	var busqueda=$("#textBusqueda").val();
+    	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
+    	 $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar+"&order="+orderby);
+    }
+
 </script>
 
   <?php
@@ -106,16 +115,102 @@
 	?>			
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
-						<tr>
-							<th>Codigo</th>						
-							<th>Ubicacion</th>
-							<th>Ingreso</th>
-							<th>Precio</th>
-							<th>Condicion</th>
-							<th>Estado</th>			
+						<tr style=" cursor: pointer;">
+
+
+							<?php
+							if (isset($_GET["order"])) {
+									if ($_GET["order"]=='c1') {
+										$orderCod  = " ORDER BY $varejemcod "; 
+										?>
+										<th class="bg-primary text-white" onclick="colorder('c1')">Codigo</th>
+										<th 	onclick="colorder('c2')"> Ubicacion</th>
+										<th 	onclick="colorder('c3')"> Ingreso</th>
+										<th 	onclick="colorder('c4')">Precio</th>
+										<th 	onclick="colorder('c5')">Condicion</th>
+										<th onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									} else if ($_GET["order"]=='c2') {
+										$orderCod  = " ORDER BY $varestdes "; 
+										?>
+										<th 	onclick="colorder('c1')">Codigo</th>
+										<th class="bg-primary text-white" onclick="colorder('c2')"> Ubicacion</th>
+										<th 	onclick="colorder('c3')">Ingreso</th>
+										<th 	onclick="colorder('c4')">Precio</th>
+										<th 	onclick="colorder('c5')">Condicion</th>
+										<th onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									}else if ($_GET["order"]=='c3') {
+										$orderCod  = " ORDER BY $varejemtipadq "; 
+										?>
+										<th 	onclick="colorder('c1')">Codigo</th>
+										<th 	onclick="colorder('c2')">Ubicacion</th>
+										<th class="bg-primary text-white" onclick="colorder('c3')"> Ingreso</th>
+										<th 	onclick="colorder('c4')">Precio</th>
+										<th 	onclick="colorder('c5')">Condicion</th>
+										<th onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									} else if ($_GET["order"]=='c4') {
+										$orderCod  = " ORDER BY $varejempruni "; 
+										?>
+										<th 	onclick="colorder('c1')">Codigo</th>
+										<th 	onclick="colorder('c2')">Ubicacion</th>
+										<th  onclick="colorder('c3')"> Ingreso</th>
+										<th class="bg-primary text-white"	onclick="colorder('c4')">Precio</th>
+										<th 	onclick="colorder('c5')">Condicion</th>
+										<th onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									} else if ($_GET["order"]=='c5') {
+										$orderCod  = " ORDER BY $varejemconfis "; 
+										?>
+										<th 	onclick="colorder('c1')">Codigo</th>
+										<th 	onclick="colorder('c2')">Ubicacion</th>
+										<th  onclick="colorder('c3')"> Ingreso</th>
+										<th 	onclick="colorder('c4')">Precio</th>
+										<th class="bg-primary text-white"	onclick="colorder('c5')">Condicion</th>
+										<th onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									} else if ($_GET["order"]=='c6') {
+										$orderCod  = " ORDER BY $varejemestu "; 
+										?>
+										<th 	onclick="colorder('c1')">Codigo</th>
+										<th 	onclick="colorder('c2')">Ubicacion</th>
+										<th  onclick="colorder('c3')"> Ingreso</th>
+										<th 	onclick="colorder('c4')">Precio</th>
+										<th 	onclick="colorder('c5')">Condicion</th>
+										<th class="bg-primary text-white" onclick="colorder('c6')">Estado</th>									
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									}
+							}else {
+									//DEFAULT
+								 $orderCod="ORDER BY $varlibcod";
+								 ?>
+									<th 	onclick="colorder('c1')">Codigo</th>
+									<th 	onclick="colorder('c2')">Ubicacion</th>
+									<th  onclick="colorder('c3')"> Ingreso</th>
+									<th 	onclick="colorder('c4')">Precio</th>
+									<th 	onclick="colorder('c5')">Condicion</th>
+									<th  onclick="colorder('c6')">Estado</th>									
+									<th class="aTable">Opciones</th>
+
+									<?php
+								};
+							?>	
 	
 							
-							<th class="aTable">Opciones</th>
+							
 						</tr>
 					</thead>
 
