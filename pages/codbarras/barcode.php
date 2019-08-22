@@ -1,5 +1,4 @@
 <?php
-
 /*
  *  Author	David S. Tufts
  *  Company	davidscotttufts.com
@@ -7,7 +6,6 @@
  *  Date:	05/25/2003
  *  Usage:	<img src="/barcode.php?text=testing" alt="testing" />
  */
-
 // For demonstration purposes, get pararameters that are passed in through $_GET or set to the default value
 $filepath = (isset($_GET["filepath"])?$_GET["filepath"]:"");
 $text = (isset($_GET["text"])?$_GET["text"]:"0");
@@ -16,10 +14,8 @@ $orientation = (isset($_GET["orientation"])?$_GET["orientation"]:"horizontal");
 $code_type = (isset($_GET["codetype"])?$_GET["codetype"]:"code128");
 $print = (isset($_GET["print"])&&$_GET["print"]=='true'?true:false);
 $sizefactor = (isset($_GET["sizefactor"])?$_GET["sizefactor"]:"1");
-
 // This function call can be copied into your project and can be made from anywhere in your code
 // barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
-
 function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal", $code_type="code128", $print=false, $SizeFactor=1 ) {
 	$code_string = "";
 	// Translate the $text into barcode the correct $code_type
@@ -35,7 +31,6 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 			$chksum=($chksum + ($code_values[$activeKey] * $X));
 		}
 		$code_string .= $code_array[$code_keys[($chksum - (intval($chksum / 103) * 103))]];
-
 		$code_string = "211214" . $code_string . "2331112";
 	} elseif ( strtolower($code_type) == "code128a" ) {
 		$chksum = 103;
@@ -50,30 +45,24 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 			$chksum=($chksum + ($code_values[$activeKey] * $X));
 		}
 		$code_string .= $code_array[$code_keys[($chksum - (intval($chksum / 103) * 103))]];
-
 		$code_string = "211412" . $code_string . "2331112";
 	} elseif ( strtolower($code_type) == "code39" ) {
 		$code_array = array("0"=>"111221211","1"=>"211211112","2"=>"112211112","3"=>"212211111","4"=>"111221112","5"=>"211221111","6"=>"112221111","7"=>"111211212","8"=>"211211211","9"=>"112211211","A"=>"211112112","B"=>"112112112","C"=>"212112111","D"=>"111122112","E"=>"211122111","F"=>"112122111","G"=>"111112212","H"=>"211112211","I"=>"112112211","J"=>"111122211","K"=>"211111122","L"=>"112111122","M"=>"212111121","N"=>"111121122","O"=>"211121121","P"=>"112121121","Q"=>"111111222","R"=>"211111221","S"=>"112111221","T"=>"111121221","U"=>"221111112","V"=>"122111112","W"=>"222111111","X"=>"121121112","Y"=>"221121111","Z"=>"122121111","-"=>"121111212","."=>"221111211"," "=>"122111211","$"=>"121212111","/"=>"121211121","+"=>"121112121","%"=>"111212121","*"=>"121121211");
-
 		// Convert to uppercase
 		$upper_text = strtoupper($text);
-
 		for ( $X = 1; $X<=strlen($upper_text); $X++ ) {
 			$code_string .= $code_array[substr( $upper_text, ($X-1), 1)] . "1";
 		}
-
 		$code_string = "1211212111" . $code_string . "121121211";
 	} elseif ( strtolower($code_type) == "code25" ) {
 		$code_array1 = array("1","2","3","4","5","6","7","8","9","0");
 		$code_array2 = array("3-1-1-1-3","1-3-1-1-3","3-3-1-1-1","1-1-3-1-3","3-1-3-1-1","1-3-3-1-1","1-1-1-3-3","3-1-1-3-1","1-3-1-3-1","1-1-3-3-1");
-
 		for ( $X = 1; $X <= strlen($text); $X++ ) {
 			for ( $Y = 0; $Y < count($code_array1); $Y++ ) {
 				if ( substr($text, ($X-1), 1) == $code_array1[$Y] )
 					$temp[$X] = $code_array2[$Y];
 			}
 		}
-
 		for ( $X=1; $X<=strlen($text); $X+=2 ) {
 			if ( isset($temp[$X]) && isset($temp[($X + 1)]) ) {
 				$temp1 = explode( "-", $temp[$X] );
@@ -82,15 +71,12 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 					$code_string .= $temp1[$Y] . $temp2[$Y];
 			}
 		}
-
 		$code_string = "1111" . $code_string . "311";
 	} elseif ( strtolower($code_type) == "codabar" ) {
 		$code_array1 = array("1","2","3","4","5","6","7","8","9","0","-","$",":","/",".","+","A","B","C","D");
 		$code_array2 = array("1111221","1112112","2211111","1121121","2111121","1211112","1211211","1221111","2112111","1111122","1112211","1122111","2111212","2121112","2121211","1121212","1122121","1212112","1112122","1112221");
-
 		// Convert to uppercase
 		$upper_text = strtoupper($text);
-
 		for ( $X = 1; $X<=strlen($upper_text); $X++ ) {
 			for ( $Y = 0; $Y<count($code_array1); $Y++ ) {
 				if ( substr($upper_text, ($X-1), 1) == $code_array1[$Y] )
@@ -99,7 +85,6 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 		}
 		$code_string = "11221211" . $code_string . "1122121";
 	}
-
 	// Pad the edges of the barcode
 	$code_length = 20;
 	if ($print) {
@@ -111,7 +96,6 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 	for ( $i=1; $i <= strlen($code_string); $i++ ){
 		$code_length = $code_length + (integer)(substr($code_string,($i-1),1));
         }
-
 	if ( strtolower($orientation) == "horizontal" ) {
 		$img_width = $code_length*$SizeFactor;
 		$img_height = $size;
@@ -119,16 +103,13 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 		$img_width = $size;
 		$img_height = $code_length*$SizeFactor;
 	}
-
 	$image = imagecreate($img_width, $img_height + $text_height);
 	$black = imagecolorallocate ($image, 0, 0, 0);
 	$white = imagecolorallocate ($image, 255, 255, 255);
-
 	imagefill( $image, 0, 0, $white );
 	if ( $print ) {
-		imagestring($image, 5, 31, $img_height, $text , $black );
+		imagestring($image, 5, 31, $img_height, ' ' , $black );
 	}
-
 	$location = 10;
 	for ( $position = 1 ; $position <= strlen($code_string); $position++ ) {
 		$cur_size = $location + ( substr($code_string, ($position-1), 1) );
@@ -149,5 +130,4 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 		imagedestroy($image);		
 	}
 }
-
 ?>

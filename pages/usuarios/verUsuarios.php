@@ -131,31 +131,28 @@
             <table class="table">
             <tr>              
               <th>Primer Nombre</th>
-              <th>Segundo Nombre</th>              
+              <th>Segundo Nombre</th>
+              <th>Primer Apellido</th>              
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="formUsuarionom1" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="formUsuarionom2" id="formUsuarionom2" aria-describedby="formUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
-            </tr>
-            <tr>              
-              <th>Primer Apellido</th>
-              <th>Segundo Apellido</th>              
-            </tr>
-            <tr>
               <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
-            <tr>              
+            <tr>       
+              <th>Segundo Apellido</th>
               <th>Usuario</th>
-              <th>Contraseña</th>              
+              <th>Contraseña</th>               
             </tr>
             <tr>
+              <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="formUsuariomote" id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
               <td><input type="password" class="form-control" name="formUsuariopass" id="formUsuariopass" aria-describedby="formUsuariopass" placeholder=""></td>
-            </tr>
+            </tr>           
             <tr>
               <th>Correo</th>
               <th>Tipo de cuenta</th> 
+              <th>Bachillerato</th> 
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="formUsuariocorreo" id="formUsuariocorreo" aria-describedby="formUsuariocorreo" placeholder=""></td>
@@ -177,21 +174,23 @@
                              <option value="2">PERSONAL ADMINISTRATIVO</option>           
                                                        
                  </select> </td> 
-                 <?php } ?>               
-            </tr>
-            <tr>          
-              <th>Bachillerato</th> 
-               <th>Seccion</th>             
-            </tr>
-            <tr>             
-              <td>
-                <select class="form-control " name='formUsuariobachi' id='formUsuariobachi' disabled="">
+                 <?php } ?>  
+                 <td> <select class="form-control " name='formUsuariobachi' id='formUsuariobachi' disabled="">
                              <option value="">Seleccione bachillerato</option>
                              <option value="0">SALUD</option>
                              <option value="1">MECANICA</option>
                              <option value="2">CONTADURIA</option>                            
                                                        
-                 </select> </td> 
+                 </select> </td>              
+            </tr>
+            <tr>          
+              
+               <th>Seccion</th>
+               <th>Año</th> 
+                        
+            </tr>
+            <tr>             
+                          
                  <td> <select class="form-control" name='formUsuarioseccion' id='formUsuarioseccion' disabled="">
                              <option value="">Seleccione la seccion</option>
                              <option value="0">SECCION A</option>
@@ -199,14 +198,8 @@
                              <option value="2">SECCION C</option>                            
                              <option value="3">SECCION D</option>                            
                                                        
-                 </select></td>             
-            </tr>
-             <tr>             
-              <th>Año</th> 
-              <th>Carnet</th>                
-            </tr>
-            <tr>         
-            <td>           
+                 </select></td>        
+                 <td>           
               <select class="form-control" name='formUsuarioanio' id='formUsuarioanio' disabled="">
                              <option value="">Seleccione el año</option>
                              <option value="0">PRIMER AÑO</option>
@@ -214,8 +207,9 @@
                              <option value="2">TERCER AÑO</option>                         
                                                        
                  </select> </td> 
-            <td><input type="text" class="form-control" name="formUsuariocarnet" id="formUsuariocarnet" aria-describedby="formUsuariocarnet" placeholder="" disabled=""></td> 
-            </tr>             
+              
+            </tr>
+                       
               
           </table>  
            </div>        
@@ -255,31 +249,31 @@
          <table class="table">
             <tr>              
               <th>Primer Nombre</th>
-              <th>Segundo Nombre</th>              
+              <th>Segundo Nombre</th>
+              <th>Primer Apellido</th>              
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="editUsuarionom1" id="editUsuarionom1" aria-describedby="editUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="editUsuarionom2" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
-            </tr>
-            <tr>              
-              <th>Primer Apellido</th>
-              <th>Segundo Apellido</th>              
-            </tr>
-            <tr>
               <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
             </tr>
             <tr>              
+              
+              <th>Segundo Apellido</th> 
               <th>Usuario</th>
-              <th>Contraseña Nueva:</th>              
+              <th>Contraseña Nueva:</th>                
             </tr>
             <tr>
+              
+              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="editUsuariomote" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
               <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""></td>
             </tr>
+           
             <tr>              
               <th>Correo</th>
-              <th>Tipo de cuenta</th>             
+              <th>Tipo de cuenta</th> 
+              <th>Bachillerato</th>             
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="editUsuariocorreo" id="editUsuariocorreo" aria-describedby="editUsuariocorreo" placeholder=""></td> 
@@ -300,14 +294,7 @@
                              <option value="3">ESTUDIANTE</option>                   
                                                        
                  </select></td> 
-              <?php } ?>         
-            </tr>
-             <tr>              
-              <th>Bachillerato</th> 
-              <th>Seccion</th>              
-            </tr>
-            <tr> 
-
+              <?php } ?>       
               <td>
                 <select class="form-control js-Dropdown-Busqueda" name='editUsuariobachi' id='editUsuariobachi' 
                 >
@@ -315,7 +302,16 @@
                              <option value="1">MECANICA</option>
                              <option value="2">CONTADURIA</option>                            
                                                        
-                 </select> </td>             
+                 </select> </td>   
+            </tr>
+             <tr>      
+              <th>Seccion</th>  
+              <th>Año</th> 
+                         
+            </tr>
+            <tr> 
+
+                          
               <td>
                 <select class="form-control js-Dropdown-Busqueda" name='editUsuarioseccion' id='editUsuarioseccion' 
                 >
@@ -324,15 +320,8 @@
                              <option value="2">SECCION C</option>                            
                              <option value="3">SECCION D</option>                            
                                                        
-                 </select></td>             
-               
-            </tr>             
-             <tr>              
-              <th>Año</th> 
-              <th>Carnet</th>               
-            </tr>
-            <tr>
-              <td>           
+                 </select></td>    
+                  <td>           
               <select class="form-control js-Dropdown-Busqueda" name='editUsuarioaniobachi' id='editUsuarioaniobachi'  
               >
                              <option value="0">PRIMER AÑO</option>
@@ -340,14 +329,10 @@
                              <option value="2">TERCER AÑO</option>                         
                                                        
                  </select> </td> 
-              <td><input type="text" class="form-control" name="editUsuariocarnet" id="editUsuariocarnet" aria-describedby="editUsuariocarnet" placeholder="" 
-                ></td>
-                          
-
-              
-            </tr>
-              
-          
+                      
+               
+            </tr>             
+            
           </table>
               
               </div>
@@ -673,10 +658,7 @@ function insertarUsuario(){
         }else if ($("#formUsuarioseccion").val()=="") {
               $("#respuestaNuevoUsuario").show();
               $("#respuestaNuevoUsuario").html("Campo Seccion esta Vacio");
-        }else if ($("#formUsuariocarnet").val()=="") {
-              $("#respuestaNuevoUsuario").show();
-              $("#respuestaNuevoUsuario").html("Campo Carnet esta Vacio");        
-            }
+        }
              else {
                 $("#respuestaNuevoUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
                  var url = "pages/usuarios/insertarUsuario.php";
@@ -808,10 +790,7 @@ function editarUsuario(){
         }else if ($("#editUsuarioseccion").val()=="") {
               $("#respuestaEditarUsuario").show();
               $("#respuestaEditarUsuario").html("Campo Seccion esta Vacio");
-        }else if ($("#editUsuariocarnet").val()=="") {
-              $("#respuestaEditarUsuario").show();
-              $("#respuestaEditarUsuario").html("Campo Carnet esta Vacio");        
-            }
+        }
             else{
                 $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/usuarios/editarUsuario.php";
@@ -959,7 +938,7 @@ function limpiarFormularioUsuario(){
        document.getElementById('editUsuarionom2').value = varusuarionom2;
        document.getElementById('editUsuarioape1').value = varusuarioape1;
        document.getElementById('editUsuarioape2').value = varusuarioape2;
-       document.getElementById('editUsuariocarnet').value = varusuariocarnet;
+      
        document.getElementById('editUsuariocorreo').value = varusuariocorreo;      
        document.getElementById('editUsuariomote').value = varusuariomote;
        document.getElementById('editUsuarioaniobachi').value = varusuarioaniobachi;

@@ -24,7 +24,7 @@
     if ($editUsuarionivel=='3') {
          
           $editUsuarioseccion=$_POST['editUsuarioseccion'];
-          $editUsuariocarnet=$_POST['editUsuariocarnet'];
+          $editUsuariocarnet=$_POST['editUsuariomote'];
           $editUsuariobachi=$_POST['editUsuariobachi'];
           $editUsuarioaniobachi=$_POST['editUsuarioaniobachi'];
 

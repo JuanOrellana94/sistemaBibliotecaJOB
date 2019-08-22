@@ -22,7 +22,7 @@
   	          $formUsuariobachi=$_POST['formUsuariobachi'];
              $formUsuarioanio=$_POST['formUsuarioanio'];
              $formUsuarioseccion=$_POST['formUsuarioseccion'];
-             $formUsuariocarnet=$_POST['formUsuariocarnet'];
+             $formUsuariocarnet=$_POST['formUsuariomote'];
 
             $sql1 = ("SELECT  $varUsuCodigo+1 as codigo,$varCarnet as carnet from $tablaUsuarios order by $varUsuCodigo desc limit 1");
             $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));

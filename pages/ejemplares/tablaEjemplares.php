@@ -222,7 +222,7 @@
 						$sql="SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t2.$varestcod as EstanteCodigo, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
                                    WHERE 	
                                   t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND   
-		                           $varejemcodreg LIKE '%$textBusqueda%'	OR  t1.$varejemcodbar LIKE '%$textBusqueda%' ";
+		                           $varejemcodreg LIKE '%$textBusqueda%'	AND  t1.$varejemcodbar LIKE '%$textBusqueda%' ";
 
 		                $sql.= $orderCod."  LIMIT $inicia_desde, $limite;";
 

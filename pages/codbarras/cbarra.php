@@ -86,7 +86,7 @@ $xcodigo=$_GET['xvalor'];
 	} 
 	function put_img($image){
 		header("Content-type: image/gif");
-         imagegif($image);
+        imagegif($image);
 		imagedestroy($image);
 	}
 

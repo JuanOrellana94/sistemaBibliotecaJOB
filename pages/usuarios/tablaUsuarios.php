@@ -144,8 +144,7 @@
 							<th>Apellidos</th>							                    
 							<th>Usuario</th>
 							<?php if ($varordenar==2) {
-							 ?>
-							<th>Carnet</th>
+							 ?>							
 							<th>Año</th>
 							<th>Seccion</th>
 							<th>Bachillerato</th>
@@ -282,8 +281,7 @@
 							<td><?php echo $dataLibros[$varPriApellido]." ".$dataLibros[$varSegApellido]; ?></td>					
 							<td><?php echo $dataLibros[$varAccNombre]; ?></td>
                               <?php if ($dataLibros[$varNivel]==3) {
-							 ?>	
-							<td><?php echo $dataLibros[$varCarnet]; ?></td>
+							 ?>								
 							<td><?php echo $ANIO; ?></td>
 							<td><?php echo $SECCION; ?></td>
 							<td><?php echo $BACHI; ?></td>
