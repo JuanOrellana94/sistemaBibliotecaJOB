@@ -3,23 +3,46 @@
 	include("../vars.php");
 	include("../sessionControl/conection.php");
 	$limite = 20;
+
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
 	 $pagina=1; 
 	};
+
+	
+	if (isset($_GET["busqueda"])) { 
+		$textBusqueda  = $_GET["busqueda"]; 
+	} else {
+		$textBusqueda=""; 
+	};
+
      if ($_SESSION['usuNivelNombre']=='Administrador') {
 	     	# code...
 	  	     $bloqueo="disabled";
 	     }else{
 	     	$bloqueo="";
-	     }   
-
-	if (isset($_GET["busqueda"])) { 
-		$textBusqueda  = $_GET["busqueda"]; 
+	     }
+	     //NEW UPDATE
+	     //EXISTE ORDER SI NO DEFAULT ORDENAR POR CODIGO LIBRO
+	if (isset($_GET["order"])) { 
+		if ($_GET["order"]=='cod') {
+			$orderCod  = " ORDER BY $varlibcod "; 	
+		} else if ($_GET["order"]=='titu') {
+			$orderCod  = " ORDER BY $varlibtit "; 	
+		} if ($_GET["order"]=='aut') {
+			$orderCod  = " ORDER BY $varautnom "; 	
+		} if ($_GET["order"]=='edi') {
+			$orderCod  = " ORDER BY $vareditnom "; 	
+		} if ($_GET["order"]=='gen') {
+			$orderCod  = " ORDER BY $vardewtipcla "; 	
+		} 
+		
 	} else {
-	 $textBusqueda=""; 
+		//DEFAULT
+	 $orderCod="ORDER BY $varlibcod"; 
 	};
+	//END
 
 	$sql = "SELECT COUNT($varlibcod) 
       FROM $tablaLibros as libro 
@@ -30,9 +53,8 @@
 		$varlibtit LIKE '%$textBusqueda%' OR
 		$varautnom LIKE '%$textBusqueda%' OR
 		$vareditnom LIKE '%$textBusqueda%' OR
-		$vardewtipcla LIKE '%$textBusqueda%' OR
-		$vardewtipcla  LIKE '%$textBusqueda%'
-	ORDER BY $varlibcod; ";  
+		$vardewtipcla LIKE '%$textBusqueda%'
+	 ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -60,6 +82,15 @@
           var paginaNumero = this.id;
         $("#cargarTablaLibros").load("src/libs/tables/tablaLibros.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
       });
+
+
+    function colorder(x){
+    	var orderby = x
+    	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
+    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina=1&order='+orderby);
+    }
+
+
 </script>
 
   <?php
@@ -70,22 +101,89 @@
 	?>			
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
-						<tr>
-							<th>Codigo</th>
-							<th> Titulo</th>
-							<th>Autor</th>
-							<th>Editorial</th>
-							<th>Genero</th>
+						<tr style=" cursor: pointer;">
+								<?php
+							     //EXISTE ORDER SI NO DEFAULT ORDENAR POR CODIGO LIBRO
+								if (isset($_GET["order"])) { 
+									if ($_GET["order"]=='cod') {
+										?>
+										<th class="bg-primary"	onclick="colorder('cod')">Codigo</th>
+										<th 	onclick="colorder('titu')"> Titulo</th>
+										<th 	onclick="colorder('aut')">Autor</th>
+										<th 	onclick="colorder('edi')">Editorial</th>
+										<th 	onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php	
+									} else if ($_GET["order"]=='titu') {
+										?>
+										<th 	onclick="colorder('cod')">Codigo</th>
+										<th class="bg-primary"	onclick="colorder('titu')"> Titulo</th>
+										<th 	onclick="colorder('aut')">Autor</th>
+										<th 	onclick="colorder('edi')">Editorial</th>
+										<th 	onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php 	
+									} if ($_GET["order"]=='aut') {
+										?>
+										<th 	onclick="colorder('cod')">Codigo</th>
+										<th onclick="colorder('titu')"> Titulo</th>
+										<th class="bg-primary"		onclick="colorder('aut')">Autor</th>
+										<th 	onclick="colorder('edi')">Editorial</th>
+										<th 	onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php 	
+									} if ($_GET["order"]=='edi') {
+										?>
+										<th 	onclick="colorder('cod')">Codigo</th>
+										<th onclick="colorder('titu')"> Titulo</th>
+										<th onclick="colorder('aut')">Autor</th>
+										<th class="bg-primary"	onclick="colorder('edi')">Editorial</th>
+										<th 	onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php 	 	
+									} if ($_GET["order"]=='gen') {
+										?>
+										<th 	onclick="colorder('cod')">Codigo</th>
+										<th onclick="colorder('titu')"> Titulo</th>
+										<th onclick="colorder('aut')">Autor</th>
+										<th onclick="colorder('edi')">Editorial</th>
+										<th class="bg-primary"	onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php 
+									} 
+									
+								} else {
+									//DEFAULT
+								 	?>
+										<th onclick="colorder('cod')">Codigo</th>
+										<th onclick="colorder('titu')"> Titulo</th>
+										<th onclick="colorder('aut')">Autor</th>
+										<th onclick="colorder('edi')">Editorial</th>
+										<th onclick="colorder('gen')">Genero</th>										
+										<th class="aTable">Opciones</th>
+
+										<?php 
+								};
+
+							?>
+
 							
-							<th class="aTable">Opciones</th>
+
+							
+						
 						</tr>
 					</thead>
 
 					<tbody>
 
 
-						<?php 
-							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaLibros as libro 
+						<?php
+							$sql="SELECT * FROM $tablaLibros as libro 
 								inner join $tablaDewey as dewey on libro.$varlibDew = dewey.$vardewcod 
 								inner join $tablaEditoral as edito on libro.$varlibedit = edito.$vareditcod 								
 								inner join $tablAutor as aut on libro.$varautcod=aut.$varautcod
@@ -93,10 +191,14 @@
 								$varlibtit LIKE '%$textBusqueda%' OR
 								$varautnom LIKE '%$textBusqueda%' OR
 								$vareditnom LIKE '%$textBusqueda%' OR
-								$vardewtipcla LIKE '%$textBusqueda%' OR
-								$vardewtipcla  LIKE '%$textBusqueda%'
-								ORDER BY libro.$varlibcod
-								LIMIT $inicia_desde, $limite;");
+								$vardewtipcla LIKE '%$textBusqueda%'
+								
+								";
+
+							//CONCATENAR OCN EL TIPO DE ORDENAMIENTO Y LIMITAR PARA PAGINADO
+							$sql .= $orderCod." LIMIT $inicia_desde, $limite;";
+							
+							$selTable=mysqli_query($conexion,$sql);
 
 						if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
