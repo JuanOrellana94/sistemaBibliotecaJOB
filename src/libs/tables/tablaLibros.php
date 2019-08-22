@@ -108,7 +108,7 @@
 								if (isset($_GET["order"])) { 
 									if ($_GET["order"]=='cod') {
 										?>
-										<th class="bg-primary text-white"	onclick="colorder('cod')">Codigo</th>
+										<th class="bg-primary text-white"	onclick="colorder('cod')">Codigo ISBN</th>
 										<th 	onclick="colorder('titu')"> Titulo</th>
 										<th 	onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
@@ -118,7 +118,7 @@
 										<?php	
 									} else if ($_GET["order"]=='titu') {
 										?>
-										<th 	onclick="colorder('cod')">Codigo</th>
+										<th 	onclick="colorder('cod')">Codigo ISBN</th>
 										<th class="bg-primary text-white"	onclick="colorder('titu')"> Titulo</th>
 										<th 	onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
@@ -128,7 +128,7 @@
 										<?php 	
 									} if ($_GET["order"]=='aut') {
 										?>
-										<th 	onclick="colorder('cod')">Codigo</th>
+										<th 	onclick="colorder('cod')">Codigo ISBN</th>
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th class="bg-primary text-white"		onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
@@ -138,7 +138,7 @@
 										<?php 	
 									} if ($_GET["order"]=='edi') {
 										?>
-										<th 	onclick="colorder('cod')">Codigo</th>
+										<th 	onclick="colorder('cod')">Codigo ISBN</th>
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
 										<th class="bg-primary text-white"	onclick="colorder('edi')">Editorial</th>
@@ -148,7 +148,7 @@
 										<?php 	 	
 									} if ($_GET["order"]=='gen') {
 										?>
-										<th 	onclick="colorder('cod')">Codigo</th>
+										<th 	onclick="colorder('cod')">Codigo ISBN</th>
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
 										<th onclick="colorder('edi')">Editorial</th>
@@ -160,8 +160,8 @@
 									
 								} else {
 									//DEFAULT
-								 	?>
-										<th onclick="colorder('cod')">Codigo ISBN</th>
+								 	?>  <th onclick="colorder('cod')">Codigo ISBN</th>
+										
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
 										<th onclick="colorder('edi')">Editorial</th>
