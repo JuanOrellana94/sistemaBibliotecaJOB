@@ -126,7 +126,7 @@ function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal"
 
 	imagefill( $image, 0, 0, $white );
 	if ( $print ) {
-		imagestring($image, 5, 31, $img_height, $text, $black );
+		imagestring($image, 5, 31, $img_height, $text , $black );
 	}
 
 	$location = 10;

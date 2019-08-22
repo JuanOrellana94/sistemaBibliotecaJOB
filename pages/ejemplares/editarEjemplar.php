@@ -36,7 +36,7 @@
 $sql=("SELECT  $varejemcod as codigo, $varejemcodreg as CodigoReg FROM $tablaEjemplares WHERE $varejemcod = $editejemplarcodigo");    
     $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
     while ($datacodigo2=mysqli_fetch_assoc($consulta)){
-         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['CodigoReg']) ."". '1234';
+         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['CodigoReg']);
       }
 	
 

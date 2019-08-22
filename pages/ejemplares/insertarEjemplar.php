@@ -29,7 +29,7 @@
    
 
      $sql=("SELECT t1.$vardewcodcla as dewe FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod WHERE t2.$varlibcod = $formejemplarcodlib");
-     $sql2=("SELECT lpad(count($varejemcod)+1,5,'0') as codigo from $tablaEjemplares where $varlibcod = $formejemplarcodlib");
+     $sql2=("SELECT lpad($varejemcod+1,5,'0') as codigo from $tablaEjemplares  order by ejemcod desc limit 1");
      $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
     $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
     while ($datacodigo=mysqli_fetch_assoc($consulta)){
@@ -41,7 +41,7 @@
    $sql1 = ("SELECT  ejemcod+1 as codigo from ejemplareslibros order by ejemcod desc limit 1");
     $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo) ."". '1234';
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo);
               
         }
    
