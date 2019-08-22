@@ -124,7 +124,7 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Pseudonimo</label>
+                <label for="TituloLabel">Codigo Cutter</label>
                 <input type="text" class="form-control" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
               </div>
 
@@ -179,7 +179,7 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Pseudonimo</label>
+                <label for="TituloLabel">Codigo Cutter</label>
                 <input type="text" class="form-control" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
               </div>
 

@@ -33,11 +33,6 @@
      $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
 
-$sql=("SELECT  $varejemcod as codigo, $varejemcodreg as CodigoReg FROM $tablaEjemplares WHERE $varejemcod = $editejemplarcodigo");    
-    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
-    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
-         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['CodigoReg']);
-      }
 	
 
 	 
@@ -53,8 +48,7 @@ $sql=("SELECT  $varejemcod as codigo, $varejemcodreg as CodigoReg FROM $tablaEje
 			$varejemtipadq='$editejemplartipoingreso',
 			$varejemdetcon='$editejemplarcomentario',
 			$varestcod='$editestantcod',
-			$varejemdetaqu='$inputdetalle',
-			$varejemcodbar='$formejemplarcodbarra'
+			$varejemdetaqu='$inputdetalle'
 			WHERE $varejemcod ='$editejemplarcodigo';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));

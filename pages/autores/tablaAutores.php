@@ -86,7 +86,7 @@
 					<thead>
 						<tr>
 							<th> Nombre del Autor</th>
-							<th>Pseudonimo</th>
+							<th>Codigo Cutter</th>
 	
 							
 							<th class="aTable">Opciones</th>

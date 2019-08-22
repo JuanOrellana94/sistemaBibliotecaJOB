@@ -6,7 +6,7 @@
 
   $xejemplar = $_GET['codeje'];
   $codigoLib = $_GET['codigoLib'];
-  $sql = "SELECT ejemcod, ejemcodreg, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE libros.libcod = '$codigoLib' AND  ejemplareslibros.ejemcodreg =  '$xejemplar' ";
+  $sql = "SELECT ejemcod,ejemcodreg, ejemcodbar, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE libros.libcod = '$codigoLib' AND  ejemplareslibros.ejemcodreg =  '$xejemplar' ";
    $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));      
 ?>
 
@@ -17,7 +17,7 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) { 
           $numejemplar= substr($ejemplar['ejemcodreg'],-5);           
           echo "<b>" . $ejemplar['libtit'] . "</b>, Ejemplar #" . $numejemplar ."<br>";
-          $codbarra =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']); 
+          $codbarra =str_replace("-", "", $ejemplar['ejemcodbar']); 
           echo "<div><img src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'></div>";          
       }
       echo "<br>" . $codbarra;

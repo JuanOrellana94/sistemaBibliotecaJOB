@@ -9,7 +9,7 @@
  
 
   $xejemplar = $_GET['codeje'];
-  $sql = "SELECT ejemcod, ejemcodreg, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE ejemplareslibros.ejemcodreg = '" . $xejemplar . "'";
+  $sql = "SELECT ejemcod, ejemcodreg, ejemcodbar, libtit FROM ejemplareslibros INNER JOIN libros ON libros.libcod = ejemplareslibros.libcod WHERE ejemplareslibros.ejemcodreg = '" . $xejemplar . "'";
    $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));  
 
        $pdf = new FPDF();
@@ -21,7 +21,7 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
            $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-           $code =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']);           
+           $code = '4847832';           
            
             barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
             $pdf->Cell(50,15,$datos,0,1,'C');
