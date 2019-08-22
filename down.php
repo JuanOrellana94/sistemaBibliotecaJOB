@@ -5,9 +5,15 @@
           font-size: 20px;
 
         }
+  .navbot{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 100%
+  }
 </style>
-
-<nav class="navbar fixed-bottom " style="background-color:#003764;">
+<br>
+<nav class="navbar navbot" style="background-color:#003764;">
   <a class="navbar-brand" ></a>
 
 	<div class="textBottom"><small>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</small>
