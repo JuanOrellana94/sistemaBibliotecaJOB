@@ -64,7 +64,7 @@
                         <ul class='pagination justify-content-center"' id="pagination">
                         <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
                             if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li> 
+                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><input type="text" hidden value="<?php echo $i;?>" id="paginaColumn"><?php echo $i;?></a></li> 
                             <?php else:?>
                             <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
                             <?php endif;?>    
@@ -86,8 +86,9 @@
 
     function colorder(x){
     	var orderby = x
+    	var paginaNumero=$("#paginaColumn").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina=1&order='+orderby);
+    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina='+paginaNumero+'&order='+orderby);
     }
 
 
