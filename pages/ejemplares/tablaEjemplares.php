@@ -75,7 +75,7 @@
                         <ul class='pagination justify-content-center"' id="pagination">
                         <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
                             if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link"  href="pagination.php?page=<?php echo $i;?>"><input type="text" hidden value="<?php echo $i;?>" id="paginaColumn"><?php echo $i;?></a></li> 
+                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link"  href="pagination.php?page=<?php echo $i;?>"><?php echo $i;?></a></li> 
                             <?php else:?>
                             <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href="pagination.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
                             <?php endif;?>    
@@ -99,11 +99,10 @@
      function colorder(x){
     	var orderby = x
     	var ordenar=$("#textBusquedaordenar").val();
-    	var paginaNumero=$("#paginaColumn").val();
     	var variablecod=$("#codigoLib").val();
     	var busqueda=$("#textBusqueda").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina="+paginaNumero+"&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar+"&order="+orderby);
+    	 $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar+"&order="+orderby);
     }
 
 </script>
@@ -134,7 +133,7 @@
 
 										<?php	
 									} else if ($_GET["order"]=='c2') {
-										$orderCod  = " ORDER BY $varestdes"; 
+										$orderCod  = " ORDER BY $varestdes "; 
 										?>
 										<th 	onclick="colorder('c1')">Codigo</th>
 										<th class="bg-primary text-white" onclick="colorder('c2')"> Ubicacion</th>
@@ -196,7 +195,7 @@
 									}
 							}else {
 									//DEFAULT
-								 $orderCod=" ORDER BY $varejemcodreg";
+								 $orderCod="ORDER BY $varlibcod";
 								 ?>
 									<th 	onclick="colorder('c1')">Codigo</th>
 									<th 	onclick="colorder('c2')">Ubicacion</th>
@@ -219,20 +218,13 @@
 
 
 						<?php 
-						$sql="SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t2.$varestcod as EstanteCodigo, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
+					     
+					     $selTable=mysqli_query($conexion,"SELECT  t1.$varejemcod  as Codigo, t1.$varejemdetcon as Comentario, t3.$varlibpor as Portada, t1.$varejemcodreg as CodigoReg ,t1.$varejemfecadq as Fecha ,t1.$varejempruni as Precio,t1.$varejemestu as Estado, t1.$varejemtipadq as Ingreso,t1.$varejemdetaqu as detalleIngreso, t1.$varejemconfis as Condicion ,t1.$varejemres as Reserva ,t2.$varestdes as Estante, t2.$varestcod as EstanteCodigo, t3.$varlibtit as Titulo, t3.$varlibcod as CodigoLib FROM $tablaEjemplares AS t1 JOIN $tablaEstante as t2 on t2.$varestcod = t1.$varestcod JOIN $tablaLibros as t3 on t3.$varlibcod = t1.$varlibcod 		
                                    WHERE 	
                                   t3.$varlibcod = '$CodigoLibPrincipal' AND  t1.$varejemestu = '$textBusquedaorde' AND                  
-		                          $varejemcodreg LIKE '%$textBusqueda%'	OR  t1.$varejemcodbar LIKE '%$textBusqueda%' ";
-
-		                $sql.= $orderCod."  LIMIT $inicia_desde, $limite;";
-
-		                
-					     
-					     $selTable=mysqli_query($conexion,$sql);
-
-
-
-
+		                          $varejemcodreg LIKE '%$textBusqueda%'	OR  t1.$varejemcodbar LIKE '%$textBusqueda%'
+	                       ORDER BY 'CodigoReg'
+                            LIMIT $inicia_desde, $limite;");
 	                       
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
