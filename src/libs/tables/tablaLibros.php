@@ -161,7 +161,7 @@
 								} else {
 									//DEFAULT
 								 	?>
-										<th onclick="colorder('cod')">Codigo</th>
+										<th onclick="colorder('cod')">Codigo ISBN</th>
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
 										<th onclick="colorder('edi')">Editorial</th>

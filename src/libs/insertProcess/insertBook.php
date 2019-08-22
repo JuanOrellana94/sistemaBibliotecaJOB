@@ -6,7 +6,7 @@
 
 
 	$libtit=strtoupper($_POST['libtit']);
-	$libdes=strtoupper($_POST['libdes']);
+	$libdes=$_POST['libdes'];
 	$libpor="img/portadas/Default.jpg";
 	$libfecedi=$_POST['libfecedi'];
 	$libnumpag=$_POST['libnumpag'];
@@ -14,7 +14,7 @@
 	$libgenaut=strtoupper($_POST['autnom']);//genaut Ahora es autnom	
 	$libDew=$_POST['dewcod'];
 	$libedit=$_POST['editcod'];
-	$libtags=strtoupper($_POST['libtags']);
+	$libtags=$_POST['libtags'];
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];

@@ -17,7 +17,7 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) { 
           $numejemplar= substr($ejemplar['ejemcodreg'],-5);           
           echo "<b>" . $ejemplar['libtit'] . "</b>, Ejemplar #" . $numejemplar ."<br>";
-          $codbarra =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']) . '1234'; 
+          $codbarra =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']); 
           echo "<div><img src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'></div>";          
       }
       echo "<br>" . $codbarra;

@@ -21,7 +21,7 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
            $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-           $code =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']) . '1234';           
+           $code =$ejemplar['ejemcod'] . str_replace("-", "", $ejemplar['ejemcodreg']);           
            
             barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
             $pdf->Cell(50,15,$datos,0,1,'C');
