@@ -4,7 +4,7 @@
 	date_default_timezone_set("America/El_Salvador");
 ?>  
 	<div class="dropdown-divider"></div>
-	<div style="text-align: center"> <p class="text-muted">Libros - Actividades de hoy</p> </div>
+	<div style="text-align: center"> <p class="text-muted">Actividades de hoy</p> </div>
 	<div class="dropdown-divider"></div> 
 <?php
 	$count=0;
@@ -28,11 +28,16 @@
 	$sql="SELECT COUNT($varprestcod) FROM $varresumenlibroprestamo WHERE $varprestest = '1' AND  DATE_FORMAT($varprestfechafin,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
 	$profileData=mysqli_query($conexion,$sql);
 	$count = mysqli_fetch_array($profileData);
+	$sql="SELECT COUNT($varprestcodequi) FROM $varresumenequipoprestamo  WHERE $varprestestequi = '1' AND  DATE_FORMAT($varprestfechafinEquipo,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
+
+    $profileData=mysqli_query($conexion,$sql);
+    $countEquip= mysqli_fetch_array($profileData);
+    $countPrint=$count[0]+$countEquip[0];
 ?>
 	
 		<div class="row">
 			<button type="button" class="btn btn-info btn-block"  data-toggle="tooltip" data-placement="right" title="Total de devoluciones realizadas este dia">
-				<span class="badge badge-light"><?php  echo $count[0];?></span> <small>  Devoluciones Realizadas </small>
+				<span class="badge badge-light"><?php  echo $countPrint;?></span> <small>  Devoluciones Realizadas </small>
 		 	</button>
 
 		</div>
@@ -43,11 +48,16 @@
 	$sql="SELECT COUNT($varprestcod) FROM $varresumenlibroprestamo WHERE $varprestest = '0' AND  DATE_FORMAT($varprestdev,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
 	$profileData=mysqli_query($conexion,$sql);
 	$count = mysqli_fetch_array($profileData);
+	$sql="SELECT COUNT($varprestcodequi) FROM $varresumenequipoprestamo  WHERE $varprestestequi = '1' AND  DATE_FORMAT($varprestdevequi,'$formatDateSend') = DATE_FORMAT(NOW(), '$formatDateSend' );";
+
+    $profileData=mysqli_query($conexion,$sql);
+    $countEquip= mysqli_fetch_array($profileData);
+    $countPrint=$count[0]+$countEquip[0];
 ?>
 	
 		<div class="row">
 			<button type="button" class="btn btn-warning btn-block"  data-toggle="tooltip" data-placement="right" title="Prestamos con limite de entrega para hoy">
-				<span class="badge badge-light"><?php  echo $count[0];?></span> <small> Para devolver hoy </small>
+				<span class="badge badge-light"><?php  echo $countPrint;?></span></span> <small> Para devolver hoy </small>
 		 	</button>
 
 		</div>
@@ -60,6 +70,7 @@
 	
 	$(function () {
   $('[data-toggle="tooltip"]').tooltip()
+ 
 })
 </script>
 

@@ -220,16 +220,21 @@
 							while ($dataEquipos=mysqli_fetch_assoc($selTable)){
 								if ($dataEquipos[$varexistestu]==0) {
 									$icon='devGreen.png';
+									$tooltip=' title="Devuelto" ';
+
 								} else if ($dataEquipos[$varexistestu]==1) {
 									$icon='devBlue.png';
+									$tooltip=' title="Prestado" ';
 								} else if ($dataEquipos[$varexistestu]==2) {
 									$icon='devGray.png';
+									$tooltip=' title="No Disponible" ';
 								} else if ($dataEquipos[$varexistestu]==3) {
 									$icon='devRed.png';
+									$tooltip=' title="Extraviado" ';
 								}
 						?>
-						<tr>
-							<td><img src="img/icons/<?php echo $icon;?>" style="max-width:40px"></td>
+						<tr >
+							<td > <img data-toggle="tooltip" data-placement="right" <?php echo $tooltip;?>  src="img/icons/<?php echo $icon;?>" style="max-width:40px"></td>
 							<td><?php echo $dataEquipos[$varexistcodreg];?> </td>
 							<td><?php echo $dataEquipos[$varequitip];?> </td>					
 							 

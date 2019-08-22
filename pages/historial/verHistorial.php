@@ -18,12 +18,18 @@
           <h5 class="card-header">Actividades</h5>
           <div class="card-body">
             <div class="row">
-              <button type="button" class="btn btn-primary btn-block" onclick="location.href = 'acciones.php?pageLocation=prestamos';">
-                <small>  Hacer Prestamo</small>
-              </button>
-               <button type="button" class="btn btn-primary btn-block" onclick="location.href = 'acciones.php?pageLocation=devoluciones';">
-                <small>  Hacer Devolucion</small>
-              </button>
+              <div class="col-lg-6">
+                <button type="button" class="btn  btn-light btn-block" data-toggle="tooltip" data-placement="right" title="Hacer Devolucion" onclick="location.href = 'acciones.php?pageLocation=devoluciones';">
+                   <img src="img/icons/PrestamoDevolucion.png" style="max-width: 100%">
+                </button>
+              </div>
+              <div class="col-lg-6">
+                <button type="button" data-toggle="tooltip" data-placement="right" title="Realizar un prestamo" class="btn btn-light btn-block" onclick="location.href = 'acciones.php?pageLocation=prestamos';">
+                  <img src="img/icons/Prestamo.png" style="max-width: 100%">
+                </button>
+              </div>
+              
+              
             </div>
           </div>
         </div>
@@ -95,7 +101,7 @@
                        <div class="btn-group btn-group-toggle " data-toggle="buttons">
 
                     
-                      <input type="input"  id="codigoLibro" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
+                      <input type="input" onkeypress="return isNumberKey(event)" id="codigoLibro" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
                       
 
                         <button class="btn btn-primary" onclick="recargarPrestamosGeneral()" type="button"> <small> Buscar  </small></button>
@@ -132,7 +138,7 @@
                        <div class="btn-group btn-group-toggle " data-toggle="buttons">
 
                     
-                      <input type="input"  id="codigoEquipo" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
+                      <input type="input" onkeypress="return isNumberKey(event)" id="codigoEquipo" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
                       
 
                         <button class="btn btn-primary" onclick="recargarPrestamosGeneralEquipo()" type="button"> <small> Buscar  </small></button>
@@ -171,14 +177,11 @@
       </div>
         <div class="col-lg-3 mb-4  sm-4">
         <div class="card bg-light h-100">
-          <h5 class="card-header">Informacion</h5>
-          <div class="card-body">
-
-            <div id="cargarDetallesInfo">
-              <div class="d-flex justify-content-center"> <p style="text-align: center" class="text-muted">Haz click sobre registro para mas  informacion</p> </div>
-            </div>
-            
-          </div>
+          <h5 class="card-header">Informacion  <button style="max-width: 20%; margin-top: -2%; margin-right: -5%" disabled type="button" data-toggle="tooltip" data-placement="right" id="cerrarInfo" title="Cerrar" onclick="cargarInfoArea()
+" class="btn btn-link float-right">
+                  <img src="img/icons/quit.png" style="max-width: 100%">
+              </button> </h5> 
+          <div id="infoArea"></div>
           
         </div>
       </div>
@@ -198,10 +201,14 @@
     
       recargarIndicadoresGeneral()
 
+      cargarInfoArea()
+
+
 
       $(window).keydown(function(event){
         if(event.keyCode == 13) {
           recargarPrestamosGeneral();
+          recargarPrestamosGeneralEquipo();
           event.preventDefault();
           return false;
         
@@ -215,6 +222,7 @@
 
 //Funcion para cargar y recargar tabla de solicitudes
 function recargarPrestamosGeneral(){
+
    $("#historialTablaEquipo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
    
   $("#historialTabla").show();
@@ -246,7 +254,7 @@ function recargarIndicadoresGeneral(){
 }
 
 function recargarPrestamosGeneralEmpty(){
-  document.getElementById("formBusquedaLibroCodigo").reset(); 
+
   $("#historialTabla").show();
   $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
@@ -258,6 +266,7 @@ function recargarPrestamosGeneralEmpty(){
   //  }, 1000);
 }
 function recargarPrestamosGeneralEquipo(){
+  document.getElementById("formBusquedaLibroCodigo").reset(); 
   $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
    
@@ -362,6 +371,7 @@ function cargarDetalles(x){
 
   var busqueda=x;
   $("#cargarDetallesInfo").load("pages/historial/detallesPrestamo.php?busqueda="+ busqueda);
+  document.getElementById("cerrarInfo").disabled = false;
 
 
 
@@ -369,15 +379,41 @@ function cargarDetalles(x){
 
 function cargarDetallesEquipo(x){
 
+
+
    $("#cargarDetallesInfo").show();
   $("#cargarDetallesInfo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
   var busqueda=x;
   $("#cargarDetallesInfo").load("pages/historial/detallesPrestamoEquipo.php?busqueda="+ busqueda);
 
+  document.getElementById("cerrarInfo").disabled = false;
+
 
 
 }
+
+function cargarInfoArea(){
+
+
+
+  $("#infoArea").load("pages/historial/infoArea.php");
+  document.getElementById("cerrarInfo").disabled = true;
+
+   $('[data-toggle="tooltip"]').tooltip('hide');
+
+
+
+}
+
+function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
 
 
 

@@ -246,16 +246,20 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 								if ($dataLibros[$varejemestu]==0) {
 									$icon='devGreen.png';
+									$tooltip=' title="Devuelto" ';
 								} else if ($dataLibros[$varejemestu]==1) {
 									$icon='devBlue.png';
+									$tooltip=' title="Prestado" ';
 								} else if ($dataLibros[$varejemestu]==2) {
 									$icon='devGray.png';
+									$tooltip=' title="No Disponible" ';
 								} else if ($dataLibros[$varejemestu]==3) {
 									$icon='devRed.png';
+									$tooltip=' title="Extraviado" ';
 								}
 						?>
 						<tr>
-							<td><img src="img/icons/<?php echo $icon;?>" style="max-width:40px"></td>
+							<td><img data-toggle="tooltip" data-placement="right" <?php echo $tooltip;?> src="img/icons/<?php echo $icon;?>" style="max-width:40px"></td>
 							<td><?php echo $dataLibros[$varejemcodreg];?> </td>
 							<td><?php echo $dataLibros[$varlibtit];?> </td>					
 							 
