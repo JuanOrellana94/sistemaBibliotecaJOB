@@ -2,7 +2,6 @@
   
 
 
- 
   $servidor="localhost";
   $usuario="bibliocnx";
   $clave="Biblioteca123$";
@@ -39,12 +38,12 @@
    $varSegApellido="ususegape";
    $varCarnet="usucarnet";
    $varCorreo="usucorre";
-   $varusucodbar="usucodbar";
    $varCueEstatus="usuestcue";
    $varAnoBachi="usuanobac";
    $varSecAula="ususecaul";
    $varTipBachi="usutipbac";
    $varNivel="usunivel";
+   $varusucodbar="usucodbar";
 
   //1Nombre de tabla LIBROS
 
@@ -107,8 +106,8 @@
         // TABLA EJEMPLARES
      $tablaEjemplares="ejemplareslibros";
 
-  
- // 8 NOMBRE TABLA EJEMPLARESLIBROS ejemcod, ejemcodreg, ejemfecadq, ejemtipadq, ejemdetaqu, ejempruni, ejemestu, ejemconfis, ejemdetcon, ejemres, estcod, libcod, ejemcodbar
+     
+ // 8 NOMBRE TABLA EJEMPLARESLIBROS ejemcod, ejemcodreg, ejemfecadq, ejemtipadq, ejemdetaqu, ejempruni, ejemestu, ejemconfis, ejemdetcon, ejemres, estcod, libcod
 
     $varejemcod="ejemcod";
     $varejemcodreg="ejemcodreg";
@@ -118,11 +117,11 @@
     $varejemestu="ejemestu";
     $varejemconfis="ejemconfis";
     $varejemdetcon="ejemdetcon";
-    $varejemcodbar='ejemcodbar';
     $varejemres="ejemres";
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
     $varejemtipadq="ejemtipadq";
+    $varejemcodbar='ejemcodbar';
 
  // TABLA EQUIPO
       $tablaEquipo="equipo";
@@ -135,7 +134,7 @@
 
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
-////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod,existcodbar
+////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
     $varexistcod="existcod";
     $varexistcodreg="existcodreg";
     $varexistfecadq="existfecadq";
@@ -143,13 +142,13 @@
     $varexistdetadq="existdetadq";
     $varexistpreuni="existpreuni";
     $varexistestu="existestu";
-    $varexistcodbar='existcodbar';
     $varexistmarca="existmarca";    
     $varexistconfis="existconfis";
     $varexistdesest="existdesest";
     $varestcod="estcod";
     $varequicodExist="equicod";
     $varequicod="equicod";
+    $varexistcodbar='existcodbar';
 
 
 
@@ -176,7 +175,8 @@
     $varprestest="prestestlib";
     $varprestren="prestrenlib";
     $varusuCodigoF="usuCodigo";
-    $varusuCodBiblio="usuCodBiblio";
+    $varusuCodBiblio="usuCodBiblio"; 
+    $varprestfechafin="prestfechafin";
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod
@@ -201,6 +201,7 @@
     $varprestestequi="prestestequi";
     $varusuCodigoFEquipo="usucod";
     $varusuCodBiblioEquipo="usuCodBiblioEquipo";
+     $varprestfechafinEquipo="prestfechafinEquipo";
 
 
 //detallesprestamolibro; 
