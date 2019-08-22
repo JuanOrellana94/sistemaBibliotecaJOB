@@ -10,24 +10,18 @@
        }   
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Estantes</li>
-    </ol>
-  </nav>        
-
+ 
+<br>
 <!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
 <div class="container-fluid" > 
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
           <div class="row mx-auto">
-            <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Catalogo de Estantes</h3>  Administrar informacion de Estantes.</p>       
-            </div>           
+            <div style="vertical-align: middle;">
+               <h4 class="card-title"> <a class="navbar-brand">
+             <img src="img/icons/Bookstand.png" width="80" height="80" alt="" style="margin-top: -10%; margin-bottom: -35%; ">
+            </a> Estantes </h4>
           </div>     
         </div>
         <!--Cuerpo del panel--> 
