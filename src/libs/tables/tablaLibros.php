@@ -107,7 +107,7 @@
 								if (isset($_GET["order"])) { 
 									if ($_GET["order"]=='cod') {
 										?>
-										<th class="bg-primary"	onclick="colorder('cod')">Codigo</th>
+										<th class="bg-primary text-white"	onclick="colorder('cod')">Codigo</th>
 										<th 	onclick="colorder('titu')"> Titulo</th>
 										<th 	onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
@@ -118,7 +118,7 @@
 									} else if ($_GET["order"]=='titu') {
 										?>
 										<th 	onclick="colorder('cod')">Codigo</th>
-										<th class="bg-primary"	onclick="colorder('titu')"> Titulo</th>
+										<th class="bg-primary text-white"	onclick="colorder('titu')"> Titulo</th>
 										<th 	onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
 										<th 	onclick="colorder('gen')">Genero</th>										
@@ -129,7 +129,7 @@
 										?>
 										<th 	onclick="colorder('cod')">Codigo</th>
 										<th onclick="colorder('titu')"> Titulo</th>
-										<th class="bg-primary"		onclick="colorder('aut')">Autor</th>
+										<th class="bg-primary text-white"		onclick="colorder('aut')">Autor</th>
 										<th 	onclick="colorder('edi')">Editorial</th>
 										<th 	onclick="colorder('gen')">Genero</th>										
 										<th class="aTable">Opciones</th>
@@ -140,7 +140,7 @@
 										<th 	onclick="colorder('cod')">Codigo</th>
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
-										<th class="bg-primary"	onclick="colorder('edi')">Editorial</th>
+										<th class="bg-primary text-white"	onclick="colorder('edi')">Editorial</th>
 										<th 	onclick="colorder('gen')">Genero</th>										
 										<th class="aTable">Opciones</th>
 
@@ -151,7 +151,7 @@
 										<th onclick="colorder('titu')"> Titulo</th>
 										<th onclick="colorder('aut')">Autor</th>
 										<th onclick="colorder('edi')">Editorial</th>
-										<th class="bg-primary"	onclick="colorder('gen')">Genero</th>										
+										<th class="bg-primary text-white"	onclick="colorder('gen')">Genero</th>										
 										<th class="aTable">Opciones</th>
 
 										<?php 
