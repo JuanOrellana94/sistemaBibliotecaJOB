@@ -122,6 +122,8 @@
     $varejemlibcod="libcod";
     $varejemtipadq="ejemtipadq";
     $varejemcodbar='ejemcodbar';
+    $varejemfecreg='ejemfecreg';
+    $varejemfecest='ejemfecest';
 
  // TABLA EQUIPO
       $tablaEquipo="equipo";
@@ -135,7 +137,7 @@
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
 ////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
-    $varexistcod="existcod";
+   $varexistcod="existcod";
     $varexistcodreg="existcodreg";
     $varexistfecadq="existfecadq";
     $varexisttipadq="existtipadq";
@@ -149,7 +151,8 @@
     $varequicodExist="equicod";
     $varequicod="equicod";
     $varexistcodbar='existcodbar';
-
+    $varexistfecreg='existfecreg';
+    $varexistfecest='existfecest';
 
 
  //TABLA SOLICITUD DE PRESTAMO BOLSA PRESTAMO   BOLSAPRESTAMO

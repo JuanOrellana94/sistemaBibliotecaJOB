@@ -48,7 +48,8 @@
 			$varejemtipadq='$editejemplartipoingreso',
 			$varejemdetcon='$editejemplarcomentario',
 			$varestcod='$editestantcod',
-			$varejemdetaqu='$inputdetalle'
+			$varejemdetaqu='$inputdetalle',
+			$varejemfecest=NOW()
 			WHERE $varejemcod ='$editejemplarcodigo';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
