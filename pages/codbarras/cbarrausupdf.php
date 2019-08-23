@@ -23,7 +23,7 @@
 		
 		barcode('codigos/'.$code.'.png', $code);
 		$pdf->Cell(50,15,$datos,0,1,'C');
-		$pdf->Image('codigos/'.$code.'.png',10,$y+10,50,0,'PNG');		
+		$pdf->Image('codigos/'.$code.'.png',10,$y+10,50,10,'PNG');		
 		
 		$y = $y+25;
 	}

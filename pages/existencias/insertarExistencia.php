@@ -1,5 +1,3 @@
-
-
 <?php 
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
@@ -29,22 +27,36 @@
    // obtener codigo del ejemplar
 
      $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
-     $sql2=("SELECT lpad(count($varexistcod)+1,5,'0') as codigo from $tablaExistenciaequipo where $varequicod = $formExistenciaequipoCod");
+     $sql2=("SELECT lpad($varexistcod+1,5,'0') as codigo from $tablaExistenciaequipo order by $varexistcod desc limit 1");
      $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
-    $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
+     $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
     while ($datacodigo=mysqli_fetch_assoc($consulta)){
+    	if (mysqli_num_rows($consulta2)==0) {	
+             $newcodigo= $instituocodigo."".$datacodigo['codifi']."-"."00001";
+         }else{        
+        
     	 while ($datacodigo2=mysqli_fetch_assoc($consulta2)){
-          $newcodigo= $instituocodigo."".$datacodigo['codifi']."-".$datacodigo2['codigo'];
+
+         	$newcodigo= $instituocodigo."".$datacodigo['codifi']."-".$datacodigo2['codigo'];
+         
+          }
       }
     }
 
     $sql1 = ("SELECT  $varexistcod+1 as codigo from $tablaExistenciaequipo order by $varexistcod desc limit 1");
     $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+    if (mysqli_num_rows($consulta1)==0) {
+             $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
+             $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
+             while ($datacodigo=mysqli_fetch_assoc($consulta)){	
+             $formejemplarcodbarra="1"."".str_replace("-", "", $instituocodigo)."".$datacodigo['codifi'].""."00001";
+              }
+         }else{
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo) ."". '1234';
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo);
               
         }
-
+     }
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 

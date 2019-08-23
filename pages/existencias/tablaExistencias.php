@@ -67,7 +67,7 @@
       WHERE 
          t3.$varequicod = '$equipoCodPrincipal' AND
 		 (t3.$varequitip LIKE '%$textBusqueda%'  OR
-		 t1.$varexistcodreg LIKE '%$textBusqueda%')  AND  t1.$varexistestu = '$textBusquedaorde' OR  t1.$varexistcodbar LIKE '%$textBusqueda%'
+		 t1.$varexistcodreg LIKE '%$textBusqueda%')  AND ( t1.$varexistestu = '$textBusquedaorde' AND  t1.$varexistcodbar LIKE '%$textBusqueda%' )
 
 	ORDER BY 'Codigo' ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
@@ -130,7 +130,7 @@
                                    WHERE 	
                                   t3.$varequicod = '$equipoCodPrincipal'  AND
 		                          (t3.$varequitip LIKE '%$textBusqueda%'	OR
-		                          t1.$varexistcodreg LIKE '%$textBusqueda%') AND  t1.$varexistestu = '$textBusquedaorde' OR  t1.$varexistcodbar LIKE '%$textBusqueda%'
+		                          t1.$varexistcodreg LIKE '%$textBusqueda%') AND  (t1.$varexistestu = '$textBusquedaorde' AND  t1.$varexistcodbar LIKE '%$textBusqueda%')
 		                          
 	                       ORDER BY 'CodigoReg'
                             LIMIT $inicia_desde, $limite;");

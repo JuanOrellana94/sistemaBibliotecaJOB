@@ -1,7 +1,7 @@
 <?php
    require '../../fpdf/fpdf.php';
    include("../../src/libs/vars.php");
-   include 'barcode.php';
+   
    $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
    mysqli_select_db($conexion,"$base");
    date_default_timezone_set("America/El_Salvador");
@@ -22,38 +22,39 @@
        
       while($ejemplar = mysqli_fetch_assoc($resultado)) {        
          
+         //termina la creacion de la imagen
           $contador=$contador+1;
           if ($orden==1) {
               $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
               $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-              $code ="01234568";            
-              barcode('codigos/'.$code.'.png', $code, 150, 'horizontal', 'code39', true);
+              $code =$ejemplar['ejemcodbar'];           
+              
                
                $pdf->SetXY($x, $y);
-               $pdf->Cell($x+40,5,$datos,0,1,'C');
+               $pdf->Cell($x+35,5,$datos,0,1,'C');
                $pdf->Image('codigos/'.$code.'.png',$x+5,$y+5,40,10,'PNG');              
                $orden=2;
              }
              elseif ($orden==2) {
                   $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
                   $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-                  $code ="0123456987";            
+                  $code =$ejemplar['ejemcodbar'];            
                 
-                  barcode('codigos/'.$code.'.png', $code, 150, 'horizontal', 'code39', true);
-                    $pdf->SetXY($x+70, $y);
-                    $pdf->Cell($x+30,5,$datos,0,1,'C');
-                    $pdf->Image('codigos/'.$code.'.png',$x+70,$y+5,40,10,'PNG');   
+                 
+                    $pdf->SetXY($x+60, $y);
+                    $pdf->Cell($x+35,5,$datos,0,1,'C');
+                    $pdf->Image('codigos/'.$code.'.png',$x+65,$y+5,40,10,'PNG');   
                     
                     $orden=3;
                 }else{
                    $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
                     $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-                    $code ="123456";   
+                    $code =$ejemplar['ejemcodbar'];   
                                   
-                         barcode('codigos/'.$code.'.png', $code, 150, 'horizontal', 'code39', true);
-                         $pdf->SetXY($x+140, $y);
-                         $pdf->Cell($x+40,5,$datos,0,1,'C');
-                         $pdf->Image('codigos/'.$code.'.png',$x+140,$y+5,40,10,'PNG');     
+                        
+                         $pdf->SetXY($x+135, $y);
+                         $pdf->Cell($x+35,5,$datos,0,1,'C');
+                         $pdf->Image('codigos/'.$code.'.png',$x+135,$y+5,40,10,'PNG');     
                     $y = $y+15;
                     $orden=1;
 

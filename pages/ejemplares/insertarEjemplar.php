@@ -1,5 +1,3 @@
-
-
 <?php 
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
@@ -33,19 +31,31 @@
      $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
     $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
     while ($datacodigo=mysqli_fetch_assoc($consulta)){
+    	  if (mysqli_num_rows($consulta2)==0) {	
+             $newcodigo= $instituocodigo."".$datacodigo['dewe']."-".$datacodigo['cutter']."-"."00001";
+         }else{  
+
     	 while ($datacodigo2=mysqli_fetch_assoc($consulta2)){
           $newcodigo= $instituocodigo."".$datacodigo['dewe']."-".$datacodigo['cutter']."-".$datacodigo2['codigo'];
           $newcodigo2= $instituocodigo."".$datacodigo['dewe']."-".$datacodigo2['codigo'];
       }
+        }
     }
 
    $sql1 = ("SELECT  ejemcod+1 as codigo from ejemplareslibros order by ejemcod desc limit 1");
     $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+    if (mysqli_num_rows($consulta1)==0) {
+    	 $sql=("SELECT t1.$vardewcodcla as dewe, t3.$varautseud as cutter  FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod join $tablAutor as t3 on t3.$varautcod = t2.$varautcod WHERE t2.$varlibcod = $formejemplarcodlib");
+    	 $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
+    	 while ($datacodigo=mysqli_fetch_assoc($consulta)){	
+    	 	$formejemplarcodbarra="1"."".str_replace("-", "", $instituocodigo)."".$datacodigo['dewe'].""."00001";
+    	 }
+    	}else{
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
                $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo2);
               
         }
-   
+   }
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 

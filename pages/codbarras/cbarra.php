@@ -15,7 +15,7 @@ $xcodigo=$_GET['xvalor'];
 		  } 
 		  $digitArray[$count] = $text; 
 	   } 
-	  }
+	  }	  
 	  
 		  $img 		= imagecreate(170,80);    
 		  $cl_black = imagecolorallocate($img, 0, 0, 0); 
