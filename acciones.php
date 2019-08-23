@@ -26,7 +26,24 @@
  	 include("top.php");
  	 include("pages/historial/verHistorial.php");
  	# code...
+ } else if ($pageLocation=="codbarras") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbestudiante.php");
+ 	# code...
+ } else if ($pageLocation=="cbejemplar") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbejemplar.php");
+ 	# code...
+ }else if ($pageLocation=="restaurar") {
+ 	 include("top.php");
+ 	 include("pages/restaurar/restaurarbd.php");
+ 	# code...
+ }else if ($pageLocation=="indicadores") {
+ 	 include("top.php");
+ 	 include("pages/estadistica/verIndicadores.php");
+ 	# code...
  }
+
 
 
 
