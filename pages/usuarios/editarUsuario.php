@@ -30,11 +30,9 @@
 
          $checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$editUsuariocarnet' AND $varAccNombre='$editUsuariomote' AND $varUsuCodigo != '$editUsuariocod';";
             $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
-
-
         $dataRow = mysqli_fetch_array($resultado);	
-
-        $sql1 = ("SELECT  $varUsuCodigo+1 as codigo  from $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");
+        
+      $sql1 = ("SELECT  $varUsuCodigo as codigo  from $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");
             $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
      	           $tamaño=strlen($datacodigo3['codigo']);

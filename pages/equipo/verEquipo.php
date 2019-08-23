@@ -184,7 +184,7 @@
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delequipocod" id="delequipocod" aria-describedby="delequipocod" placeholder="equipo" hidden="true">
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delequiponom" id="delequiponom" aria-describedby="delequiponom" placeholder="equipo" hidden="true">
                            
-                  <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
+                  <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
     
               </div>
@@ -458,22 +458,7 @@ function deleteequipo(){
       data: $("#deleteForm").serialize(),
       success: function (data){
         recargarTabla()
-        if (data=="0"){
-          // ERROR, equipo TIENE EquipoS INSCRITOS
-          var url = "pages/equipo/requisitosBorrarCat.php";
-           $.ajax({
-              type: "POST",
-              url: url,
-              data: $("#deleteForm").serialize(),
-              success: function (data){
-                  $("#labelBorrar").show();
-                  $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar a este equipo. pues esta siendo usado por los Equipos:");
-                  $("#cargarTablaRequisito").show();
-                  $("#cargarTablaRequisito").html(data);                           
-              }
-            });
-        }else if (data=="1"){  
+        if (data=="1"){  
 
           $("#labelBorrar").show();
           $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
@@ -488,7 +473,14 @@ function deleteequipo(){
                  $("#accionFeedback").hide(500);                         
            }, 6000);
          
-        }            
+        }else if(data=="0"){
+
+           $("#labelBorrar").show();
+                     $("#notificationLabel").html("<label for='TituloLabel'>Operacion no realizada</label>");         
+          $("#labelBorrar").html("<h5>Esta existencia no se puede eliminar, contiene equipos registrados</h5>");            
+
+
+        }          
       }
     });
   }
@@ -565,8 +557,8 @@ function subirImagen(){
   
      $('#modalBorrarequipo').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
-      var vardewtipcla = button.data('vardewtipcla')
-      var vardewcod = button.data('vardewcod')     
+      var varequitip = button.data('varequitip')
+      var varequicod = button.data('varequicod')     
 
       $('#borrarButton').attr("disabled", false);  
 
@@ -577,9 +569,9 @@ function subirImagen(){
        $("#cargarTablaRequisito").html('');
 
 
-      $("#labelBorrar").html('<h5> '+vardewtipcla+' '+'<h5> ');
-      document.getElementById('delequiponom').value = vardewtipcla;
-      document.getElementById('delequipocod').value = vardewcod;
+      $("#labelBorrar").html('<h5> '+varequitip+' '+'<h5> ');
+      document.getElementById('delequiponom').value = varequitip;
+      document.getElementById('delequipocod').value = varequicod;
       
       
       

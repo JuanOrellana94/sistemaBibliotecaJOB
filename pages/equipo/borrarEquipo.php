@@ -13,7 +13,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaLibros WHERE $varlibDew='$delequipocod';";
+$checkValidation="SELECT * FROM $tablaExistenciaequipo WHERE $varequicod='$delequipocod';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -21,17 +21,13 @@ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexi
 $dataRow = mysqli_fetch_array($resultado);	
 
 	 
-	 if($dataRow>0) {
+	 if($dataRow==0) {
 
 
-	 	echo "0";
-
-	 	
-		} else {
-
+	 
 		$insRegistro=mysqli_query($conexion,"
-			DELETE FROM $tablaDewey
-			WHERE $vardewcod='$delequipocod'		    
+			DELETE FROM $tablaEquipo
+			WHERE $varequicod='$delequipocod'		    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -59,6 +55,9 @@ $dataRow = mysqli_fetch_array($resultado);
 	echo "1";
 
 	
-}
+    }else{
+
+    	echo "0";
+    }
 
  ?>
