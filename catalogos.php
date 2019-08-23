@@ -26,6 +26,10 @@ if ($pageLocation=="libros") {
  	include("pages/usuarios/verUsuarios.php");
  }else if ($pageLocation=="categorias") {
  	include("pages/categorias/verCategorias.php");
+ }else if ($pageLocation=="equipo") {
+ 	include("pages/equipo/verEquipo.php");
+ }else if ($pageLocation=="existencias") {
+ 	include("pages/existencias/verExistencias.php");
  }
 
 

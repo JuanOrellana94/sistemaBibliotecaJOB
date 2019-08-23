@@ -163,7 +163,6 @@
             }else if ($dateItems[$varprestestequi]=='1') {
             	
             	 $Estado="Devuelto";
-
             	 ?>
 
             	<div class="alert alert-success" role="alert">

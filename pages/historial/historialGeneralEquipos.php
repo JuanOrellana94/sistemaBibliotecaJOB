@@ -165,7 +165,7 @@
                                     }else if ($dataLibros[$varprestestequi]=='1') {
                                     	$color="#e6f9ff";//blue finalizado
                                     	 $Estado="Devuelto";
-                                    }else if ($dataLibros[$varprestest]=='3') {
+                                    }else if ($dataLibros[$varprestestequi]=='3') {
                                     	$color="#ffffe6";//yellow en espera
                                     	$Estado="En espera";
                                     }

@@ -1,19 +1,20 @@
 <?php 
-	include("../vars.php");
-	include("../sessionControl/conection.php");
+	include("../../src/libs/vars.php");
+	include("../../src/libs/sessionControl/conection.php");
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
 
-	$formautnom=strtoupper($_POST['formautnom']);
-	$formautape=strtoupper($_POST['formautape']);
-	$formseud=strtoupper($_POST['formautseud']);
+	$formequiponom=strtoupper($_POST['formequiponom']);
+	$formequicodifi=$_POST['formequicodifi'];	
+	$formequipodes=strtoupper($_POST['formequipodes']);	
+	
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablAutor WHERE $varautnom='$formautnom' AND $varautape='$formautape';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequitip='$formequiponom' OR $varequicodifi='$formequicodifi';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -22,22 +23,20 @@ $dataRow = mysqli_fetch_array($resultado);
 
 	 
 	 if($dataRow>0) {
-		echo "Esta Autor ya ha sido agregado";
+		echo "0";
 
 		} else {
 
 
 		$insRegistro=mysqli_query($conexion,"
-		    INSERT INTO  $tablAutor(		    
-			   $varautnom,
-			   $varautape,
-			   $varautseud,
-			   $varautdes
+		    INSERT INTO   $tablaEquipo(		    
+			   $varequitip,
+			   $varequides,
+			   $varequicodifi			   
 		      ) VALUES(
-		      '$formautnom',
-		      '$formautape',
-		      '$formseud',
-		      '---'
+		      '$formequiponom',
+		      '$formequipodes',
+		      '$formequicodifi'     
 		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -53,7 +52,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      ' ingreso un nuevo autor: $formautnom $formautape',
+		      ' ingreso un nuevo equipo: $formequiponom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
@@ -62,6 +61,6 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 
-	echo "<span style='color: green;'> Autor agregado </span>";
+	echo "1";
 }
  ?>

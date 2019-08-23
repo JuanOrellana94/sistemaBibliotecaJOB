@@ -1,19 +1,19 @@
 <?php 
-	include("../vars.php");
-	include("../sessionControl/conection.php");
+	include("../../src/libs/vars.php");
+	include("../../src/libs/sessionControl/conection.php");
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
 
-	$modallibcod=$_POST['modallibcod'];
-	$modallibtit=$_POST['modallibtit'];
-
+	$reanuEjemplarcod=$_POST['reanuEjemplarcod'];
+	$reanuEjemplarnom=$_POST['reanuEjemplarnom'];
+	
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varlibcod='$modallibcod';";
+$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemcod='$reanuEjemplarcod' and $varejemestu='1';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -21,15 +21,21 @@ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexi
 $dataRow = mysqli_fetch_array($resultado);	
 
 	 
-	 if($dataRow==0) {
-		
-		$insRegistro=mysqli_query($conexion,"
-			DELETE FROM $tablaLibros
-			WHERE $varlibcod='$modallibcod'		    
-		    ;")
-		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
+	 if($dataRow>0) {
 
-	
+
+	 	echo "0";
+
+	 	
+		} else {
+
+		$insRegistro=mysqli_query($conexion,"
+			UPDATE  $tablaEjemplares
+			SET $varejemestu='0',
+				$varejemfecest=NOW()
+			WHERE 	$varejemcod='$reanuEjemplarcod'	    
+		    ;")
+		    or die ('ERROR INS-INS:'.mysqli_error($conexion));	
 
 
 		$insRegistro=mysqli_query($conexion,"
@@ -41,7 +47,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'elimino el libro $modallibtit',
+		      'Reporto como encontrado el ejemplar $reanuEjemplarcod',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
@@ -51,10 +57,6 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 	echo "1";
-
-		} else {
-
-			echo "0";
 
 	
 }

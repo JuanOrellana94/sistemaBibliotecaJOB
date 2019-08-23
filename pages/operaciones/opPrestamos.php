@@ -442,7 +442,7 @@ function cargarCodigoTransaccionVariableMode(x){
 
   var usuario=x;  
   document.getElementById('textUsuario').value = usuario;
-  document.getElementById("textUsuario").disabled = true;
+  
 
 
   

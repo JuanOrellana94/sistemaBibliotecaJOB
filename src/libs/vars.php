@@ -43,6 +43,7 @@
    $varSecAula="ususecaul";
    $varTipBachi="usutipbac";
    $varNivel="usunivel";
+   $varusucodbar="usucodbar";
 
   //1Nombre de tabla LIBROS
 
@@ -120,6 +121,11 @@
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
     $varejemtipadq="ejemtipadq";
+    $varexistcodbar='existcodbar';
+    $varejemcodbar='ejemcodbar';
+    $varejemfecreg='ejemfecreg';
+    $varejemfecest='ejemfecest';
+
 
  // TABLA EQUIPO
       $tablaEquipo="equipo";
@@ -129,6 +135,7 @@
     $varequimg="equimg";
     $varequides="equides";
     $varequicodifi="equicodifi";
+    $varequifecreg="equifecreg";
 
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
@@ -146,6 +153,9 @@
     $varestcod="estcod";
     $varequicodExist="equicod";
     $varequicod="equicod";
+    $varexistcodbar='existcodbar';
+    $varexistfecreg='existfecreg';
+    $varexistfecest='existfecest';
 
 
 
@@ -159,6 +169,7 @@
     $varlibcantidad="libcantidad";
     $varsolfecenviar="solfecenviar";
     $varsolestado="solestado";
+    $varequipfecreg="equipfecreg";
 
 //TABLA RESUMEN DE LIBRO PRESTAMO
 //VARIABLES resumenlibroprestamo
@@ -177,13 +188,14 @@
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod
-  //detcodlib, prestcodlib, ejemcod
+  //detcodlib, prestcodlib, ejemcod 
 
   $vardetallesprestamolibro="detallesprestamolibro";
 
   $vardetcodlib="detcodlib";
   $varprestcodlib="prestcodlib";
   $varejemcodlib="ejemcod";
+  $vardetlibest="detlibest";
 
 //TABLA RESUMEN DE EQUIPO PRESTAMO
 //VARIABLES resumenequipoprestamo
@@ -211,6 +223,7 @@
   $vardetcodequi="detcodequi";
   $varprestcodequiDet="prestcodequi";
   $varexistcodDet="existcod";
+    $vardetequiest="detequiest";
 
 
 

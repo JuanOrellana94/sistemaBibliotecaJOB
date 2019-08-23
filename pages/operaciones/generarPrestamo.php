@@ -129,6 +129,7 @@
 							//Prestamo estado libro: estado del prestamo 0=Activo 1=Renovado 2=Finalizado 3=en espera
 							$insRegistro=mysqli_query($conexion,"
 								UPDATE $varresumenequipoprestamo SET
+								$varprestfecequi=NOW(),
 								$varprestestequi='0',
 								$varprestdevequi='$fechaDevolucion'			
 							    WHERE $varprestcodequi='$varprestcodequis';")
@@ -261,6 +262,7 @@
 
 					$insRegistro=mysqli_query($conexion,"
 						UPDATE $varresumenlibroprestamo SET
+						$varprestfec=NOW(),
 						$varprestest='0',
 						$varprestdev='$fechaDevolucion'		
 					    WHERE $varprestcodlib='$varprestcodlibs';")

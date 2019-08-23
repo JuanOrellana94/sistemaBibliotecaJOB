@@ -4,15 +4,15 @@
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
-	$autcod=$_POST['editautcod'];
-	$autnom=strtoupper($_POST['editautnom']);
-	$autape=strtoupper($_POST['editautape']);
-	$autseud=strtoupper($_POST['editautseud']);
-
+	$editequiponom=strtoupper($_POST['editequiponom']);
+	$editequicodifi=$_POST['editequicodifi'];	
+	$editequipodes=strtoupper($_POST['editequipodes']);	
+    $editequicod=$_POST['editequicod'];
+    
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablAutor WHERE $varautnom='$autnom' AND $varautape='$autape' AND $varautseud='$autseud'AND $varautcod!='$autcod';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE ($varequicodifi='$editequicodifi'  OR $varequitip='$editequiponom') and $varequicod!='$editequicod';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -27,11 +27,11 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablAutor SET
-			$varautnom='$autnom',
-			$varautape='$autape',
-			$varautseud='$autseud'		
-			WHERE $varautcod='$autcod';
+			UPDATE $tablaEquipo SET
+			$varequicodifi='$editequicodifi',
+			$varequides='$editequipodes',
+			$varequitip='$editequiponom'			
+			WHERE $varequicod='$editequicod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -47,7 +47,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'ha editado el autor: $autnom $autape Codigo: $autcod',
+		      'ha editado el equipo: $editequicodifi  Codigo: $editequiponom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")

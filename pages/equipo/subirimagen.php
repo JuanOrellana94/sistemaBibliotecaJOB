@@ -1,14 +1,14 @@
   <?php 
-  	include("../vars.php");
-	include("../sessionControl/conection.php");
+  	include("../../src/libs/vars.php");
+	include("../../src/libs/sessionControl/conection.php");
 	session_start();
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
     $extencionesValidas = array('jpeg', 'jpg'); // valid extencionensions
-	$direccion = '../../../img/portadas/'; // upload directory
-	if(!empty($_POST['modallibcodPortada']) || !empty($_POST['modallibtitPortada']) || $_FILES['subirPortada'])
+	$direccion = '../../img/equipoimg/'; // upload directory
+	if(!empty($_POST['modalequicodimg']) || !empty($_POST['modalequitipimg']) || $_FILES['subirPortada'])
 	{
 		$img = $_FILES['subirPortada']['name'];
 		$tmp = $_FILES['subirPortada']['tmp_name'];
@@ -23,15 +23,15 @@
 			if(move_uploaded_file($tmp,$direccion)) 
 			{
 			
-			$libcod = $_POST['modallibcodPortada'];
-			$libtit = $_POST['modallibtitPortada'];
+			$equicod = $_POST['modalequicodimg'];
+			$equitit = $_POST['modalequitipimg'];
 			echo "1";
 	
 			
 			$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaLibros SET		
-			$varlibpor='img/portadas/$imagenSubir'
-			WHERE $varlibcod='$libcod';
+			UPDATE $tablaEquipo SET		
+			$varequimg='img/equipoimg/$imagenSubir'
+			WHERE $varequicod='$equicod';
 		    ")
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -47,7 +47,7 @@
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'ha agregado una nueva imagen de portada: $libtit Codigo: $libcod',
+		      'ha agregado una nueva imagen al equipo: $equitit Codigo: $equicod',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")

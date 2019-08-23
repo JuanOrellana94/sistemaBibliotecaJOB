@@ -86,10 +86,10 @@
           <div class="card-body">
             <ul class="nav  nav-pills">
                  <li class="nav-item" style="max-width: 30%;">
-                    <a class="nav-link active" id="libro-tab"  data-toggle="tab" href="#librosTab"  onclick="recargarPrestamosGeneral()" role="tab" aria-controls="libros" aria-selected="true"><img src="img/icons/Booklight.png" style="max-width: 15%;"> Libros</a>
+                    <a class="nav-link active" id="libro-tab"  data-toggle="tab" href="#librosTab"  onclick="recargarPrestamosGeneral();" role="tab" aria-controls="libros" aria-selected="true"><img src="img/icons/Booklight.png" style="max-width: 15%;"> Libros</a>
                   </li>
                   <li class="nav-item"  style="max-width: 30%;">
-                    <a class="nav-link"  id="equipo-tab" data-toggle="tab" href="#equipoTab" onclick="recargarPrestamosGeneralEquipo()" role="tab" aria-controls="equipo" aria-selected="false"><img src="img/icons/equipment.png" style="max-width: 15%;"> Equipo</a>
+                    <a class="nav-link"  id="equipo-tab" data-toggle="tab" href="#equipoTab" onclick="recargarPrestamosGeneralEquipo();" role="tab" aria-controls="equipo" aria-selected="false"><img src="img/icons/equipment.png" style="max-width: 15%;"> Equipo</a>
                   </li>
             </ul>
             
@@ -132,7 +132,7 @@
                 <div id="historialTabla"></div>
               </div>
               <div class="tab-pane fade" id="equipoTab" role="tabpanel" aria-labelledby="equipo-tab">
-                <form method="GET" class="form-inline" id="formBusquedaLibroCodigo" style="margin-top: 1%;">
+                <form method="GET" class="form-inline" id="formBusquedaEquipoCodigo" style="margin-top: 1%;">
                  
                     
                        <div class="btn-group btn-group-toggle " data-toggle="buttons">
@@ -152,16 +152,16 @@
 
                         
                           <label class="btn btn-outline-secondary active" onclick="recargarPrestamosGeneralEquipo()">
-                            <input type="radio" value='0' name="filtroSearchEquipo" id="all"  checked> <small>Todos</small>
+                            <input type="radio" value='0' name="filtroSearchEquipo" id="allEquipo"  checked> <small>Todos</small>
                           </label>
                           <label class="btn btn-outline-primary"  onclick="recargarPrestamosGeneralEquipo()">
-                            <input type="radio" value='1' name="filtroSearchEquipo"  id="out"  > <small>Prestados</small>
+                            <input type="radio" value='1' name="filtroSearchEquipo"  id="outEquipo"  > <small>Prestados</small>
                           </label>
                           <label class="btn btn-outline-success" onclick="recargarPrestamosGeneralEquipo()">
-                            <input type="radio" value='2' name="filtroSearchEquipo"  id="in"  > <small>Devueltos</small>
+                            <input type="radio" value='2' name="filtroSearchEquipo"  id="inEquipo"  > <small>Devueltos</small>
                           </label>
                            <label class="btn btn-outline-danger" onclick="recargarPrestamosGeneralEquipo()">
-                            <input type="radio" value='3' name="filtroSearchEquipo" id="over" ><small>En retraso</small> &nbsp; <span class="badge badge-danger"><?php  echo $countTable[0];?></span>  
+                            <input type="radio" value='3' name="filtroSearchEquipo" id="overEquipo" ><small>En retraso</small> &nbsp; <span class="badge badge-danger"><?php  echo $countTable[0];?></span>  
                           </label>
                         </div>                
                          
@@ -254,9 +254,9 @@ function recargarIndicadoresGeneral(){
 }
 
 function recargarPrestamosGeneralEmpty(){
-
+document.getElementById("formBusquedaLibroCodigo").reset(); 
   $("#historialTabla").show();
-  $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  $("#historialTabla").html('<img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
   var busqueda=$("#codigoLibro").val();  
   $("#historialTabla").load("pages/historial/historialGeneral.php?pagina=1&busqueda="+ busqueda);
@@ -266,17 +266,17 @@ function recargarPrestamosGeneralEmpty(){
   //  }, 1000);
 }
 function recargarPrestamosGeneralEquipo(){
-  document.getElementById("formBusquedaLibroCodigo").reset(); 
-  $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+  setTimeout( function() {
+    $("#historialTabla").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
-   
-  $("#historialTablaEquipo").show();
-  $("#historialTablaEquipo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+     
+    $("#historialTablaEquipo").show();
+    $("#historialTablaEquipo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
-  var busqueda=$("#codigoEquipo").val();  
-  var filterall=$('input[name=filtroSearchEquipo]:checked').val(); 
-  $("#historialTablaEquipo").load("pages/historial/historialGeneralEquipos.php?pagina=1&busqueda="+ busqueda +"&filter="+ filterall);
-
+    var busqueda=$("#codigoEquipo").val();  
+    var filterall=$('input[name=filtroSearchEquipo]:checked').val(); 
+    $("#historialTablaEquipo").load("pages/historial/historialGeneralEquipos.php?pagina=1&busqueda="+ busqueda +"&filter="+ filterall);
+  }, 200);
   //setTimeout( function() {
   //    $("#solicitudesUsuarios").hide(500);                          
   //  }, 1000);
@@ -288,10 +288,6 @@ function renovarLibro(){
   //var fechaDevo =document.getElementById("fechaDevolucion").value;
   var fechaHoy = new Date();
   let formatted_date = fechaHoy.getFullYear() + "-" + (fechaHoy.getMonth() + 1) + "-" + fechaHoy.getDate()
-  
-
- 
-
   if ($("#codigoPrestamo").val()==""){
     $("#mensajeRenovacion").show();
     $("#mensajeRenovacion").html("Codigo Prestamo NO existe");
