@@ -21,7 +21,7 @@
 		$datos= $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape'];
 		$code = $xusuario . $usuario['usucarnet'] . '1234567890';
 		
-		barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
+		barcode('codigos/'.$code.'.png', $code);
 		$pdf->Cell(50,15,$datos,0,1,'C');
 		$pdf->Image('codigos/'.$code.'.png',10,$y+10,50,0,'PNG');		
 		

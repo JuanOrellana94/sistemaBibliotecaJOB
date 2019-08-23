@@ -17,7 +17,7 @@ $xcodigo=$_GET['xvalor'];
 	   } 
 	  }
 	  
-		  $img 		= imagecreate(150,75);    
+		  $img 		= imagecreate(170,80);    
 		  $cl_black = imagecolorallocate($img, 0, 0, 0); 
 		  $cl_white = imagecolorallocate($img, 255, 255, 255); 
 	
@@ -87,7 +87,11 @@ $xcodigo=$_GET['xvalor'];
 	function put_img($image){
 		header("Content-type: image/gif");
         imagegif($image);
+        imagepng($image,'codigos/'.$_GET['xvalor'].'.png');		
 		imagedestroy($image);
+
 	}
+
+	   
 
 ?>

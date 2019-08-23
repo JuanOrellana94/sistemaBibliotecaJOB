@@ -21,11 +21,10 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
            $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-           $code = '4847832';           
-           
-            barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
+           $code =str_replace("-", "", $ejemplar['ejemcodbar']);         
+            
             $pdf->Cell(50,15,$datos,0,1,'C');
-            $pdf->Image('codigos/'.$code.'.png',10,$y+10,50,0,'PNG');   
+            $pdf->Image('codigos/'.$code.'.png',15,$y+10,40,10,'PNG');   
     
             $y = $y+25;          
         }
