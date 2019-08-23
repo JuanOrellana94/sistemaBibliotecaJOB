@@ -43,7 +43,8 @@ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexi
 			$varestcod='$editestantcod',
 			$varexistdetadq='$inputdetalle',
 			$varexistfecadq='$editexistenciafecha',
-			$varexistcodbar='$formejemplarcodbarra'
+			$varexistcodbar='$formejemplarcodbarra',
+			$varexistfecest=NOW()
 
 
 			WHERE $varexistcod ='$editexistenciacodigo';

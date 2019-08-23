@@ -30,7 +30,8 @@ $dataRow = mysqli_fetch_array($resultado);
 		} else {
 
 		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaExistenciaequipo SET $varexistestu='3'	WHERE 	$varexistcod='$repoExistenciacod'	    
+			UPDATE $tablaExistenciaequipo SET $varexistestu='3',
+			$varexistfecest=NOW()	WHERE 	$varexistcod='$repoExistenciacod'	    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
