@@ -31,7 +31,9 @@ $dataRow = mysqli_fetch_array($resultado);
 
 		$insRegistro=mysqli_query($conexion,"
 			UPDATE  $tablaEjemplares
-			SET $varejemestu='0' WHERE 	$varejemcod='$reanuEjemplarcod'	    
+			SET $varejemestu='0',
+				$varejemfecest=NOW()
+			WHERE 	$varejemcod='$reanuEjemplarcod'	    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));	
 
