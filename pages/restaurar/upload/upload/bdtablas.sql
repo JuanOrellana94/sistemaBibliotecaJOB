@@ -166,11 +166,10 @@ CREATE TABLE `resumenequipoprestamo` (
   CONSTRAINT `fk_resumenEquipoPrestamo_Usuario1` FOREIGN KEY (`usucod`) REFERENCES `usuario` (`usucod`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
-
 DROP TABLE IF EXISTS `resumenlibroprestamo`;
 CREATE TABLE `resumenlibroprestamo` (
   `prestcodlib` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Prestamo codigo libro: llave primaria de la tabla resumen prestamo libros',
-  `prestfeclib` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Prestamo fecha libro: fecha en la que es realizado el prestamo',
+  `prestfeclib` timestamp NOT NULL COMMENT 'Prestamo fecha libro: fecha en la que es realizado el prestamo',
   `prestdevlib` date NOT NULL COMMENT 'Prestamo fecha de devolucion libro: fecha de la devolucion del prestamo del libro',
   `prestcomlib` varchar(255) DEFAULT NULL COMMENT 'Prestamo comentarios libro: Comentarios en relacion al prestamo',
   `prestestlib` int(11) DEFAULT NULL COMMENT 'Prestamo estado libro: estado del prestamo 0=Activo 1=Renovado 2=Finalizado 3=en espera',
@@ -178,10 +177,11 @@ CREATE TABLE `resumenlibroprestamo` (
   `usuCodigo` int(11) NOT NULL COMMENT 'Codigo del usuario: llave foranea de la tabla usuario',
   `usuCodBiblio` int(11) NOT NULL COMMENT 'CODIGO USUARIO BIBLIOTECARIO',
   `prestfechafin` date DEFAULT NULL COMMENT 'Fecha que el todos los libros del prestamo fueron devueltos',
+  `prestdevsolv` int(11) unsigned DEFAULT '0' COMMENT 'ANY CONFLICT AS BEEN SOLVED',
   PRIMARY KEY (`prestcodlib`),
   KEY `fk_resumenPrestamo_Usuario1_idx` (`usuCodigo`),
   CONSTRAINT `fk_resumenPrestamo_Usuario1` FOREIGN KEY (`usuCodigo`) REFERENCES `usuario` (`usucod`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) TYPE=InnoDB AUTO_INCREMENT=40;
 
 DROP TABLE IF EXISTS `detallesprestamoequipo`;
 CREATE TABLE `detallesprestamoequipo` (
