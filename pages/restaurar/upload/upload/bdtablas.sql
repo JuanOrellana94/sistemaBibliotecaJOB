@@ -22,7 +22,7 @@ CREATE TABLE `bitacora` (
   `bitnomlib` varchar(45) DEFAULT NULL COMMENT 'Bitacora nombre libreria: nombre de la libreria',
   `bitnombre` varchar(45) NOT NULL,
   PRIMARY KEY (`bircod`)
-) ENGINE=InnoDB AUTO_INCREMENT=919 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
@@ -42,7 +42,7 @@ CREATE TABLE `usuario` (
   `usunivel` varchar(11) NOT NULL COMMENT 'Usuario Nivel: neveles de acceso a los modulos del sistema 0=Administrador 1=Bibliotecario 2=Personal administrativo 3=Estudiante',
   `usucodbar` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`usucod`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `deweyclasificacion`;
@@ -58,7 +58,7 @@ CREATE TABLE `editorialeslibros` (
   `editcod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Llave primaria de la tabla editorial:',
   `editnom` varchar(60) NOT NULL COMMENT 'Nombre de la editorial:',
   PRIMARY KEY (`editcod`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `equipo`;
@@ -70,14 +70,14 @@ CREATE TABLE `equipo` (
   `equimg` varchar(450) DEFAULT NULL COMMENT 'Contiene la direccion de la imagen del equipo',
   `equifecreg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'FECHA CREACION DE EQUIPO',
   PRIMARY KEY (`equicod`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `estante`;
 CREATE TABLE `estante` (
   `estcod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Estante codigo: llave primaria de la tabla estante',
   `estdes` varchar(45) NOT NULL COMMENT 'Estante descripcion: Nombre del estante',
   PRIMARY KEY (`estcod`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `existenciaequipo`;
 CREATE TABLE `existenciaequipo` (
@@ -100,7 +100,7 @@ CREATE TABLE `existenciaequipo` (
   KEY `fk_existenciaEquipo_Equipo1_idx` (`equicod`),
   CONSTRAINT `fk_existenciaEquipo_Equipo1` FOREIGN KEY (`equicod`) REFERENCES `equipo` (`equicod`),
   CONSTRAINT `fk_existenciaEquipo_Estante1` FOREIGN KEY (`estcod`) REFERENCES `estante` (`estcod`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `libros`;
 CREATE TABLE `libros` (
@@ -123,7 +123,7 @@ CREATE TABLE `libros` (
   CONSTRAINT `fk_Libros_Autor1` FOREIGN KEY (`autcod`) REFERENCES `autorlibro` (`autcod`),
   CONSTRAINT `fk_Libros_deweyClasificacion1` FOREIGN KEY (`dewcod`) REFERENCES `deweyclasificacion` (`dewcod`),
   CONSTRAINT `fk_Libros_editorialesLibros1` FOREIGN KEY (`editcod`) REFERENCES `editorialeslibros` (`editcod`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `ejemplareslibros`;
 CREATE TABLE `ejemplareslibros` (
@@ -147,7 +147,7 @@ CREATE TABLE `ejemplareslibros` (
   KEY `fk_ejemplaresLibros_Libros1_idx` (`libcod`),
   CONSTRAINT `fk_ejemplaresLibros_Estante1` FOREIGN KEY (`estcod`) REFERENCES `estante` (`estcod`),
   CONSTRAINT `fk_ejemplaresLibros_Libros1` FOREIGN KEY (`libcod`) REFERENCES `libros` (`libcod`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 
@@ -164,12 +164,13 @@ CREATE TABLE `resumenequipoprestamo` (
   PRIMARY KEY (`prestcodequi`),
   KEY `fk_resumenEquipoPrestamo_Usuario1_idx` (`usucod`),
   CONSTRAINT `fk_resumenEquipoPrestamo_Usuario1` FOREIGN KEY (`usucod`) REFERENCES `usuario` (`usucod`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `resumenlibroprestamo`;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `resumenlibroprestamo` (
   `prestcodlib` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Prestamo codigo libro: llave primaria de la tabla resumen prestamo libros',
-  `prestfeclib` timestamp NOT NULL COMMENT 'Prestamo fecha libro: fecha en la que es realizado el prestamo',
+  `prestfeclib` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Prestamo fecha libro: fecha en la que es realizado el prestamo',
   `prestdevlib` date NOT NULL COMMENT 'Prestamo fecha de devolucion libro: fecha de la devolucion del prestamo del libro',
   `prestcomlib` varchar(255) DEFAULT NULL COMMENT 'Prestamo comentarios libro: Comentarios en relacion al prestamo',
   `prestestlib` int(11) DEFAULT NULL COMMENT 'Prestamo estado libro: estado del prestamo 0=Activo 1=Renovado 2=Finalizado 3=en espera',
@@ -181,7 +182,7 @@ CREATE TABLE `resumenlibroprestamo` (
   PRIMARY KEY (`prestcodlib`),
   KEY `fk_resumenPrestamo_Usuario1_idx` (`usuCodigo`),
   CONSTRAINT `fk_resumenPrestamo_Usuario1` FOREIGN KEY (`usuCodigo`) REFERENCES `usuario` (`usucod`)
-) TYPE=InnoDB AUTO_INCREMENT=40;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `detallesprestamoequipo`;
 CREATE TABLE `detallesprestamoequipo` (
@@ -194,7 +195,7 @@ CREATE TABLE `detallesprestamoequipo` (
   KEY `fk_detallesPrestamoEquipo_existenciaEquipo1_idx` (`existcod`),
   CONSTRAINT `fk_detallesPrestamoEquipo_existenciaEquipo1` FOREIGN KEY (`existcod`) REFERENCES `existenciaequipo` (`existcod`),
   CONSTRAINT `fk_detallesPrestamoEquipo_resumenEquipoPrestamo1` FOREIGN KEY (`prestcodequi`) REFERENCES `resumenequipoprestamo` (`prestcodequi`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `detallesprestamolibro`;
 CREATE TABLE `detallesprestamolibro` (
@@ -207,7 +208,7 @@ CREATE TABLE `detallesprestamolibro` (
   KEY `fk_detallesPrestamoLibro_ejemplaresLibros1_idx` (`ejemcod`),
   CONSTRAINT `fk_detallesPrestamoLibro_ejemplaresLibros1` FOREIGN KEY (`ejemcod`) REFERENCES `ejemplareslibros` (`ejemcod`),
   CONSTRAINT `fk_detallesPrestamoLibro_resumenLibroPrestamo1` FOREIGN KEY (`prestcodlib`) REFERENCES `resumenlibroprestamo` (`prestcodlib`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `bolsaprestamo`;

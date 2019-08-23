@@ -34,11 +34,39 @@
 
         $dataRow = mysqli_fetch_array($resultado);	
 
-        $sql=("SELECT  $varUsuCodigo as codigo, $varCarnet as Carnet FROM $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");    
-    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
-    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
-         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['Carnet']) ."". '1234567890';
-      }
+        $sql1 = ("SELECT  $varUsuCodigo+1 as codigo  from $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");
+            $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+     while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
+     	           $tamaño=strlen($datacodigo3['codigo']);
+          switch ($tamaño) {
+              case '1':
+              # code... 
+                     $digitos="00012340";
+              break;            
+              case '2':
+              # code...
+                     $digitos="0012340";
+              break;
+              case '3':
+              # code...
+                    $digitos="001234";
+              break;
+              case '4':
+              # code...
+                    $digitos="001234";
+              break;
+              case '5':
+              # code...
+                    $digitos="00123";
+              break;
+              case '6':
+              # code...
+                    $digitos="0012";
+              break;
+          }
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
+              
+        } 
 
 	 
 	 if($dataRow>0) {
