@@ -1,4 +1,4 @@
-
+<?php include("src/libs/vars.php"); ?>
 <style>
 	 .textBottom {          
           color: white;

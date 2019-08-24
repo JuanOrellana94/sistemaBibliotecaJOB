@@ -6,6 +6,12 @@ function rediLogin(){
 
 }
 
+function rediRepo(){
+
+	window.location = "../../repositorioSBiblio/buscarMenu.php";
+
+}
+
 function rediLoginConsultas(){
 
 	window.location = "inicio.php?redireccion=Consultas";
@@ -24,6 +30,7 @@ function rediMenuOPT(){
 	window.location = "menuopt.php";
 
 }
+
 
 
 
