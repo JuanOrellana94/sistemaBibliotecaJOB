@@ -1,6 +1,5 @@
 <?php
 $xcodigo=$_GET['xvalor'];
-
  $digitArray = array(0=>"00110",1=>"10001",2=>"01001",3=>"11000",4=>"00101",5=>"10100",6=>"01100",7=>"00011",8=>"10010",9=>"01010"); 
  
 	  $lower = 1 ; $hight = 50;       
@@ -15,9 +14,9 @@ $xcodigo=$_GET['xvalor'];
 		  } 
 		  $digitArray[$count] = $text; 
 	   } 
-	  }	  
+	  }
 	  
-		  $img 		= imagecreate(170,80);    
+		  $img 		= imagecreate(150,75);    
 		  $cl_black = imagecolorallocate($img, 0, 0, 0); 
 		  $cl_white = imagecolorallocate($img, 255, 255, 255); 
 	
@@ -86,12 +85,7 @@ $xcodigo=$_GET['xvalor'];
 	} 
 	function put_img($image){
 		header("Content-type: image/gif");
-        imagegif($image);
-        imagepng($image,'codigos/'.$_GET['xvalor'].'.png');		
+         imagegif($image);
 		imagedestroy($image);
-
 	}
-
-	   
-
 ?>

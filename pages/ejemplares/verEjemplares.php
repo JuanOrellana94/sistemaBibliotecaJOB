@@ -228,8 +228,21 @@
                       </select>
                   </td> 
             </tr>                  
-            </tr>                     
-           <tr>
+            </tr>  
+             <td>
+               <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
+                    <label>Cantidad de ejemplares a registrar: </label>               
+                    <div>
+                         <select style="text-transform:uppercase" class="form-control" name='formejemplarescantidad' id='formejemplarescantidad'>                             
+                             <option value="0">1</option>
+                             <option value="1">5</option>
+                             <option value="2">10</option>
+                             <option value="3">15</option> 
+                             <option value="4">20</option>                           
+                         </select>                      
+                    </div>
+                  </td>                   
+            <tr>
              <td>
                 <label for="PublishDate">Fecha de Adquisicion</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="date" name="formejemplarfecha" id="formejemplarfecha" value="">

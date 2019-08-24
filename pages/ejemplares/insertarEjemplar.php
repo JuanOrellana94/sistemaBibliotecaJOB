@@ -11,7 +11,8 @@
 	$formejemplarcomentario=strtoupper($_POST['formejemplarcomentario']);
 	$formejemplaringreso=$_POST['formejemplaringreso'];
 	$formejemplarfecha=$_POST['formejemplarfecha'];
-	$formestantcod=$_POST['formestantcod'];	
+	$formestantcod=$_POST['formestantcod'];
+  $formejemplarescantidad=$_POST['formejemplarescantidad'];	
 	if (isset($_POST["formprecio"])) { 
 		$formprecio=$_POST['formprecio']; 
 	} else {
@@ -23,15 +24,40 @@
 		$formdetalle=""; 
 	};
 		
-    
+  switch ($formejemplarescantidad) {
+        case '0':
+        # code...
+          $x=1;
+        break;
+        case '1':
+        # code...
+          $x=5;
+        break;
+        case '2':
+        # code...
+          $x=10;
+        break;
+        case '3':
+        # code...
+          $x=15;
+        break;
+        case '4':
+        # code...
+          $x=20;
+        break;
+    }  
    
+   for ($i=0; $i <$x ; $i++) { 
+     # code...
+  
 
      $sql=("SELECT t1.$vardewcodcla as dewe, t3.$varautseud as cutter  FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod join $tablAutor as t3 on t3.$varautcod = t2.$varautcod WHERE t2.$varlibcod = $formejemplarcodlib");
      $sql2=("SELECT lpad($varejemcod+1,5,'0') as codigo from $tablaEjemplares  order by ejemcod desc limit 1");
      $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
     $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
     while ($datacodigo=mysqli_fetch_assoc($consulta)){
-    	  if (mysqli_num_rows($consulta2)==0) {	
+    	  if (mysqli_num_rows($consulta2)==0) {
+
              $newcodigo= $instituocodigo."".$datacodigo['dewe']."-".$datacodigo['cutter']."-"."00001";
          }else{  
 
@@ -47,15 +73,51 @@
     if (mysqli_num_rows($consulta1)==0) {
     	 $sql=("SELECT t1.$vardewcodcla as dewe, t3.$varautseud as cutter  FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod join $tablAutor as t3 on t3.$varautcod = t2.$varautcod WHERE t2.$varlibcod = $formejemplarcodlib");
     	 $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
-    	 while ($datacodigo=mysqli_fetch_assoc($consulta)){	
-    	 	$formejemplarcodbarra="1"."".str_replace("-", "", $instituocodigo)."".$datacodigo['dewe'].""."00001";
+    	 while ($datacodigo=mysqli_fetch_assoc($consulta)){
+
+    	 	$formejemplarcodbarra="1"."222222222";
     	 }
     	}else{
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo2);
+     	
+               $tamaño=strlen($datacodigo3['codigo']);
+          switch ($tamaño) {
+              case '1':
+              # code... 
+                     $digitos="222222222";
+              break;            
+              case '2':
+              # code...
+                     $digitos="22222222";
+              break;
+              case '3':
+              # code...
+                    $digitos="2222222";
+              break;
+              case '4':
+              # code...
+                    $digitos="222222";
+              break;
+              case '5':
+              # code...
+                    $digitos="22222";
+              break;
+              case '6':
+              # code...
+                    $digitos="2222";
+              break;
+              case '7':
+              # code...
+                    $digitos="222";
+              break;
+          }
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
               
         }
    }
+
+
+
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
@@ -89,7 +151,7 @@
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 
-
+ }
 
 	echo "1";
   

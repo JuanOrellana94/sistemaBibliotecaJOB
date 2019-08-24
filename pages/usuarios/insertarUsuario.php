@@ -19,7 +19,7 @@
 
   if ($formUsuariotipo=='3') {
          	# code...
-  	          $formUsuariobachi=$_POST['formUsuariobachi'];
+  	         $formUsuariobachi=$_POST['formUsuariobachi'];
              $formUsuarioanio=$_POST['formUsuarioanio'];
              $formUsuarioseccion=$_POST['formUsuarioseccion'];
              $formUsuariocarnet=$_POST['formUsuariomote'];
@@ -27,7 +27,34 @@
             $sql1 = ("SELECT  $varUsuCodigo+1 as codigo,$varCarnet as carnet from $tablaUsuarios order by $varUsuCodigo desc limit 1");
             $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $datacodigo3['carnet'] ."". '1234567890';
+     	           $tamaño=strlen($datacodigo3['codigo']);
+          switch ($tamaño) {
+              case '1':
+              # code... 
+                     $digitos="00012340";
+              break;            
+              case '2':
+              # code...
+                     $digitos="0012340";
+              break;
+              case '3':
+              # code...
+                    $digitos="001234";
+              break;
+              case '4':
+              # code...
+                    $digitos="001234";
+              break;
+              case '5':
+              # code...
+                    $digitos="00123";
+              break;
+              case '6':
+              # code...
+                    $digitos="0012";
+              break;
+          }
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
               
         } 
          	$sql="

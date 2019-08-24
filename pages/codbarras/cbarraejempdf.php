@@ -2,7 +2,7 @@
   require '../../fpdf/fpdf.php';
   include("../../src/libs/vars.php");
   include("../../src/libs/sessionControl/conection.php");
-  include 'barcode.php';
+  
   $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
    mysqli_select_db($conexion,"$base");
    date_default_timezone_set("America/El_Salvador");
@@ -20,11 +20,12 @@
 
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-           $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-           $code =str_replace("-", "", $ejemplar['ejemcodbar']);         
+           $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar; 
+          $tamaño=strlen($ejemplar['ejemcod']);          
+           $code = $ejemplar['ejemcodbar'];
             
             $pdf->Cell(50,15,$datos,0,1,'C');
-            $pdf->Image('codigos/'.$code.'.png',15,$y+10,40,10,'PNG');   
+            $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',15,$y+10,50,10,'gif');   
     
             $y = $y+25;          
         }

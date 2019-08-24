@@ -15,12 +15,14 @@
 <p>
       <?php
       while($ejemplar = mysqli_fetch_assoc($resultado)) { 
-          $numejemplar= substr($ejemplar['ejemcodreg'],-5);           
-          echo "<b>" . $ejemplar['libtit'] . "</b>, Ejemplar #" . $numejemplar ."<br>";
-          $codbarra =str_replace("-", "", $ejemplar['ejemcodbar']); 
-          echo "<div><img src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'></div>";          
-      }
-      echo "<br>" . $codbarra;
+          $numejemplar= $ejemplar['ejemcod'];           
+          echo "<h5 align=left>".  $ejemplar['libtit'] . "</b>, Ejemplar #" . $numejemplar ."</h5>";         
+        
+          $codbarra = $ejemplar['ejemcodbar']; 
+          echo "<div align=left> <img  src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'  width='400' height='100'>  </div>";          
+        }          
+      
+     
   ?>
       <?php echo "<br><br><a href=\"pages/codbarras/cbarraejempdf.php?codeje=" . $xejemplar. "\">Mostrar PDF</a>"; ?>
 </p>

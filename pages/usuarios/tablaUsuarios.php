@@ -218,7 +218,11 @@
                                            case '2':
                                                $Estado="SUSPENDIDA";
                                                $color="Red";
-                                           break;                                                                                   
+                                           break; 
+                                           case '3':
+                                               $Estado="CON PRESTAMO";
+                                               $color="purple";
+                                           break;                                                                                  
                                       } 
 
 

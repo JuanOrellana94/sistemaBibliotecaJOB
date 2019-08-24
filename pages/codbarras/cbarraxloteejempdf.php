@@ -27,34 +27,39 @@
           if ($orden==1) {
               $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
               $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-              $code =$ejemplar['ejemcodbar'];           
+               $tamaño=strlen($ejemplar['ejemcod']);        
+
+              $code = $ejemplar['ejemcodbar'];         
               
                
                $pdf->SetXY($x, $y);
                $pdf->Cell($x+35,5,$datos,0,1,'C');
-               $pdf->Image('codigos/'.$code.'.png',$x+5,$y+5,40,10,'PNG');              
+               $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+5,$y+5,50,10,'gif');              
                $orden=2;
              }
              elseif ($orden==2) {
                   $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-                  $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-                  $code =$ejemplar['ejemcodbar'];            
+              
+
+                 $code = $ejemplar['ejemcodbar'];           
                 
                  
-                    $pdf->SetXY($x+60, $y);
+                    $pdf->SetXY($x+65, $y);
                     $pdf->Cell($x+35,5,$datos,0,1,'C');
-                    $pdf->Image('codigos/'.$code.'.png',$x+65,$y+5,40,10,'PNG');   
+                    $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+70,$y+5,50,10,'gif');   
                     
                     $orden=3;
                 }else{
                    $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-                    $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-                    $code =$ejemplar['ejemcodbar'];   
-                                  
+                    $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;          
+                 
+
+                    $code = $ejemplar['ejemcodbar']; 
+                                   
                         
                          $pdf->SetXY($x+135, $y);
                          $pdf->Cell($x+35,5,$datos,0,1,'C');
-                         $pdf->Image('codigos/'.$code.'.png',$x+135,$y+5,40,10,'PNG');     
+                         $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+140,$y+5,50,10,'gif');     
                     $y = $y+15;
                     $orden=1;
 
