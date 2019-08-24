@@ -55,7 +55,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01"> 
        
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <div class="row">
+          <div class="row ">
             <div class="col-lg-2 col-md-2 col-sm-4"  style="max-width: 100px">
                <a class="navbar-brand" href="escritorio.php">
                   <img src="img/icons/LogoSimple.png" width="90" height="90">

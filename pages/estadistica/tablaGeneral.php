@@ -1,7 +1,7 @@
 <!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->
 <div class="row ">
-  <div class="col-lg-4 col-md-6 col-sm-10 d-flex align-items-stretch" >
-    <div class="card t-100" style="margin-bottom:9px;">
+  <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch" >
+    <div class="card t-100" style="width:100%;margin-bottom:9px;">
       <div class="card-header">
         <ul class="nav nav-tabs  nav-fill" id="myTab" role="tablist">     
           <li class="nav-item">
@@ -115,8 +115,8 @@
       </div>
     </div>   
   </div>
-  <div class="col-lg-4 col-md-6 col-sm-10 d-flex align-items-stretch">
-    <div class="card t-100"  style="margin-bottom:9px;">
+  <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+    <div class="card t-100"  style="width:100%;margin-bottom:9px;">
       <div class="card-header" >
          <h4>Destacados</h4>
       </div>
@@ -133,8 +133,8 @@
       $currentYear=date("Y");
     ?>
   </div>
-  <div class="col-lg-4 col-md-12 col-sm-10 d-flex align-items-stretch">
-    <div class="card t-100"  style="margin-bottom:9px;">
+  <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch">
+    <div class="card mx-auto"  style="width:100%; margin-bottom:9px;">
       <div class="card-header">
         <h4 class="text-muted">Graficos comparativos, Año: <?php echo $currentYear; ?></h4>
       </div>
