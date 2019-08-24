@@ -129,7 +129,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["usuNivelNombre"]?></a>
           <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["nombreComp"]?></a>
-
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item font-weight-bold" style="cursor: pointer;" onclick="cerrar()">Cerrar sesión</a>
         </div>
       </div>
