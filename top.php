@@ -57,7 +57,7 @@
           <img src="img/icons/LogoSimple.png" width="90" height="90">
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
+          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left" title="Catalogos">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img src="img/icons/book.png" width="65" height="65" alt="">
             </a>
@@ -73,7 +73,7 @@
               <a class="dropdown-item disabled" href="#">Catalogos</a>
             </div>
           </li>
-          <li class="nav-item dropdown"  data-toggle="tooltip" data-placement="right" title="Operaciones">
+          <li class="nav-item dropdown"  data-toggle="tooltip" data-placement="left" title="Operaciones">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img src="img/icons/Ops.png" width="65" height="65" alt="">
             </a>
@@ -86,7 +86,7 @@
               <a class="dropdown-item disabled" href="#">Operaciones</a>
             </div>
           </li>
-          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Estadistica">
+          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left" title="Estadistica">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img src="img/icons/Est.png" width="65" height="65" alt="">
             </a>
@@ -98,7 +98,7 @@
               <a class="dropdown-item disabled" href="#">Estadistica</a>
             </div>
           </li>
-          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right"  title="Herramientas">
+          <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left"  title="Herramientas">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img src="img/icons/utils.png" width="65" height="65" alt="">
             </a>
