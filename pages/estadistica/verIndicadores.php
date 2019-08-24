@@ -30,31 +30,26 @@
                    
                     <div id="repGeneral"></div>                    
                   </div>
-                  <div class="tab-pane fade" id="reportes" role="tabpanel" aria-labelledby="reportes-tab">
-                        
-                       <div id="repReporte">
-
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div class="card">
-                              <div class="card-heder">
-                                <h5>Reportes</h5>
-                              </div>
-                              <div class="card-body">
-
-                                  
-                              </div>
-                              <div class="card-footer">
-                                <div class="text-muted">
-                                  Generar Codigos
-                                </div>
+                  <div class="tab-pane fade" id="reportes" role="tabpanel" aria-labelledby="reportes-tab">   
+                    <div id="repReporte">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="card">
+                            <div class="card-heder">
+                              <h5>Reportes</h5>
+                            </div>
+                            <div class="card-body">
+                              <p>Content</p>   
+                            </div>
+                            <div class="card-footer">
+                              <div class="text-muted">
+                                Generar Codigos
                               </div>
                             </div>
                           </div>
-                        </div>                         
-
-
-                       </div>
+                        </div>
+                      </div>                         
+                    </div>
                   </div>
                   <div class="tab-pane fade" id="solvencias" role="tabpanel" aria-labelledby="solvencias-tab">
                      <p>Retrasos</p>

@@ -130,7 +130,7 @@
           <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["usuNivelNombre"]?></a>
           <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["nombreComp"]?></a>
 
-          <a class="dropdown-item font-weight-bold" onclick="cerrar()">Cerrar sesión</a>
+          <a class="dropdown-item font-weight-bold" style="cursor: pointer;" onclick="cerrar()">Cerrar sesión</a>
         </div>
       </div>
       <button class="btn btn-outline-light rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Volver al menu principal" onclick="rediMenuOPT();">
