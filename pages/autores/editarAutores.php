@@ -5,9 +5,9 @@
 	session_start();
 
 	$autcod=$_POST['editautcod'];
-	$autnom=strtoupper($_POST['editautnom']);
-	$autape=strtoupper($_POST['editautape']);
-	$autseud=strtoupper($_POST['editautseud']);
+	$autnom=mb_strtoupper ($_POST['editautnom']);
+	$autape=mb_strtoupper ($_POST['editautape']);
+	$autseud=mb_strtoupper ($_POST['editautseud']);
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];

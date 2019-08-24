@@ -23,7 +23,7 @@
 		$code = $usuario['usucodbar'] ;
 
 		
-		$pdf->Cell(40,15,$datos,0,1,'C');
+		$pdf->Cell(50,15,$datos,0,1,'C');
 		$pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');		
 		
 		$y = $y+25;

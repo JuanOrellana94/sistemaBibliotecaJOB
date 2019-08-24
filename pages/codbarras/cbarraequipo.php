@@ -9,7 +9,7 @@
  
 
   $xequipo = $_GET['codequi'];
-  $sql = "SELECT $varexistcod, $varexistcodreg, $varequitip FROM $tablaExistenciaequipo INNER JOIN $tablaEquipo ON $tablaEquipo.$varequicod = $tablaExistenciaequipo.$varequicod WHERE  $tablaExistenciaequipo.$varexistcodreg =  '$xequipo';";
+  $sql = "SELECT $varexistcod, $varexistcodreg, $varequitip, $varexistcodbar FROM $tablaExistenciaequipo INNER JOIN $tablaEquipo ON $tablaEquipo.$varequicod = $tablaExistenciaequipo.$varequicod WHERE  $tablaExistenciaequipo.$varexistcodreg =  '$xequipo';";
    $resultado=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));  
 
        $pdf = new FPDF();
@@ -21,11 +21,11 @@
       while($equipo = mysqli_fetch_assoc($resultado)) {    
            $numequipo= substr($equipo[$varexistcodreg],-5);      
            $datos = $equipo[$varequitip] . ", equipo #" . $numequipo;           
-           $code =$equipo[$varexistcod] . str_replace("-", "", $equipo[$varexistcodreg]) . '1234';           
+           $code =$equipo[$varexistcodbar];           
            
             barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
             $pdf->Cell(50,15,$datos,0,1,'C');
-            $pdf->Image('codigos/'.$code.'.png',10,$y+10,50,0,'PNG');   
+            $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');       
     
             $y = $y+25;          
         }

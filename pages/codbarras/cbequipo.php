@@ -17,8 +17,8 @@
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Codigo de barra de ejemplaresr</h3>  Seleccione un libro: <br>
-                Para mostrar el pdf de todos los ejemplares de un libro , seleecione por titulo del libro y realice click en  <b>Mostrar PDF</b></p>       
+               <p class="font-weight-light"> <h3>  Codigo de barra de equipos</h3>  Seleccione por tipo el equipo: <br>
+                Para mostrar el pdf de todos las existencias registradas, seleecione por nombre del equipo y realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     
         </div>
@@ -35,13 +35,13 @@
                             <tr>
                             <div id="formcod" name="formcod"  > 
                             <?php 
-                                     $selTable=mysqli_query($conexion,"SELECT * from $tablaLibros");                            
+                                     $selTable=mysqli_query($conexion,"SELECT * from $tablaEquipo");                            
                              ?>
                              <td>
-                              <select class="form-control js-Dropdown-Busqueda" name='codlib' id='codlib'>
-                                <option value="">Seleccione un libro</option>
+                              <select class="form-control js-Dropdown-Busqueda" name='equitip' id='equitip'>
+                                <option value="">Seleccione el equipo</option>
                                <?php  while ($dataLibros=mysqli_fetch_assoc($selTable)){  ?>                              
-                               <option value="<?php echo $dataLibros['libcod'];  ?>"><?php echo $dataLibros['libtit'];  ?></option>
+                               <option value="<?php echo $dataLibros[$varequicod];  ?>"><?php echo $dataLibros[$varequitip];  ?></option>
                                <?php } ?>                                                    
                                </select> </td></tr><tr> 
                               <td>                        
@@ -90,12 +90,12 @@
 
   function generarpdf(){
 
-  if ($("#codlib").val()==""){
+  if ($("#equitip").val()==""){
     $("#respuesta").show();
     $("#respuesta").html("&nbsp;&nbsp;Seleccione un titulo de libro"); 
       }else{
-       var codlib = document.getElementById('codlib').value;
-          var url = 'pages/codbarras/cbarraxloteejempdf.php?codlib='+codlib;
+       var equitip = document.getElementById('equitip').value;
+          var url = 'pages/codbarras/cbarraxloteequipopdf.php?equitip='+equitip;
           $(location).attr('href',url);         
          
          

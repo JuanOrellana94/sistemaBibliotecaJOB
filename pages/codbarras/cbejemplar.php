@@ -17,7 +17,7 @@
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Codigo de barra de ejemplaresr</h3>  Seleccione un libro: <br>
+               <p class="font-weight-light"> <h3>  Codigo de barra de ejemplares</h3>  Seleccione un libro: <br>
                 Para mostrar el pdf de todos los ejemplares de un libro , seleecione por titulo del libro y realice click en  <b>Mostrar PDF</b></p>       
             </div>           
           </div>     

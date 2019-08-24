@@ -6,8 +6,8 @@
 
 
 	$formExistenciaequipoCod=$_POST['formExistenciaequipoCod'];	
-	$formExistenciastado=strtoupper($_POST['formExistenciastado']);
-	$formExistenciacomentario=strtoupper($_POST['formExistenciacomentario']);
+	$formExistenciastado=mb_strtoupper ($_POST['formExistenciastado']);
+	$formExistenciacomentario=mb_strtoupper ($_POST['formExistenciacomentario']);
 	$formExistenciaingreso=$_POST['formExistenciaingreso'];
 	$formExistenciafecha=$_POST['formExistenciafecha'];
 	$formestantcod=$_POST['formestantcod'];	
@@ -49,11 +49,44 @@
              $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
              $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
              while ($datacodigo=mysqli_fetch_assoc($consulta)){	
-             $formejemplarcodbarra="1"."".str_replace("-", "", $instituocodigo)."".$datacodigo['codifi'].""."00001";
+             $formejemplarcodbarra="1"."333333333";
+                                        
               }
          }else{
-     while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-               $formejemplarcodbarra=$datacodigo3['codigo'] ."". str_replace("-", "", $newcodigo);
+                while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
+     	
+               $tamaño=strlen($datacodigo3['codigo']);
+          switch ($tamaño) {
+              case '1':
+              # code... 
+                     $digitos="333333333";
+              break;            
+              case '2':
+              # code...
+                     $digitos="33333333";
+              break;
+              case '3':
+              # code...
+                    $digitos="3333333";
+              break;
+              case '4':
+              # code...
+                    $digitos="333333";
+              break;
+              case '5':
+              # code...
+                    $digitos="33333";
+              break;
+              case '6':
+              # code...
+                    $digitos="3333";
+              break;
+              case '7':
+              # code...
+                    $digitos="333";
+              break;
+          }
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
               
         }
      }

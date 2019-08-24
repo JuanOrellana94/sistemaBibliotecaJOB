@@ -5,9 +5,9 @@
 	session_start();
 
 
-	$formequiponom=strtoupper($_POST['formequiponom']);
+	$formequiponom=mb_strtoupper ($_POST['formequiponom']);
 	$formequicodifi=$_POST['formequicodifi'];	
-	$formequipodes=strtoupper($_POST['formequipodes']);	
+	$formequipodes=mb_strtoupper ($_POST['formequipodes']);	
 	
 
 

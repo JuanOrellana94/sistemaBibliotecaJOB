@@ -5,13 +5,13 @@
 	session_start();
 
 
-	$formUsuarionom1=strtoupper($_POST['formUsuarionom1']);
-	$formUsuarionom2=strtoupper($_POST['formUsuarionom2']);
-    $formUsuarioape1=strtoupper($_POST['formUsuarioape1']);
-    $formUsuarioape2=strtoupper($_POST['formUsuarioape2']);
-    $formUsuariomote=strtoupper($_POST['formUsuariomote']);
+	$formUsuarionom1=mb_strtoupper ($_POST['formUsuarionom1']);
+	$formUsuarionom2=mb_strtoupper ($_POST['formUsuarionom2']);
+    $formUsuarioape1=mb_strtoupper ($_POST['formUsuarioape1']);
+    $formUsuarioape2=mb_strtoupper ($_POST['formUsuarioape2']);
+    $formUsuariomote=mb_strtoupper ($_POST['formUsuariomote']);
     $formUsuariopass=md5($_POST['formUsuariopass']);
-    $formUsuariocorreo=strtoupper($_POST['formUsuariocorreo']);   
+    $formUsuariocorreo=mb_strtoupper ($_POST['formUsuariocorreo']);   
     $formUsuariotipo=$_POST['formUsuariotipo'];
 
 	$usuCodigo=$_SESSION['usuCodigo'];

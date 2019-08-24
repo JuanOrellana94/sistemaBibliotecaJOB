@@ -14,13 +14,13 @@
 	if(empty($_POST['inputdetalle'])){
          $inputdetalle="SIN DESCRIPCION"; 
 	}else{
-         $inputdetalle=strtoupper($_POST['inputdetalle']);
+         $inputdetalle=mb_strtoupper ($_POST['inputdetalle']);
 	}
 
 	$editejemplartipoingreso=$_POST['editejemplartipoingreso'];	
 	$editejemplarestado=$_POST['editejemplarestado'];
 	$editejemplarcodigo=$_POST['editejemplarcodigo']; 
-	$editejemplarcomentario=strtoupper($_POST['editejemplarcomentario']);
+	$editejemplarcomentario=mb_strtoupper ($_POST['editejemplarcomentario']);
 	$editestantcod=$_POST['editestantcod'];
 	 	
 

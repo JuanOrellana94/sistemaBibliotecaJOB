@@ -148,6 +148,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
           <a class="dropdown-item disabled" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>
+          <a class="dropdown-item disabled" href="acciones.php?pageLocation=cbequipo">Codigo de Barras Equipos</a> 
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Herramientas</a>
         </div>

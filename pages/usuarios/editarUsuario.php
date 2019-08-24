@@ -5,15 +5,15 @@
 	session_start();
 
     $editUsuariocod=$_POST['editUsuariocod'];
-	$editUsuarionom1=strtoupper($_POST['editUsuarionom1']);
-	$editUsuarionom2=strtoupper($_POST['editUsuarionom2']);
-    $editUsuarioape1=strtoupper($_POST['editUsuarioape1']);
-    $editUsuarioape2=strtoupper($_POST['editUsuarioape2']);
-    $editUsuariomote=strtoupper($_POST['editUsuariomote']);
+	$editUsuarionom1=mb_strtoupper ($_POST['editUsuarionom1']);
+	$editUsuarionom2=mb_strtoupper ($_POST['editUsuarionom2']);
+    $editUsuarioape1=mb_strtoupper ($_POST['editUsuarioape1']);
+    $editUsuarioape2=mb_strtoupper ($_POST['editUsuarioape2']);
+    $editUsuariomote=mb_strtoupper ($_POST['editUsuariomote']);
    
     
     
-    $editUsuariocorreo=strtoupper($_POST['editUsuariocorreo']);
+    $editUsuariocorreo=mb_strtoupper ($_POST['editUsuariocorreo']);
     
     $editUsuarionivel=$_POST['editUsuarionivel'];
 

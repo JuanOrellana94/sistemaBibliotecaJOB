@@ -7,13 +7,14 @@
   $clave="Biblioteca123$";
   $base="sistemabiblioteca";
   
+  
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
   $oficio="612x1008";
 
   // codigo instituto
-    $instituocodigo="88160-";
+    $instituocodigo="88160-"; 
 
   //Nombre de tablas
   

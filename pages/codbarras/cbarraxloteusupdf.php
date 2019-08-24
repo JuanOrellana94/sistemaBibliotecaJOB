@@ -1,7 +1,7 @@
 <?php 
    require '../../fpdf/fpdf.php';
    include("../../src/libs/vars.php");
-   include 'barcode.php';
+   
    $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
    mysqli_select_db($conexion,"$base");
 
@@ -27,10 +27,8 @@
 	    	# code...
 	   
           if ($orden==1) {
-              $datos= $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape'];              
-                
-
-		           $code = $usuario['usucodbar'];        
+              $datos= $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape']; 
+		          $code = $usuario['usucodbar'];        
            
               
                $pdf->SetXY($x, $y);
@@ -40,7 +38,7 @@
              }
              elseif ($orden==2) {
                 $datos= $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape'];
-                  $code = $usuario['usucodbar']; 
+                $code = $usuario['usucodbar']; 
 
                   $pdf->SetXY($x+70, $y);
                   $pdf->Cell($x+40,5,$datos,0,1,'C');
@@ -48,9 +46,9 @@
                     
                     $orden=3;
                 }else{
-
                     $datos= $usuario['usuprinom'] . " " . $usuario['ususegnom'] . " " . $usuario['usupriape'] . " " . $usuario['ususegape'];
-                    $code = $usuario['usucodbar'];   
+                    $code = $usuario['usucodbar'];
+                       
                     $pdf->SetXY($x+140, $y);
                     $pdf->Cell($x+40,5,$datos,0,1,'C');
                     $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+145,$y+5,50,10,'gif');  

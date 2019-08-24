@@ -7,8 +7,8 @@
 
 	
 	$formejemplarcodlib=$_POST['formejemplarcodigolib'];
-	$formejemplarestado=strtoupper($_POST['formejemplarestado']);
-	$formejemplarcomentario=strtoupper($_POST['formejemplarcomentario']);
+	$formejemplarestado=mb_strtoupper ($_POST['formejemplarestado']);
+	$formejemplarcomentario=mb_strtoupper ($_POST['formejemplarcomentario']);
 	$formejemplaringreso=$_POST['formejemplaringreso'];
 	$formejemplarfecha=$_POST['formejemplarfecha'];
 	$formestantcod=$_POST['formestantcod'];

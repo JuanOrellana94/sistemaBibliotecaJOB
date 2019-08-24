@@ -25,9 +25,9 @@
          //termina la creacion de la imagen
           $contador=$contador+1;
           if ($orden==1) {
-              $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-              $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;           
-               $tamaño=strlen($ejemplar['ejemcod']);        
+              $numejemplar= $ejemplar['ejemcod'];      
+              $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;       
+                       
 
               $code = $ejemplar['ejemcodbar'];         
               
@@ -38,7 +38,8 @@
                $orden=2;
              }
              elseif ($orden==2) {
-                  $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
+                  $numejemplar= $ejemplar['ejemcod'];      
+                  $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;       
               
 
                  $code = $ejemplar['ejemcodbar'];           
@@ -50,8 +51,8 @@
                     
                     $orden=3;
                 }else{
-                   $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-                    $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;          
+                     $numejemplar= $ejemplar['ejemcod'];      
+                     $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;        
                  
 
                     $code = $ejemplar['ejemcodbar']; 

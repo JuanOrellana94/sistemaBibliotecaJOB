@@ -5,13 +5,13 @@
 	session_start();
 
 	$libcod=$_POST['editlibcod'];
-	$libtit=strtoupper($_POST['editlibtit']);
+	$libtit=mb_strtoupper ($_POST['editlibtit']);
 	$libdes=$_POST['editlibdes'];
 	
 	$libfecedi=$_POST['editlibfecedi'];
 	$libnumpag=$_POST['editlibnumpag'];
 	$libisbn=$_POST['editlibisbn'];
-	$libgenaut=strtoupper($_POST['editgenautcod']);
+	$libgenaut=mb_strtoupper ($_POST['editgenautcod']);
 	$libDew=$_POST['editdewcod'];
 	$libedit=$_POST['editeditcod'];
 	$libtags=$_POST['editlibtags'];

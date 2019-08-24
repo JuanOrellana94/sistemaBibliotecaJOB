@@ -6,10 +6,10 @@
 
 	$editexistenciaprecio=$_POST['inputprecio'];
 	$editexistenciatipoingreso=$_POST['editexistenciatipoingreso'];
-	$inputdetalle=strtoupper($_POST['inputdetalle']);
+	$inputdetalle=mb_strtoupper ($_POST['inputdetalle']);
 	$editexistenciaestado=$_POST['editExistenciastado'];
 	$editexistenciacodigo=$_POST['editexistenciacodigo']; 
-	$editexistenciacomentario=strtoupper($_POST['editexistenciacomentario']);
+	$editexistenciacomentario=mb_strtoupper ($_POST['editexistenciacomentario']);
 	$editestantcod=$_POST['editestantcod'];
 	$editexistenciafecha=$_POST['editexistenciafecha'];
 
