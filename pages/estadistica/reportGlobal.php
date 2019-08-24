@@ -125,7 +125,7 @@ $y_axis_initial = 101;
 $i = 0;
 
 //Set maximum rows per page
-$max = 25;
+$max = 18;
 
 $y_axis=$y_axis_initial;
 
