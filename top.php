@@ -123,7 +123,7 @@
     <span class="navbar-toggler-icon"></span>
     </button>
       <div class="dropdown">
-        <button class="btn btn-outline-light btn-sm dropdown-toggle rounded-0" type="button" style="max-width: 205px; margin-right: 10px;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-outline-light btn-sm dropdown-toggle rounded-0" type="button" style="max-width: 205px; margin-right: 120px;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img style="max-width: 35px;" src="img/icons/User.png" alt="">  <?php echo " ".$_SESSION["usuPriNombre"]?>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
