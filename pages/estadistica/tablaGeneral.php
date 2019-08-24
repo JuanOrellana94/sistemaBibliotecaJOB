@@ -177,6 +177,15 @@ function showGraphPrestamo()
   {
     {
       var tipoSel=$("#typeSelectGraph").val();
+      if (tipoSel=='1' || tipoSel=='3') {
+        var labelName= "Prestamos";
+        var colorBor= "#003764";
+        var colorHov= "#0070cc";
+      } else if (tipoSel=='2' || tipoSel=='4') {
+        var labelName= "Devoluciones";
+        var colorBor= "#739900";
+        var colorHov= "#99cc00"
+      }
 
       //alert(busqueda);
       $.post("pages/estadistica/graphPrestamo.php?tipo="+tipoSel,
@@ -217,11 +226,11 @@ function showGraphPrestamo()
             var chartdata = {
               labels: name,
               datasets: [{
-                label: 'Cantidad',
-                backgroundColor: '#003764',
-                borderColor: '#003764',
-                hoverBackgroundColor: '#0070cc',
-                hoverBorderColor: '#0070cc',
+                label: labelName,
+                backgroundColor: colorBor,
+                borderColor: colorBor,
+                hoverBackgroundColor: colorHov,
+                hoverBorderColor: colorHov,
                 data: marks
               }]
             };
