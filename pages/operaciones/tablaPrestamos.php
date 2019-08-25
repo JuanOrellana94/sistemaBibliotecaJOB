@@ -19,19 +19,13 @@
 	 $textBusqueda=""; 
 	};
 
-	$sql = "SELECT COUNT($varlibcod) 
-      FROM $tablaLibros as libro 
-		inner join $tablaDewey as dewey on libro.$varlibDew = dewey.$vardewcod 
-		inner join $tablaEditoral as edito on libro.$varlibedit = edito.$vareditcod 								
-		inner join $tablAutor as aut on libro.$varautcod=aut.$varautcod 
-      WHERE 
-		$varlibtit LIKE '%$textBusqueda%' OR
-		$varautnom LIKE '%$textBusqueda%' OR
-		$vareditnom LIKE '%$textBusqueda%' OR
-		$vardewtipcla LIKE '%$textBusqueda%' OR
-		$varlibtags LIKE '%$textBusqueda%' OR
-		$vardewtipcla  LIKE '%$textBusqueda%'
-	ORDER BY $varlibcod; ";  
+	$sql = "SELECT COUNT(libro.$varlibcod) 
+     FROM $tablaLibros as libro
+		inner join $tablAutor as autor on libro.$varlibgenaut = autor.$varautcod
+		inner join $varbolsaprestamo as carrito on libro.$varlibcod = carrito.$varlibcodcar
+		inner join $tablaUsuarios as usuario on usuario.$varUsuCodigo = carrito.$varusucod
+		WHERE 
+		carrito.$varusucod='$usuCodigo'";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -117,7 +111,9 @@
 						<tbody>
 
 
-							<?php 
+							<?php
+							 $idNothing=0;
+
 								$selTable=mysqli_query($conexion,"SELECT * FROM $tablaLibros as libro
 									inner join $tablAutor as autor on libro.$varlibgenaut = autor.$varautcod
 									inner join $varbolsaprestamo as carrito on libro.$varlibcod = carrito.$varlibcodcar
@@ -128,7 +124,9 @@
 
 							if (mysqli_num_rows($selTable)==0){
 							 echo "<div class='alert alert-info' role='alert'> No has agregado ningun libro a tu lista </div>";
+							 
 							} else{
+								$idNothing=1;
 								while ($dataLibros=mysqli_fetch_assoc($selTable)){
 							?>
 							<tr>
@@ -170,14 +168,23 @@
                             <?php endif;?>    
                         <?php endfor;endif;?>
                            </ul>
-                      </nav>	
+                      </nav>
+
+                      <?php
+
+                      if ($idNothing==1) {
+                      	 ?>                  
 
                    		<div>
 				         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
-				         <button type="button" class="btn btn-success" onclick="activarPrestamos()">Realizar Solicitud</button>
+				         <button type="button" class="btn btn-success" onclick="activarPrestamos()">Realizar Solicitud</button>				       
 				        </div>
 
 					<?php
+                      	
+                      }
+
+                     
 					}
 ?>		    
 <br>

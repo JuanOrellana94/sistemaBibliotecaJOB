@@ -53,13 +53,15 @@ $dataRow = mysqli_fetch_array($resultado);
 		     $varlibcodcar,
 		     $varsolfec,
 		     $varlibcantidad,
-		     $varsolfecenviar)
+		     $varsolfecenviar,
+		     $varsolestado)
 		     VALUES (
 		     '$usuCodigo',
 		     '$insertlibcod',
 		     NOW(),
 		     '$insertlibcantidad',
-		     NOW()
+		     NOW(),
+		     '0'
 		 );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 

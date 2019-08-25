@@ -134,7 +134,8 @@
 							// PRESTAMO ES COMPLETAMENTE FINALIZADO PASAR DE ACTIVO (0) A FINALIZADO (1)
 							   $insRegistro=mysqli_query($conexion,"
 								UPDATE $varresumenequipoprestamo SET
-								$varprestestequi='1' 		
+								$varprestestequi='1',
+								$varprestfechafinEquipo=NOW()		
 							    WHERE $varprestcodequi='$codigoResumenPrestamo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -323,7 +324,8 @@
 							// PRESTAMO ES COMPLETAMENTE FINALIZADO PASAR DE ACTIVO (0) A FINALIZADO (1)
 							   $insRegistro=mysqli_query($conexion,"
 								UPDATE $varresumenlibroprestamo SET
-								$varprestest='1' 		
+								$varprestest='1',
+								$varprestfechafin=NOW()	
 							    WHERE $varprestcod='$codigoResumenPrestamo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 

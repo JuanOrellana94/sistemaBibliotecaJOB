@@ -74,7 +74,7 @@
 							document.getElementById("generarPrestamo").disabled = false;
 							document.getElementById("fechaDevolucion").disabled = false;
 							document.getElementById("textEjemplar").disabled = false;
-							//document.getElementById("textUsuario").disabled = true;
+							document.getElementById("textUsuario").disabled = true;
 
 								 document.getElementById("cancelarPrestamo").disabled = false;
 							

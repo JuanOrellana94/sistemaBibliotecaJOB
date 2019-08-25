@@ -126,10 +126,10 @@
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 
-
 							//Prestamo estado libro: estado del prestamo 0=Activo 1=Renovado 2=Finalizado 3=en espera
 							$insRegistro=mysqli_query($conexion,"
 								UPDATE $varresumenequipoprestamo SET
+								$varprestfecequi=NOW(),
 								$varprestestequi='0',
 								$varprestdevequi='$fechaDevolucion'			
 							    WHERE $varprestcodequi='$varprestcodequis';")
@@ -147,7 +147,7 @@
 							      $varNomPersona
 							      ) VALUES(
 							     NOW(),
-							      'Prestamo realizado',
+							      'Prestamo realizado Registro: $varprestcodequis',
 							      '$usuCodigo',
 							      '---',
 							      '$bitPersonaName');")
@@ -262,10 +262,17 @@
 
 					$insRegistro=mysqli_query($conexion,"
 						UPDATE $varresumenlibroprestamo SET
+						$varprestfec=NOW(),
 						$varprestest='0',
 						$varprestdev='$fechaDevolucion'		
 					    WHERE $varprestcodlib='$varprestcodlibs';")
 					   or die ('ERROR INS-INS:'.mysqli_error($conexion));
+
+					   //LISTA DE PEDIDOS ES ELIMINADA
+						$insRegistro=mysqli_query($conexion,"
+							DELETE FROM $varbolsaprestamo
+						    WHERE $varusucod='$usuCodigoPrestamista';")
+						 or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 				
 
@@ -279,7 +286,7 @@
 					      $varNomPersona
 					      ) VALUES(
 					     NOW(),
-					      'Prestamo realizado',
+					      'Prestamo realizado, codigo registro: $varprestcodlibs',
 					      '$usuCodigo',
 					      '---',
 					      '$bitPersonaName');")

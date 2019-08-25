@@ -116,7 +116,7 @@
 
                 <form name="formBusqueda" id="formBusqueda">          
                   <div class="input-group ">               
-                    <input type="text" class="form-control form-control-lg" value='' placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
+                    <input type="text" class="form-control form-control-lg"  placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                     </div> 
@@ -291,7 +291,7 @@
 
             <form id="formCarritoCompras" name="formCarritoCompras"> 
 
-            <div class="row border">
+            <div class="row">
 
               <div class="col-sm-12">
                 <div id="respuestaPrestamo" style="color: red; font-weight: bold; text-align: center;"></div>
@@ -354,47 +354,7 @@
     </div>
   </div>
 </div>
-<!-- Modal Ver Libro -->
 
-<div class="modal fade" id="modalVerInformacion" tabindex="-1" role="dialog" aria-labelledby="modalVerInformacion" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">    
-      <div class="modal-header" style="background-color:#003764; color:white;" >
-        <h5 class="modal-title" id="prestamosModal"><img src="img/icons/pregunta.png" width="30" height="30"> Informacion del libro </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-       <div class="modal-body" style="background: #D5D9DF;">        
-          <div class="row">         
-            <div class="col-sm-12">
-              <div class="form-group">                                             
-                   <div id="contenedordiv"></div>
-                    <div class="row">
-                     <div class="col">
-                      <table class="table" cellspacing="2" cellpadding="1">                   
-                       <tr align="left">
-                         <td><h5>Descripcion:</h5></td>
-                       </tr><tr>
-                         <td colspan="3"> <label id="varlibdes"></label></td>                      
-                       </tr>               
-                     </table>
-                   </div>                    
-                   </div>   
-                         
-               </div>              
-              </div>
-            </div>
-           </div> 
-             <div class="modal-footer"  style="background-color:#003764;">              
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
-             </div>
-            
-        </form>
-      </div>      
-    </div>
-  </div>
-</div>
 
 
 
@@ -429,10 +389,11 @@ function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
-  
-  var busqueda=$("#textBusqueda").val();
-  busqueda=busqueda.trim().replace(/ /g, '%20'); 
- 
+
+  var busqueda=$("#textBusqueda").val(); 
+  busqueda=busqueda.trim().replace(/ /g, '%20');
+
+
 
   $("#cargarTabla").load("pages/operaciones/tablaConsultas.php?pagina=1&busqueda="+ busqueda);
 
@@ -532,7 +493,7 @@ function insertarItem(){
       } else if (data==1) {
 
         $("#respuestaPrestamo").show();
-        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'>Añadido a tu lista de prestamo </div>");
+        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'> &nbsp; Añadido a tu lista de prestamo </div>");
          //reload funcion tabla prestar()
          cargarPrestamos();         
           setTimeout(
@@ -546,6 +507,14 @@ function insertarItem(){
  //error programado
         $("#respuestaPrestamo").show();
         $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Tu prestamo excede tu limite de libros permitidos. (3 libros maximo por prestamo)</div>");
+        setTimeout(
+              function() {
+                $("#respuestaPrestamo").hide(500);     
+              }, 6000);
+      }else if (data==3) {
+ //error programado
+        $("#respuestaPrestamo").show();
+        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Esta cuenta no puede realizar pedidos</div>");
         setTimeout(
               function() {
                 $("#respuestaPrestamo").hide(500);     
@@ -679,23 +648,6 @@ function borrarItem(){
       document.getElementById('delsolcodigo').value = varsolcod;
 
       
-      
-    })
-
-   //Ver libro
-
-$('#modalVerInformacion').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // 
-
-       var varlibpor  = button.data('varlibpor')
-       $("#contenedordiv").html('<img align=left src="'+varlibpor+'" width=200 height=350>')         
-       var varlibdes = button.data('varlibdes')    
-
-
-      var modal = $(this)   
-                
-       $("#varlibdes").html('<h6 align=center>'+varlibdes+' '+'<h6> ');       
-       
       
     })
 
