@@ -16,6 +16,9 @@
     $instituocodigo="88160-";
 
   //Nombre de tablas
+
+//Multa por retraso
+    $costoMulta=0.25;
   
   $tablaBitacora="bitacora";
 
@@ -185,6 +188,7 @@
     $varusuCodigoF="usuCodigo";
     $varusuCodBiblio="usuCodBiblio"; 
     $varprestfechafin="prestfechafin";
+    $varprestdevsolv="prestdevsolv";
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod

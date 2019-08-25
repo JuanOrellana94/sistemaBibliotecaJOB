@@ -173,15 +173,21 @@
 
             } else if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
 
-            	$OldDate = strtotime($dateItems[$varprestdev]);
-            	$NewDate = date('M j, Y', $OldDate);
-            	$diff = date_diff(date_create($NewDate),date_create(date("M j, Y")));
+            	//$OldDate = strtotime($dateItems[$varprestdev]);
+            	//$NewDate = date('M j, Y', $OldDate);
+            	//$diff = date_diff(date_create($NewDate),date_create(date("M j, Y")));
+
+            	$now = time(); 
+            	$your_date = strtotime($dateItems[$varprestdev]);
+				$datediff = $now - $your_date;
+
+				
 
             	$Estado="En retraso";
             	?>
 
             	<div class="alert alert-danger" role="alert">
-					  Este prestamo tiene un retraso de <?php echo $diff->format('%D dia(s)');?>
+					  Este prestamo tiene un retraso de <?php echo round($datediff / (60 * 60 * 24))." dias" ;?>
 				</div>
 
 				<button type="button" class="btn btn-primary btn-block" disabled>

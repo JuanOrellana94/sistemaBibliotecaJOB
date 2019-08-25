@@ -209,19 +209,19 @@ $y_axis=$y_axis+20;
 $pdf->SetY($y_axis);
 
 $pdf->Cell(15);
-$pdf->SetX(30);
+$pdf->SetX(33);
 $pdf->SetFont('Arial','U',14);
 $pdf->Cell(0,5,"  ".$bitPersonaName."  ");
-$pdf->SetX(110);
+$pdf->SetX(113);
 $pdf->Cell(0,5,'                                     ');
 
 $y_axis=$y_axis+7;
 $pdf->SetY($y_axis);
 $pdf->SetFont('Arial','B',14);
-$pdf->SetX(39);
-$pdf->Cell(0,5,'Nombre o Firma');
+$pdf->SetX(47);
+$pdf->Cell(0,5, $_SESSION['usuNivelNombre']);
 $pdf->Cell(0,5,'');
-$pdf->SetX(130);
+$pdf->SetX(133);
 $pdf->Cell(0,5,'Sello');
 $pdf->SetTitle('Reporte Bibliotecario Anual', true);
 
