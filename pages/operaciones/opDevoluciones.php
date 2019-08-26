@@ -9,6 +9,7 @@
   <br>
     <div class="row mb-4">
       <div class="col-lg-3"></div>
+
       <div class="col-sm-6 col-md-6 col-lg-5 " style="min-height: 100%; height:100%; ">
         <!--Area de Solicitudes pendientes-->
         <div class="card bg-light border-primary h-100">
@@ -19,6 +20,7 @@
              <div class="dropdown-divider"></div>
              <div class="row">
                <div class="col-sm-6 col-md-6 col-lg-6 mx-auto">
+                  <form autocomplete = "off">
                  <br>              
                    <div class='alert alert-warning' role='alert'> Insertar codigo del articulo a devolver  </div>                   
                  <input type="text" class="form-control text-center" placeholder="Codigo del Articulo" id="textDevolucionCode" name="textDevolucionCode"> 
@@ -28,6 +30,7 @@
                  <!-- -->
                  <div id="contentDevoluciones"></div>
                </div>
+               </form>
              </div>
              <div class="dropdown-divider"></div>
           </div>
@@ -39,9 +42,15 @@
     </div>  
 </div>
 <script>
+        $(window).keydown(function(event){
+        if(event.keyCode == 13) {         
+            event.preventDefault();
+          return false;  
+        }
+      });
   document.getElementById("textDevolucionCode").focus(); 
   var devoBuscar = document.getElementById("textDevolucionCode");
-  devoBuscar.addEventListener("keydown", function (e) {        
+  devoBuscar.addEventListener("keyup", function (e) {        
         buscarDevoItem();        
       });
 function buscarDevoItem(){     

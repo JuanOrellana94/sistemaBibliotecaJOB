@@ -21,7 +21,7 @@
        
       
 
-		<form id="formularioPrestamo" name="formularioPrestamo">
+		<form id="formularioPrestamo" name="formularioPrestamo" autocomplete = "off">
 			<div class="row">
 				<div class="col-sm-8">
 				    <div class="form-group" data-toggle="tooltip"  tabindex="0"  data-placement="right"  title="Codigo/Carnet del estudiante o personal que desea realizar un prestamo">
