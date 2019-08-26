@@ -222,8 +222,6 @@ function cancelarPrestamo(){
   
 }
 
-
-
 function removerLibroLista(){
 
   if ($("#varejemcodlibs").val()==""){

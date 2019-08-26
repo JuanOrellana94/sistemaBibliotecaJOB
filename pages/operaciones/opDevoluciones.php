@@ -44,13 +44,10 @@
   devoBuscar.addEventListener("keydown", function (e) {        
         buscarDevoItem();        
       });
-  function buscarDevoItem(){
-     
+function buscarDevoItem(){     
     $("#devoMensajes").show();
     $("#devoMensajes").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
-
-    var textDevolucion=$("#textDevolucionCode").val();      
-
+    var textDevolucion=$("#textDevolucionCode").val();
     $("#contentDevoluciones").load("pages/operaciones/infoDevolucion.php?busqueda="+textDevolucion);
     setTimeout( function() {
         $("#devoMensajes").hide(500);

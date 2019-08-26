@@ -95,19 +95,13 @@
               </li>              
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4" style="max-width: 100px">
-              <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left" title="Estadistica" style="max-width: 100px">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <img src="img/icons/Est.png" width="65" height="65" alt="">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tooltip" data-placement="left" title="Estadistica" style="max-width: 100px" href="acciones.php?pageLocation=indicadores">
+                  <img src="img/icons/Est.png" width="65" height="65" alt="">
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  
-                  <a class="dropdown-item " href="acciones.php?pageLocation=indicadores">Indicadores</a>
-                  <a class="dropdown-item " href="#">Reportes</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item disabled" href="#">Estadistica</a>
-                </div>
-              </li>
-              
+            </li>
+          
+        
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4" style="max-width: 100px">
               <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left"  title="Herramientas" style="max-width: 100px">
