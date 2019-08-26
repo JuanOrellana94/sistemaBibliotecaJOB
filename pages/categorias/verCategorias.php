@@ -10,17 +10,11 @@
        }  
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >categorias</li>
-    </ol>
-  </nav>        
+     
 
 <!--INICIO CONTENEDOR DE CATALOGO DE categorias-->    
 <div class="container-fluid" > 
+  <br>
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">

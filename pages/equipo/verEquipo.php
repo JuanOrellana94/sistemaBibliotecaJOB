@@ -8,16 +8,7 @@
        }else{
         $bloqueo="";
        }   
-     ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA equipo-->     
-      <li class="breadcrumb-item" active  >equipo</li>
-    </ol>
-  </nav>        
+     ?>    
 
 <!--INICIO CONTENEDOR DE CATALOGO DE equipo-->    
 <div class="container-fluid" > 

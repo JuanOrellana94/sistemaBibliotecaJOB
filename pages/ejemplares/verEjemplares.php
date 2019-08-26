@@ -10,14 +10,7 @@
        }   
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Ejemplares</li>
-    </ol>
-  </nav>        
+       
 
 <!--INICIO CONTENEDOR DE CATALOGO DE Ejemplares-->    
 <div class="container-fluid" > 

@@ -9,15 +9,7 @@
         $bloqueo="";
        } 
      ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Existencias</li>
-    </ol>
-  </nav>        
+<!--DIRECCION DE LA UBICACION ACTUAL--> 
 
 <!--INICIO CONTENEDOR DE CATALOGO DE Existencias-->    
 <div class="container-fluid" > 

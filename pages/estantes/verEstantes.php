@@ -9,8 +9,7 @@
         $bloqueo="";
        }   
      ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
- 
+
 <br>
 <!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
 <div class="container-fluid" > 
