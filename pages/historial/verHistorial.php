@@ -7,7 +7,7 @@
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <br/>
-  <body style="background-color:#d7dbec;">
+  <body style="background-color:#d9d9d9;">
   <!--INICIO CONTENEDOR DE PRESTAMOS-->
 
   
