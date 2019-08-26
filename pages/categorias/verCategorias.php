@@ -2,20 +2,19 @@
     <!--CONTENEDOR PARA TABLA DE categorias/MODALES PARA AGREGAR Y ELIMINAR categorias--> 
 
     <?php
-     
+     if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }  
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >categorias</li>
-    </ol>
-  </nav>        
+     
 
 <!--INICIO CONTENEDOR DE CATALOGO DE categorias-->    
 <div class="container-fluid" > 
+  <br>
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
@@ -55,7 +54,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newcategoriaModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newcategoriaModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo categoria" src="img/icons/Bookcatego+.png" width="45" height="45">
                         </button>
                         
@@ -96,7 +95,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="" onkeypress="return soloLetras(event);">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="" onkeypress="">
                  <label for="TituloLabel">Codigo dewey de la categoria</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategoriacod" id="formcategoriacod" aria-describedby="formcategoriacod" placeholder="" onkeypress="return soloNumeros(event);">
               </div>
@@ -138,7 +137,7 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la categoria</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriacod" id="editcategoriacod" aria-describedby="editcategoriacod" placeholder="" hidden>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" onkeypress="return soloLetras(event);">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" onkeypress="">
                 <label for="TituloLabel">Codigo dewey de la categoria</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriadewcod" id="editcategoriadewcod" aria-describedby="editcategoriadewcod" placeholder="" onkeypress="return soloNumeros(event);">
               </div>
@@ -231,7 +230,8 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/categorias/tablaCategorias.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {

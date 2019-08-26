@@ -5,6 +5,8 @@ function recargarTabla(){
   		$("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
 		var busqueda=$("#textBusqueda").val();
+		busqueda=busqueda.trim().replace(/ /g, '%20');
+
 
 	
 		$("#cargarTablaLibros").load("src/libs/tables/tablaLibros.php?pagina=1&busqueda="+busqueda);
@@ -22,6 +24,8 @@ function recargarTablaLimpiar(){
   		$("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
 		var busqueda=$("#textBusqueda").val();
+
+
 
 	
 		$("#cargarTablaLibros").load("src/libs/tables/tablaLibros.php?pagina=1&busqueda="+busqueda);
@@ -326,11 +330,7 @@ function insertAuthor(){
 	if ($("#formautnom").val()==""){
 		$("#answerAuthorPrint").show();
 		$("#answerAuthorPrint").html("Nombre del Autor vacio");
-	} else if ($("#formautape").val()==""){
-		$("#answerAuthorPrint").show();
-		$("#answerAuthorPrint").html("Apellido del Autor vacio");
-	} else 
-	if ($("#formautseud").val()==""){
+	}else if ($("#formautseud").val()==""){
 		$("#answerAuthorPrint").show();
 		$("#answerAuthorPrint").html("Pseudonimo del Autor vacio");
 	} else {
@@ -386,7 +386,7 @@ function deleteBook(){
 						$('#deleteBookModal').modal('hide');
 					} else if (data==0) {
 						$("#answerDeletePrint").show();
-						$("#answerDeletePrint").html("<div class='alert alert-danger' role='alert'> El libro ya ha sido eliminado </div>");
+						$("#answerDeletePrint").html("<div class='alert alert-danger' role='alert'>Error al eliminar: el libro contiene ejemplares registrados </div>");
 						recargarTabla();
 						setTimeout(
 						   	function() {

@@ -2,17 +2,15 @@
     <!--CONTENEDOR PARA TABLA DE Ejemplares/MODALES PARA AGREGAR Y ELIMINAR Ejemplares--> 
 
     <?php
-     
+     if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Ejemplares</li>
-    </ol>
-  </nav>        
+       
 
 <!--INICIO CONTENEDOR DE CATALOGO DE Ejemplares-->    
 <div class="container-fluid" > 
@@ -55,7 +53,7 @@
                         
 
               <td  align="center" height="100" width="200"><button type="button" class="btn btn-primary btn-lg btn-block"><p class="font-weight-light"><h4><?php echo $dataLibros['Titulo'];?></h4> <hr style="color: #0056b2;" /> </p>
-                            <div align="left"><br>AUTOR:<br><p style="color:black"><?php echo $dataLibros['Autor'];?> <?php echo $dataLibros['Autorape'];?></p>EDITORIAL:<p style="color:black"><?php echo $dataLibros['Editorial'];?></p>DESCRIPCION:<p style="color:black"><?php echo $dataLibros['Descripcion'];?></p></div> 
+                            <div align="left"><br>AUTOR:<br><p style="color:black"><?php echo $dataLibros['Autor'];?> <?php echo $dataLibros['Autorape'];?></p>EDITORIAL:<p style="color:black"><?php echo $dataLibros['Editorial'];?></p></div> 
               </button> </td>                       
                     
 
@@ -85,7 +83,9 @@
                        </tr>
                        <tr>
                          <td height="50"><div class="row">
+
                     <div class="col-sm-5">
+
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" class="form-control" placeholder="Realizar busqueda" id="textBusqueda" name="textBusqueda">
@@ -96,7 +96,19 @@
                           </div> 
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
-                      </form>                       
+                      </form> 
+                      <small id="dateHelp" class="form-text text-muted">Mostrar por estado</small> <br>
+                      <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">
+                            <option value="0">DISPONIBLES</option>
+                            <option value="1">PRESTADO</option>
+                            <option value="2">ELIMINADOS</option>
+                            <option value="3">EXTRAVIADOS</option>
+                          </select> 
+                        </div>  
+
+                      </form>                          
                     </div>
                     <div class="col-sm-3">
                       <div name="cargandoFeedback" id="cargandoFeedback" align="left"> </div>
@@ -110,7 +122,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newEjemplarModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newEjemplarModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Ejemplar" src="img/icons/Bookadd.png" width="45" height="45">
                         </button>
                         
@@ -209,8 +221,21 @@
                       </select>
                   </td> 
             </tr>                  
-            </tr>                     
-           <tr>
+            </tr>  
+             <td>
+               <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
+                    <label>Cantidad de ejemplares a registrar: </label>               
+                    <div>
+                         <select style="text-transform:uppercase" class="form-control" name='formejemplarescantidad' id='formejemplarescantidad'>                             
+                             <option value="0">1</option>
+                             <option value="1">5</option>
+                             <option value="2">10</option>
+                             <option value="3">15</option> 
+                             <option value="4">20</option>                           
+                         </select>                      
+                    </div>
+                  </td>                   
+            <tr>
              <td>
                 <label for="PublishDate">Fecha de Adquisicion</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="date" name="formejemplarfecha" id="formejemplarfecha" value="">
@@ -276,14 +301,14 @@
                     <label>Tipo de ingreso:</label>
                   
                       <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="hidden" name="editejemplarcodigo" id="editejemplarcodigo" />                     
-                      <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control js-Dropdown-Busqueda" name='editejemplartipoingreso' id='editejemplartipoingreso'>
+                      <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control js-Dropdown-Busqueda" name='editejemplartipoingreso' id='editejemplartipoingreso' onchange="bloquearselect()">
                              <option value="0">DONACION</option>
                              <option value="1">COMPRA</option>                            
                          </select>
                       <p>Ingrese el detalle de ingreso:</p>
                            <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputdetalle" id="inputdetalle"  /> 
                      <p>Ingrese el precio unitario:</p>
-                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputprecio" id="inputprecio"  />
+                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  type="" name="inputprecio" id="inputprecio"  />
                                                
                  
                   </td> 
@@ -379,12 +404,13 @@
           <div class="row">         
             <div class="col-sm-12">
               <div class="form-group">
-                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Eliminar Ejemplar es una accion <b> Permanente </b> desea eliminar Ejemplar:</label></div>                
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea eliminar Ejemplar:</label></div>                
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delEjemplarcod" id="delEjemplarcod" aria-describedby="delEjemplarcod" placeholder="Ejemplar" hidden="true">
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delEjemplarnom" id="delEjemplarnom" aria-describedby="delEjemplarnom" placeholder="Ejemplar" hidden="true">
                            
-                  <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
-                  <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
+                  <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
+
+         
     
               </div>
             </div>
@@ -407,12 +433,16 @@
 <div class="modal fade" id="modalVerEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalVerEjemplar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-       <div class="modal-body" style="background: #D5D9DF;">
-        <form id="deleteForm" name="deleteForm">
+      <div class="modal-header" style="background: #D5D9DF;">
+          <label id="verEjemplartit"></label>        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <div class="modal-body" style="background: #D5D9DF;">        
           <div class="row">         
             <div class="col-sm-12">
-              <div class="form-group">            
-                   <label id="verEjemplartit"></label>                             
+              <div class="form-group">                                             
                    <div id="contenedordiv"></div>
                     <div class="row">
                      <div class="col">
@@ -449,9 +479,156 @@
     </div>
   </div>
 </div>
-      
+
                                         
-                   
+<!-- Modal Ver codigo de barra -->
+
+<div class="modal fade" id="modalBarraEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalBarraEjemplar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+       <div class="modal-header" style="background: #D5D9DF;">
+           <label id="codigobarra"></label>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+           </button>  
+       </div> 
+       <div class="modal-body">       
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">             
+             <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" value="<?php echo $_GET['codigoLib']; ?>" id="codigoLib" name="codigoLib" hidden> 
+              <div align="center" id="cargarcodigodebarra"></div>         
+                         
+               </div>              
+              </div>
+            </div>
+        </div>
+             <div class="modal-footer" style="background: #D5D9DF;">              
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
+             </div>
+          </div>    
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>                   
+<!--MODAL PARA reanudar Ejemplar-->
+
+<div class="modal fade" id="modalReanudarEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalReanudarEjemplar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteEjemplarTitle"><img src="img/icons/reanudar.png" width="35" height="30"> Reanudar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="reateForm" name="reateForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea reanudar este ejemplar:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reaEjemplarcod" id="reaEjemplarcod" aria-describedby="reaEjemplarcod" placeholder="Ejemplar" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reaEjemplarnom" id="reaEjemplarnom" aria-describedby="reaEjemplarnom" placeholder="Ejemplar" hidden="true">
+                           
+                  <div id="labelreanudar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaReanudarEjemplar" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-success" onclick="reanudarEjemplar()">Reanudar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!--MODAL PARA reportar Ejemplar-->
+
+<div class="modal fade" id="modalReportarEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalReportarEjemplar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteEjemplarTitle"><img src="img/icons/laberinto.png" width="35" height="30"> Reportar como perdido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="repoForm" name="repoForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea reportar este ejemplar:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="repoEjemplarcod" id="repoEjemplarcod" aria-describedby="repoEjemplarcod" placeholder="Ejemplar" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="repoEjemplarnom" id="repoEjemplarnom" aria-describedby="repoEjemplarnom" placeholder="Ejemplar" hidden="true">
+                           
+                  <div id="labelreportar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaReportarEjemplar" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-danger" onclick="reportarEjemplar()">Reportar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!--MODAL PARA encontrar Ejemplar-->
+
+<div class="modal fade" id="modalEncontrarEjemplar" tabindex="-1" role="dialog" aria-labelledby="modalEncontrarEjemplar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteEjemplarTitle"><img src="img/icons/encontrado.png" width="35" height="30">Reportar como encontrado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="encontrarForm" name="encontrarForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea marcar como encontrado este ejemplar:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reanuEjemplarcod" id="reanuEjemplarcod" aria-describedby="reanuEjemplarcod" placeholder="Ejemplar" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reanuEjemplarnom" id="reanuEjemplarnom" aria-describedby="reanuEjemplarnom" placeholder="Ejemplar" hidden="true">
+                           
+                  <div id="labelencontrar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaEncontrarEjemplar" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-success" onclick="encontrarEjemplar()">encontrar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -481,8 +658,10 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
-  var variablecod=$("#codigoLib").val();  
-  $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
+  var variablecod=$("#codigoLib").val();
+  var ordenar=$("#textBusquedaordenar").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
+  $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar);
   
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -496,12 +675,10 @@ function recargarTablaLimpiar(){
     $("#cargandoFeedback").show();
       $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-    var busqueda=$("#textBusqueda").val();
-    var variablecod=$("#codigoLib").val();
-
-  
-    $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod);
-
+  var busqueda=$("#textBusqueda").val();
+  var variablecod=$("#codigoLib").val();
+  var ordenar=$("#textBusquedaordenar").val();  
+  $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=1&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar);
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
                            
@@ -577,7 +754,7 @@ function insertarEjemplar(){
                           $("#respuestaNuevoEjemplar").hide(500);                                
                     }, 6000);
                 }
-
+ 
               }
             });
 
@@ -675,19 +852,11 @@ function deleteEjemplar(){
         recargarTabla()
         if (data=="0"){
           // ERROR, Ejemplar TIENE LIBROS INSCRITOS
-          var url = "pages/Ejemplares/requisitosBorrarEdit.php";
-           $.ajax({
-              type: "POST",
-              url: url,
-              data: $("#deleteForm").serialize(),
-              success: function (data){
                   $("#labelBorrar").show();
                   $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar a este Ejemplar. pues esta siendo usado por los libros:");
-                  $("#cargarTablaRequisito").show();
-                  $("#cargarTablaRequisito").html(data);                           
-              }
-            });
+                  $("#labelBorrar").html("No se puede borrar a este Ejemplar. Porque esta en prestamo:");
+                                        
+            
         }else if (data=="1"){  
 
           $("#labelBorrar").show();
@@ -709,6 +878,140 @@ function deleteEjemplar(){
   }
 }
 
+//reanudar ejemplar
+ function reanudarEjemplar(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#reaEjemplarcod").val()==""){
+    $("#respuestaReanudarEjemplar").show();
+    $("#respuestaReanudarEjemplar").html("Codigo de Ejemplar necesario");
+  }else {
+    $("#labelreanudar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/ejemplares/reanudar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#reateForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Ejemplar TIENE LIBROS INSCRITOS
+                  $("#labelreanudar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelreanudar").html("No se puede reanudar  este Ejemplar. porque esta en prestamo:");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelreanudar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelreanudar").html("<h5>Ejemplar ha sido Reanudado</h5>");
+
+          $("#modalReanudarEjemplar").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Ejemplar Reanudado </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+        }            
+      }
+    });
+  }
+}
+//reportar ejemplar
+ function reportarEjemplar(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#repoEjemplarcod").val()==""){
+    $("#respuestaReportarEjemplar").show();
+    $("#respuestareportarEjemplar").html("Codigo de Ejemplar necesario");
+  }else {
+    $("#labelreportar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/ejemplares/reportar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#repoForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Ejemplar TIENE LIBROS INSCRITOS
+                  $("#labelreportar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelreportar").html("No se puede reportar  este Ejemplar no esta en prestamo");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelreportar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelreportar").html("<h5>Ejemplar ha sido Reportado como perdido</h5>");
+
+          $("#modalReportarEjemplar").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Ejemplar reportado como perdido </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+        }            
+      }
+    });
+  }
+}
+
+//encontrar ejemplar
+ function encontrarEjemplar(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#reanuEjemplarcod").val()==""){
+    $("#respuestaEncontrarEjemplar").show();
+    $("#respuestaEncontrarEjemplar").html("Codigo de Ejemplar necesario");
+  }else {
+    $("#labelencontrar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/ejemplares/encontrar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#encontrarForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Ejemplar TIENE LIBROS INSCRITOS
+                  $("#labelencontrar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelencontrar").html("No se puede reportar como encontrado  este Ejemplar esta en prestamo");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelencontrar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelencontrar").html("<h5>Ejemplar ha sido reportado como encontrado</h5>");
+
+          $("#modalEncontrarEjemplar").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Ejemplar reportado como encontrado </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+         }            
+      }
+    });
+  }
+}
+
  $('#modalEditarEjemplar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
       var varejemplarcod = button.data('varejemplarcod')
@@ -724,7 +1027,13 @@ function deleteEjemplar(){
        
       var modal = $(this)
       modal.find('.modal-title').text('Editar Ejemplar: ' + varejemplartitulo );
-     
+       if (button.data('varejemplartipoingreso')== 0) {
+              $("#inputprecio").prop("disabled", true);
+              $("#inputdetalle").prop("disabled", false);
+       }else{
+              $("#inputprecio").prop("disabled", false);
+              $("#inputdetalle").prop("disabled", true);
+       }
         
        document.getElementById('editejemplarcomentario').value = varejemplarcomentario;      
        document.getElementById('editejemplarcodigo').value = varejemplarcod; 
@@ -750,25 +1059,100 @@ function deleteEjemplar(){
   
      $('#modalBorrarEjemplar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
-      var varEjemplarcod = button.data('varEjemplarcod')
-      var varejemplartitulo = button.data('varejemplartitulo')     
-
+      var varejemplarcod = button.data('varejemplarcod')
+      var varejemplarnom = button.data('varejemplarnom')     
+      var varejemplarcodreg = button.data('varejemplarcodreg')  
       $('#borrarButton').attr("disabled", false);  
-
-
+      
+      
       var modal = $(this)
 
-       $("#notificationLabel").html('Esta es una accion <h5> Permanente. </h5> Desea Eliminar registro?:');
-       $("#cargarTablaRequisito").html('');
+       $("#notificationLabel").html('Desea Eliminar el libro  con codigo de registro:');
+    
 
 
-      $("#labelBorrar").html('<h5> '+varejemplartitulo+' '+'<h5> ');
-      document.getElementById('delEjemplarcod').value = varEjemplarcod;
-      document.getElementById('delEjemplarnom').value = varejemplartitulo;
+      $("#labelBorrar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
+      document.getElementById('delEjemplarcod').value = varejemplarcod;
+      document.getElementById('delEjemplarnom').value = varejemplarnom;
       
       
       
     })
+//Reanudar Ejemplar
+  
+     $('#modalReanudarEjemplar').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varejemplarcod = button.data('varejemplarcod')
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea reanudar el libro  con codigo de registro:');
+    
+
+
+      $("#labelreanudar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
+      document.getElementById('reaEjemplarcod').value = varejemplarcod;
+      document.getElementById('reaEjemplarnom').value = varejemplarnom;
+      
+      
+      
+    })
+
+//Reportar Ejemplar
+  
+     $('#modalReportarEjemplar').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varejemplarcod = button.data('varejemplarcod')
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea reportar como perdido  el libro el libro  con codigo de registro:');
+    
+
+
+      $("#labelreportar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
+      document.getElementById('repoEjemplarcod').value = varejemplarcod;
+      document.getElementById('repoEjemplarnom').value = varejemplarnom;
+      
+      
+      
+    })
+
+//Encontrar Ejemplar
+  
+     $('#modalEncontrarEjemplar').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varejemplarcod = button.data('varejemplarcod')
+      var varejemplarnom = button.data('varejemplarnom')
+      var varejemplarcodreg = button.data('varejemplarcodreg')      
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea marcar como encontrado el libro  con codigo de registro:');
+    
+
+
+      $("#labelencontrar").html('<h5> '+varejemplarcodreg+' '+'<h5> ');
+      document.getElementById('reanuEjemplarcod').value = varejemplarcod;
+      document.getElementById('reanuEjemplarnom').value = varejemplarnom;
+      
+      
+      
+    })
+
 //Ver ejemplar
 
 $('#modalVerEjemplar').on('show.bs.modal', function (event) {
@@ -793,6 +1177,27 @@ $('#modalVerEjemplar').on('show.bs.modal', function (event) {
        
       
     })
+//ver codigo de barra
+$('#modalBarraEjemplar').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) //
+      var varejemplarcodlib  = button.data('varejemplarcodlib')      
+      var varejemplarcodigoreg  = button.data('varejemplarcodigoreg')       
+      var varejemplartitulo = button.data('varejemplartitulo')
+      var varejemplarnumero = button.data('varejemplarnumero')
+      
+
+          
+varejemplarnumero
+      var modal = $(this)
+       
+       var codigoLib=$("#codigoLib").val();   
+       $("#cargarcodigodebarra").load("pages/codbarras/vercbejemplar.php?codeje="+varejemplarcodigoreg+"&codigoLib=" + codigoLib); 
+       $("#codigobarra").html('<h4 align=center>'+varejemplartitulo+', Ejemplar #'+varejemplarnumero+' '+'<h4> ')      
+
+        
+       
+      
+    })
 
      //habilitar input dependiendo del tipo de ignreso
  
@@ -802,14 +1207,25 @@ $( function() {
             $("#formprecio").prop("disabled", true);
             $("#formdetalle").prop("disabled", false);
             // si selecciona donado, borra lo que contiene el input de precio:
-            document.getElementById('inputprecio').value="";
+            document.getElementById('formprecio').value="";
         } else {
             $("#formprecio").prop("disabled", false);
             $("#formdetalle").prop("disabled", true);
             document.getElementById('formdetalle').value="";
         }
     });
-});
+}); 
+// en editar
+ function bloquearselect(){
+    if (document.getElementById('editejemplartipoingreso').value == 0) {
+      $("#inputprecio").prop("disabled", true);
+      $("#inputdetalle").prop("disabled", false);   
+
+    }else{
+      $("#inputprecio").prop("disabled", false);
+      $("#inputdetalle").prop("disabled", true);      
+    }
+ }
   
 // dejar los inmputs en mayusculas
 
@@ -867,5 +1283,6 @@ $("#inputUpCase").keydown(function(event) {
             return false;
         }
     }
+  
 
 </script>

@@ -6,14 +6,15 @@
   $usuario="bibliocnx";
   $clave="Biblioteca123$";
   $base="sistemabiblioteca";
-
+  
+  
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
   $oficio="612x1008";
 
   // codigo instituto
-    $instituocodigo="88160-";
+    $instituocodigo="88160-"; 
 
   //Nombre de tablas
   
@@ -43,6 +44,7 @@
    $varSecAula="ususecaul";
    $varTipBachi="usutipbac";
    $varNivel="usunivel";
+   $varusucodbar="usucodbar";
 
   //1Nombre de tabla LIBROS
 
@@ -120,6 +122,9 @@
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
     $varejemtipadq="ejemtipadq";
+    $varejemcodbar='ejemcodbar';
+    $varejemfecreg='ejemfecreg';
+    $varejemfecest='ejemfecest';
 
  // TABLA EQUIPO
       $tablaEquipo="equipo";
@@ -133,7 +138,7 @@
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
 ////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
-    $varexistcod="existcod";
+   $varexistcod="existcod";
     $varexistcodreg="existcodreg";
     $varexistfecadq="existfecadq";
     $varexisttipadq="existtipadq";
@@ -146,7 +151,9 @@
     $varestcod="estcod";
     $varequicodExist="equicod";
     $varequicod="equicod";
-
+    $varexistcodbar='existcodbar';
+    $varexistfecreg='existfecreg';
+    $varexistfecest='existfecest';
 
 
  //TABLA SOLICITUD DE PRESTAMO BOLSA PRESTAMO   BOLSAPRESTAMO
@@ -172,7 +179,8 @@
     $varprestest="prestestlib";
     $varprestren="prestrenlib";
     $varusuCodigoF="usuCodigo";
-    $varusuCodBiblio="usuCodBiblio";
+    $varusuCodBiblio="usuCodBiblio"; 
+    $varprestfechafin="prestfechafin";
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod
@@ -197,6 +205,7 @@
     $varprestestequi="prestestequi";
     $varusuCodigoFEquipo="usucod";
     $varusuCodBiblioEquipo="usuCodBiblioEquipo";
+     $varprestfechafinEquipo="prestfechafinEquipo";
 
 
 //detallesprestamolibro; 

@@ -5,7 +5,7 @@
 	session_start();
 
 
-	$formEstantenom=strtoupper($_POST['formEstantenom']);
+	$formEstantenom=mb_strtoupper ($_POST['formEstantenom']);
 	
 
 

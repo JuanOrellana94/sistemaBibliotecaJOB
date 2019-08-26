@@ -18,7 +18,10 @@ $UsuPassword=md5($_POST['usuContrasena']);
 
 
 
-$checkValidation="SELECT * from $tablaUsuarios WHERE $varCarnet='$usuAccount' AND $varContrasena='$UsuPassword'";
+$checkValidation="SELECT * from $tablaUsuarios WHERE 
+($varContrasena='$UsuPassword' AND $varCarnet='$usuAccount') OR 
+($varContrasena='$UsuPassword' AND $varAccNombre='$usuAccount');
+";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -38,7 +41,7 @@ if(isset($dataRow)){
 
 
 
-  }else if($dataRow[$varCueEstatus]=="0"){
+  }else if($dataRow[$varCueEstatus]=="0" || $dataRow[$varCueEstatus]=="3" ){
     //Condiciones de acceso cumplidas, session starts
     session_start();
     $_SESSION['usuCodigo']=$dataRow[$varUsuCodigo];
@@ -63,6 +66,8 @@ if(isset($dataRow)){
       $_SESSION['usuNivelNombre']="Personal";
     }else  if( $_SESSION['usuNivel'] == 3 ){
       $_SESSION['usuNivelNombre']="Estudiante";
+    }else  if( $_SESSION['usuNivel'] == 4 ){
+      $_SESSION['usuNivelNombre']="Auxiliar";
     }
 
 

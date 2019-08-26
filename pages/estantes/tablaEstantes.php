@@ -1,7 +1,13 @@
 	<?php 
+	session_start();
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
-
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     }   
 	$limite = 20;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
@@ -28,17 +34,47 @@
       $todal_filas = $filas[0];  
       $total_paginas = ceil($todal_filas / $limite); 
   	?>                    
-                     <nav aria-label="Page navigation">
-                        <ul class='pagination justify-content-center"' id="pagination">
-                        <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
-                            if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li> 
-                            <?php else:?>
-                            <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
-                            <?php endif;?>    
-                        <?php endfor;endif;?>
-                           </ul>
-                      </nav>		
+                <nav aria-label="Page navigation">
+					<ul class='pagination justify-content-center' id="pagination">
+                    	<?php
+                		$printEnd=0;
+                    	$rangoLeash='4';//TEMP                   	
+                    	if ($pagina<=$rangoLeash+2) {
+                    		$rangoInferior='1';
+                    	}else{
+                    		$rangoInferior= $pagina-$rangoLeash;
+                    		?>
+                    			<li class='page-item'  id="1"> <a class="page-link" href='pagination.php?page=1'> 1 </a> </li>
+                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>    
+                    		<?php
+                    	}
+                    	if ($pagina>=($total_paginas-$rangoLeash)){
+                    		$rangoSuperior=$total_paginas;
+                    	}else{
+                    		$rangoSuperior= $pagina+$rangoLeash;
+                    		$printEnd=1;
+                    	}
+                    	if(!empty($total_paginas)){
+                			for($i=$rangoInferior; $i<=$rangoSuperior; $i++){ 
+								if($i == $pagina){ ?>
+									<li class='page-item active'  id="<?php echo $i;?>"> <a class="page-link" href='pagination.php?page=<?php echo $i;?>'>
+										<?php echo $i;?></a>
+									</li> 
+                			
+                        	<?php } else {?>
+                        	<li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                            <?php }?>    
+                        <?php }
+	                    }//Here
+	                    if ($printEnd==1) {	                
+	                    ?>
+	        			<li class='page-item'  > <a class="page-link"> ... </a> </li>
+	        			<li class='page-item'  id="<?php echo $total_paginas;?>"> <a class="page-link" href='pagination.php?page=1'> <?php echo $total_paginas;?> </a> </li>  
+                 		<?php
+                    		}
+                 		 ?>
+                    </ul>
+				</nav>			
 
  <script>
                       	
@@ -61,8 +97,8 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
-							<th>Indicador</th>
+							
+							<th>Indicador o nombre del estante</th>
 							
 	
 							
@@ -88,19 +124,19 @@
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>
-							<td><?php echo $dataLibros[$varestcod];?> </td>						
+												
 							<td><?php echo $dataLibros[$varestdes];?>  </td>							 
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarEstante"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarEstante"
 								 data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
 								 data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"								 					 
 								 title="Editar Estante">
 									<img  src="img/icons/BookEditWide.png" width="35" height="30">
 								</button>
 
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEstante"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalBorrarEstante"
 								 	data-varestantecod="<?php echo $dataLibros[$varestcod];?>"
 									data-varestantenom="<?php echo  $dataLibros[$varestdes];?>"
 									title="Eliminar Estante">

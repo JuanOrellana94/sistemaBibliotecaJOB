@@ -4,9 +4,9 @@
 	date_default_timezone_set("America/El_Salvador");
 	session_start();
 
-	$editequiponom=strtoupper($_POST['editequiponom']);
+	$editequiponom=mb_strtoupper ($_POST['editequiponom']);
 	$editequicodifi=$_POST['editequicodifi'];	
-	$editequipodes=strtoupper($_POST['editequipodes']);	
+	$editequipodes=mb_strtoupper ($_POST['editequipodes']);	
     $editequicod=$_POST['editequicod'];
     
 	$usuCodigo=$_SESSION['usuCodigo'];

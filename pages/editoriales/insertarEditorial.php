@@ -5,7 +5,7 @@
 	session_start();
 
 
-	$formeditorialnom=strtoupper($_POST['formeditorialnom']);
+	$formeditorialnom=mb_strtoupper ($_POST['formeditorialnom']);
 	
 
 
@@ -27,12 +27,10 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 		$insRegistro=mysqli_query($conexion,"
-		    INSERT INTO   $tablaEditoral(		    
-			   $vareditnom,
-			   $vareditpai			   
+		    INSERT INTO   $tablaEditoral(   
+			   $vareditnom   
 		      ) VALUES(
-		      '$formeditorialnom',
-		      '---'     
+		      '$formeditorialnom'
 		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 

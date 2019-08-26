@@ -13,7 +13,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemestcod='$delestantecod';";
+$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemestcod='$delestantecod'";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 

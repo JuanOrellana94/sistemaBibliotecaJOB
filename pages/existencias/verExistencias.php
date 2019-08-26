@@ -2,17 +2,14 @@
     <!--CONTENEDOR PARA TABLA DE Existencias/MODALES PARA AGREGAR Y ELIMINAR Existencias--> 
 
     <?php
-     
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       } 
      ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Existencias</li>
-    </ol>
-  </nav>        
+<!--DIRECCION DE LA UBICACION ACTUAL--> 
 
 <!--INICIO CONTENEDOR DE CATALOGO DE Existencias-->    
 <div class="container-fluid" > 
@@ -96,7 +93,19 @@
                           </div> 
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
-                      </form>                       
+                      </form> 
+                       <small id="dateHelp" class="form-text text-muted">Mostrar por estado</small> <br>
+                      <form name="formBusqueda" id="formBusqueda">          
+                        <div class="input-group">               
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">
+                            <option value="0">DISPONIBLES</option>
+                            <option value="1">PRESTADO</option>
+                            <option value="2">ELIMINADOS</option>
+                            <option value="3">EXTRAVIADOS</option>
+                          </select> 
+                        </div>  
+
+                      </form>                          
                     </div>
                     <div class="col-sm-3">
                       <div name="cargandoFeedback" id="cargandoFeedback" align="left"> </div>
@@ -110,7 +119,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newExistenciaModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newExistenciaModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Existencia" src="img/icons/Bookadd.png" width="45" height="45">
                         </button>
                         
@@ -451,7 +460,156 @@
   </div>
 </div>
       
-                                        
+<!-- Modal Ver codigo de barra -->
+
+<div class="modal fade" id="modalBarraequipo" tabindex="-1" role="dialog" aria-labelledby="modalBarraequipo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+       <div class="modal-header" style="background: #D5D9DF;">
+           <label id="codigobarra"></label>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+           </button>  
+       </div> 
+       <div class="modal-body">       
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">             
+             <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" value="<?php echo $_GET['equipoCod']; ?>" id="codigoLib" name="codigoLib" hidden> 
+              <div align="center" id="cargarcodigodebarra"></div>         
+                         
+               </div>              
+              </div>
+            </div>
+        </div>
+             <div class="modal-footer" style="background: #D5D9DF;">              
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>             
+             </div>
+          </div>    
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+<!--MODAL PARA reanudar Existencia-->
+
+<div class="modal fade" id="modalReanudarExistencia" tabindex="-1" role="dialog" aria-labelledby="modalReanudarExistencia" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteExistenciaTitle"><img src="img/icons/reanudar.png" width="35" height="30"> Reanudar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="reateForm" name="reateForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea reanudar este Existencia:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reaExistenciacod" id="reaExistenciacod" aria-describedby="reaExistenciacod" placeholder="Existencia" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reaExistencianom" id="reaExistencianom" aria-describedby="reaExistencianom" placeholder="Existencia" hidden="true">
+                           
+                  <div id="labelreanudar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaReanudarExistencia" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-success" onclick="reanudarExistencia()">Reanudar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!--MODAL PARA reportar Existencia-->
+
+<div class="modal fade" id="modalReportarExistencia" tabindex="-1" role="dialog" aria-labelledby="modalReportarExistencia" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteExistenciaTitle"><img src="img/icons/laberinto.png" width="35" height="30"> Reportar como perdido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="repoForm" name="repoForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea reportar este Existencia:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="repoExistenciacod" id="repoExistenciacod" aria-describedby="repoExistenciacod" placeholder="Existencia" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="repoExistencianom" id="repoExistencianom" aria-describedby="repoExistencianom" placeholder="Existencia" hidden="true">
+                           
+                  <div id="labelreportar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaReportarExistencia" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-danger" onclick="reportarExistencia()">Reportar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!--MODAL PARA encontrar Existencia-->
+
+<div class="modal fade" id="modalEncontrarExistencia" tabindex="-1" role="dialog" aria-labelledby="modalEncontrarExistencia" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #D5D9DF;">
+        <h5 class="modal-title" id="deleteExistenciaTitle"><img src="img/icons/encontrado.png" width="35" height="30">Reportar como encontrado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #D5D9DF;">
+        <form id="encontrarForm" name="encontrarForm">
+          <div class="row">         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Desea marcar como encontrado este Existencia:</label></div>                
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reanuExistenciacod" id="reanuExistenciacod" aria-describedby="reanuExistenciacod" placeholder="Existencia" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="reanuExistencianom" id="reanuExistencianom" aria-describedby="reanuExistencianom" placeholder="Existencia" hidden="true">
+                           
+                  <div id="labelencontrar" style="color: green; font-weight: bold; text-align: center;"></div>
+
+         
+    
+              </div>
+            </div>
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer" style="background: #D5D9DF;">
+        <div id="respuestaEncontrarExistencia" style="color: red; font-weight: bold; text-align: center;"></div>         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button"  id="borrarButton" name="borrarButton" class="btn btn-success" onclick="encontrarExistencia()">encontrar</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
                    
 
 
@@ -482,8 +640,10 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
-  var variablecod=$("#equipoCod").val();  
-  $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod);
+  var variablecod=$("#equipoCod").val();
+  var ordenar=$("#textBusquedaordenar").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
+  $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod+ "&ordenar=" + ordenar);
   
   setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -499,9 +659,10 @@ function recargarTablaLimpiar(){
 
     var busqueda=$("#textBusqueda").val();
     var variablecod=$("#equipoCod").val();
+    var ordenar=$("#textBusquedaordenar").val();
 
   
-    $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod);
+    $("#cargarTabla").load("pages/existencias/tablaExistencias.php?pagina=1&busqueda="+busqueda+"&equipoCod="+variablecod+ "&ordenar=" + ordenar );
 
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
@@ -675,36 +836,164 @@ function deleteExistencia(){
       success: function (data){
         recargarTabla()
         if (data=="0"){
-          // ERROR, Existencia TIENE LIBROS INSCRITOS
-          var url = "pages/Existencias/requisitosBorrarEdit.php";
-           $.ajax({
-              type: "POST",
-              url: url,
-              data: $("#deleteForm").serialize(),
-              success: function (data){
+          
                   $("#labelBorrar").show();
                   $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar a este Existencia. pues esta siendo usado por los libros:");
+                  $("#labelBorrar").html("No se puede borrar a este Existencia. Porque esta en prestamo:");
                   $("#cargarTablaRequisito").show();
                   $("#cargarTablaRequisito").html(data);                           
-              }
-            });
+              
+          
         }else if (data=="1"){  
 
           $("#labelBorrar").show();
           $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
-          $("#labelBorrar").html("<h5>Existencia ha sido eliminado</h5>");
+          $("#labelBorrar").html("<h5>Existencia ha sido eliminada</h5>");
 
           $("#modalBorrarExistencia").modal('hide');
            //success
           $("#accionFeedback").show();
-          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Existencia Eliminado </div>");
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Existencia Eliminada </div>");
            setTimeout(
               function() {
                  $("#accionFeedback").hide(500);                         
            }, 6000);
          
         }            
+      }
+    });
+  }
+}
+
+//reanudar Existencia
+ function reanudarExistencia(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#reaExistenciacod").val()==""){
+    $("#respuestaReanudarExistencia").show();
+    $("#respuestaReanudarExistencia").html("Codigo de Existencia necesario");
+  }else {
+    $("#labelreanudar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/existencias/reanudar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#reateForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Existencia TIENE LIBROS INSCRITOS
+                  $("#labelreanudar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelreanudar").html("No se puede reanudar  esta Existencia. porque esta en prestamo:");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelreanudar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelreanudar").html("<h5>Existencia equipo ha sido Reanudada</h5>");
+
+          $("#modalReanudarExistencia").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Existencia equipo Reanudada </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+        }            
+      }
+    });
+  }
+}
+//reportar Existencia
+ function reportarExistencia(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#repoExistenciacod").val()==""){
+    $("#respuestaReportarExistencia").show();
+    $("#respuestareportarExistencia").html("Codigo de Existencia necesario");
+  }else {
+    $("#labelreportar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/existencias/reportar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#repoForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Existencia TIENE LIBROS INSCRITOS
+                  $("#labelreportar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelreportar").html("No se puede reportar  esta Existencia no esta en prestamo");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelreportar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelreportar").html("<h5>Existencia equipo ha sido Reportada como perdido</h5>");
+
+          $("#modalReportarExistencia").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Existencia equipo reportada como perdida </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+        }            
+      }
+    });
+  }
+}
+
+//encontrar Existencia
+ function encontrarExistencia(){
+  $("#borrarButton").attr("disabled", true);
+
+  if ($("#reanuExistenciacod").val()==""){
+    $("#respuestaEncontrarExistencia").show();
+    $("#respuestaEncontrarExistencia").html("Codigo de Existencia necesario");
+  }else {
+    $("#labelencontrar").html('<img src="img/structures/replace.gif" style="max-width: 80%">').show(500);
+
+    var url = "pages/existencias/encontrar.php";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#encontrarForm").serialize(),
+      success: function (data){
+        recargarTabla()
+        if (data=="0"){
+          // ERROR, Existencia TIENE LIBROS INSCRITOS
+                  $("#labelencontrar").show();
+                  $("#notificationLabel").html("");
+                  $("#labelencontrar").html("No se puede reportar como encontrado  esta Existencia esta en prestamo");
+                                        
+            
+        }else if (data=="1"){  
+
+          $("#labelencontrar").show();
+          $("#notificationLabel").html("<label for='TituloLabel'>Operacion finalizada</label>");
+          $("#labelencontrar").html("<h5>Existencia equipo ha sido reportada como encontrada</h5>");
+
+          $("#modalEncontrarExistencia").modal('hide');
+           //success
+          $("#accionFeedback").show();
+          $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Existencia equipo reportada como encontrada </div>");
+           setTimeout(
+              function() {
+                 $("#accionFeedback").hide(500);                         
+           }, 6000);
+         
+         }            
       }
     });
   }
@@ -752,7 +1041,8 @@ function deleteExistencia(){
      $('#modalBorrarExistencia').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
       var varexistenciacod = button.data('varexistenciacod')
-      var varexistenciaNom = button.data('varexistenciaNom')     
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
 
       $('#borrarButton').attr("disabled", false);  
 
@@ -763,9 +1053,84 @@ function deleteExistencia(){
        $("#cargarTablaRequisito").html('');
 
 
-      $("#labelBorrar").html('<h5> '+varexistenciaNom+' '+'<h5> ');
+      $("#labelBorrar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
       document.getElementById('delExistenciacod').value = varexistenciacod;
-      document.getElementById('delExistencianom').value = varexistenciaNom;
+      document.getElementById('delExistencianom').value = varexistencianom;
+      
+      
+      
+    })
+
+     //Reanudar Ejemplar
+  
+     $('#modalReanudarExistencia').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varexistenciacod = button.data('varexistenciacod')
+      var varexistencianom = button.data('varexistencianom')     
+      var varexistenciacodreg = button.data('varexistenciacodreg')
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea reanudar el libro  con codigo de registro:');
+    
+
+
+      $("#labelreanudar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
+      document.getElementById('reaExistenciacod').value = varexistenciacod;
+      document.getElementById('reaExistencianom').value = varexistencianom;
+      
+      
+      
+    })
+
+//Reportar Ejemplar
+  
+     $('#modalReportarExistencia').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varexistenciacod = button.data('varexistenciacod')
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea reportar como perdido  el libro el libro  con codigo de registro:');
+    
+
+
+      $("#labelreportar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
+      document.getElementById('repoExistenciacod').value = varexistenciacod;
+      document.getElementById('repoExistencianom').value = varexistencianom;
+      
+      
+      
+    })
+
+//Encontrar Ejemplar
+  
+     $('#modalEncontrarExistencia').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // 
+      var varexistenciacod = button.data('varexistenciacod')
+      var varexistencianom = button.data('varexistencianom')
+      var varexistenciacodreg = button.data('varexistenciacodreg')     
+
+      $('#borrarButton').attr("disabled", false);  
+      
+      
+      var modal = $(this)
+
+       $("#notificationLabel").html('Desea marcar como encontrado el libro  con codigo de registro:');
+    
+
+
+      $("#labelencontrar").html('<h5> '+varexistenciacodreg+' '+'<h5> ');
+      document.getElementById('reanuExistenciacod').value = varexistenciacod;
+      document.getElementById('reanuExistencianom').value = varexistencianom;
       
       
       
@@ -791,6 +1156,27 @@ $('#modalVerExistencia').on('show.bs.modal', function (event) {
        $("#verExistenciatipadqui").html('<h6 align=center>'+varexistenciatipadqui+' '+'<h6> '); 
        $("#verExistenciadetadqui").html('<h6 align=center>'+varexistenciadetadqui+' '+'<h6> '); 
        $("#verExistenciadesfisica").html('<h6 align=center>'+varexistenciadesfisica+' '+'<h6> ');  
+       
+      
+    })
+
+//ver codigo de barra
+$('#modalBarraequipo').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) //
+      var varequipocodlib  = button.data('varequipocodlib')      
+      var varequipocodigoreg  = button.data('varequipocodigoreg')       
+      var varequipotitulo = button.data('varequipotitulo')
+      var varequiponumero = button.data('varequiponumero')    
+
+          
+
+      var modal = $(this)
+       
+       var codigoLib=$("#codigoLib").val();   
+       $("#cargarcodigodebarra").load("pages/codbarras/vercbequipo.php?codequi="+varequipocodigoreg+"&codigoEqui=" + codigoLib); 
+       $("#codigobarra").html('<h4 align=center>'+varequipotitulo+', equipo #'+varequiponumero+' '+'<h4> ')      
+
+        
        
       
     })

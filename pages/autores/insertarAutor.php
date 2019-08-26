@@ -5,9 +5,9 @@
 	session_start();
 
 
-	$formautnom=strtoupper($_POST['formautnom']);
-	$formautape=strtoupper($_POST['formautape']);
-	$formseud=strtoupper($_POST['formautseud']);
+	$formautnom=mb_strtoupper ($_POST['formautnom']);
+	$formautape=mb_strtoupper ($_POST['formautape']);
+	$formseud=mb_strtoupper ($_POST['formautseud']);
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
@@ -31,13 +31,11 @@ $dataRow = mysqli_fetch_array($resultado);
 		    INSERT INTO  $tablAutor(		    
 			   $varautnom,
 			   $varautape,
-			   $varautseud,
-			   $varautdes
+			   $varautseud			   
 		      ) VALUES(
 		      '$formautnom',
 		      '$formautape',
-		      '$formseud',
-		      '---'
+		      '$formseud'
 		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 

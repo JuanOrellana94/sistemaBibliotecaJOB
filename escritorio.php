@@ -17,28 +17,28 @@
           <table align="center" >
             <tr>
               <td>
-              	  <div class="container">  <img src="img/icons/book.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block">Catalogos</button>
+                  <div class="container">  <img src="img/icons/book.png" alt="Snow" style="width:100%">
+                   <button class="btn btn-lg btn-block" onclick="location.href='catalogos.php?pageLocation=libros';">Catalogos</button>
                   </div>
               </td>
 
                <td>
-              	  <div class="container">  <img src="img/icons/Ops.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block">Operaciones</button>
+                  <div class="container">  <img src="img/icons/Ops.png" alt="Snow" style="width:100%">
+                   <button class="btn btn-lg btn-block" disabled="">Operaciones</button>
                   </div>
               </td>
 
                <td>
-              	  <div class="container">  <img src="img/icons/Est.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block">Estadisticas</button>
+                  <div class="container">  <img src="img/icons/Est.png" alt="Snow" style="width:100%">
+                   <button class="btn btn-lg btn-block" disabled="">Estadisticas</button>
                   </div>
               </td>
 
                <td>
-              	  <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block">Utileria</button>
+                  <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
+                   <button class="btn btn-lg btn-block" disabled="">Utileria</button>
                   </div>
-              </td>    
+              </td>      
                       
             </tr>
            

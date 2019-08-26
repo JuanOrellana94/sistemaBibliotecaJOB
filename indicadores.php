@@ -126,6 +126,7 @@
           <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
           <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
+          <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Catalogos</a>
         </div>
@@ -236,6 +237,7 @@
                   <div class="row">
                     <div class="col-sm-10">
                       <?php
+                        
                           while($indicador = mysqli_fetch_assoc($resultado)) {          
                             if($xconsulta !=6){
                               echo $linea . "<b>" . $indicador['campo1'] . "</b>";
@@ -243,7 +245,7 @@
                             else{
                               echo $indicador['campo1'] . "&nbsp;<b>" . $indicador['campo2'] . "</b>"; 
                             }
-                          }
+                          }                          
                       ?>
                     </div>
                 </div>

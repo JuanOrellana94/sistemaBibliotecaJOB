@@ -5,7 +5,7 @@
     		<div class="col-lg-2 col-md-6 col-sm-5">
     		<div class="btn-group float-right" role="group" aria-label="Opciones"> 
 				<button class="btn" type="button" onclick="reiniciarFormPrestamo();" data-toggle="tooltip" data-placement="top" title="Cancelar este prestamo">
-		                  <img src="img/icons/BookauthorReload.png" width="30" height="30">
+		                  <img src="img/icons/BookauthorReload.png" width="45" height="45">
 		        </button>
 	    	</div></div>
 
@@ -48,6 +48,7 @@
       	                <input type="text" class="form-control" onfocus="this.value=''" name="textEjemplar" id="textEjemplar" aria-describedby="textEjemplar" placeholder="">
 
       	                <div id="infoListaLibros"></div>
+      	                <div id="solicitudDetallesDiv"></div>
 	              </div>
 	       	
 		    	</div>
@@ -97,6 +98,11 @@
 		  //    $("#solicitudesUsuarios").hide(500);                          
 		  //  }, 1000);
 }
+
+
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
 	
 	
 </script>

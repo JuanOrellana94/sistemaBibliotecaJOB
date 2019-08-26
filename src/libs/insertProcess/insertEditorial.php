@@ -5,7 +5,7 @@
 	session_start();
 
 
-	$modaleditnom=$_POST['modaleditnom'];
+	$modaleditnom=mb_strtoupper ($_POST['modaleditnom']);
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];

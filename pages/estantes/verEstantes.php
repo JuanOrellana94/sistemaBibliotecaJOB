@@ -2,27 +2,25 @@
     <!--CONTENEDOR PARA TABLA DE Estantes/MODALES PARA AGREGAR Y ELIMINAR Estantes--> 
 
     <?php
-     
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
      ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Estantes</li>
-    </ol>
-  </nav>        
 
+<br>
 <!--INICIO CONTENEDOR DE CATALOGO DE Estantes-->    
 <div class="container-fluid" > 
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
           <div class="row mx-auto">
-            <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Catalogo de Estantes</h3>  Administrar informacion de Estantes.</p>       
-            </div>           
+            <div style="vertical-align: middle;">
+               <h4 class="card-title"> <a class="navbar-brand">
+             <img src="img/icons/Bookstand.png" width="80" height="80" alt="" style="margin-top: -10%; margin-bottom: -35%; ">
+            </a> Estantes </h4>
           </div>     
         </div>
         <!--Cuerpo del panel--> 
@@ -55,7 +53,7 @@
                           <img src="img/icons/BookstandReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newEstanteModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newEstanteModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Estante" src="img/icons/Bookstand+.png" width="45" height="45">
                         </button>
                         
@@ -227,7 +225,8 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/estantes/tablaEstantes.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
@@ -385,7 +384,7 @@ function limpiarFormularioEstante(){
 function deleteEstante(){
   $("#borrarButton").attr("disabled", true);
 
-  if ($("#varestantecod").val()==""){
+  if ($("#delestantecod").val()==""){
     $("#respuestaBorrarEstante").show();
     $("#respuestaBorrarEstante").html("Codigo de Estante necesario");
   }else {

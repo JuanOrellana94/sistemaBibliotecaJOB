@@ -13,7 +13,7 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaLibros WHERE $varlibcod='$modallibcod';";
+$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varlibcod='$modallibcod';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
@@ -21,7 +21,7 @@ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexi
 $dataRow = mysqli_fetch_array($resultado);	
 
 	 
-	 if($dataRow>0) {
+	 if($dataRow==0) {
 		
 		$insRegistro=mysqli_query($conexion,"
 			DELETE FROM $tablaLibros

@@ -5,9 +5,9 @@
 	session_start();
 
 
-	$formautnom=$_POST['formautnom'];
-	$formautape=$_POST['formautape'];
-	$formseud=$_POST['formautseud'];
+	$formautnom=mb_strtoupper ($_POST['formautnom']);
+	$formautape=mb_strtoupper ($_POST['formautape']);
+	$formseud=mb_strtoupper ($_POST['formautseud']);
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];

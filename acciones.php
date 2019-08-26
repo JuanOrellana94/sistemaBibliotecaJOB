@@ -24,9 +24,26 @@
  	# code...
  }  else if ($pageLocation=="historial") {
  	 include("top.php");
- 	 include("pages/operaciones/opHistorial.php");
+ 	 include("pages/historial/verHistorial.php");
+ 	# code...
+ } else if ($pageLocation=="codbarras") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbestudiante.php");
+ 	# code...
+ } else if ($pageLocation=="cbejemplar") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbejemplar.php");
+ 	# code...
+ } else if ($pageLocation=="cbequipo") {
+ 	 include("top.php");
+ 	 include("pages/codbarras/cbequipo.php");
+ 	# code...
+ }else if ($pageLocation=="restaurar") {
+ 	 include("top.php");
+ 	 include("pages/restaurar/restaurarbd.php");
  	# code...
  }
+
 
 
 

@@ -2,20 +2,17 @@
     <!--CONTENEDOR PARA TABLA DE AUTORES/MODALES PARA AGREGAR Y ELIMINAR AUTORES--> 
 
     <?php
-     
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       } 
      ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Autores</li>
-    </ol>
-  </nav>        
-
 <!--INICIO CONTENEDOR DE CATALOGO DE AUTORES-->    
 <div class="container-fluid" > 
+  <br>
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
@@ -42,10 +39,10 @@
                         </div>
                         <small id="dateHelp" class="form-text text-muted">Herramienta de busqueda automatica.</small>
                       </form> 
-                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small>
+                      <small id="dateHelp" class="form-text text-muted">Ordenar la tabla</small><br>
                       <form name="formBusqueda" id="formBusqueda">          
                         <div class="input-group">               
-                          <select id="textBusquedaordenar" onchange="recargarTabla()">
+                          <select class="form-control" id="textBusquedaordenar" onchange="recargarTabla()">
                             <option value="0">ULTIMOS REGISTROS</option>
                             <option value="1">PRIMEROS REGISTROS</option>
                           </select>                          
@@ -64,7 +61,7 @@
                           <img src="img/icons/BookauthorReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newAuthorModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?> data-toggle="modal" data-target="#newAuthorModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Autor" src="img/icons/Bookauthor+png.png" width="45" height="45">
                         </button>
                         
@@ -104,14 +101,14 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="return soloLetras(event);">
+                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="formautape" placeholder="" onkeypress="return soloLetras(event);" >
+                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="formautape" placeholder="" onkeypress="" >
               </div>
 
             </div>
@@ -119,7 +116,7 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Pseudonimo</label>
+                <label for="TituloLabel">Codigo Cutter</label>
                 <input type="text" class="form-control" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
               </div>
 
@@ -159,14 +156,14 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input type="text" class="form-control" name="editautcod" id="editautcod" aria-describedby="editautcod" placeholder="" hidden>
-                <input type="text" class="form-control" name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="return soloLetras(event);">
+                <input type="text" class="form-control" name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="return soloLetras(event);">
+                <input type="text" class="form-control" name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="">
               </div>
 
             </div>
@@ -174,7 +171,7 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Pseudonimo</label>
+                <label for="TituloLabel">Codigo Cutter</label>
                 <input type="text" class="form-control" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
               </div>
 
@@ -264,6 +261,7 @@ function recargarTabla(){
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
   var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   var ordenar=$("#textBusquedaordenar").val();  
   $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
 
@@ -280,10 +278,8 @@ function recargarTablaLimpiar(){
       $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
     var busqueda=$("#textBusqueda").val();
-
-  
-    $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+busqueda);
-
+    var ordenar=$("#textBusquedaordenar").val();  
+  $("#cargarTabla").load("pages/autores/tablaAutores.php?pagina=1&busqueda="+ busqueda + "&ordenar=" + ordenar);
     setTimeout( function() {
       $("#cargandoFeedback").hide(500);
                            
@@ -305,9 +301,6 @@ function insertarAutor(){
   if ($("#formautnom").val()==""){
     $("#respuestaNuevoAutor").show();
     $("#respuestaNuevoAutor").html("Campo de Nombre del Autor esta Vacio");
-  }  else if ($("#formautape").val()==""){
-    $("#respuestaNuevoAutor").show();
-    $("#respuestaNuevoAutor").html("Campo de Apellido del Autor esta Vacio");
   }else if ($("#formautseud").val()==""){
     $("#respuestaNuevoAutor").show();
     $("#respuestaNuevoAutor").html("Campo de Pseudonimo del Autor esta Vacio");
@@ -366,9 +359,6 @@ function editarAutor(){
   if ($("#editautnom").val()==""){
     $("#respuestaEditarAutor").show();
     $("#respuestaEditarAutor").html("Campo de Nombre del Autor esta Vacio");
-  }else if ($("#editautape").val()==""){
-    $("#respuestaEditarAutor").show();
-    $("#respuestaEditarAutor").html("Campo de Apellido del Autor esta Vacio");
   }else if ($("#editautseud").val()==""){
     $("#respuestaEditarAutor").show();
     $("#respuestaEditarAutor").html("Campo de Pseudonimo del Autor esta Vacio");

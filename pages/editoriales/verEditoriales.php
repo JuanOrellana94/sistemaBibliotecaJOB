@@ -1,17 +1,18 @@
 <!--ASPECTO VISUAL DE LA PAGINA DE EDITORIALES-->
     <!--CONTENEDOR PARA TABLA DE EDITORIALES/MODALES PARA AGREGAR Y ELIMINAR EDITORIALES--> 
+    <?php 
+       if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
+     ?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA CATEGORIA-->     
-      <li class="breadcrumb-item" active  >Editoriales</li>
-    </ol>
-  </nav>        
 
 <!--INICIO CONTENEDOR DE CATALOGO DE EDITORIALES-->    
 <div class="container-fluid" > 
+  <br>
     <div class="col-sm-12">  
       <div class="card">   
         <div class="card-header">
@@ -51,7 +52,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newEditorialModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newEditorialModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo Editorial" src="img/icons/Bookaeditorial+.png" width="45" height="45">
                         </button>
                         
@@ -223,7 +224,8 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20'); 
   $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {

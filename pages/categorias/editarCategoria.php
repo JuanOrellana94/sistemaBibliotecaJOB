@@ -5,7 +5,7 @@
 	session_start();
 
 	$editcategoriacod=$_POST['editcategoriacod'];
-	$editcategoriaclanom=strtoupper($_POST['editcategoriaclanom']);
+	$editcategoriaclanom=mb_strtoupper ($_POST['editcategoriaclanom']);
 	$editcategoriadewcod=$_POST['editcategoriadewcod'];	
 
 	$usuCodigo=$_SESSION['usuCodigo'];

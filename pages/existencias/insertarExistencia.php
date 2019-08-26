@@ -1,5 +1,3 @@
-
-
 <?php 
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
@@ -8,8 +6,8 @@
 
 
 	$formExistenciaequipoCod=$_POST['formExistenciaequipoCod'];	
-	$formExistenciastado=strtoupper($_POST['formExistenciastado']);
-	$formExistenciacomentario=strtoupper($_POST['formExistenciacomentario']);
+	$formExistenciastado=mb_strtoupper ($_POST['formExistenciastado']);
+	$formExistenciacomentario=mb_strtoupper ($_POST['formExistenciacomentario']);
 	$formExistenciaingreso=$_POST['formExistenciaingreso'];
 	$formExistenciafecha=$_POST['formExistenciafecha'];
 	$formestantcod=$_POST['formestantcod'];	
@@ -29,38 +27,80 @@
    // obtener codigo del ejemplar
 
      $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
-     $sql2=("SELECT lpad(count($varexistcod)+1,5,'0') as codigo from $tablaExistenciaequipo where $varequicod = $formExistenciaequipoCod");
+     $sql2=("SELECT lpad($varexistcod+1,5,'0') as codigo from $tablaExistenciaequipo order by $varexistcod desc limit 1");
      $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
-    $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
+     $consulta2=mysqli_query($conexion, $sql2) or die(mysqli_error($conexion));
     while ($datacodigo=mysqli_fetch_assoc($consulta)){
+    	if (mysqli_num_rows($consulta2)==0) {	
+             $newcodigo= $instituocodigo."".$datacodigo['codifi']."-"."00001";
+         }else{        
+        
     	 while ($datacodigo2=mysqli_fetch_assoc($consulta2)){
-          $newcodigo= $instituocodigo."".$datacodigo['codifi']."-".$datacodigo2['codigo'];
+
+         	$newcodigo= $instituocodigo."".$datacodigo['codifi']."-".$datacodigo2['codigo'];
+         
+          }
       }
     }
 
+    $sql1 = ("SELECT  $varexistcod+1 as codigo from $tablaExistenciaequipo order by $varexistcod desc limit 1");
+    $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
+    if (mysqli_num_rows($consulta1)==0) {
+             $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
+             $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
+             while ($datacodigo=mysqli_fetch_assoc($consulta)){	
+             $formejemplarcodbarra="1"."333333333";
+                                        
+              }
+         }else{
+                while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
+     	
+               $tamaño=strlen($datacodigo3['codigo']);
+          switch ($tamaño) {
+              case '1':
+              # code... 
+                     $digitos="333333333";
+              break;            
+              case '2':
+              # code...
+                     $digitos="33333333";
+              break;
+              case '3':
+              # code...
+                    $digitos="3333333";
+              break;
+              case '4':
+              # code...
+                    $digitos="333333";
+              break;
+              case '5':
+              # code...
+                    $digitos="33333";
+              break;
+              case '6':
+              # code...
+                    $digitos="3333";
+              break;
+              case '7':
+              # code...
+                    $digitos="333";
+              break;
+          }
+               $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
+              
+        }
+     }
     $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-// $checkValidation="SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';";
-
-// $resultado=mysqli_query($conexion, $checkValidation) or die("SELECT * FROM  $tablaEjemplares WHERE $varejemcodreg='222222';".mysqli_error($conexion));
-
-
-// $dataRow = mysqli_fetch_array($resultado);	
-
-	 
-// 	 if($dataRow>0) {
-// 		echo "0";
-
-// 		} else {
 
 
 		$insRegistro=mysqli_query($conexion,"
 			INSERT INTO 
 			$tablaExistenciaequipo($varexistcodreg, $varexistfecadq, $varexisttipadq,
-			 $varexistdetadq, $varexistpreuni, $varexistconfis, $varexistdesest, $varestcod, $varequicod) 
+			 $varexistdetadq, $varexistpreuni, $varexistconfis, $varexistdesest, $varestcod, $varequicod, $varexistcodbar) 
 			 VALUES ('$newcodigo','$formExistenciafecha','$formExistenciaingreso',
-			 '$formdetalle','$formprecio','$formExistenciastado','$formExistenciacomentario','$formestantcod','$formExistenciaequipoCod');")
+			 '$formdetalle','$formprecio','$formExistenciastado','$formExistenciacomentario','$formestantcod','$formExistenciaequipoCod','$formejemplarcodbarra');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
@@ -84,5 +124,5 @@
 
 
 	echo "1";
-    // }
+   
  ?>

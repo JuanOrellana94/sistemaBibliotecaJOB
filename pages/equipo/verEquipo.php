@@ -2,17 +2,13 @@
     <!--CONTENEDOR PARA TABLA DE equipo/MODALES PARA AGREGAR Y ELIMINAR equipo--> 
 
     <?php
-     
-     ?>
-<!--DIRECCION DE LA UBICACION ACTUAL-->     
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="escritorio.php">Escritorio</a></li>
-      <li class="breadcrumb-item">Catalogos</li>   
-      <!--CAMBIAR SIGUIENTE POR NOMBRE DE CADA equipo-->     
-      <li class="breadcrumb-item" active  >equipo</li>
-    </ol>
-  </nav>        
+        if ($_SESSION['usuNivelNombre']=='Administrador') {
+        # code...
+           $bloqueo="disabled";
+       }else{
+        $bloqueo="";
+       }   
+     ?>    
 
 <!--INICIO CONTENEDOR DE CATALOGO DE equipo-->    
 <div class="container-fluid" > 
@@ -55,7 +51,7 @@
                           <img src="img/icons/BookediorialReload.png" width="45" height="45">
                         </button>
 
-                        <button type="button" class="btn btn-light float-right"  data-toggle="modal" data-target="#newequipoModal"  >
+                        <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newequipoModal"  >
                           <img data-toggle="tooltip" data-placement="top"  title="Nuevo equipo" src="img/icons/Bookcatego+.png" width="45" height="45">
                         </button>
                         
@@ -98,7 +94,7 @@
                 <label for="TituloLabel">CODIGO</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequicodifi" id="formequicodifi" aria-describedby="formequicodifi" placeholder="" onkeypress="return soloNumeros(event);" ><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress="return soloLetras(event);"><br>
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formequipodes" id="formequipodes" aria-describedby="formequipodes" placeholder="" >
               </div>
@@ -142,7 +138,7 @@
                 <label for="TituloLabel">CODIGO</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequicodifi" id="editequicodifi" aria-describedby="editequicodifi" placeholder="" onkeypress="return soloNumeros(event);"><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress="return soloLetras(event);"><br>
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editequipodes" id="editequipodes" aria-describedby="editequipodes" placeholder="" >
               </div>
@@ -281,7 +277,8 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val();
+  busqueda=busqueda.trim().replace(/ /g, '%20');
   $("#cargarTabla").load("pages/equipo/tablaEquipo.php?pagina=1&busqueda="+ busqueda);
 
   setTimeout( function() {
@@ -350,7 +347,7 @@ function insertarequipo(){
                 } else if (data==0) {
                   //error
                   $("#respuestaNuevoequipo").show();
-                  $("#respuestaNuevoequipo").html("<div class='alert alert-warning' role='alert'>Esta equipo ya ha sido agregado </div>");
+                  $("#respuestaNuevoequipo").html("<div class='alert alert-warning' role='alert'>Este equipo ya ha sido agregado </div>");
                      recargarTabla();
                     setTimeout(
                         function() {

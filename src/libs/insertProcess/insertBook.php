@@ -5,14 +5,13 @@
 	session_start();
 
 
-	$libtit=$_POST['libtit'];
+	$libtit=mb_strtoupper ($_POST['libtit']);
 	$libdes=$_POST['libdes'];
 	$libpor="img/portadas/Default.jpg";
 	$libfecedi=$_POST['libfecedi'];
 	$libnumpag=$_POST['libnumpag'];
 	$libisbn=$_POST['libisbn'];
-	$libgenaut=$_POST['autnom'];//genaut Ahora es autnom
-	$libgenaut=$_POST['autnom'];
+	$libgenaut=mb_strtoupper ($_POST['autnom']);//genaut Ahora es autnom	
 	$libDew=$_POST['dewcod'];
 	$libedit=$_POST['editcod'];
 	$libtags=$_POST['libtags'];

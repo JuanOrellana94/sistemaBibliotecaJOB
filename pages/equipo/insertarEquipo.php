@@ -5,16 +5,16 @@
 	session_start();
 
 
-	$formequiponom=strtoupper($_POST['formequiponom']);
+	$formequiponom=mb_strtoupper ($_POST['formequiponom']);
 	$formequicodifi=$_POST['formequicodifi'];	
-	$formequipodes=strtoupper($_POST['formequipodes']);	
+	$formequipodes=mb_strtoupper ($_POST['formequipodes']);	
 	
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequitip='$formequiponom' AND $varequicodifi='formequicodifi';";
+$checkValidation="SELECT * FROM $tablaEquipo WHERE $varequitip='$formequiponom' OR $varequicodifi='$formequicodifi';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 

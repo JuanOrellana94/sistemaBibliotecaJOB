@@ -116,7 +116,7 @@
 
                 <form name="formBusqueda" id="formBusqueda">          
                   <div class="input-group ">               
-                    <input type="text" class="form-control form-control-lg" value='' placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
+                    <input type="text" class="form-control form-control-lg"  placeholder="Buscar libro" id="textBusqueda" name="textBusqueda"> 
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-info" type="button" onclick="recargarTabla()"> Buscar </button>
                     </div> 
@@ -291,7 +291,7 @@
 
             <form id="formCarritoCompras" name="formCarritoCompras"> 
 
-            <div class="row border">
+            <div class="row">
 
               <div class="col-sm-12">
                 <div id="respuestaPrestamo" style="color: red; font-weight: bold; text-align: center;"></div>
@@ -390,10 +390,10 @@ function recargarTabla(){
   $("#cargandoFeedback").show();
   $("#cargandoFeedback").html(' <img src="img/structures/replace.gif" style="max-width: 60%; margin-top:-10%; margin-left:-30%">').show(200);
 
-  var busqueda=$("#textBusqueda").val();  
+  var busqueda=$("#textBusqueda").val(); 
+  busqueda=busqueda.trim().replace(/ /g, '%20');
 
 
-  
 
   $("#cargarTabla").load("pages/operaciones/tablaConsultas.php?pagina=1&busqueda="+ busqueda);
 
@@ -493,7 +493,7 @@ function insertarItem(){
       } else if (data==1) {
 
         $("#respuestaPrestamo").show();
-        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'>Añadido a tu lista de prestamo </div>");
+        $("#respuestaPrestamo").html("<div class='alert alert-success' role='alert'> <img src='img/icons/wsuccess.png' width='50' height='50'> &nbsp; Añadido a tu lista de prestamo </div>");
          //reload funcion tabla prestar()
          cargarPrestamos();         
           setTimeout(
@@ -507,6 +507,14 @@ function insertarItem(){
  //error programado
         $("#respuestaPrestamo").show();
         $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Tu prestamo excede tu limite de libros permitidos. (3 libros maximo por prestamo)</div>");
+        setTimeout(
+              function() {
+                $("#respuestaPrestamo").hide(500);     
+              }, 6000);
+      }else if (data==3) {
+ //error programado
+        $("#respuestaPrestamo").show();
+        $("#respuestaPrestamo").html("<div class='alert alert-warning' role='alert'> <img src='img/icons/warning.png' width='50' height='50'> Esta cuenta no puede realizar pedidos</div>");
         setTimeout(
               function() {
                 $("#respuestaPrestamo").hide(500);     

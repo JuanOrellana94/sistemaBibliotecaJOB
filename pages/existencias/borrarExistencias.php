@@ -5,17 +5,17 @@
 	session_start();
 
 
-	$delestantecod=$_POST['delestantecod'];
-	$delestantenom=$_POST['delestantenom'];
+	$delExistenciacod=$_POST['delExistenciacod'];
+	$delExistencianom=$_POST['delExistencianom'];
 	
 
 
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaEjemplares WHERE $varejemestcod='$delestantecod';";
+ $checkValidation="SELECT * FROM $tablaExistenciaequipo WHERE $varexistcod='$delExistenciacod' and $varexistestu='1'";
 
-$resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
+ $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
 
 $dataRow = mysqli_fetch_array($resultado);	
@@ -30,8 +30,8 @@ $dataRow = mysqli_fetch_array($resultado);
 		} else {
 
 		$insRegistro=mysqli_query($conexion,"
-			DELETE FROM $tablaEstante
-			WHERE $varestcod='$delestantecod'		    
+			UPDATE $tablaExistenciaequipo SET $varexistestu='2',
+			$varexistfecest= NOW()	WHERE 	$varexistcod='$delExistenciacod'	    
 		    ;")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
@@ -47,7 +47,7 @@ $dataRow = mysqli_fetch_array($resultado);
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      'elimino el Estante $delestantenom',
+		      'elimino el Equipo $delExistencianom',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
