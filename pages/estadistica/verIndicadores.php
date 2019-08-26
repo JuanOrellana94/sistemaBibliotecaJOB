@@ -125,12 +125,27 @@ function reportGen(){
     $.ajax({
       type: "POST",
       url: url,
-      data:  $("#reportYear").serialize(),
+      data:  $("#reportMes").serialize(),
       success: function (data){
                 open("pages/estadistica/reportGlobal.php?year="+yearSS, true,'newwin');
       }
     });
 }
+
+function reportGenMnoth(){
+  var url = "pages/estadistica/printReportVars.php";
+   var yearSS=$("#yearSelectMonth").val();
+    var monthSS=$("#mesSelectInput").val();
+    $.ajax({
+      type: "POST",
+      url: url,
+      data:  $("#reportYear").serialize(),
+      success: function (data){
+                open("pages/estadistica/reportMonthPart.php?month="+monthSS+"&year="+yearSS, true,'newwin');
+      }
+    });
+}
+
 
 function reportGenSolvencia(){
   if ($("#carnetCod").val()==""){

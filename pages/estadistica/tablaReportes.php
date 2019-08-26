@@ -48,9 +48,9 @@ function getmonth($x){
             <form id="reportMes" name="reportMes">
               <div class="input-group" style="margin-top: 5px;">
                   <div class="input-group-prepend">
-                  <label class="input-group-text rounded-0" for="mesSelect"> Mes</label>
+                  <label class="input-group-text rounded-0" for="mesSelectInput"> Mes</label>
                   </div>
-                  <select class="custom-select rounded-0" id="mesSelect">                              
+                  <select class="custom-select rounded-0" id="mesSelectInput" name="mesSelectInput">                              
                     <option selected value="<?php echo $mesDate;?>"><?php echo $mesName;?></option>                                
                       <?php
                         $limitMonth=12;
@@ -69,7 +69,7 @@ function getmonth($x){
                 <?php
                   $currentYear=date("Y");
                 ?>
-                <select class="custom-select rounded-0" id="yearSelect">                 
+                <select class="custom-select rounded-0" id="yearSelectMonth" name="yearSelectMonth">                 
                   <option selected value="<?php echo $currentYear;?>"><?php echo $currentYear;?> </option>
                   <?php
                     $limitYear=$currentYear-10;
@@ -79,7 +79,7 @@ function getmonth($x){
                     }
                   ?>
                 </select>
-                <button class="btn btn-outline-secondary rounded-0" type="button">
+                <button class="btn btn-outline-secondary rounded-0" type="button" onclick="reportGenMnoth()">
                   <img src="img/icons/PDF_32.png" width="30" height="30" alt=""> Generar .PDF
                 </button>
               </div>

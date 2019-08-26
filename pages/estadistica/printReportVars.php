@@ -1,6 +1,6 @@
 <?php
 
-$yearSelect=$_POST['yearSelect'];
-
-echo $yearSelect;
+$yearSelect=$_POST['yearSelectMonth'];
+$monthSelectt=$_POST['mesSelect'];
+echo $monthSelectt;
 ?>

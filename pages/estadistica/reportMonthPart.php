@@ -19,13 +19,13 @@ if (isset($_GET["year"])) {
     $selectYear="2019"; 
   };
 
-  if (isset($_GET["month"])) { 
+if (isset($_GET["month"])) { 
         $selectMonth  = $_GET["month"]; 
     } else {
-        $selectMonth="8"; 
-    };
-      $selectYear="2019"; 
- $selectMonth="8"; 
+        $selectMonth=""; 
+};
+
+
 
              $varDate=$selectMonth;
 
@@ -80,13 +80,12 @@ class PDF extends FPDF
 // Page header
 function Header()
 {
-  
+
   if (isset($_GET["month"])) { 
         $selectMonth  = $_GET["month"]; 
     } else {
-        $selectMonth="8"; 
+        $selectMonth="0"; 
     };
-   $selectMonth="8"; 
       $varDate=$selectMonth;
 
             if ($varDate==1) {
