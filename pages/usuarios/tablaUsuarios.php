@@ -1,8 +1,80 @@
-	<?php 
+	<?php
+	session_start(); 
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
+	if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	     $bloqueo="disabled";
+	     }else{
+	     	$bloqueo="";
+	     } 
+	$restriccion="";
+      if ($_SESSION['usuNivelNombre']=='Administrador') {
+	     	# code...
+	  	    if (empty($_GET["ordenar"])) { 
+		          $varordenar=$_GET["ordenar"];
+              switch ($varordenar) {              
+                 case '3':
+                	    $restriccion="$varNivel='1' OR $varNivel='4'";
+                 break;
+                 case '4':
+                	    $restriccion="$varNivel='4'";
+                 break;
+                 case '5':
+                	    $restriccion="$varNivel='1'";
+                 break;                             	
+              }  
+		
+		 
+	      } else {
+	      	    $varordenar=$_GET["ordenar"];
+	          	switch ($varordenar) {
+              	 case '3':
+                	    $restriccion="$varNivel='1' OR $varNivel='4'";
+                 break;
+                 case '4':
+                	    $restriccion="$varNivel='4'";
+                 break;
+                 case '5':
+                	    $restriccion="$varNivel='1'";
+                 break;                               	
+              } 
+	      }
+	     }else{
+	     	 
+             if (empty($_GET["ordenar"])) { 
+		          $varordenar=$_GET["ordenar"];
+              switch ($varordenar) {
+              	case '0':
+              		    $restriccion="$varNivel='2' OR $varNivel='3' ";
+                break;
+                case '1':
+                	    $restriccion="$varNivel='2'"; 
+                break;
+                 case '2':
+                	    $restriccion="$varNivel='3'";
+                 break;
+              }  
+		
+		 
+	      } else {
+	      	    $varordenar=$_GET["ordenar"];
+	          	switch ($varordenar) {
+              	case '0':
+              		    $restriccion="$varNivel='2' OR $varNivel='3' ";
+                break;
+                case '1':
+                	    $restriccion="$varNivel='2'"; 
+                break;
+                 case '2':
+                	    $restriccion="$varNivel='3'";
+                 break;                                             	
+              } 
+	      }
 
-	$limite = 20;
+	     }
+
+	$limite = 8;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
@@ -19,11 +91,17 @@
 	$sql = "SELECT COUNT($varUsuCodigo) 
       FROM $tablaUsuarios
 		
-      WHERE 
+      WHERE $restriccion AND (
 		$varUsuCodigo LIKE '%$textBusqueda%' OR
 		$varAccNombre LIKE '%$textBusqueda%'	OR
-		$varCorreo LIKE '%$textBusqueda%'	
-	ORDER BY $varUsuCodigo ";  
+		$varCorreo LIKE '%$textBusqueda%' OR
+		$varusucodbar LIKE '%$textBusqueda%' OR
+		'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
+		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%')
+		)
+	ORDER BY $varUsuCodigo DESC";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -49,7 +127,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/editoriales/tablaEditoriales.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val());
+        $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val() +"&ordenar="+$("#textBusquedaordenar").val());
       });
 </script>
 
@@ -62,17 +140,17 @@
 				<table class="table table-bordered table-hover"  style="background-color: #FFFFFF;">
 					<thead>
 						<tr>
-							<th>Codigo</th>
 							<th>Nombres</th>
-							<th>Apellidos</th>
-							<th>Carnet</th>
-	                        <th>Correo</th>
-	                        <th>Estado de Cuenta</th>   
+							<th>Apellidos</th>							                    
 							<th>Usuario</th>
+							<?php if ($varordenar==2) {
+							 ?>							
 							<th>Año</th>
 							<th>Seccion</th>
 							<th>Bachillerato</th>
+						   <?php } ?>
 							<th>Nivel</th>
+							<th>Cuenta</th> 
 							<th class="aTable">Opciones</th>
 						</tr>
 					</thead>
@@ -82,11 +160,16 @@
 
 						<?php 
 							$selTable=mysqli_query($conexion,"SELECT * FROM $tablaUsuarios 
-								WHERE 
+								WHERE  $restriccion AND (
                                 $varUsuCodigo LIKE '%$textBusqueda%' OR
 		                        $varAccNombre LIKE '%$textBusqueda%'	OR
-		                           $varCorreo LIKE '%$textBusqueda%' 								
-								ORDER BY $varUsuCodigo
+		                        $varCorreo LIKE '%$textBusqueda%' OR
+		                        $varusucodbar LIKE '%$textBusqueda%' OR	                      
+								'%$textBusqueda%' LIKE Concat(Concat('%',$varPriNombre),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
+								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%') )		
+								ORDER BY $varUsuCodigo DESC
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
@@ -98,95 +181,121 @@
 						<?php
                                  // Nivel del Usuario 
                                   $Nivel=""; 
+                                  $barra="disabled";
 						           switch ($dataLibros[$varNivel]) {
-                                           case 0:
+                                           case '0':
                                                $Nivel="ADMINISTRADOR";
                                            break;
-                                           case 1:
+                                           case '1':
                                                 $Nivel="BIBLIOTECARIO";
                                            break;
-                                           case 2:
+                                           case '2':
                                                $Nivel="PERSONAL ADMINISTRATIVO";
                                            break;
-                                           case 3:
+                                           case '3':
                                                $Nivel="ESTUDIANTE";
+                                               $barra="";
+                                           break;
+                                           case '4':
+                                               $Nivel="AUXILIAR";
+
+                                           break;
+                                           default:
+                                                $Nivel=" ";
                                            break;                                           
                                       } 
                                       // Estado de la cuenta
                                   $Estado=""; 
 						           switch ($dataLibros[$varCueEstatus]) {
-                                           case 0:
+                                           case '0':
                                                $Estado="ACTIVA";
+                                               $color="green";
                                            break;
-                                           case 1:
+                                           case '1':
                                                 $Estado="INACTIVA";
+                                                $color="orange";
                                            break;
-                                           case 2:
+                                           case '2':
                                                $Estado="SUSPENDIDA";
-                                           break;                                                                                   
+                                               $color="Red";
+                                           break; 
+                                           case '3':
+                                               $Estado="CON PRESTAMO";
+                                               $color="purple";
+                                           break;                                                                                  
                                       } 
 
 
                                       $ANIO=""; 
 						           switch ($dataLibros[$varAnoBachi]) {
-                                           case 0:
+                                           case '0':
                                                $ANIO="PRIMER AÑO";
                                            break;
-                                           case 1:
+                                           case '1':
                                                 $ANIO="SEGUNDO AÑO";
                                            break;
-                                           case 2:
+                                           case '2':
                                                $ANIO="TERCER AÑO";
+                                           break;
+                                           default:
+                                                $ANIO=" ";
                                            break;
                                                                                    
                                       } 
 
                                       $BACHI=""; 
 						           switch ($dataLibros[$varTipBachi]) {
-                                           case 0:
+                                           case '0':
                                                $BACHI="SALUD";
                                            break;
-                                           case 1:
+                                           case '1':
                                                 $BACHI="MECANICA";
                                            break;
-                                           case 2:
+                                           case '2':
                                                $BACHI="CONTADURIA";
+                                           break;
+                                           default:
+                                                $BACHI=" ";
                                            break;                                                                                    
                                       } 
 
                                       $SECCION=""; 
 						           switch ($dataLibros[$varSecAula]) {
-                                           case 0:
+                                           case '0':
                                                $SECCION="SECCION A";
                                            break;
-                                           case 1:
+                                           case '1':
                                                $SECCION="SECCION B";
                                            break;
-                                           case 2:
+                                           case '2':
                                                $SECCION="SECCION C";
                                            break;
-                                           case 3:
+                                           case '3':
                                                $SECCION="SECCION D";
+                                           break;
+                                           default:
+                                                $SECCION=" ";
                                            break;                                           
                                       } 
 
 						 ?>
 						<tr>
-							<td><?php echo $dataLibros[$varUsuCodigo];?> </td>						
+											
 							<td><?php echo $dataLibros[$varPriNombre]." ". $dataLibros[$varSegNombre];?>  </td>
-							<td><?php echo $dataLibros[$varPriApellido]." ".$dataLibros[$varSegApellido]; ?></td>							 
-							<td><?php echo $dataLibros[$varCarnet]; ?></td>
-							<td><?php echo $dataLibros[$varCorreo]; ?></td>
-							<td><?php echo $Estado; ?></td>
+							<td><?php echo $dataLibros[$varPriApellido]." ".$dataLibros[$varSegApellido]; ?></td>					
 							<td><?php echo $dataLibros[$varAccNombre]; ?></td>
+                              <?php if ($dataLibros[$varNivel]==3) {
+							 ?>								
 							<td><?php echo $ANIO; ?></td>
 							<td><?php echo $SECCION; ?></td>
 							<td><?php echo $BACHI; ?></td>
+						    <?php } ?>
 							<td><?php echo $Nivel; ?></td>
+							<td><p style="color:<?php echo $color; ?>"><?php echo $Estado; ?></p></td>
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarUsuario"
+								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarUsuario"
 								 data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"
 								 data-varusuarionom1="<?php echo  $dataLibros[$varPriNombre];?>"
 								 data-varusuarionom2="<?php echo $dataLibros[$varSegNombre];?>"
@@ -203,8 +312,10 @@
 								 title="Editar Usuario">
 									<img  src="img/icons/usuarioEditar.png" width="35" height="30">
 								</button>
+								<!-- opcion para generar codigo de barras -->
+								 
                      <!-- Opcion de eliminar -->
-							<!-- 	<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarEstante"
+							<!-- 	<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalBorrarEstante"
 								 	data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"
 									data-varusuariocod="<?php echo  $dataLibros[$varPriNombre];?>"
 									title="Eliminar Usuario">
@@ -214,13 +325,13 @@
 								<?php if ($Estado=='ACTIVA') {
 									# code...									
 								 ?>
-								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuariodesACTIVAr"
+								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariodesactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="DesACTIVAr Cuenta">
-								 	<img  src="img/icons/usuarioDesACTIVAr.png" width="35" height="30">
+									title="Desactivar cuenta">
+								 	<img  src="img/icons/usuarioDesactivar.png" width="35" height="30">
 								 </button>
 								 <!-- OPCION DE SUSPENDER / REANUDAR EN PROCESO -->
-<!-- 								 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuariosuspender"
+<!-- 								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariosuspender"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
 									title="Suspender Cuenta">
 								 	<img  src="img/icons/usuarioSuspender.png" width="35" height="30">
@@ -230,12 +341,14 @@
                                     	# code...                                   	
                                      
 								  ?>
-								  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuarioACTIVAr"
+								  <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuarioactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="ACTIVAr Cuenta">
-								 	<img  src="img/icons/usuarioACTIVAr.png" width="35" height="30">
+									title="activar cuenta">
+								 	<img  src="img/icons/usuarioActivar.png" width="35" height="30">
 								 </button>
-								 <!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuariosuspender"
+
+
+								 <!-- <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariosuspender"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
 									title="Suspender Cuenta">
 								 	<img  src="img/icons/usuarioSuspender.png" width="35" height="30">
@@ -243,7 +356,7 @@
 								 <?php 
 								     }else{
  								  ?>
-                                  <!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalusuarioareanudar"
+                                  <!-- <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuarioareanudar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
 									title="Reanudar">
 								 	<img  src="img/icons/usuarioReanudar.png" width="35" height="30">
@@ -252,7 +365,18 @@
 							
                                  }
 							 ?>	
+							     <button type="button" class="btn btn-light"   data-toggle="modal" <?php echo $barra ?> data-target="#modalBarraUsuario"
+							        	data-varusuariomote="<?php echo $dataLibros[$varAccNombre];?>"
+							        	data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"	
+								        data-varusuariocarnet="<?php echo  $dataLibros[$varCarnet];?>"								     
+								      title="Ver Codigo de barra">
+									<img  src="img/icons/barras.png" width="35" height="30">
+
+								</button>
+							     <!-- <?php echo "<a href=\"vercbusuario.php?codusu=" . $dataLibros[$varUsuCodigo]. "\">CB</a>"; ?> -->
+							     
 								</div>
+
 							</td>
 						</tr>
 						<?php }

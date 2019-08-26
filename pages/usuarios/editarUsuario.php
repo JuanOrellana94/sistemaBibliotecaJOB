@@ -5,40 +5,60 @@
 	session_start();
 
     $editUsuariocod=$_POST['editUsuariocod'];
-	$editUsuarionom1=strtoupper($_POST['editUsuarionom1']);
-	$editUsuarionom2=strtoupper($_POST['editUsuarionom2']);
-    $editUsuarioape1=strtoupper($_POST['editUsuarioape1']);
-    $editUsuarioape2=strtoupper($_POST['editUsuarioape2']);
-    $editUsuariomote=strtoupper($_POST['editUsuariomote']);
-    $editUsuariopass=md5($_POST['editUsuariopass']);
-    $editUsuariobachi=$_POST['editUsuariobachi'];
-    $editUsuarioaniobachi=$_POST['editUsuarioaniobachi'];
-    $editUsuariocarnet=$_POST['editUsuariocarnet'];
-    $editUsuariocorreo=strtoupper($_POST['editUsuariocorreo']);
-    $editUsuarioseccion=$_POST['editUsuarioseccion'];
+	$editUsuarionom1=mb_strtoupper ($_POST['editUsuarionom1']);
+	$editUsuarionom2=mb_strtoupper ($_POST['editUsuarionom2']);
+    $editUsuarioape1=mb_strtoupper ($_POST['editUsuarioape1']);
+    $editUsuarioape2=mb_strtoupper ($_POST['editUsuarioape2']);
+    $editUsuariomote=mb_strtoupper ($_POST['editUsuariomote']);
+   
+    
+    
+    $editUsuariocorreo=mb_strtoupper ($_POST['editUsuariocorreo']);
+    
     $editUsuarionivel=$_POST['editUsuarionivel'];
 
-     $usuCodigo=$_SESSION['usuCodigo'];
+    $usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-     $checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$editUsuariocarnet' AND $varCorreo='$editUsuariocorreo' AND $varUsuCodigo!='$editUsuariocod';";
 
-     $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
+    if ($editUsuarionivel=='3') {
+         
+          $editUsuarioseccion=$_POST['editUsuarioseccion'];
+          $editUsuariocarnet=$_POST['editUsuariomote'];
+          $editUsuariobachi=$_POST['editUsuariobachi'];
+          $editUsuarioaniobachi=$_POST['editUsuarioaniobachi'];
+
+         $checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$editUsuariocarnet' AND $varAccNombre='$editUsuariomote' AND $varUsuCodigo != '$editUsuariocod';";
+            $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 
 
-      $dataRow = mysqli_fetch_array($resultado);	
+        $dataRow = mysqli_fetch_array($resultado);	
+
+        $sql=("SELECT  $varUsuCodigo as codigo, $varCarnet as Carnet FROM $tablaUsuarios WHERE $varUsuCodigo = $editUsuariocod");    
+    $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));   
+    while ($datacodigo2=mysqli_fetch_assoc($consulta)){
+         $formejemplarcodbarra=$datacodigo2['codigo'] ."". str_replace("-", "", $datacodigo2['Carnet']) ."". '1234567890';
+      }
 
 	 
 	 if($dataRow>0) {
 		echo "0";
 
-		} else {
+		} else {     
+          if (empty($_POST['editUsuariopass'])) {
+         	# code...
+                    
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";
+         }else{
+
+         	$editUsuariopass=md5($_POST['editUsuariopass']);
+            
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+
+         }
 
 
-
-		$insRegistro=mysqli_query($conexion,"
-			UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod';
-		    ")
+        $insRegistro=mysqli_query($conexion,$sql)
 	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	
@@ -59,6 +79,71 @@
 		      '$bitPersonaName');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
-	echo "1";
-}
+	         echo "1";
+     }
+
+
+
+
+    }else{ 
+
+    	  $editUsuarioseccion="";
+          $editUsuariocarnet="";
+          $editUsuariobachi="";
+          $editUsuarioaniobachi="";
+              
+
+         $checkValidation="SELECT * FROM $tablaUsuarios WHERE  $varAccNombre='$editUsuariomote' AND $varUsuCodigo!= '$editUsuariocod';";
+            $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
+
+
+      $dataRow = mysqli_fetch_array($resultado);	
+
+	 
+	 if($dataRow>0) {
+		echo "0";
+
+		} else {     
+          if (empty($_POST['editUsuariopass'])) {
+         	# code...
+                    
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";
+         }else{
+
+         	$editUsuariopass=md5($_POST['editUsuariopass']);
+            
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+
+         }
+
+
+        $insRegistro=mysqli_query($conexion,$sql)
+	    or die ('ERROR INS-INS:'.mysqli_error($conexion));
+
+	
+// Memo: Campo Bitacora Descipcion  $varDesc debe ser extendida para evitar errores string too long
+
+		$insRegistro=mysqli_query($conexion,"
+		    INSERT INTO  $tablaBitacora(
+		      $varFecha,
+		      $varDesc,
+		      $varBitUsuCodigo,
+		      $varNomLibreria,
+		      $varNomPersona
+		      ) VALUES(
+		      NOW(),
+		      'ha editado el usuario: $editUsuarionom1  Codigo: $editUsuariocod',
+		      '$usuCodigo',
+		      '---',
+		      '$bitPersonaName');")
+		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
+
+	         echo "1";
+     }
+
+
+    }
+
+     
+
  ?>
