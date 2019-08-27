@@ -19,7 +19,7 @@
 
 		//CHECKEAR SI EL CODIGO ES DE UN LIBRO
 		$selTable=mysqli_query($conexion," SELECT * FROM $tablaEjemplares 
-						WHERE $varejemcodreg='$textCodigo'									
+						WHERE $varejemcodreg='$textCodigo'	OR $varejemcodbar='$textCodigo'								
 							;");
 
 		//$dataRow = mysqli_fetch_array($resultado);	
@@ -27,7 +27,7 @@
 		if (mysqli_num_rows($selTable)==0){
 			//CHECKEAR SI EL CODIGO ES DE EQUIPO
 			$selTable=mysqli_query($conexion," SELECT * FROM $tablaExistenciaequipo 
-				WHERE $varexistcodreg='$textCodigo'									
+				WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo'									
 				;");
 			if (mysqli_num_rows($selTable)==0){
 				//CODIGO ERROR =1
@@ -51,7 +51,7 @@
 						$selTable=mysqli_query($conexion," SELECT * FROM $varresumenequipoprestamo as resumen
 						INNER JOIN $vardetallesprestamoequipo as detalles on detalles.$varprestcodequiDet=resumen.$varprestcodequi
 						INNER JOIN $tablaExistenciaequipo as existencias on detalles.$varexistcodDet=existencias.$varexistcod
-						WHERE existencias.$varexistcodreg='$textCodigo' AND resumen.$varprestestequi='0';									
+						WHERE (existencias.$varexistcodreg='$textCodigo' OR existencias.$varexistcodbar='$textCodigo') AND resumen.$varprestestequi='0';					
 						;");
 					if (mysqli_num_rows($selTable)==0){
 						//CODIGO ERROR =No existe un registro para este libro que esta prestado
@@ -59,11 +59,10 @@
 						<?php
 						//ACCION REESTABLECER EL ESTADO DE EQUIPO INGRESADO A DISPONIBLE AUNQUE NO HAY UN REGISTRO DE PRESTAMO NI USUARIO RELACIONADO
 
-
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo';")
+								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo';")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						 $insRegistro=mysqli_query($conexion,"
@@ -95,7 +94,7 @@
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo';")
+								    WHERE $varexistcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						$insRegistro=mysqli_query($conexion,"
@@ -241,7 +240,7 @@
 					$selTable=mysqli_query($conexion," SELECT * FROM $varresumenlibroprestamo as resumen
 					INNER JOIN $vardetallesprestamolibro as detalles on detalles.$varprestcodlib=resumen.$varprestcod
 					INNER JOIN $tablaEjemplares as ejemplares on detalles.$varejemcodlib=ejemplares.$varejemcod
-					WHERE ejemplares.$varejemcodreg='$textCodigo' AND resumen.$varprestest='0';									
+					WHERE (ejemplares.$varejemcodreg='$textCodigo' OR  ejemplares.$varejemcodbar='$textCodigo') AND resumen.$varprestest='0';									
 					;");
 				if (mysqli_num_rows($selTable)==0){
 					//CODIGO ERROR =No existe un registro para este libro que esta prestado
@@ -252,7 +251,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo';")
+							    WHERE $varejemcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					 $insRegistro=mysqli_query($conexion,"
@@ -285,7 +284,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo';")
+							    WHERE $varejemcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					$insRegistro=mysqli_query($conexion,"
@@ -366,7 +365,7 @@
 										Carnet del Prestamista: <?php echo $datosTabla[$varCarnet];?> <br>
 										Codigo del Prestamo: <?php echo $codigoResumenPrestamo;?> 
 										<br>
-										Codigo del Prestamo: <?php echo $datosTabla[$varprestdev];?> 
+										Fecha del Prestamo: <?php echo $datosTabla[$varprestdev];?> 
 
 										<table class="table table-primary">
 										<tbody>
