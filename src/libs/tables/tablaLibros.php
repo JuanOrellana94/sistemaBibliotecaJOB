@@ -125,7 +125,7 @@
     	var orderby = x
     	var paginaNumero=$("#paginaColumn").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina='+paginaNumero+'&order='+orderby);
+    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina=<?php echo $pagina; ?>&order='+orderby+'&busqueda=' + $("#textBusqueda").val());
     }
 
 
@@ -237,6 +237,7 @@
 							$sql .= $orderCod." LIMIT $inicia_desde, $limite;";
 							
 							$selTable=mysqli_query($conexion,$sql);
+							//echo $sql;
 
 						if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
