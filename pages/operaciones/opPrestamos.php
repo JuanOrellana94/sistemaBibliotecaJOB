@@ -78,6 +78,8 @@
           return false;  
         }
       });
+
+
       var solBuscar = document.getElementById("textSolicitudes");
       solBuscar.addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {  //revisar si tecla presionada es Enter
@@ -188,7 +190,10 @@ function buscarCodUsu(){
 
   $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
   cargarCodigoTransaccionVariableMode(busqueda);
-  cargarListadoLibrosVariableMode(busqueda);   
+  cargarListadoLibrosVariableMode(busqueda);
+  setTimeout( function() { 
+        $("#cargandoFeedbackUsuario").hide(500);
+      }, 1000);
 }
 //FUNCION BUSCAR EJEMPLAR Y REGISTRAR EN EL PRESTAMO DE BASE DE DATOS ESTADO = 3 == EN ESPERA
 function buscarCodEjemplar(){
@@ -200,6 +205,11 @@ function buscarCodEjemplar(){
   var busqueda=$("#textEjemplar").val(); 
 
   $("#infoListaLibros").load("pages/operaciones/infoEjemplar.php?usuario="+ usuario+"&busqueda="+busqueda);
+
+
+    setTimeout( function() { 
+        document.getElementById('textEjemplar').value = "";
+      }, 1000);
   document.getElementById("textEjemplar").focus();  
   cargarListadoLibros();
   cargarCodigoTransaccion();
@@ -317,9 +327,7 @@ function crearPrestamo(){
             recargarPendientes()
             recargarSolicitudes()
             alertConfirmacion();
-          
-            
-           
+    
           } else if (data==0) {
             $("#mensajeFinal").show();
             $("#mensajeFinal").html("<div class='alert alert-danger' role='alert'> Codigo Invalido (2) </div>");

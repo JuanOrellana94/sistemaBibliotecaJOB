@@ -42,6 +42,7 @@
     </div>  
 </div>
 <script>
+  var keyTimer;
         $(window).keydown(function(event){
         if(event.keyCode == 13) {         
             event.preventDefault();
@@ -50,14 +51,28 @@
       });
   document.getElementById("textDevolucionCode").focus(); 
   var devoBuscar = document.getElementById("textDevolucionCode");
-  devoBuscar.addEventListener("keyup", function (e) {        
-        buscarDevoItem();        
+
+  devoBuscar.addEventListener("keyup", function (e) {
+     if(event.keyCode != 9 || event.keyCode != 8 || event.keyCode != 16 || event.keyCode != 18 || event.keyCode != 32) {
+        if(keyTimer){
+          clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+          buscarDevoItem();  
+        }, 500);          
+      }          
       });
 function buscarDevoItem(){     
     $("#devoMensajes").show();
+
     $("#devoMensajes").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
     var textDevolucion=$("#textDevolucionCode").val();
     $("#contentDevoluciones").load("pages/operaciones/infoDevolucion.php?busqueda="+textDevolucion);
+
+      setTimeout( function() { 
+        document.getElementById('textDevolucionCode').value = "";
+      }, 1000);
+  document.getElementById("textDevolucionCode").focus();  
     setTimeout( function() {
         $("#devoMensajes").hide(500);
      }, 1000);
