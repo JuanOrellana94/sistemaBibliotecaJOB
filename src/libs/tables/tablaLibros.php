@@ -60,17 +60,54 @@
       $todal_filas = $filas[0];  
       $total_paginas = ceil($todal_filas / $limite); 
   	?>                    
-                     <nav aria-label="Page navigation">
-                        <ul class='pagination justify-content-center"' id="pagination">
-                        <?php if(!empty($total_paginas)):for($i=1; $i<=$total_paginas; $i++):  
-                            if($i == $pagina):?>
-                                    <li class='page-item active'  id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><input type="text" hidden value="<?php echo $i;?>" id="paginaColumn"><?php echo $i;?></a></li> 
-                            <?php else:?>
-                            <li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
-                            <?php endif;?>    
-                        <?php endfor;endif;?>
-                           </ul>
-                      </nav>		
+                      <nav aria-label="Page navigation">
+					<ul class='pagination justify-content-center' id="pagination">
+                    	<?php
+
+                    	$printEnd=0;
+                    	$rangoLeash='4';//TEMP                   	
+                    	if ($pagina<=$rangoLeash+2) {
+                    		$rangoInferior='1';
+                    	}else{
+                    		$rangoInferior= $pagina-$rangoLeash;
+                    		?>
+                    			<li class='page-item'  id="1"> <a class="page-link" href='pagination.php?page=1'> 1 </a> </li>
+                    			<li class='page-item'  > <a class="page-link"> ... </a> </li>    
+                    		<?php
+                    	}
+
+                    	if ($pagina>=($total_paginas-$rangoLeash)){
+                    		$rangoSuperior=$total_paginas;
+                    	}else{
+                    		$rangoSuperior= $pagina+$rangoLeash;
+                    		$printEnd=1;
+
+                    	}  
+
+
+
+                    		if(!empty($total_paginas)){
+                    			for($i=$rangoInferior; $i<=$rangoSuperior; $i++){ 
+									if($i == $pagina){ ?>
+										<li class='page-item active'  id="<?php echo $i;?>"> <a class="page-link" href='pagination.php?page=<?php echo $i;?>'>
+											<?php echo $i;?></a>
+										</li> 
+                    			
+                            	<?php } else {?>
+                            	<li class='page-item'id="<?php echo $i;?>"><a class="page-link" href='pagination.php?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                            <?php }?>    
+                        <?php }
+                    }//Here
+
+                    if ($printEnd==1) {	                
+                    ?>
+        			<li class='page-item'  > <a class="page-link"> ... </a> </li>
+        			<li class='page-item'  id="<?php echo $total_paginas;?>"> <a class="page-link" href='pagination.php?page=1'> <?php echo $total_paginas;?> </a> </li>	    
+                 <?php
+                    }
+                    ?>
+                    	</ul>
+				 </nav>		
 
  <script>
                       	
@@ -88,7 +125,7 @@
     	var orderby = x
     	var paginaNumero=$("#paginaColumn").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina='+paginaNumero+'&order='+orderby);
+    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina=<?php echo $pagina; ?>&order='+orderby+'&busqueda=' + $("#textBusqueda").val());
     }
 
 
@@ -200,6 +237,7 @@
 							$sql .= $orderCod." LIMIT $inicia_desde, $limite;";
 							
 							$selTable=mysqli_query($conexion,$sql);
+							echo $sql;
 
 						if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
