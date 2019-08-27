@@ -57,14 +57,33 @@
     </div>
 </div>
 <script>
+var keyTimer;
+
+
+
 	document.getElementById("textUsuario").focus(); 
 	var usuBuscar = document.getElementById("textUsuario");
-      usuBuscar.addEventListener("keyup", function (e) {       
-        buscarCodUsu();     
+      usuBuscar.addEventListener("keyup", function (e) {   
+      	if(event.keyCode != 9 || event.keyCode != 8 || event.keyCode != 16 || event.keyCode != 18 || event.keyCode !=32) {   
+		if(keyTimer){
+			clearTimeout(keyTimer);
+		}
+		keyTimer = setTimeout(function () {
+		  buscarCodUsu();   
+		}, 500); 
+		}   
+         
       });
     var ejemplarBuscar = document.getElementById("textEjemplar");
-      ejemplarBuscar.addEventListener("keyup", function (e) {     
-        buscarCodEjemplar();       
+    	ejemplarBuscar.addEventListener("keyup", function (e) {
+    	if(event.keyCode != 9 || event.keyCode != 8 || event.keyCode != 16 || event.keyCode != 18 || event.keyCode !=32) {   
+			if(keyTimer){
+				clearTimeout(keyTimer);
+			}
+			keyTimer = setTimeout(function () {
+			  buscarCodEjemplar();      
+			}, 500);
+		}
       });
     function recargarDevoluciones(){   
 		  $("#solicitudesUsuarios").show();
