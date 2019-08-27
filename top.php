@@ -116,8 +116,9 @@
                 <a class="dropdown-item" href="acciones.php?pageLocation=restaurar">Restaurar datos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
-                <a class="dropdown-item" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>          
-                <a class="dropdown-item" href="#">Herramientas</a>
+                <a class="dropdown-item" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>  
+                <div class="dropdown-divider"></div>        
+                <a class="dropdown-item disabled" href="#">Herramientas</a>
               </div>
               </li>
             </div>
