@@ -94,7 +94,7 @@
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
+								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo';")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						$insRegistro=mysqli_query($conexion,"
