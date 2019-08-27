@@ -634,6 +634,9 @@ function insertarUsuario(){
   }else if ($("#formUsuariopass").val()=="") {
     $("#respuestaNuevoUsuario").show();
     $("#respuestaNuevoUsuario").html("Campo de Contraseña del Usuario esta Vacio");
+  }else if ($("#formUsuariopass").val().length<6) {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("Contraseña debe tener 6 digitos minimo");
   }else if ($("#formUsuariotipo").val()=="") {
     $("#respuestaNuevoUsuario").show();
     $("#respuestaNuevoUsuario").html("Campo Tipo de Usuario esta Vacio");
@@ -766,6 +769,9 @@ function editarUsuario(){
   }else if ($("#editUsuariomote").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Usuario esta Vacio");
+  }else if ($("#editUsuariopass").val().length<6) {
+    $("#respuestaEditarUsuario").show();
+    $("#respuestaEditarUsuario").html("Contraseña debe tener 6 digitos minimo");
   }else if ($("#editUsuarionivel").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Tipo de Usuario esta Vacio");

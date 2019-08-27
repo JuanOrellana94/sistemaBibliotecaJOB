@@ -31,13 +31,11 @@ $dataRow = mysqli_fetch_array($resultado);
 		    INSERT INTO  $tablAutor(		    
 			   $varautnom,
 			   $varautape,
-			   $varautseud,
-			   $varautdes
+			   $varautseud			   
 		      ) VALUES(
 		      '$formautnom',
 		      '$formautape',
-		      '$formseud',
-		      '---'
+		      '$formseud'
 		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
