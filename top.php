@@ -1,11 +1,17 @@
 <!DOCTYPE html>
+<?php 
+  include("src/libs/vars.php");
+  include("src/libs/sessionControl/conection.php");
+
+  session_start();
+  ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <TITLE>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</TITLE>
+    <TITLE>SISTEMA DE BIBLIOTECA, <?php echo $sistemaVersion; ?>, 2019</TITLE>
     <!-- Bootstrap -->
     <script src="src/js/jquery-3.4.0.min.js"></script>
     <script src="src/js/bootstrap.bundle.min.js"></script>
@@ -30,10 +36,7 @@
 
   </head>
 <?php 
-  include("src/libs/vars.php");
-  include("src/libs/sessionControl/conection.php");
 
-  session_start();
 
    if (!isset($_SESSION[ "autorizado" ]))
    {

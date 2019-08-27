@@ -7,6 +7,9 @@
   $clave="Biblioteca123$";
   $base="sistemabiblioteca";
 
+
+  $sistemaVersion="BETA 1.1";
+
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
