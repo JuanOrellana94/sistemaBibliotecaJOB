@@ -147,17 +147,19 @@
 								  data-varequitip="<?php echo  $dataLibros[$varequitip];?>"									  
 								  title="Portada del Libro"		
 								  ><img src="img/icons/BookCover.png" width="35" height="30"></button>
-
-								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>" title="ver equipos"><img src="img/icons/ver-detalles.png" width="40" height="35"></a> 
-
-								<!-- <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarequipo"
+								  
+								  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalBorrarequipo"
 								 	data-varequicod="<?php echo $dataLibros[$varequicod];?>"
 								    data-varequicodifi="<?php echo $dataLibros[$varequicodifi];?>"
 								    data-varequitip="<?php echo  $dataLibros[$varequitip];?>"	
 								    data-varequides="<?php echo $dataLibros[$varequides];?>"
 									title="Eliminar equipo">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
-								 </button> -->
+								 </button>
+
+								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>" title="ver equipos"><img src="img/icons/ver-detalles.png" width="40" height="35"></a> 
+
+								
 								</div>
 							</td>
 						</tr>
