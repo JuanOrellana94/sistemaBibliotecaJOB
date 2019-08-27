@@ -48,7 +48,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <TITLE>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</TITLE>
+   <TITLE>SISTEMA DE BIBLIOTECA, <?php echo $sistemaVersion; ?>, 2019</TITLE>
     <!-- Bootstrap -->
     <script src="src/js/jquery-3.4.0.min.js"></script>
     <script src="src/js/bootstrap.bundle.min.js"></script>
