@@ -22,7 +22,7 @@
 		} else{
 			// CRITERIO DE BUSQUEDA EXISTE.
 			$textBusqueda  = $_GET["busqueda"]; 
-			$checkUsuario="SELECT * from $tablaUsuarios WHERE $varCarnet='$textBusqueda' OR $varAccNombre='$textBusqueda';";
+			$checkUsuario="SELECT * from $tablaUsuarios WHERE $varCarnet='$textBusqueda' OR $varAccNombre='$textBusqueda' OR $varusucodbar='$textBusqueda';";
 
 			$resultado=mysqli_query($conexion, $checkUsuario) or die(mysqli_error($conexion));
 
