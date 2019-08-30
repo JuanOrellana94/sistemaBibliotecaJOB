@@ -24,30 +24,9 @@
 		$formdetalle=""; 
 	};
 		
-  switch ($formejemplarescantidad) {
-        case '0':
-        # code...
-          $x=1;
-        break;
-        case '1':
-        # code...
-          $x=5;
-        break;
-        case '2':
-        # code...
-          $x=10;
-        break;
-        case '3':
-        # code...
-          $x=15;
-        break;
-        case '4':
-        # code...
-          $x=20;
-        break;
-    }  
+  
    
-   for ($i=0; $i <$x ; $i++) { 
+   for ($i=0; $i <$formejemplarescantidad ; $i++) { 
      # code...
   
 

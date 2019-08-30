@@ -226,13 +226,7 @@
                <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
                     <label>Cantidad de ejemplares a registrar: </label>               
                     <div>
-                         <select style="text-transform:uppercase" class="form-control" name='formejemplarescantidad' id='formejemplarescantidad'>                             
-                             <option value="0">1</option>
-                             <option value="1">5</option>
-                             <option value="2">10</option>
-                             <option value="3">15</option> 
-                             <option value="4">20</option>                           
-                         </select>                      
+                        <input class="form-control" type="number" name="formejemplarescantidad" id="formejemplarescantidad" value="1">                  
                     </div>
                   </td>                   
             <tr>
@@ -245,7 +239,7 @@
               <td>
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
-                             <textarea maxlength="59" class="form-control rounded-0" name="formejemplarcomentario" id="formejemplarcomentario" aria-describedby="formejemplarcomentario" placeholder="" rows="3"></textarea>
+                             <textarea maxlength="250" class="form-control rounded-0" name="formejemplarcomentario" id="formejemplarcomentario" aria-describedby="formejemplarcomentario" placeholder="" rows="3"></textarea>
                            </div>
                </td>           
                    
@@ -358,7 +352,7 @@
               <td>
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
-                             <textarea maxlength="59" class="form-control rounded-0" name="editejemplarcomentario" id="editejemplarcomentario" aria-describedby="editejemplarcomentario" placeholder="" rows="3"></textarea>
+                             <textarea maxlength="250" class="form-control rounded-0" name="editejemplarcomentario" id="editejemplarcomentario" aria-describedby="editejemplarcomentario" placeholder="" rows="3"></textarea>
                            </div>
                </td>           
                    
@@ -461,7 +455,7 @@
                        </tr>                                      
                        <tr align="left">
                          <td><h6>DESCRIP.  FISICA:</h6></td>
-                         <td colspan="3"><div><label id="verEjemplardesfisica"></label></div></td>             
+                         <td colspan="3"><div><textarea maxlength="250" class="form-control rounded-0" name="verEjemplardesfisica" id="verEjemplardesfisica" aria-describedby="verEjemplardesfisica" placeholder="" rows="7" cols="100"></textarea></div></td>             
                        </tr>
                      </table>
                    </div>                    
@@ -1173,7 +1167,7 @@ $('#modalVerEjemplar').on('show.bs.modal', function (event) {
        $("#verEjemplarcodreg").html('<h6 align=center>'+varejemplarcodreg+' '+'<h6> ');
        $("#verEjemplartipadqui").html('<h6 align=center>'+varejemplartipadqui+' '+'<h6> '); 
        $("#verEjemplardetadqui").html('<h6 align=center>'+varejemplardetadqui+' '+'<h6> '); 
-       $("#verEjemplardesfisica").html('<h6 align=center>'+varejemplardesfisica+' '+'<h6> ');  
+       $("#verEjemplardesfisica").html(varejemplardesfisica);  
        
       
     })

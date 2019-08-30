@@ -230,7 +230,7 @@
               <td>
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
-                             <textarea maxlength="59" class="form-control rounded-0" name="formExistenciacomentario" id="formExistenciacomentario" aria-describedby="formExistenciacomentario" placeholder="" rows="3"></textarea>
+                             <textarea maxlength="250" class="form-control rounded-0" name="formExistenciacomentario" id="formExistenciacomentario" aria-describedby="formExistenciacomentario" placeholder="" rows="3"></textarea>
                            </div>
                </td>           
                    
@@ -343,7 +343,7 @@
               <td>
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
-                             <textarea maxlength="59" class="form-control rounded-0" name="editexistenciacomentario" id="editexistenciacomentario" aria-describedby="editexistenciacomentario" placeholder="" rows="3"></textarea>
+                             <textarea maxlength="250" class="form-control rounded-0" name="editexistenciacomentario" id="editexistenciacomentario" aria-describedby="editexistenciacomentario" placeholder="" rows="3"></textarea>
                            </div>
                </td>           
                    
@@ -441,7 +441,7 @@
                        </tr>                                      
                        <tr align="left">
                          <td><h6>DESCRIP.  FISICA:</h6></td>
-                         <td colspan="3"><div><label id="verExistenciadesfisica"></label></div></td>             
+                         <td colspan="3"><div><textarea maxlength="250" class="form-control rounded-0" name="verExistenciadesfisica" id="verExistenciadesfisica" aria-describedby="verExistenciadesfisica" placeholder=""  rows="7" cols="100"></textarea></div></td>             
                        </tr>
                      </table>
                    </div>                    
@@ -1155,7 +1155,7 @@ $('#modalVerExistencia').on('show.bs.modal', function (event) {
        $("#verExistenciacodreg").html('<h6 align=center>'+varexistenciacodreg+' '+'<h6> ');
        $("#verExistenciatipadqui").html('<h6 align=center>'+varexistenciatipadqui+' '+'<h6> '); 
        $("#verExistenciadetadqui").html('<h6 align=center>'+varexistenciadetadqui+' '+'<h6> '); 
-       $("#verExistenciadesfisica").html('<h6 align=center>'+varexistenciadesfisica+' '+'<h6> ');  
+       $("#verExistenciadesfisica").html(varexistenciadesfisica);  
        
       
     })
