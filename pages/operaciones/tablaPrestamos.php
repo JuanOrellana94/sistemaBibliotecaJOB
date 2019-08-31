@@ -44,7 +44,7 @@
 
 					if (mysqli_num_rows($selCount)>0){
 
-							 ?>  <div class='alert alert-success' role='alert'> Tu pedido se encuentra activo. (tablaPrestamos.php)</div>
+							 ?>  <div class='alert alert-success' role='alert'> Tu pedido se encuentra activo.</div>
 
 							 <table class="table "  style="background-color: #FFFFFF; width: 100%">
 						<tbody>

@@ -147,7 +147,7 @@
 							      $varNomPersona
 							      ) VALUES(
 							     NOW(),
-							      'Usuario puesto en activo, devolucion realizada en proceso: $codigoResumenPrestamo',
+							      'Equipo: Usuario puesto en activo, devolucion realizada en proceso: $codigoResumenPrestamo',
 							      '$usuCodigo',
 							      '---',
 							      '$bitPersonaName');")
@@ -337,7 +337,7 @@
 							      $varNomPersona
 							      ) VALUES(
 							     NOW(),
-							      'Usuario puesto en activo, devolucion realizada en proceso: $codigoResumenPrestamo',
+							      'Ejemplares: Usuario puesto en activo, devolucion realizada en proceso: $codigoResumenPrestamo',
 							      '$usuCodigo',
 							      '---',
 							      '$bitPersonaName');")

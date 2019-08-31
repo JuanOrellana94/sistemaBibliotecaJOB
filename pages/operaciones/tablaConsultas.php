@@ -28,7 +28,7 @@
 			'%$textBusqueda%' LIKE  Concat(Concat('%',$varautseud),'%') OR
 			'%$textBusqueda%' LIKE Concat(Concat('%',$vareditnom),'%') OR
 			'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%') OR
-			'%$textBusqueda%' LIKE Concat(Concat('%',$varlibtags),'%') OR
+			$varlibtags LIKE '%$textBusqueda%' OR
 			'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%')
 	ORDER BY $varlibcod; ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
@@ -125,8 +125,8 @@
 									'%$textBusqueda%' LIKE Concat(Concat('%',$varautape),'%') OR
 									'%$textBusqueda%' LIKE  Concat(Concat('%',$varautseud),'%') OR
 									'%$textBusqueda%' LIKE Concat(Concat('%',$vareditnom),'%') OR
-									'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%') OR
-									'%$textBusqueda%' LIKE Concat(Concat('%',$varlibtags),'%') OR
+									'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%') OR									
+									 $varlibtags LIKE '%$textBusqueda%' OR
 									'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%')
 									ORDER BY libro.$varlibcod
 									LIMIT $inicia_desde, $limite;");
