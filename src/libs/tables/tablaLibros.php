@@ -237,7 +237,7 @@
 							$sql .= $orderCod." LIMIT $inicia_desde, $limite;";
 							
 							$selTable=mysqli_query($conexion,$sql);
-							echo $sql;
+							//echo $sql;
 
 						if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
