@@ -220,7 +220,7 @@
                                                 $Nivel="BIBLIOTECARIO";
                                            break;
                                            case '2':
-                                               $Nivel="PERSONAL ADMINISTRATIVO";
+                                               $Nivel="PERSONAL";
                                            break;
                                            case '3':
                                                $Nivel="ESTUDIANTE";
@@ -325,7 +325,7 @@
 							
 							<td> 
 								<div class="btn-group" role="group" aria-label="Opciones">
-								<button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalEditarUsuario"
+								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalEditarUsuario"
 								 data-varusuariocod="<?php echo $dataLibros[$varUsuCodigo];?>"
 								 data-varusuarionom1="<?php echo  $dataLibros[$varPriNombre];?>"
 								 data-varusuarionom2="<?php echo $dataLibros[$varSegNombre];?>"
@@ -355,7 +355,7 @@
 								<?php if ($Estado=='ACTIVA') {
 									# code...									
 								 ?>
-								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariodesactivar"
+								 <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#modalusuariodesactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
 									title="Desactivar cuenta">
 								 	<img  src="img/icons/usuarioDesactivar.png" width="35" height="30">
@@ -371,7 +371,7 @@
                                     	# code...                                   	
                                      
 								  ?>
-								  <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuarioactivar"
+								  <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#modalusuarioactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
 									title="activar cuenta">
 								 	<img  src="img/icons/usuarioActivar.png" width="35" height="30">

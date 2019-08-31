@@ -162,7 +162,7 @@
                       <select class="form-control" name='formUsuariotipo' id='formUsuariotipo'>
                              <option value="">Seleccione tipo</option>
                              <option value="3">ESTUDIANTE</option>                                
-                             <option value="2">PERSONAL ADMINISTRATIVO</option>           
+                             <option value="2">PERSONAL</option>           
                                                        
                  </select> </td> 
                  <?php } ?>  
@@ -281,7 +281,7 @@
               <?php 
               }else{?>   
                 <select class="form-control js-Dropdown-Busqueda" name='editUsuarionivel' id='editUsuarionivel' onchange="bloquearselect()">                             
-                             <option value="2">PERSONAL ADMINISTRATIVO</option>
+                             <option value="2">PERSONAL</option>
                              <option value="3">ESTUDIANTE</option>                   
                                                        
                  </select></td> 
