@@ -118,7 +118,9 @@
                 <a class="dropdown-item" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
                 <a class="dropdown-item" href="acciones.php?pageLocation=cbequipo">Codigo de Barras Equipo</a>    
                 <a class="dropdown-item" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>                
-                <div class="dropdown-divider"></div>        
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="acciones.php?pageLocation=bitacora">Bitacora de datos</a>
+                <div class="dropdown-divider"></div>              
                 <a class="dropdown-item disabled" href="#">Herramientas</a>
               </div>
               </li>

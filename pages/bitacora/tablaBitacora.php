@@ -3,7 +3,7 @@
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 	date_default_timezone_set("America/El_Salvador");
-	$limite = 8;
+	$limite = 20;
 	
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
@@ -11,8 +11,13 @@
 		$pagina=1; 
 	};
 
+  if (isset($_GET["busqueda"])) { 
+    $textBusqueda  = $_GET["busqueda"]; 
+  } else {
+   $textBusqueda=""; 
+  };
 
-	function fechaFormato($fecha_init){
+	function FechaFormato($fecha_init){
 
 		$fecha = strtotime($fecha_init);
 		$varDate=date("n", $fecha);
@@ -48,25 +53,39 @@
 
 	$textBusqueda=$_GET['busqueda'];
 	$filterall=$_GET['filter'];
-	$sql = "SELECT COUNT($varprestcod) as Contador
-      FROM $varresumenlibroprestamo  
-      WHERE ";
+  $filterallTime=$_GET['filterTime'];
+
+	$sql = "SELECT COUNT($varBitCod) as Contador
+      FROM $tablaBitacora  WHERE 
+     ";
 
     if ($filterall=='0'){
-    	$sql .= "  $varprestcod >= '0' ";
+    	$sql .= "  $varBitCod >= '0' ";
     }
      else if ($filterall=='1'){
-     	$sql .= "  $varprestest='0'";
-     	
+     	$sql .= "  $varDesc LIKE '%ingreso exitosamente%' OR $varDesc LIKE '%se deslogeo del sistema%' ";    	
     } else if ($filterall=='2') {
-    	$sql .= "  $varprestest='1' ";    	
+    	   $sql .= "  $varDesc LIKE '%Prestamo realizado%' ";
     } else if ($filterall=='3') {
-    	$sql .= "  $varprestest='0' AND $varprestfec < NOW() ";
-    }
+    	$sql .= "   $varDesc LIKE '%devolucion realizada%' ";
+    }  else if ($filterall=='4') {
+                $sql .= "   $varDesc LIKE '%ingreso un nuevo%' OR   $varDesc LIKE '%ingreso una nueva%' ";
+              }
 
-   if($textBusqueda && !empty($textBusqueda)){
-		$sql .= " AND $varprestcod = '$textBusqueda'";
-	}
+     if ($filterallTime=='0'){
+      $sql .= " AND DATE($varFecha) = CURDATE() ";
+    }
+     else if ($filterallTime=='1'){
+      $sql .= " AND MONTH($varFecha)= MONTH(CURDATE()) AND YEAR($varFecha)= YEAR(CURDATE())";     
+    } else if ($filterallTime=='2') {
+         $sql .= "  AND YEAR($varFecha)= YEAR(CURDATE()) ";
+    } else if ($filterallTime=='3') {
+      $sql .= " ";
+    } 
+
+     if($textBusqueda && !empty($textBusqueda)){
+                    $sql .= " AND $varDesc LIKE '%$textBusqueda%' OR  $varNomPersona LIKE '%$textBusqueda%' ";
+                  }
 
 	$sql .= ";";
 
@@ -83,11 +102,11 @@
                       	
     $("#pagination li").on('click',function(e){
     e.preventDefault();
-      $("#historialTabla").html('<img src="img/structures/replace.gif" style="max-width: 50%">');
+      $("#tablaBitacora").html('<img src="img/structures/replace.gif" style="max-width: 50%">');
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#historialTabla").load("pages/historial/historialGeneral.php?pagina="+ paginaNumero +"&busqueda=" + $("#codigoLibro").val() + "&filter="+ $('input[name=filtroSearch]:checked').val());
+        $("#tablaBitacora").load("pages/bitacora/tablaBitacora.php?pagina="+ paginaNumero +"&busqueda=" + $("#busquedaBit").val() + "&filter="+ $('input[name=filtroSearch]:checked').val());
       });
 </script>
 
@@ -97,14 +116,14 @@
 	$inicia_desde = ($pagina-1) * $limite;  
 
 	?>			
-				<table class="table table-hover" id="tablaGeneral" style=" cursor: pointer;">
+				<table class="table table-hover table-striped" id="tablaGeneral">
 					<thead>
 						<tr>
 							
 							<th width=15px>Registro</th>
-							<th >Prestamo a: </th>
-							<th >Prestado el: </th>
-							<th> Estado </th>					
+							<th >Fecha</th>
+							<th >Accion</th>
+							<th> Codigo de Usuario </th>					
 						</tr>
 					</thead>
 
@@ -112,35 +131,44 @@
 
 
 						<?php
+            //PREPARAR CONSULTA CON CONDICIONES DE BUSQUEDA
 						 	$formatDateSend= "%Y % c %d";
-							$sql="SELECT resumen.$varprestcod, resumen.$varprestdev,resumen.$varprestfec, resumen.$varprestest, resumen.$varprestren, usuarios.$varPriNombre, usuarios.$varPriApellido, usuarios.$varAccNombre, COUNT(detalles.$vardetcodlib) as contadorLibros 
-								FROM $varresumenlibroprestamo AS resumen
-								INNER JOIN $vardetallesprestamolibro as detalles on resumen.$varprestcod =detalles.$varprestcodlib
-								INNER JOIN $tablaUsuarios as usuarios on resumen.$varusuCodigoF = usuarios.$varUsuCodigo ";
+							$sql="SELECT * FROM $tablaBitacora WHERE";
 
-								    if ($filterall=='4'){
-								    	$sql .= " WHERE resumen.$varprestcod >= '0' ";
-								    }
-								     else if ($filterall=='1'){
-								     	$sql .= " WHERE resumen.$varprestest='0' ";
-								     	
-								    } else if ($filterall=='2') {
-								    	$sql .= " WHERE resumen.$varprestest='1' ";    	
-								    } else if ($filterall=='3') {
-								    	$sql .= " WHERE (resumen.$varprestest='0' AND  DATE_FORMAT(resumen.$varprestdev,'$formatDateSend') < DATE_FORMAT(NOW(), '$formatDateSend' )) ";
-								    }
+              if ($filterall=='0'){
+                $sql .= "  $varBitCod >= '0' ";
+              }
+               else if ($filterall=='1'){
+                $sql .= "  $varDesc LIKE '%ingreso exitosamente%' OR $varDesc LIKE '%se deslogeo del sistema%' ";
+                
+              } else if ($filterall=='2') {
+                   $sql .= "  $varDesc LIKE '%Prestamo realizado%' ";
+              } else if ($filterall=='3') {
+                $sql .= "   $varDesc LIKE '%devolucion realizada%' ";
+              }
+              else if ($filterall=='4') {
+                $sql .= "   $varDesc LIKE '%ingreso un nuevo%' OR   $varDesc LIKE '%ingreso una nueva%'";
+              }
 
-
-									
-
+             if ($filterallTime=='0'){
+                $sql .= " AND DATE($varFecha) = CURDATE() ";
+              }
+               else if ($filterallTime=='1'){
+                $sql .= " AND MONTH($varFecha)= MONTH(CURDATE()) AND YEAR($varFecha)= YEAR(CURDATE())";     
+              } else if ($filterallTime=='2') {
+                   $sql .= "  AND YEAR($varFecha)= YEAR(CURDATE()) ";
+              } else if ($filterallTime=='3') {
+                $sql .= " ";
+              } 
 								   if($textBusqueda && !empty($textBusqueda)){
-										$sql .= " AND resumen.$varprestcod = '$textBusqueda' ";
+										$sql .= " AND $varDesc LIKE '%$textBusqueda%' OR  $varNomPersona LIKE '%$textBusqueda%'";
 									}
 
-								$sql .= " GROUP by resumen.$varprestcod	
-								ORDER BY resumen.$varprestfec DESC							
+								$sql .= " ORDER BY $varFecha DESC							
 								LIMIT $inicia_desde, $limite
 								;";
+
+              
 
 							$selTable=mysqli_query($conexion, $sql);
 					if (mysqli_num_rows($selTable)==0){
@@ -148,48 +176,20 @@
 							 La busqueda no devolvió ningún resultado </div>";
 						} else{
 
-							while ($dataLibros=mysqli_fetch_assoc($selTable)){
+							while ($dataBita=mysqli_fetch_assoc($selTable)){
 						?>
-						<?php
-                                 // Nivel del Usuario 
-                                  $Nivel=""; 
-                                  $Estado="Error";
-						   
-                                    $color="white";
-                                    $fechaColor = strtotime($dataLibros[$varprestdev]);
-                                    $fechaHoyColor = date("d-m-Y");
-
-                                    if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
-                                    	$color="#ecf9ec";//Greenish ACTIVO SIN RETRASOS AUN
-                                    	$Estado="Prestado";
-                                    } else if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
-                                    	$color="#ffe6e6";//redish RETRASO
-                                    	$Estado="En retraso";
-                                    }else if ($dataLibros[$varprestest]=='1') {
-                                    	$color="#e6f9ff";//blue finalizado
-                                    	 $Estado="Devuelto";
-                                    }else if ($dataLibros[$varprestest]=='3') {
-                                    	$color="#ffffe6";//yellow en espera
-                                    	$Estado="En espera";
-                                    }
-
-
-						 ?>
-						 <script> 	
-						 	var valueID = "<?php  echo $dataLibros[$varprestcod]; ?>";
-						 </script>
-						 <tr style="background-color: <?php echo $color; ?>" id="<?php  echo $dataLibros[$varprestcod]; ?>" onclick="cargarDetalles('<?php  echo $dataLibros[$varprestcod]; ?>')">
+						 <tr>
+              <td> <?php echo $dataBita[$varBitCod]?></td>
+              <td><?php 
+                  fechaFormato($dataBita[$varFecha]);
+                  ?> 
+              </td> 
 							
-							<td> <?php echo $dataLibros[$varprestcod]?></td>
-							<td> <?php echo $dataLibros[$varPriNombre]." ".$dataLibros[$varPriApellido];?>
+							
+							<td> <?php echo  $dataBita[$varNomPersona]." ".$dataBita[$varDesc]?>
 							</td>	
-							<td><?php 
-								  fechaFormato($dataLibros[$varprestfec]);
-									?> 
-							</td>	
-							<td>
-								<?php echo $Estado;?>
-							</td>
+              <td> <?php echo $dataBita[$varBitUsuCodigo]?></td>
+
 						
 						</tr>
 						<?php }
@@ -254,7 +254,7 @@
 
 				  
 
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
+				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataBita[$varlibcod];?>">Ver detalles</a>  -->
 
 
 				
