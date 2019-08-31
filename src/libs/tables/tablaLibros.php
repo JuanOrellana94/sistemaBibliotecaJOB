@@ -59,8 +59,8 @@
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
       $total_paginas = ceil($todal_filas / $limite); 
-  	?>               
-  	<nav aria-label="Page navigation">
+  	?>                    
+                      <nav aria-label="Page navigation">
 					<ul class='pagination justify-content-center' id="pagination">
                     	<?php
 
@@ -107,7 +107,7 @@
                     }
                     ?>
                     	</ul>
-				 </nav>				
+				 </nav>		
 
  <script>
                       	
@@ -125,7 +125,7 @@
     	var orderby = x
     	var paginaNumero=$("#paginaColumn").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina='+paginaNumero+'&order='+orderby);
+    	 $("#cargarTablaLibros").load('src/libs/tables/tablaLibros.php?pagina=<?php echo $pagina; ?>&order='+orderby+'&busqueda=' + $("#textBusqueda").val());
     }
 
 
@@ -237,6 +237,7 @@
 							$sql .= $orderCod." LIMIT $inicia_desde, $limite;";
 							
 							$selTable=mysqli_query($conexion,$sql);
+							//echo $sql;
 
 						if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	

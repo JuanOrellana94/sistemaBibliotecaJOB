@@ -41,7 +41,6 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
 
   }     
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,7 +48,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <TITLE>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</TITLE>
+   <TITLE>SISTEMA DE BIBLIOTECA, <?php echo $sistemaVersion; ?>, 2019</TITLE>
     <!-- Bootstrap -->
     <script src="src/js/jquery-3.4.0.min.js"></script>
     <script src="src/js/bootstrap.bundle.min.js"></script>
@@ -68,13 +67,14 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
     <script src="src/js/select2.min.js"></script>
     <link  href="src/css/jquery.tagsinput.css" rel="stylesheet"/>
     <script src="src/js/jquery.tagsinput.js"></script>
+     <link  href="src/css/Chart.min.css" rel="stylesheet"/>
+    <script src="src/js/Chart.bundle.js"></script>
     
 
   </head>
 <?php 
-  include("src/libs/vars.php");
-  include("src/libs/sessionControl/conection.php");
 
+  include("src/libs/sessionControl/conection.php");
 
 
    if (!isset($_SESSION[ "autorizado" ]))
@@ -82,101 +82,125 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
       header("location: inicio.php?login=Required");
    } else if ($_SESSION["autorizado"]=="renovar") {
       header("location: pages/ConfirmarClave.php");
+   }else if ($_SESSION["usuNivelNombre"]=="Personal" || $_SESSION["usuNivelNombre"]=="Estudiante" ) {
+     echo ("<script LANGUAGE='JavaScript'>   window.alert('Su nivel de cuenta solo permite ingresar a consultas: verifique sus credenciales');
+    window.location.href='menuopt.php';  </script>");      
    }
 
    ?>     
 
 
-<body> 
+<body>
  
-<nav class="navbar navbar-expand-lg" style="background-color:#003764;"> <a class="navbar-brand text-white" href="escritorio.php" title="Inicio">  
-  <img src="img/icons/LogoSimple.png" width="125" height="120"> </a>   
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <img src="img/icons/Collapse.png" width="65" height="65" alt="">
-  </button>
-
-  <div class="collapse navbar-collapse  text-white" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Catalogos">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/book.png" width="65" height="65" alt="">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=autores">Autores</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=editoriales">Editoriales</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
-          <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="#">Catalogos</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown"  data-toggle="tooltip" data-placement="right" title="Operaciones">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/Ops.png" width="65" height="65" alt="">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#003764;">
+   
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01"> 
+       
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <div class="row ">
+            <div class="col-lg-2 col-md-2 col-sm-4"  style="max-width: 100px">
+               <a class="navbar-brand" href="escritorio.php">
+                  <img src="img/icons/LogoSimple.png" width="90" height="90">
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4"  style="max-width: 100px">
+              <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left" title="Catalogos" style="max-width: 100px">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <img src="img/icons/book.png" width="65" height="65" alt="">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="catalogos.php?pageLocation=libros">Libros</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=autores">Autores</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=editoriales">Editoriales</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=estantes">Estantes</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=usuarios">Usuarios</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=categorias">Categorias</a>
+                <a class="dropdown-item" href="catalogos.php?pageLocation=equipo">Equipo</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#">Catalogos</a>
+              </div>
+              </li>              
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4" style="max-width: 100px">
+              <li class="nav-item dropdown"  data-toggle="tooltip" data-placement="left" title="Operaciones" style="max-width: 100px">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <img src="img/icons/Ops.png" width="65" height="65" alt="">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                  <a class="dropdown-item " href="acciones.php?pageLocation=historial">Historial</a>  
+                  <a class="dropdown-item " href="acciones.php?pageLocation=prestamos">Prestar</a>
+                  <a class="dropdown-item " href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item disabled" href="#">Operaciones</a>
+                </div>
+              </li>              
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4" style="max-width: 100px">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tooltip" data-placement="left" title="Estadistica" style="max-width: 100px" href="acciones.php?pageLocation=indicadores">
+                  <img src="img/icons/Est.png" width="65" height="65" alt="">
+                </a>
+            </li>
           
+        
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4" style="max-width: 100px">
+              <li class="nav-item dropdown" data-toggle="tooltip" data-placement="left"  title="Herramientas" style="max-width: 100px">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <img src="img/icons/utils.png" width="65" height="65" alt="">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="utilrespaldo.php">Respaldo de datos</a>
+                <a class="dropdown-item" href="acciones.php?pageLocation=restaurar">Restaurar datos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
+                <a class="dropdown-item" href="acciones.php?pageLocation=cbequipo">Codigo de Barras Equipo</a>
+                <a class="dropdown-item" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a> 
+                <div class="dropdown-divider"></div>        
+                <a class="dropdown-item disabled" href="#">Herramientas</a>         
+
+              </div>
+              </li>
+            </div>
+          </div>
+
+          
+          
+          
+          
+
+
+
+        </ul>
+    </div> 
+
+    <div class="d-flex flex-row-reverse">
+            <div class="col-lg-2 col-md-2 col-sm-4">
              
-        <a class="dropdown-item disabled" href="acciones.php?pageLocation=historial">Historial</a>  
-        <a class="dropdown-item disabled" href="acciones.php?pageLocation=prestamos">Prestar</a>
-        <a class="dropdown-item disabled" href="acciones.php?pageLocation=devoluciones">Devoluciones</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+             
+            </div>
+     
+      <div class="dropdown">
+        <button class="btn btn-outline-light btn-sm dropdown-toggle rounded-0" type="button" style="max-width: 205px; margin-right: 120px;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img style="max-width: 35px;" src="img/icons/User.png" alt="">  <?php echo " ".$_SESSION["usuPriNombre"]?>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["usuNivelNombre"]?></a>
+          <a class="dropdown-item disabled text-muted"><?php echo $_SESSION["nombreComp"]?></a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="#">Operaciones</a>
+          <a class="dropdown-item font-weight-bold" style="cursor: pointer;" onclick="cerrar()">Cerrar sesión</a>
         </div>
-      </li>
-      <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right" title="Estadistica">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/Est.png" width="65" height="65" alt="">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          
-          <a class="dropdown-item disabled" href="#">Indicadores</a>
-          <a class="dropdown-item disabled" href="#">Reportes</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="#">Estadistica</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right"  title="Herramientas">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img src="img/icons/utils.png" width="65" height="65" alt="">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item disabled" href="utilrespaldo.php">Respaldo de datos</a>
-          <a class="dropdown-item disabled" href="acciones.php?pageLocation=restaurar">Restaurar datos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="acciones.php?pageLocation=codbarras">Codigo de Barras Estudiantes</a>
-          <a class="dropdown-item disabled" href="acciones.php?pageLocation=cbejemplar">Codigo de Barras Ejemplares</a>
-          <a class="dropdown-item disabled" href="acciones.php?pageLocation=cbequipo">Codigo de Barras Equipos</a> 
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="#">Herramientas</a>
-        </div>
-      </li>
-      <button class="btn  float-right" type="button" onclick="rediMenuOPT();" data-toggle="tooltip" data-placement="top" title="Volver al menu principal">
-                <img src="img/icons/menuRegresar.png" width="65" height="65">
+      </div>
+      <button class="btn btn-outline-light rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Volver al menu principal" onclick="rediMenuOPT();">
+         <img style="max-width: 35px;" src="img/icons/menuRegresar.png">
       </button>
-
-    </ul> 
-
-    <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex text-white">
-      
-        <table>        
-          <tr>
-            <td align="right" width="130px"> <font color="white"> <?php echo $_SESSION["nombreComp"]?></font></td>
-            <td></td>
-            <td align="center" width="100px" ><img class="pequeña" src="img/icons/User.png" alt=""></td>
-          </tr>
-          <tr>
-            <td align="right" width="130px">  <font color="white"><?php echo $_SESSION["usuNivelNombre"]?> </font></td>
-            <td></td>
-            <td width="100px" align="center"><button  type="button" class="btn btn-outline-light my-2 my-sm-0" id="cerrarSec"  onclick="cerrar()">Cerrar</button></td>
-          </tr>       
-       </table>      
-    
-  </div>
-  </div>
+    </div>
 </nav>
+
 
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">

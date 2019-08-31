@@ -36,7 +36,7 @@ foreach ($lines as $line){
   //llenando las tablas
 
    $filename2 = 'bdrespaldo.sql';
- import_data('localhost','root','','sistemabiblioteca',$filename2);
+ import_data('localhost','bibliocnx','Biblioteca123$','sistemabiblioteca',$filename2);
 
 function import_data($host,$uname,$pass,$database, $filename2,$tables = '*'){
     $connection = mysqli_connect($host,$uname,$pass)

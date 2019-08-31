@@ -1,4 +1,4 @@
-
+<?php include("src/libs/vars.php"); ?>
 <style>
 	 .textBottom {          
           color: white;
@@ -16,7 +16,7 @@
 <nav class="navbar navbot" style="background-color:#003764;">
   <a class="navbar-brand" ></a>
 
-	<div class="textBottom"><small>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</small>
+	<div class="textBottom"><small>SISTEMA DE BIBLIOTECA, <?php echo $sistemaVersion; ?> , 2019</small>
   		<img src="img/icons/LogoSys.png" width="55" height="50">  
 	</div>
 </nav>

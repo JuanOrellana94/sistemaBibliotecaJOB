@@ -3,20 +3,25 @@
 
 
   $servidor="localhost";
-  $usuario="bibliocnx";
-  $clave="Biblioteca123$";
+  $usuario="root";
+  $clave="";
   $base="sistemabiblioteca";
-  
-  
+
+
+  $sistemaVersion="BETA 1.1";
+
   $tabla2="...";
   $carta="612x792";
   $a4="595x842";
   $oficio="612x1008";
 
   // codigo instituto
-    $instituocodigo="88160-"; 
+    $instituocodigo="88160-";
 
   //Nombre de tablas
+
+//Multa por retraso
+    $costoMulta=0.25;
   
   $tablaBitacora="bitacora";
 
@@ -122,9 +127,11 @@
     $varejemestcod="estcod"; 
     $varejemlibcod="libcod";
     $varejemtipadq="ejemtipadq";
+    $varexistcodbar='existcodbar';
     $varejemcodbar='ejemcodbar';
     $varejemfecreg='ejemfecreg';
     $varejemfecest='ejemfecest';
+
 
  // TABLA EQUIPO
       $tablaEquipo="equipo";
@@ -134,11 +141,12 @@
     $varequimg="equimg";
     $varequides="equides";
     $varequicodifi="equicodifi";
+    $varequifecreg="equifecreg";
 
 // TABLA existenciaequipo
     $tablaExistenciaequipo="existenciaequipo";
 ////10 NOMBRE DE LA TABLA existenciaequipo: existcod, existcodreg, existfecadq, existtipadq, existdetadq, existpreuni, existestu, existconfis, existdesest, estcod, equicod
-   $varexistcod="existcod";
+    $varexistcod="existcod";
     $varexistcodreg="existcodreg";
     $varexistfecadq="existfecadq";
     $varexisttipadq="existtipadq";
@@ -156,6 +164,7 @@
     $varexistfecest='existfecest';
 
 
+
  //TABLA SOLICITUD DE PRESTAMO BOLSA PRESTAMO   BOLSAPRESTAMO
   //solcod, usucod, libcod, solfec, libcantidad, solfecenviar CARRITO BOLSA DE LIBROS
     $varbolsaprestamo="bolsaprestamo";
@@ -166,6 +175,7 @@
     $varlibcantidad="libcantidad";
     $varsolfecenviar="solfecenviar";
     $varsolestado="solestado";
+    $varequipfecreg="equipfecreg";
 
 //TABLA RESUMEN DE LIBRO PRESTAMO
 //VARIABLES resumenlibroprestamo
@@ -181,16 +191,18 @@
     $varusuCodigoF="usuCodigo";
     $varusuCodBiblio="usuCodBiblio"; 
     $varprestfechafin="prestfechafin";
+    $varprestdevsolv="prestdevsolv";
 
   //VARIABLES detallesprestamolibro
   //detcodlib, prestcodlib, ejemcod
-  //detcodlib, prestcodlib, ejemcod
+  //detcodlib, prestcodlib, ejemcod 
 
   $vardetallesprestamolibro="detallesprestamolibro";
 
   $vardetcodlib="detcodlib";
   $varprestcodlib="prestcodlib";
   $varejemcodlib="ejemcod";
+  $vardetlibest="detlibest";
 
 //TABLA RESUMEN DE EQUIPO PRESTAMO
 //VARIABLES resumenequipoprestamo
@@ -218,6 +230,7 @@
   $vardetcodequi="detcodequi";
   $varprestcodequiDet="prestcodequi";
   $varexistcodDet="existcod";
+    $vardetequiest="detequiest";
 
 
 
