@@ -6,6 +6,27 @@
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
+    $codLIBP=$_POST['modallibcodPortada']; //CODIGO DEL REGISTRO QUE QUERES ACTUALIZAR PORTADA/BORRAR PORTADA ACTUAL
+
+
+	$checkValidation="SELECT * FROM $tablaLibros WHERE $varlibcod='$codLIBP';";
+
+
+
+	$resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
+
+
+	while ($dataRow = mysqli_fetch_array($resultado)){
+		$imgDir=$dataRow["$varlibpor"];
+
+	}
+	if ($imgDir!="img/portadas/Default.png") {
+		unlink("../../../".$imgDir);//LOS ../../ VAN A CAMBIAR SI ESTAS ENLA CARPETA PAGES, ya que esta src/libs/insertprocess/
+}
+
+
+
+
     $extencionesValidas = array('jpeg', 'jpg'); // valid extencionensions
 	$direccion = '../../../img/portadas/'; // upload directory
 	if(!empty($_POST['modallibcodPortada']) || !empty($_POST['modallibtitPortada']) || $_FILES['subirPortada'])
