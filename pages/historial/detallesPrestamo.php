@@ -62,12 +62,12 @@
 	$dateItems=mysqli_fetch_assoc($profileData);
 
 	$fechaColor = strtotime($dateItems[$varprestdev]);
-    $fechaHoyColor = date("d-m-Y");
+    $fechaHoyColor = date("Y-m-d");
     $Estado='nin';
-    if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
+    if ($dateItems[$varprestest]=='0' AND date("Y-m-d",$fechaColor) >= $fechaHoyColor ) {
     
     	$Estado="Prestado";
-    } else if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+    } else if ($dateItems[$varprestest]=='0' AND date("Y-m-d",$fechaColor)< $fechaHoyColor) {
     	
     	$Estado="En retraso";
     }else if ($dateItems[$varprestest]=='1') {
@@ -125,9 +125,9 @@
 			<?php
 
 			 $fechaColor = strtotime($dateItems[$varprestdev]);
-             $fechaHoyColor = date("d-m-Y");
+             $fechaHoyColor = date("Y-m-d");
 
-			 if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {          	
+			 if ($dateItems[$varprestest]=='0' AND date("Y-m-d",$fechaColor) >= $fechaHoyColor ) {          	
             	$Estado="Prestado";
             	$OldDate = strtotime($dateItems[$varprestdev]);
             	$NewDate = date('M j, Y', $OldDate);
@@ -171,7 +171,7 @@
 
             	<?php
 
-            } else if ($dateItems[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+            } else if ($dateItems[$varprestest]=='0' AND date("Y-m-d",$fechaColor)< $fechaHoyColor) {
 
             	//$OldDate = strtotime($dateItems[$varprestdev]);
             	//$NewDate = date('M j, Y', $OldDate);

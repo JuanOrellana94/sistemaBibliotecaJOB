@@ -157,12 +157,12 @@
 						   
                                     $color="white";
                                     $fechaColor = strtotime($dataLibros[$varprestdev]);
-                                    $fechaHoyColor = date("d-m-Y");
+                                    $fechaHoyColor = date("Y-m-d");
 
-                                    if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor) >= $fechaHoyColor ) {
+                                    if ($dataLibros[$varprestest]=='0' AND date("Y-m-d",$fechaColor) >= $fechaHoyColor ) {
                                     	$color="#ecf9ec";//Greenish ACTIVO SIN RETRASOS AUN
                                     	$Estado="Prestado";
-                                    } else if ($dataLibros[$varprestest]=='0' AND date("d-m-Y",$fechaColor)< $fechaHoyColor) {
+                                    } else if ($dataLibros[$varprestest]=='0' AND date("Y-m-d",$fechaColor)< $fechaHoyColor) {
                                     	$color="#ffe6e6";//redish RETRASO
                                     	$Estado="En retraso";
                                     }else if ($dataLibros[$varprestest]=='1') {
