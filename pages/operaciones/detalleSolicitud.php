@@ -81,13 +81,16 @@
 					<tbody>
 
 						<?php 
-							$selTable=mysqli_query($conexion,"SELECT * 
-								FROM $varbolsaprestamo as bolsaprestamo 
-								inner join $tablaLibros as libro on bolsaprestamo.$varlibcodcar = libro.$varlibcod
-								inner join $tablaUsuarios as usuario on bolsaprestamo.$varusucod = usuario.$varUsuCodigo
-						      	WHERE  $varCarnet = '$textBusqueda' OR $varAccNombre='$textBusqueda'
-								LIMIT $inicia_desde, $limite
-								;");
+              $sql="SELECT * 
+                FROM $varbolsaprestamo as bolsaprestamo 
+                inner join $tablaLibros as libro on bolsaprestamo.$varlibcodcar = libro.$varlibcod
+                inner join $tablaUsuarios as usuario on bolsaprestamo.$varusucod = usuario.$varUsuCodigo
+                    WHERE  $varCarnet = '$textBusqueda' OR $varAccNombre='$textBusqueda'
+                LIMIT $inicia_desde, $limite
+                ;";
+							$selTable=mysqli_query($conexion, $sql);
+
+           
 
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: gray; font-weight: bold; text-align: center;'>	
@@ -95,9 +98,23 @@
 						} else{
 
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
+                $codLibro=$dataLibros[$varejemlibcod];
+                $estNames="";
+                
+                $sql2="SELECT ejemplares.$varejemcod, ejemplares.$varejemlibcod,  estante.$varestdes FROM $tablaEjemplares as ejemplares
+                      INNER JOIN $tablaEstante as estante on ejemplares.$varejemestcod=estante.$varestcod
+                      WHERE ejemplares.$varejemlibcod='$codLibro'
+                      GROUP BY estante.$varestdes;
+                    
+                  ;";
+                $selTable2=mysqli_query($conexion, $sql2);
+                while ($dataRow = mysqli_fetch_array($selTable2)){
+                  $estNames .= "<small><span class='badge badge-pill badge-primary'>".$dataRow[$varestdes]."</span></small>";
+                }
 						?>
+
 						<tr>					
-							<td><?php echo $dataLibros[$varlibcantidad]." copia(s) de:".$dataLibros[$varlibtit];?> </td>					
+							<td><?php echo $dataLibros[$varlibcantidad]." copia(s) de:".$dataLibros[$varlibtit]." | ". $estNames;?> </td>					
 							 
 							
 						

@@ -6,7 +6,7 @@
     $bitPersonaName=$_SESSION['nombreComp'];
 
 
-    $limite = 10;
+    $limite = 7;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
@@ -23,7 +23,8 @@
 				INNER JOIN $tablaLibros AS libros ON ejemplar.$varejemlibcod = libros.$varlibcod
 				INNER JOIN $tablaUsuarios AS usuario ON resumen.$varusuCodigoF=usuario.$varUsuCodigo
 				WHERE (usuario.$varAccNombre='$textUsuario' AND $varprestest='3' ) OR
-				(usuario.$varCarnet='$textUsuario' AND $varprestest='3' )
+				(usuario.$varCarnet='$textUsuario' AND $varprestest='3' ) OR
+				(usuario.$varusucodbar='$textUsuario' AND $varprestest='3' )
 				;";
 
 
@@ -47,7 +48,9 @@
 								INNER JOIN $tablaUsuarios AS usuario ON resumen.$varusuCodigoF=usuario.$varUsuCodigo
 
 								WHERE (usuario.$varAccNombre='$textUsuario' AND $varprestest='3' ) OR
-									  (usuario.$varCarnet='$textUsuario' AND $varprestest='3' )
+									  (usuario.$varCarnet='$textUsuario' AND $varprestest='3' ) OR
+									(usuario.$varusucodbar='$textUsuario' AND $varprestest='3' )
+
 
 								LIMIT $inicia_desde, $limite
 							;");
@@ -273,7 +276,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#infoLista").load("pages/operaciones/infoListaLibros.php?pagina="+ paginaNumero +"&busqueda=" + $("#textUsuario").val());
+        $("#infoLista").load("pages/operaciones/infoListaLibros.php?pagina="+ paginaNumero +"&usuario=" + $("#textUsuario").val());
       });
 </script>
 
