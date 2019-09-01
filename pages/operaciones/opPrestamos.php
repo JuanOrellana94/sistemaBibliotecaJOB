@@ -6,7 +6,7 @@
 <div class="container-fluid">
   <br> 
   <div class="row">
-      <div class="col-sm-2 mb-4" >
+      <div class="col-sm-2 mb-4 align-items-stretch" >
         <!--Area de Solicitudes pendientes-->
         <div class="card bg-light border-info h-100">
           <div class="card-body"  style="min-height: 100%; height:100%;">
@@ -20,12 +20,12 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-3 mb-4">
+      <div class="col-sm-3 mb-4 align-items-stretch">
         <div id=contenedorPrincipal>
           <!--  remover  -->
         </div> 
       </div>
-      <div class="col-sm-7 mb-4">
+      <div class="col-sm-7 mb-4 align-items-stretch">
         <div id=contenedorSalida>
           <!--  remover  -->
         </div> 
