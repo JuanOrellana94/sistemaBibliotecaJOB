@@ -109,7 +109,7 @@
                   ;";
                 $selTable2=mysqli_query($conexion, $sql2);
                 while ($dataRow = mysqli_fetch_array($selTable2)){
-                  $estNames .= "<span class='badge badge-pill badge-primary'>".$dataRow[$varestdes]."</span>";
+                  $estNames .= "<small><span class='badge badge-pill badge-primary'>".$dataRow[$varestdes]."</span></small>";
                 }
 						?>
 
