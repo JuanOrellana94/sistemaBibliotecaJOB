@@ -435,7 +435,7 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Codigo Cutter</label>
+                <label for="TituloLabel">Pseudonimo</label>
                 <input type="text" class="form-control" name="formautseud" id="formautseud" aria-describedby="autseud" placeholder="">
               </div>
 

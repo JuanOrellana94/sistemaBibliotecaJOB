@@ -21,7 +21,7 @@
        
       
 
-		<form id="formularioPrestamo" name="formularioPrestamo" autocomplete = "off">
+		<form id="formularioPrestamo" name="formularioPrestamo">
 			<div class="row">
 				<div class="col-sm-8">
 				    <div class="form-group" data-toggle="tooltip"  tabindex="0"  data-placement="right"  title="Codigo/Carnet del estudiante o personal que desea realizar un prestamo">
@@ -38,63 +38,71 @@
 		    		
 		    	</div>
 		    </div>	
+
         <div class="dropdown-divider"></div>
          <br>  
 		    <div class="row">
 				<div class="col-sm-8" data-toggle="tooltip" data-placement="right"  title="Ingresa el codigo del ejemplar de libro que deseas prestar">
-					<div class="form-group" >
+					 <div class="form-group" >
 					 	<h6 class="card-subtitle mb-2 text-muted" >Codigo del Ejemplar:</h6>
       	                <input type="text" class="form-control" onfocus="this.value=''" name="textEjemplar" id="textEjemplar" aria-describedby="textEjemplar" placeholder="">
+
       	                <div id="infoListaLibros"></div>
       	                <div id="solicitudDetallesDiv"></div>
-					</div>
+	              </div>
+	       	
 		    	</div>
-		    	<div class="col-sm-4">					 				
-	                 <div id="cargandoFeedbackEjemplar"></div>	             			    		       	
+		    	<div class="col-sm-4">
+		    		
+					 				
+	                 	<div id="cargandoFeedbackEjemplar"></div>	             	
+		    		       	
 		    	</div>
+
 		    </div>
-		</form>      
+		</form>		
+		
+       
     </div>
 </div>
+
 <script>
-var keyTimer;
-
-
 
 	document.getElementById("textUsuario").focus(); 
+
 	var usuBuscar = document.getElementById("textUsuario");
-      usuBuscar.addEventListener("keyup", function (e) {   
-      	if(event.keyCode != 9 || event.keyCode != 8 || event.keyCode != 16 || event.keyCode != 18 || event.keyCode !=32) {   
-		if(keyTimer){
-			clearTimeout(keyTimer);
-		}
-		keyTimer = setTimeout(function () {
-		  buscarCodUsu();   
-		}, 500); 
-		}   
-         
+      usuBuscar.addEventListener("keydown", function (e) {
+        if (e.keyCode === 13) {  //revisar si tecla presionada es Enter
+        buscarCodUsu();
+        }
       });
+
+
     var ejemplarBuscar = document.getElementById("textEjemplar");
-    	ejemplarBuscar.addEventListener("keyup", function (e) {
-    	if(event.keyCode != 9 || event.keyCode != 8 || event.keyCode != 16 || event.keyCode != 18 || event.keyCode !=32) {   
-			if(keyTimer){
-				clearTimeout(keyTimer);
-			}
-			keyTimer = setTimeout(function () {
-			  buscarCodEjemplar();      
-			}, 500);
-		}
+      ejemplarBuscar.addEventListener("keydown", function (e) {
+        if (e.keyCode === 13) {  //revisar si tecla presionada es Enter
+        buscarCodEjemplar();
+        }
       });
-    function recargarDevoluciones(){   
+
+
+      function recargarDevoluciones(){
+   
 		  $("#solicitudesUsuarios").show();
 		  $("#solicitudesUsuarios").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
+
 		  var busqueda=$("#textSolicitudes").val();  
 		  $("#solicitudesUsuarios").load("pages/operaciones/tablaSolicitudes.php?pagina=1&busqueda="+ busqueda);
+
 		  //setTimeout( function() {
 		  //    $("#solicitudesUsuarios").hide(500);                          
 		  //  }, 1000);
 }
+
+
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
-	})	
+	})
+	
+	
 </script>

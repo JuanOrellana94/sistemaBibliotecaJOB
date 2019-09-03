@@ -13,9 +13,17 @@
 
 
 		$insRegistro=mysqli_query($conexion,"
-			DELETE FROM $tablAutor
-			WHERE $varautcod='$delautcod'		    
-		    ;")
+		    INSERT INTO  $tablAutor(		    
+			   $varautnom,
+			   $varautape,
+			   $varautseud,
+			   $varautdes
+		      ) VALUES(
+		      '$formautnom',
+		      '$formautape',
+		      '$formseud',
+		      '---'
+		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 	

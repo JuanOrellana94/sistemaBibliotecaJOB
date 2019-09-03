@@ -96,7 +96,7 @@
               <div class="container">      
                 <div class="card">
                  <img class="card-img-top image" src="img/icons/menuRepo.png" alt="Repositorio">           
-                  <div class="middle" onclick="rediRepo()">
+                  <div class="middle">
                     <div class="text">Biblioteca Virtual</div>
                   </div>
                 </div>

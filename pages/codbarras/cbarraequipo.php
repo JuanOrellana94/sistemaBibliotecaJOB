@@ -25,7 +25,7 @@
            
             barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
             $pdf->Cell(50,15,$datos,0,1,'C');
-            $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');       
+            $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');       
     
             $y = $y+25;          
         }

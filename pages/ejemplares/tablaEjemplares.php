@@ -133,7 +133,7 @@
     	var variablecod=$("#codigoLib").val();
     	var busqueda=$("#textBusqueda").val();
     	//FUNCION PARA RECARGAR CON EL NUEVO ORDENAMIENTO
-    	 $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina=<?php echo $pagina; ?>&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar+"&order="+orderby);
+    	 $("#cargarTabla").load("pages/ejemplares/tablaEjemplares.php?pagina="+paginaNumero+"&busqueda="+busqueda+"&codigoLib="+variablecod + "&ordenar=" + ordenar+"&order="+orderby);
     }
 
 </script>

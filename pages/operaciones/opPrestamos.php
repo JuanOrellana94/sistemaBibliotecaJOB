@@ -1,30 +1,40 @@
 <!--ASPECTO VISUAL DE LA PAGINA DE AUTORES-->
     <!--CONTENEDOR PARA MENU DE PRESTAMOS HACER PRESTAMOS--> 
     <?php
+
      ?>
+
 <!--INICIO CONTENEDOR DE PRESTAMOS-->    
 <div class="container-fluid">
-  <br> 
+  <br>
+  
+  
   <div class="row">
       <div class="col-sm-2 mb-4" >
         <!--Area de Solicitudes pendientes-->
         <div class="card bg-light border-info h-100">
           <div class="card-body"  style="min-height: 100%; height:100%;">
             <h7 class="card-title"> Nuevas solicitudes </h7>
-              <input type="text" class="form-control" placeholder="Buscar solicitud" id="textSolicitudes" name="textSolicitudes"> 
+             <input type="text" class="form-control" placeholder="Buscar solicitud" id="textSolicitudes" name="textSolicitudes"> 
+
             <div id="solicitudesUsuarios"></div>
-              <div class="dropdown-divider"></div>
+
+             <div class="dropdown-divider"></div>
+
             <h7 class="card-title"> Solicitudes pendientes</h7>
-            <input type="text" class="form-control" placeholder="Buscar solicitud" id="textPendientes" name="textPendientes"> 
+             <input type="text" class="form-control" placeholder="Buscar solicitud" id="textPendientes" name="textPendientes"> 
+
             <div id="solicitudesPendientes"></div>
           </div>
         </div>
       </div>
       <div class="col-sm-3 mb-4">
+
         <div id=contenedorPrincipal>
           <!--  remover  -->
         </div> 
       </div>
+
       <div class="col-sm-7 mb-4">
         <div id=contenedorSalida>
           <!--  remover  -->
@@ -32,7 +42,10 @@
       </div>
   </div>
 </div>
-<!--MODAL PARA CONFIRMAR EL PRESTAMO REALIZADO item-->
+
+
+
+ <!--MODAL PARA CONFIRMAR EL PRESTAMO REALIZADO item-->
 <div class="modal fade" id="confirmacionPrestamo" tabindex="-1" role="dialog" aria-labelledby="confirmacionPrestamo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content ">
@@ -71,11 +84,23 @@
       recargarPendientes();
       cargarContendorPrincipal();
       cargarContendorSalida();
-      setSelect2();       
+
+      
+
+
+
+
+
+
+       setSelect2();
+        
+
       $(window).keydown(function(event){
-        if(event.keyCode == 13) {         
-            event.preventDefault();
-          return false;  
+        if(event.keyCode == 13) {
+         
+          event.preventDefault();
+          return false;
+        
         }
       });
 
@@ -92,7 +117,12 @@
         if (e.keyCode === 13) {  //revisar si tecla presionada es Enter
         recargarPendientes();
         }
-    });
+      });
+
+
+
+   
+  
   };
 
 
@@ -181,6 +211,7 @@ function cargarListadoLibros(){
    }, 1000);
 }
 //FUNCION BUSCAR CODIGO DE USUARIO E INSERTAR EN FORMULARIO OUTPUT
+
 function buscarCodUsu(){
    
   $("#cargandoFeedbackUsuario").show();
@@ -190,11 +221,12 @@ function buscarCodUsu(){
 
   $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
   cargarCodigoTransaccionVariableMode(busqueda);
-  cargarListadoLibrosVariableMode(busqueda);
-  setTimeout( function() { 
-        $("#cargandoFeedbackUsuario").hide(500);
-      }, 1000);
+  cargarListadoLibrosVariableMode(busqueda);   
 }
+
+
+
+
 //FUNCION BUSCAR EJEMPLAR Y REGISTRAR EN EL PRESTAMO DE BASE DE DATOS ESTADO = 3 == EN ESPERA
 function buscarCodEjemplar(){
    
@@ -206,17 +238,19 @@ function buscarCodEjemplar(){
 
   $("#infoListaLibros").load("pages/operaciones/infoEjemplar.php?usuario="+ usuario+"&busqueda="+busqueda);
 
-
-    setTimeout( function() { 
-        document.getElementById('textEjemplar').value = "";
-      }, 1000);
-  document.getElementById("textEjemplar").focus();  
-  cargarListadoLibros();
-  cargarCodigoTransaccion();
-  setTimeout( function() {   
+  document.getElementById("textEjemplar").focus();
+   
+   cargarListadoLibros();
+   cargarCodigoTransaccion();
+  setTimeout( function() {
+     
     cargarCodigoTransaccion();
-    cargarListadoLibros();     
-    $("#infoListaLibros").hide(500);
+    cargarListadoLibros();   
+     
+    
+    
+      $("#infoListaLibros").hide(500);
+
    }, 3000);
 }
 
@@ -231,6 +265,8 @@ function alertConfirmacion(){
 function cancelarPrestamo(){
   
 }
+
+
 
 function removerLibroLista(){
 
@@ -327,7 +363,9 @@ function crearPrestamo(){
             recargarPendientes()
             recargarSolicitudes()
             alertConfirmacion();
-    
+          
+            
+           
           } else if (data==0) {
             $("#mensajeFinal").show();
             $("#mensajeFinal").html("<div class='alert alert-danger' role='alert'> Codigo Invalido (2) </div>");

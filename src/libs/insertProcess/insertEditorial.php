@@ -25,13 +25,14 @@ $dataRow = mysqli_fetch_array($resultado);
 
 
 		$insRegistro=mysqli_query($conexion,"
-		    INSERT INTO   $tablaEditoral(   
-			   $vareditnom   
+		    INSERT INTO  $tablaEditoral(		    
+			   $vareditnom,
+			   $vareditpai			 
 		      ) VALUES(
-		      '$modaleditnom'
+		      '$modaleditnom',
+		      '---'
 		      );")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));
-
 
 	
 

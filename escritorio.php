@@ -24,19 +24,19 @@
 
                <td>
                   <div class="container">  <img src="img/icons/Ops.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" onclick="location.href='acciones.php?pageLocation=historial';">Operaciones</button>
+                   <button class="btn btn-lg btn-block" disabled="">Operaciones</button>
                   </div>
               </td>
 
                <td>
                   <div class="container">  <img src="img/icons/Est.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" onclick="location.href='acciones.php?pageLocation=indicadores';">Estadisticas</button>
+                   <button class="btn btn-lg btn-block" disabled="">Estadisticas</button>
                   </div>
               </td>
 
                <td>
                   <div class="container">  <img src="img/icons/utils.png" alt="Snow" style="width:100%">
-                   <button class="btn btn-lg btn-block" onclick="location.href='acciones.php?pageLocation=cbejemplar';">Utileria</button>
+                   <button class="btn btn-lg btn-block" disabled="">Utileria</button>
                   </div>
               </td>      
                       

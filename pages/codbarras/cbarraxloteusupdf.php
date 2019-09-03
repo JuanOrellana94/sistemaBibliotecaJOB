@@ -33,7 +33,7 @@
               
                $pdf->SetXY($x, $y);
                $pdf->Cell($x+40,5,$datos,0,1,'C');
-               $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x,$y+5,50,10,'gif');               
+               $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x,$y+5,50,10,'gif');               
                $orden=2;
              }
              elseif ($orden==2) {
@@ -42,7 +42,7 @@
 
                   $pdf->SetXY($x+70, $y);
                   $pdf->Cell($x+40,5,$datos,0,1,'C');
-                 $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+75,$y+5,50,10,'gif');  
+                 $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+75,$y+5,50,10,'gif');  
                     
                     $orden=3;
                 }else{
@@ -51,7 +51,7 @@
                        
                     $pdf->SetXY($x+140, $y);
                     $pdf->Cell($x+40,5,$datos,0,1,'C');
-                    $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+145,$y+5,50,10,'gif');  
+                    $pdf->Image('http://localhost/sistemaBibliotecaJOB/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+145,$y+5,50,10,'gif');  
                     $y = $y+15;
                     $orden=1;
 

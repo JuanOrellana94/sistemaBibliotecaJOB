@@ -14,7 +14,7 @@ if (!empty($_GET["usuario"])) {
 		// CRITERIO DE BUSQUEDA EXISTE.
 		$textUsuario  = $_GET["usuario"]; 
 		$textBusqueda  = $_GET["busqueda"]; 
-		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda';";
+		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda';";
 
 		$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -30,7 +30,7 @@ if (!empty($_GET["usuario"])) {
 				//OBTENER EL CODIGO DE USUARIO DEL CARNET INSERTADO
 				$checkEjemplar="SELECT * from $tablaUsuarios 
 
-					WHERE $varAccNombre='$textUsuario' OR $varCarnet='$textUsuario' OR $varusucodbar='$textUsuario';";
+					WHERE $varAccNombre='$textUsuario' OR $varCarnet='$textUsuario';";
 
 				$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -41,7 +41,7 @@ if (!empty($_GET["usuario"])) {
 				//OBTENER EL CODIGO INTERNO DEL EJEMPLAR INGRESADO
 				$checkEjemplar="SELECT * from $tablaEjemplares 
 
-				 WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda'; ";
+				 WHERE $varejemcodreg='$textBusqueda';";
 
 				$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -148,26 +148,26 @@ if (!empty($_GET["usuario"])) {
 				}
 
 
-			} else if ($dataRow[$varejemestu]=='1') {
+			} else if ($dataRow[$varejemestu]==1) {
 				//EL LIBRO ESTA PRESTADO
 				?> 	
 			 	<p class="card-text"><div class='alert alert-warning' role='alert'>Este ejemplar esta Prestado (Ver Devoluciones)</div></p>
 				<?php 
-			} else if ($dataRow[$varejemestu]=='2') {
+			} else if ($dataRow[$varejemestu]==2) {
 				//EL LIBRO ESTA NO DISPONIBLE
 				?> 	
 			 	<p class="card-text"><div class='alert alert-warning' role='alert'>Este ejemplar esta registado como No Disponible</div></p>
 				<?php 
-			} else if ($dataRow[$varejemestu]=='3') {
+			} else if ($dataRow[$varejemestu]==3) {
 				//EL LIBRO ESTA PERDIDO
 				?> 	
 			 	<p class="card-text"><div class='alert alert-warning' role='alert'>Este ejemplar esta registado como Perdido (Ver Perdidos) </div></p>
 				<?php 
-			} 
+			}
 		} else{
 			//CHECKEA SI EL CODIGO ES DE UN EQUIPO
 			$checkEjemplar="
-				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda' OR $varexistcodbar='$textBusqueda';";
+				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda';";
 
 			$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -182,7 +182,7 @@ if (!empty($_GET["usuario"])) {
 					//OBTENER EL CODIGO DE USUARIO DEL CARNET INSERTADO
 					$checkEjemplar="SELECT * from $tablaUsuarios 
 
-						WHERE $varAccNombre='$textUsuario' OR $varCarnet='$textUsuario' OR $varusucodbar='$textUsuario';";
+						WHERE $varAccNombre='$textUsuario' OR $varCarnet='$textUsuario';";
 
 					$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -193,7 +193,7 @@ if (!empty($_GET["usuario"])) {
 					//OBTENER EL CODIGO INTERNO DEL EQUIPO INGRESADO
 					$checkEjemplar="SELECT * from $tablaExistenciaequipo 
 
-					 WHERE $varexistcodreg='$textBusqueda' OR $varexistcodbar='$textBusqueda';;";
+					 WHERE $varexistcodreg='$textBusqueda';";
 
 					$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
