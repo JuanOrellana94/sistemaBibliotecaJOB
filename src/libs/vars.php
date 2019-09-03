@@ -3,8 +3,8 @@
 
 
   $servidor="localhost";
-  $usuario="bibliocnx";
-  $clave="Biblioteca123$";
+  $usuario="root";
+  $clave="";
   $base="sistemabiblioteca";
 
 
