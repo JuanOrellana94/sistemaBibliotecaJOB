@@ -105,7 +105,12 @@ if(isset($dataRow)){
     if ($_SESSION['autorizado']=="renovar") {
       echo "1r";
     } else{
-       echo "1";
+       
+       if ($_SESSION['usuNivel'] == 0 || $_SESSION['usuNivel'] == 1 || $_SESSION['usuNivel'] == 4) {
+        echo "1";        
+       } else if ($_SESSION['usuNivel'] == 2  || $_SESSION['usuNivel'] == 3) {
+         echo "4";  
+       }
     }
    
     //1 = Acceso al sistema

@@ -56,7 +56,12 @@ function checkUser(){
 									$("#infoCheck").removeClass("callout callout-success");
 									$("#infoCheck").addClass("callout callout-danger");
 									$("#infoCheck").html("<i class='fa fa-warning'></i> Cuenta bloqueada").show(500);
-								}
+								} if(data=="4"){
+									$("#infoCheck").removeClass("callout callout-danger");
+									$("#infoCheck").html(' Bienvenido <br> <img src="img/structures/replace.gif" style="max-width: 50%"> ').show(500);	
+									setTimeout(function cerrar(){
+										rediConsulta();
+									}, 2000);}
 											
 							}
 					});

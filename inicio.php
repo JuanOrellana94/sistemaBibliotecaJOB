@@ -12,6 +12,7 @@
   <script src="src/js/jquery-3.4.0.min.js"></script>
   <script src="src/js/bootstrap.min.js"></script>
   <script src="src/js/jsSession.js"></script>
+  <script src="src/js/jsRedirects.js"></script>
 
 
 <TITLE>SISTEMA DE BIBLIOTECA, VERSION PROTOTIPO 1.0, 2019</TITLE>
