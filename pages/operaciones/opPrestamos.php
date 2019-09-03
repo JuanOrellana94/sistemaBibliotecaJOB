@@ -38,7 +38,7 @@
     <div class="modal-content ">
       <div class="modal-header " style="background: #D5D9DF;">
         <h5 class="modal-title " id="deleteEditorialTitle"><img src="img/icons/BookSucess.png" width="35" height="30"> Prestamo realizado</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="cerrarModalConfimacion()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -49,7 +49,7 @@
               <div class="form-group">
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">TRANSACCION REALIZADA, CODIGO DE PRESTAMO:</label></div>            
 
-                <h2> <div id="codigoPrestamoInfo" style="color: black; font-weight: bold; text-align: center;"></div>  </h2>        
+                <h2> <div id="codigoPrestamoInfoModal" style="color: black; font-weight: bold; text-align: center;"></div>  </h2>        
     
               </div>
             </div>
@@ -137,10 +137,8 @@ function cargarCodigoTransaccion(){
 function cargarCodigoConfirmacionModal(){
   //detalles del libro como el codigo dela transaccion
   var usuario=$("#varAccNombre").val();
-
-  $("#codigoPrestamoInfo").html('<img src="img/structures/replace.gif" style="max-width: 70%">').show(500);
-  
-  $("#codigoPrestamoInfo").load("pages/operaciones/infoConfirmacion.php?usuario="+ usuario);
+  $("#codigoPrestamoInfoModal").html('<img src="img/structures/replace.gif" style="max-width: 70%">').show(500);
+  $("#codigoPrestamoInfoModal").load("pages/operaciones/infoConfirmacion.php?usuario="+ usuario);
 
 }
 
@@ -324,10 +322,10 @@ function crearPrestamo(){
             //sucess
             $("#mensajeFinal").show();
             $("#mensajeFinal").html("<div class='alert alert-success' role='alert'> Prestamo registrado</div>");
-            recargarPendientes()
-            recargarSolicitudes()
-            alertConfirmacion();
-    
+            alertConfirmacion();   
+            recargarPendientes();
+            recargarSolicitudes();
+           
           } else if (data==0) {
             $("#mensajeFinal").show();
             $("#mensajeFinal").html("<div class='alert alert-danger' role='alert'> Codigo Invalido (2) </div>");
@@ -366,6 +364,8 @@ function cargarSolicitud(x){
     $("#infoBolsaPrestamo").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
 
     var busqueda=x;
+    document.getElementById('textUsuario').value = busqueda;
+    document.getElementById("textUsuario").disabled = true;
     buscarCodUsuVariableMode(busqueda);
     $("#infoBolsaPrestamo").load("pages/operaciones/detalleSolicitud.php?busqueda="+ busqueda);
 
@@ -401,20 +401,15 @@ function cargarListadoLibrosVariableMode(x){
 
 function cargarCodigoTransaccionVariableMode(x){
   //detalles del libro como el codigo dela transaccion
-
   var usuario=x;  
   document.getElementById('textUsuario').value = usuario;
-  
-
-
-  
   $("#infoDetalles").load("pages/operaciones/infoDetalle.php?usuario="+ usuario);
 
   setTimeout( function() {
       $("#cargandoFeedbackEjemplar").hide(500);                          
    }, 1000);
 }
-
+///CHECKFIX
 function buscarCodUsuVariableMode(x){
    
   $("#cargandoFeedbackUsuario").show();
@@ -422,8 +417,10 @@ function buscarCodUsuVariableMode(x){
 
   var busqueda=x;  
   $("#infoPersona").load("pages/operaciones/infoUsuario.php?busqueda="+ busqueda);
-  cargarCodigoTransaccionVariableMode(busqueda);
-  cargarListadoLibrosVariableMode(busqueda);   
+  setTimeout( function() {
+    cargarCodigoTransaccionVariableMode(busqueda);
+    cargarListadoLibrosVariableMode(busqueda);
+  }, 300);
 
   setTimeout( function() {
     

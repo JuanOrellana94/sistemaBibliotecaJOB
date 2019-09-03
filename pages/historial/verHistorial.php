@@ -13,7 +13,7 @@
   
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-2 mb-4  col-sm-2  col-md-2">
+      <div class="col-lg-2 mb-4  col-sm-2  col-md-2 align-items-stretch">
         <div class="card  h-10" id="indicadores">
           <h5 class="card-header">Actividades</h5>
           <div class="card-body">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <br>
-        <div class="card h-90" id="indicadores">
+        <div class="card h-90 " id="indicadores">
           <h5 class="card-header">Indicadores</h5>
         
 
@@ -80,7 +80,7 @@
     </div>
         </div>
       </div>
-      <div class=" col-sm-12 col-md-10 col-lg-7">
+      <div class=" col-sm-12 col-md-10 col-lg-7 align-items-stretch">
         <div class="card h-90">
           <h5 class="card-header">Historial </h5>
           <div class="card-body">
@@ -176,7 +176,7 @@
         </div>
       </div>
         <div class="col-lg-3 mb-4  sm-4">
-        <div class="card bg-light h-100">
+        <div class="card bg-light h-100 align-items-stretch" >
           <h5 class="card-header">Informacion  <button style="max-width: 20%; margin-top: -2%; margin-right: -5%" disabled type="button" data-toggle="tooltip" data-placement="right" id="cerrarInfo" title="Cerrar" onclick="cargarInfoArea()
 " class="btn btn-link float-right">
                   <img src="img/icons/quit.png" style="max-width: 100%">

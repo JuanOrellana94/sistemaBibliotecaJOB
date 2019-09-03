@@ -1,4 +1,5 @@
 	<?php 
+	//ACTIVAR PRESTAMOS/SOLICITUDES DE EL ESTUDIANTE EN BUSCARMENU.PHP MENU DE CONSULTAS
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 	session_start();

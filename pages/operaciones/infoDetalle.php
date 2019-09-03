@@ -10,9 +10,6 @@
 	if (!empty($_GET["usuario"])) { 
 		// CRITERIO DE USUARIO EXISTE.
 		$textUsuario  = $_GET["usuario"];
-
-
-
 							$selTable="
 								SELECT * from $varresumenlibroprestamo AS resumen
 								INNER JOIN $vardetallesprestamolibro AS detalles ON resumen.$varprestcod = detalles.$varprestcodlib
