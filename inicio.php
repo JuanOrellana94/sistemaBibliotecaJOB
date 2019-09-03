@@ -23,7 +23,12 @@
 
   if (isset($_SESSION["autorizado"])){
   if($_SESSION["autorizado"]=="yes"){
-    header("location: escritorio.php");
+     if ($_SESSION['usuNivel'] == 0 || $_SESSION['usuNivel'] == 1 || $_SESSION['usuNivel'] == 4) {
+          header("location: escritorio.php");     
+       } else if ($_SESSION['usuNivel'] == 2  || $_SESSION['usuNivel'] == 3) {
+         header("location: acciones.php?pageLocation=busqueda"); 
+       }
+  
   }else{
     header("location: pages/ConfirmarClave.php");
   }
