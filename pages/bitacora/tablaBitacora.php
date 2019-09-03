@@ -53,7 +53,7 @@
 
 	$textBusqueda=$_GET['busqueda'];
 	$filterall=$_GET['filter'];
-  $filterallTime=$_GET['filterTime'];
+
 
 	$sql = "SELECT COUNT($varBitCod) as Contador
       FROM $tablaBitacora  WHERE 
@@ -72,22 +72,22 @@
                 $sql .= "   $varDesc LIKE '%ingreso un nuevo%' OR   $varDesc LIKE '%ingreso una nueva%' ";
               }
 
-     if ($filterallTime=='0'){
-      $sql .= " AND DATE($varFecha) = CURDATE() ";
+    if (isset($_GET["filterTime"]) && $_GET["filterTime"] != ""){
+      $datePick=$_GET["filterTime"];
+      $sql .= " AND DATE($varFecha)='$datePick'";  
     }
-     else if ($filterallTime=='1'){
-      $sql .= " AND MONTH($varFecha)= MONTH(CURDATE()) AND YEAR($varFecha)= YEAR(CURDATE())";     
-    } else if ($filterallTime=='2') {
-         $sql .= "  AND YEAR($varFecha)= YEAR(CURDATE()) ";
-    } else if ($filterallTime=='3') {
-      $sql .= " ";
+     else {
+      
+       $sql .= " AND DATE($varFecha) = CURDATE() ";
     } 
 
      if($textBusqueda && !empty($textBusqueda)){
-                    $sql .= " AND $varDesc LIKE '%$textBusqueda%' OR  $varNomPersona LIKE '%$textBusqueda%' ";
-                  }
+          $sql .= " AND $varDesc LIKE '%$textBusqueda%' OR  $varNomPersona LIKE '%$textBusqueda%' ";
+     }
 
 	$sql .= ";";
+
+
 
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -150,16 +150,16 @@
                 $sql .= "   $varDesc LIKE '%ingreso un nuevo%' OR   $varDesc LIKE '%ingreso una nueva%'";
               }
 
-             if ($filterallTime=='0'){
-                $sql .= " AND DATE($varFecha) = CURDATE() ";
+             if (isset($_GET["filterTime"]) && $_GET["filterTime"] != ""){
+                $datePick=$_GET["filterTime"];
+                $sql .= " AND DATE($varFecha)='$datePick'";  
               }
-               else if ($filterallTime=='1'){
-                $sql .= " AND MONTH($varFecha)= MONTH(CURDATE()) AND YEAR($varFecha)= YEAR(CURDATE())";     
-              } else if ($filterallTime=='2') {
-                   $sql .= "  AND YEAR($varFecha)= YEAR(CURDATE()) ";
-              } else if ($filterallTime=='3') {
-                $sql .= " ";
+               else {
+                
+                 $sql .= " AND DATE($varFecha) = CURDATE() ";
               } 
+
+ 
 								   if($textBusqueda && !empty($textBusqueda)){
 										$sql .= " AND $varDesc LIKE '%$textBusqueda%' OR  $varNomPersona LIKE '%$textBusqueda%'";
 									}

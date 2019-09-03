@@ -38,8 +38,10 @@
       </div>
     </div>
     <div class=" col-sm-10 col-md-10 col-lg-10">
-      <div class="card h-90">
-        <h5 class="card-header">Historial de la bitacora</h5>
+      <div class="card h-100">
+       
+        <h3 class="card-header d-flex flex-row-reverse">Historial de la bitacora &nbsp; &nbsp;  <button type="button" class="btn btn-light" onclick="location.reload();"> <img src="img/icons/reloadBitacora.png" width="35" height="35"> </button></h3>
+        
         <div class="card-body">
           <div class="btn-group btn-group-toggle btn-lg btn-block" data-toggle="buttons">
             <label class="btn btn-secondary active" onclick="cargarTablaBitacora()">
@@ -59,21 +61,16 @@
             </label>      
           </div>
 
-           <div class="btn-group btn-group-toggle btn-lg btn-block" data-toggle="buttons" style="margin-top: -1%">
-            <label class="btn btn-info active" onclick="cargarTablaBitacora()">
-              <input type="radio" name="filtroSearchTime" value="0" id="0" autocomplete="off" checked> Hoy
-            </label>
-            <label class="btn btn-info" onclick="cargarTablaBitacora()">
-              <input type="radio" name="filtroSearchTime" value="1" id="1" autocomplete="off" > Este mes
-            </label>
-            <label class="btn btn-info" onclick="cargarTablaBitacora()">
-              <input type="radio" name="filtroSearchTime" value="2" id="2" autocomplete="off"> Este año
-            </label>
-            <label class="btn btn-info" onclick="cargarTablaBitacora()">
-              <input type="radio" name="filtroSearchTime" value="2" id="2" autocomplete="off">Todos
-            </label>
-               
-          </div>
+          <div class="row">
+            <div class="col-lg-12"> 
+              
+             
+            
+             <input class="form-control rounded-0  btn-lg" type="date" value="<?php echo date("j/m/Y"); ?>" id="datePickSelect" name="datePickSelect">
+             </div>
+            </div>
+            
+            
 
           <div id="tablaBitacora"></div>     
         </div>        
@@ -123,7 +120,7 @@ function cargarTablaBitacora(){
   setTimeout( function() {
     var busqueda=$("#busquedaBit").val();
     var filterall=$('input[name=filtroSearch]:checked').val();
-    var filterallTime=$('input[name=filtroSearchTime]:checked').val();  
+    var filterallTime=$("#datePickSelect").val();  
    
     $("#tablaBitacora").load("pages/bitacora/tablaBitacora.php?pagina=1&busqueda="+ busqueda +"&filter="+ filterall+"&filterTime="+ filterallTime);
   }, 50);
@@ -140,6 +137,13 @@ function isNumberKey(evt)
 
          return true;
       }
+       $(function(){
+    $('.form-control').trigger('change'); //This event will fire the change event. 
+    $('.form-control').change(function(){
+      cargarTablaBitacora();      
+    });
+  });
+
 
 
 
