@@ -236,6 +236,9 @@
 
 
    //Variables de BITACORA
+    //bircod, bitfec, bitdes, bitusucod, bitnomlib, bitnombre
+    $tablaBitacora="bitacora";
+  $varBitCod="bircod";
   $varFecha="bitfec";
   $varDesc="bitdes";
   $varBitUsuCodigo="bitusucod";
