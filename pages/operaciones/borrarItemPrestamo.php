@@ -1,5 +1,6 @@
 <?php
 	//ELIMINAR UN REGISTRO O ENTRADA DE  EJEMPLAR/EQUIPO AGREGADO EN UN PRESTAMO PENDIENTE
+	//OPERACIONES PRESTAMO
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 	date_default_timezone_set("America/El_Salvador");

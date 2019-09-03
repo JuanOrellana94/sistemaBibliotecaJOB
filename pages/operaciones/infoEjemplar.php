@@ -1,10 +1,12 @@
 	<?php 
+	//INFOEJEMPLAR: OPERACIONES PRESTAMO
+	//AGREGAR UN EJEMPLAR O UNA EXISTENCIA DE EQUIPOS A UN PROCESO DE PRESTAMO
+	//USO DE SCANNER LINEA 19,43,169,175
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 	session_start();
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
-
 
 
 if (!empty($_GET["usuario"])) {
@@ -14,12 +16,9 @@ if (!empty($_GET["usuario"])) {
 		// CRITERIO DE BUSQUEDA EXISTE.
 		$textUsuario  = $_GET["usuario"]; 
 		$textBusqueda  = $_GET["busqueda"]; 
-		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda';";
-
+		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varejemcodbar),'%');";
 		$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
-
 		$dataRow = mysqli_fetch_array($resultado);	
-
 		if(isset($dataRow)){ 
 			//EL LIBRO EXISTE
 			?> 	
@@ -41,7 +40,7 @@ if (!empty($_GET["usuario"])) {
 				//OBTENER EL CODIGO INTERNO DEL EJEMPLAR INGRESADO
 				$checkEjemplar="SELECT * from $tablaEjemplares 
 
-				 WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda'; ";
+				 WHERE $varejemcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varejemcodbar),'%'); ";
 
 				$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -167,7 +166,7 @@ if (!empty($_GET["usuario"])) {
 		} else{
 			//CHECKEA SI EL CODIGO ES DE UN EQUIPO
 			$checkEjemplar="
-				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda' OR $varexistcodbar='$textBusqueda';";
+				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varexistcodbar),'%');";
 
 			$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -193,7 +192,7 @@ if (!empty($_GET["usuario"])) {
 					//OBTENER EL CODIGO INTERNO DEL EQUIPO INGRESADO
 					$checkEjemplar="SELECT * from $tablaExistenciaequipo 
 
-					 WHERE $varexistcodreg='$textBusqueda' OR $varexistcodbar='$textBusqueda';;";
+					 WHERE $varexistcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varexistcodbar),'%');;";
 
 					$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 

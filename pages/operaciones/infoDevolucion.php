@@ -1,33 +1,27 @@
-	<?php 
+<?php 
 	include("../../src/libs/vars.php");
 	include("../../src/libs/sessionControl/conection.php");
 	session_start();
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
-
-
     $limite = 5;
 	if (isset($_GET["pagina"])) { 
 		$pagina  = $_GET["pagina"]; 
 	} else {
 		$pagina=1; 
 	};
-
 	if (!empty($_GET["busqueda"])) { 
 		// CRITERIO DE CODIGO HA SIDO AGREGADO.
 		$textCodigo  = $_GET["busqueda"];
-
 		//CHECKEAR SI EL CODIGO ES DE UN LIBRO
 		$selTable=mysqli_query($conexion," SELECT * FROM $tablaEjemplares 
-						WHERE $varejemcodreg='$textCodigo'	OR $varejemcodbar='$textCodigo'								
+						WHERE $varejemcodreg='$textCodigo'	OR'$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%')								
 							;");
-
 		//$dataRow = mysqli_fetch_array($resultado);	
-
 		if (mysqli_num_rows($selTable)==0){
 			//CHECKEAR SI EL CODIGO ES DE EQUIPO
 			$selTable=mysqli_query($conexion," SELECT * FROM $tablaExistenciaequipo 
-				WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo'									
+				WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%')									
 				;");
 			if (mysqli_num_rows($selTable)==0){
 				//CODIGO ERROR =1
@@ -48,21 +42,20 @@
 					//PRESTADO > PROCEDER A DEVOLVER
 					//START
 					//Prestamo estado RESUMENequipo: estado del préstamo 0=Activo 1=Finalizado  3=en espera
-						$selTable=mysqli_query($conexion," SELECT * FROM $varresumenequipoprestamo as resumen
-						INNER JOIN $vardetallesprestamoequipo as detalles on detalles.$varprestcodequiDet=resumen.$varprestcodequi
-						INNER JOIN $tablaExistenciaequipo as existencias on detalles.$varexistcodDet=existencias.$varexistcod
-						WHERE (existencias.$varexistcodreg='$textCodigo' OR existencias.$varexistcodbar='$textCodigo') AND resumen.$varprestestequi='0';					
-						;");
+					$selTable=mysqli_query($conexion," SELECT * FROM $varresumenequipoprestamo as resumen
+					INNER JOIN $vardetallesprestamoequipo as detalles on detalles.$varprestcodequiDet=resumen.$varprestcodequi
+					INNER JOIN $tablaExistenciaequipo as existencias on detalles.$varexistcodDet=existencias.$varexistcod
+					WHERE (existencias.$varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',existencias.$varexistcodbar),'%')) AND resumen.$varprestestequi='0';					
+					;");
 					if (mysqli_num_rows($selTable)==0){
 						//CODIGO ERROR =No existe un registro para este libro que esta prestado
 						?> <p class="card-text"><div class='alert alert-danger' role='alert'>Error: No existe un registro de prestamo para este equipo, Calidad del equipo puesto en estado Disponible para futuros prestamos</div></p>
 						<?php
 						//ACCION REESTABLECER EL ESTADO DE EQUIPO INGRESADO A DISPONIBLE AUNQUE NO HAY UN REGISTRO DE PRESTAMO NI USUARIO RELACIONADO
-
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo';")
+								    WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%');")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						 $insRegistro=mysqli_query($conexion,"
@@ -78,23 +71,18 @@
 							      '$usuCodigo',
 							      '---',
 							      '$bitPersonaName');")
-							or die ('ERROR INS-INS:'.mysqli_error($conexion));
-
-	 
+							or die ('ERROR INS-INS:'.mysqli_error($conexion));	 
 					} else{
 						//ACCION REVISAR OTROS REGISTROS , CAMBIAR ESTADO DE EQUIPO A DISPONIBLE, CAMBIAR USUARIO A ACTIVO
 						//Estado de la cuenta de usuario: muestra si una cuenta esta logeada en el sistema 0=Activa 1=inactiva 2=Suspendida 3=EN PRESTAMO
 						$dataRow = mysqli_fetch_array($selTable);
 						$codigoResumenPrestamo=$dataRow[$varprestcodequi];
 						$codigoUsuarioPrestamo=$dataRow[$varusuCodigoFEquipo];
-
-
 						//Estatus del ejemplar: estado del libro si  0=Disponible  1=Prestado 2=No disponible 3=Extraviado
-
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar='$textCodigo';")
+								    WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%');")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						$insRegistro=mysqli_query($conexion,"
@@ -111,8 +99,6 @@
 								      '---',
 								      '$bitPersonaName');")
 								or die ('ERROR INS-INS:'.mysqli_error($conexion));
-
-
 
 						$selTable=mysqli_query($conexion," SELECT * FROM $varresumenequipoprestamo as resumen
 						INNER JOIN $vardetallesprestamoequipo as detalles on detalles.$varprestcodequiDet=resumen.$varprestcodequi
@@ -155,19 +141,11 @@
 
 							?> <p class="card-text"><div class='alert alert-success' role='alert'>Equipo devuelto exitosamente. Este usuario no tiene ningun Prestamo pendiente</div></p>
 							<?php
-
-
-
 						} else {
-							
-
 							?> <p class="card-text"><div class='alert alert-success' role='alert'>Equipo devuelto exitosamente. Este equipo pertenece a un prestamo que tiene los siguientes articulos sin devolver:</div></p> <?php
-
-							?>
-						
+							?>				
 							<?php
 								$contadorOnce=1;
-
 								while ($datosTabla=mysqli_fetch_assoc($selTable)){
 
 									if ($contadorOnce==1) {
@@ -192,18 +170,13 @@
 										
 										 </small></div></td>
 									</tr>	
-
 									<?php
 								}
-
 								?>
 								</tbody>
 							</table>
 							<?php
-
-
 						}
-					
 					}
 					//END
 
@@ -240,7 +213,7 @@
 					$selTable=mysqli_query($conexion," SELECT * FROM $varresumenlibroprestamo as resumen
 					INNER JOIN $vardetallesprestamolibro as detalles on detalles.$varprestcodlib=resumen.$varprestcod
 					INNER JOIN $tablaEjemplares as ejemplares on detalles.$varejemcodlib=ejemplares.$varejemcod
-					WHERE (ejemplares.$varejemcodreg='$textCodigo' OR  ejemplares.$varejemcodbar='$textCodigo') AND resumen.$varprestest='0';									
+					WHERE (ejemplares.$varejemcodreg='$textCodigo' OR  '$textCodigo' LIKE Concat(Concat('%',ejemplares.$varejemcodbar),'%')) AND resumen.$varprestest='0';									
 					;");
 				if (mysqli_num_rows($selTable)==0){
 					//CODIGO ERROR =No existe un registro para este libro que esta prestado
@@ -251,7 +224,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
+							    WHERE $varejemcodreg='$textCodigo' OR'$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%');")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					 $insRegistro=mysqli_query($conexion,"
@@ -284,7 +257,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo' OR $varejemcodbar='$textCodigo';")
+							    WHERE $varejemcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%');")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					$insRegistro=mysqli_query($conexion,"

@@ -4,22 +4,16 @@
 	session_start();
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
-
-
-    
 	if (!empty($_GET["usuario"])) { 
 		// CRITERIO DE USUARIO EXISTE.
 		$textUsuario  = $_GET["usuario"];
+		$selTable="
+			SELECT * from $varresumenlibroprestamo AS resumen
+			INNER JOIN $tablaUsuarios AS usuario ON resumen.$varusuCodigoF=usuario.$varUsuCodigo
 
-
-
-							$selTable="
-								SELECT * from $varresumenlibroprestamo AS resumen
-								INNER JOIN $tablaUsuarios AS usuario ON resumen.$varusuCodigoF=usuario.$varUsuCodigo
-
-								WHERE (usuario.$varAccNombre='$textUsuario' AND resumen.$varprestest='0') OR
-									  (usuario.$varCarnet='$textUsuario'AND  resumen.$varprestest='0')
-							;";			
+			WHERE (usuario.$varAccNombre='$textUsuario' AND resumen.$varprestest='0') OR
+				  (usuario.$varCarnet='$textUsuario'AND  resumen.$varprestest='0')
+		;";			
 							$resultado=mysqli_query($conexion, $selTable) or die(mysqli_error($conexion));
 
 							if(mysqli_num_rows($resultado)==0) {
