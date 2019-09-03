@@ -46,6 +46,10 @@
  	 include("top.php");
  	 include("pages/codbarras/cbequipo.php");
  	# code...
+ } else if ($pageLocation=="bitacora") {
+ 	 include("top.php");
+ 	 include("pages/bitacora/verBitacora.php");
+ 	# code...
  }
 
 
