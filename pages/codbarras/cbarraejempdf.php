@@ -21,7 +21,7 @@
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
            $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar; 
-          $tamaño=strlen($ejemplar['ejemcod']);          
+          $tamaño=strlen(utf8_encode($ejemplar['ejemcod']));          
            $code = $ejemplar['ejemcodbar'];
             
             $pdf->Cell(50,15,$datos,0,1,'C');
