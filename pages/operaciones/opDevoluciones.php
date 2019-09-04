@@ -15,7 +15,7 @@
         <div class="card bg-light border-primary h-100">
           <div class="card-body"  >
             <h5 class="card-title"> <a class="navbar-brand" href="acciones.php?pageLocation=devoluciones">
-             <img src="img/icons/Book.png" width="50" height="50" alt="">
+             <img src="img/icons/book.png" width="50" height="50" alt="">
             </a>  Devoluciones </h5>
              <div class="dropdown-divider"></div>
              <div class="row">
