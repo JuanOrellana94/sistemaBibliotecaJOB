@@ -52,22 +52,21 @@
    }else if ($_SESSION["usuNivelNombre"]=="Personal" || $_SESSION["usuNivelNombre"]=="Estudiante" ) {
     ?>
       <script>
-        window.onload = function () {
+       
           Swal.fire({
           title: 'Acceso denegado',
-          text: 'No tienes los permisos requeridos para ver esta pagina',
+          text: 'No puedes acceder a este contenido',
           type: 'error',
-          grow:'fullscreen',
+          
           confirmButtonText: 'Entendido',
           allowOutsideClick: false
           }).then(Entendido => {
           if (Entendido) {
             window.location.href = "menuopt.php";
           }
-          });
-
-          $(".swal2-container.in").css('background-color', 'rgba(43, 165, 137, 0.45)');
-        }
+          })
+          window.stop();
+        
       </script>
     <?php
    }

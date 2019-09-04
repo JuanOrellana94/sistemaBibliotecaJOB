@@ -5,7 +5,29 @@
       $_SESSION[ 'pagCurrent' ] = "escritorio.php";  
       //$usupag=$_SESSION['loginperfor'] . ",escritorio.php";
       //setcookie('pagusu', $usupag, time()+28800);
+if ($_SESSION["usuNivelNombre"]=="Personal" || $_SESSION["usuNivelNombre"]=="Estudiante" ) {
+    ?>
+      <script>
+       
+          Swal.fire({
+          title: 'Acceso denegado',
+          text: 'No puedes acceder a este contenido',
+          type: 'error',
+          
+          confirmButtonText: 'Entendido',
+          allowOutsideClick: false
+          }).then(Entendido => {
+          if (Entendido) {
+            window.location.href = "menuopt.php";
+          }
+          })
+          window.stop();
+        
+      </script>
+    <?php
+   }
 
+   ?>  
    ?>
     	<br>
     	<br>
