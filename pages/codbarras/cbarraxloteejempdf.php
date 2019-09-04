@@ -26,7 +26,7 @@
           $contador=$contador+1;
           if ($orden==1) {
               $numejemplar= $ejemplar['ejemcod'];      
-              $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;       
+              $datos = utf8_encode($ejemplar['libtit']) . ", Ejemplar #" . $numejemplar;       
                        
 
               $code = $ejemplar['ejemcodbar'];         
@@ -39,7 +39,7 @@
              }
              elseif ($orden==2) {
                   $numejemplar= $ejemplar['ejemcod'];      
-                  $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;       
+                  $datos = utf8_encode($ejemplar['libtit']) . ", Ejemplar #" . $numejemplar;       
               
 
                  $code = $ejemplar['ejemcodbar'];           
@@ -52,7 +52,7 @@
                     $orden=3;
                 }else{
                      $numejemplar= $ejemplar['ejemcod'];      
-                     $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar;        
+                     $datos = utf8_encode($ejemplar['libtit']) . ", Ejemplar #" . $numejemplar;        
                  
 
                     $code = $ejemplar['ejemcodbar']; 
