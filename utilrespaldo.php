@@ -12,7 +12,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
   if(!isset($_SESSION)){
       session_start();    
   }
-
+ 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $archivo = 'bkbiblioteca_' . date("d-m-Y_H:i:s") . '.sql';      
     $comando = "mysqldump --add-drop-table --host=$servidor --user=$usuario --password=$clave $base > $archivo";
@@ -200,7 +200,11 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
       </button>
     </div>
 </nav>
-
+<?php  if ($_SESSION["usuNivelNombre"]=="Auxiliar" || $_SESSION["usuNivelNombre"]=="Bibliotecario"){
+    echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Area restringida para Administrador');
+         window.location.href='escritorio.php';
+       </script>");
+  } ?>
 
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">

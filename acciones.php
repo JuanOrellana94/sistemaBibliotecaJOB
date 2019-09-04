@@ -3,7 +3,6 @@
   <?php
 
    
-   
 
 
 
@@ -15,41 +14,88 @@
  if ($pageLocation=="busqueda") {
     include("pages/operaciones/buscarMenu.php");
  } else if ($pageLocation=="prestamos") {
- 	 include("top.php");
- 	 include("pages/operaciones/opPrestamos.php");
- 	# code...
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {	   
+ 	 	include("pages/operaciones/opPrestamos.php");
+	}
  }  else if ($pageLocation=="devoluciones") {
- 	 include("top.php");
- 	 include("pages/operaciones/opDevoluciones.php");
- 	# code...
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {		
+ 		include("pages/operaciones/opDevoluciones.php");
+ 	}
  }  else if ($pageLocation=="historial") {
- 	 include("top.php");
- 	 include("pages/historial/verHistorial.php");
- 	# code...
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
+		
+		include("pages/historial/verHistorial.php");
+	}
  } else if ($pageLocation=="codbarras") {
- 	 include("top.php");
- 	 include("pages/codbarras/cbestudiante.php");
- 	# code...
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {		
+		include("pages/codbarras/cbestudiante.php");
+	}
  } else if ($pageLocation=="cbejemplar") {
- 	 include("top.php");
- 	 include("pages/codbarras/cbejemplar.php");
- 	# code...
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
+ 	 	include("pages/codbarras/cbejemplar.php");
+ 	}
  }else if ($pageLocation=="restaurar") {
- 	 include("top.php");
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar" || $_SESSION["usuNivelNombre"]=="Bibliotecario"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Area restringida para Administrador');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
  	 include("pages/restaurar/restaurarbd.php");
+ 	}
  	# code...
  }else if ($pageLocation=="indicadores") {
- 	 include("top.php");
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
  	 include("pages/estadistica/verIndicadores.php");
- 	# code...
+ 	}
  } else if ($pageLocation=="cbequipo") {
- 	 include("top.php");
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
  	 include("pages/codbarras/cbequipo.php");
- 	# code...
+ 	}
  } else if ($pageLocation=="bitacora") {
- 	 include("top.php");
+ 	include("top.php");
+ 	if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+		echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Auxiliares no pueden utilizar esta area');
+	     	 window.location.href='escritorio.php';
+	     </script>");
+	} else {
  	 include("pages/bitacora/verBitacora.php");
- 	# code...
+ 	}
  }
 
 
