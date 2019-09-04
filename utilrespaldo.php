@@ -41,6 +41,22 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
 
   }     
 ?>
+<script> 
+  function errorAccAdminOnly(){
+    Swal.fire({
+        title: 'Acceso denegado',
+        text: 'Area de adminstrador',
+        type: 'error',
+        confirmButtonText: 'Entendido',
+        allowOutsideClick: false
+      }).then(Entendido => {
+    if (Entendido) {
+      window.location.href = "escritorio.php";
+    }
+    });
+  }
+  
+</script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,6 +85,7 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
     <script src="src/js/jquery.tagsinput.js"></script>
      <link  href="src/css/Chart.min.css" rel="stylesheet"/>
     <script src="src/js/Chart.bundle.js"></script>
+     <script src="src/js/sweetalert2.all.min.js"></script>
     
 
   </head>
@@ -200,12 +217,15 @@ TODO: zip del archivo backup, subir el zip a un google drive administrado por el
       </button>
     </div>
 </nav>
-<?php  if ($_SESSION["usuNivelNombre"]=="Auxiliar" || $_SESSION["usuNivelNombre"]=="Bibliotecario"){
-    echo ("<script LANGUAGE='JavaScript'>  window.alert('Accedo denegado. Area restringida para Administrador');
-         window.location.href='escritorio.php';
-       </script>");
-  } ?>
-
+<?php 
+if ($_SESSION["usuNivelNombre"]=="Auxiliar"){
+    ?>
+    <script>    window.onload = function () {
+      errorAccAdminOnly();  
+       };
+    </script>
+    <?php 
+}?>
 <!--DIRECCION DE LA UBICACION ACTUAL-->     
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">

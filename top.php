@@ -32,9 +32,15 @@
     <script src="src/js/jquery.tagsinput.js"></script>
      <link  href="src/css/Chart.min.css" rel="stylesheet"/>
     <script src="src/js/Chart.bundle.js"></script>
+
+    <script src="src/js/sweetalert2.all.min.js"></script>
     
 
   </head>
+
+  <script>
+
+  </script>
 <?php 
 
 
