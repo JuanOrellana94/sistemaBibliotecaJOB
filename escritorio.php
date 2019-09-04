@@ -26,8 +26,7 @@ if ($_SESSION["usuNivelNombre"]=="Personal" || $_SESSION["usuNivelNombre"]=="Est
       </script>
     <?php
    }
-
-   ?>  
+ 
    ?>
     	<br>
     	<br>
