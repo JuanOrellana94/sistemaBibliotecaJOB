@@ -704,7 +704,7 @@ $('#modalVerInformacion').on('show.bs.modal', function (event) {
 
       var modal = $(this)   
                 
-       $("#varlibdes").html('<h6 align=center>'+varlibdes+' '+'<h6> ');       
+       $("#varlibdes").html('<h6 align=justify>'+varlibdes+' '+'<h6> ');       
        
       
     })
