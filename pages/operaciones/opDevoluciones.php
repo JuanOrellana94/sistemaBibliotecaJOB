@@ -58,6 +58,7 @@
           clearTimeout(keyTimer);
         }
         keyTimer = setTimeout(function () {
+          document.getElementById("textDevolucionCode").disabled = true;
           buscarDevoItem();  
         }, 500);          
       }          
@@ -69,7 +70,8 @@ function buscarDevoItem(){
     var textDevolucion=$("#textDevolucionCode").val();
     $("#contentDevoluciones").load("pages/operaciones/infoDevolucion.php?busqueda="+textDevolucion);
 
-      setTimeout( function() { 
+      setTimeout( function() {
+         document.getElementById("textDevolucionCode").disabled = false;
         document.getElementById('textDevolucionCode').value = "";
       }, 1000);
   document.getElementById("textDevolucionCode").focus();  

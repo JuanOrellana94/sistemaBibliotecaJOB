@@ -64,16 +64,6 @@
                           
        dataMes();dataDestacados();       
     }, 100);
-
-
-      
-
-
-
-
-
-   
-  
   };
 
   
