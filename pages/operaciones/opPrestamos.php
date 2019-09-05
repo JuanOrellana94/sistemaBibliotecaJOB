@@ -67,6 +67,8 @@
 <!--Script para recargar tabla al abrir esta pagina el scrip esta incluido en <top.php> dir src/js/tables/loader.js-->
 <script>
     window.onload = function () {
+      setInterval(recargarSolicitudes, 5000);
+
       recargarSolicitudes();
       recargarPendientes();
       cargarContendorPrincipal();
@@ -97,14 +99,11 @@
 
 
 //Funcion para cargar y recargar tabla de solicitudes
-function recargarSolicitudes(){
-   
-  $("#solicitudesUsuarios").show();
-  $("#solicitudesUsuarios").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
-
+function recargarSolicitudes(){  
+  //$("#solicitudesUsuarios").show();
+  //$("#solicitudesUsuarios").html(' <img src="img/structures/replace.gif" style="max-width: 60%;">').show(200);
   var busqueda=$("#textSolicitudes").val();  
   $("#solicitudesUsuarios").load("pages/operaciones/tablaSolicitudes.php?pagina=1&busqueda="+ busqueda);
-
   //setTimeout( function() {
   //    $("#solicitudesUsuarios").hide(500);                          
   //  }, 1000);

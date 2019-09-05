@@ -22,9 +22,8 @@
     <link rel="stylesheet" href="src/css/bootstrap.css">  
     <!--<link rel="stylesheet" href="src/css/imgbutton.css"> -->
      <!-- credit here -->
-    <link rel="stylesheet" href="src/css/datePickerPureCSS.css">
+    <link rel="stylesheet" href="src/css/datepickerPureCSS.css">
     <script src="src/js/insertProcess/jsLibros.js"></script>
-
     <link href="src/css/select2.min.css" rel="stylesheet"/>
     <link href="src/css/select2-bootstrap4.css" rel="stylesheet"/>
     <script src="src/js/select2.min.js"></script>
