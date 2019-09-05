@@ -11,7 +11,7 @@
     $formUsuarioape2=mb_strtoupper ($_POST['formUsuarioape2']);
     $formUsuariomote=mb_strtoupper ($_POST['formUsuariomote']);
     $formUsuariopass=md5($_POST['formUsuariopass']);
-    $formUsuariocorreo=mb_strtoupper ($_POST['formUsuariocorreo']);   
+  //  $formUsuariocorreo=mb_strtoupper ($_POST['formUsuariocorreo']);   
     $formUsuariotipo=$_POST['formUsuariotipo'];
 
 	$usuCodigo=$_SESSION['usuCodigo'];
@@ -35,7 +35,7 @@
               
         } 
          	$sql="
-		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCarnet , $varCorreo, $varContrasena, $varAccNombre, $varAnoBachi, $varSecAula, $varTipBachi, $varNivel,$varusucodbar) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocarnet','$formUsuariocorreo','$formUsuariopass','$formUsuariomote','$formUsuarioanio', '$formUsuarioseccion','$formUsuariobachi','$formUsuariotipo','$formejemplarcodbarra');";
+		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCarnet ,$varContrasena, $varAccNombre, $varAnoBachi, $varSecAula, $varTipBachi, $varNivel,$varusucodbar) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocarnet','$formUsuariopass','$formUsuariomote','$formUsuarioanio', '$formUsuarioseccion','$formUsuariobachi','$formUsuariotipo','$formejemplarcodbarra');";
 
                $checkValidation="SELECT * FROM $tablaUsuarios WHERE $varCarnet='$formUsuariocarnet' or $varAccNombre='$formUsuariomote';";
 
@@ -80,7 +80,7 @@
          }else{         	
 
          	$sql="
-		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido, $varCorreo, $varContrasena, $varAccNombre, $varNivel) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariocorreo','$formUsuariopass','$formUsuariomote','$formUsuariotipo');";
+		    INSERT INTO usuario( $varPriNombre, $varSegNombre, $varPriApellido, $varSegApellido,  $varContrasena, $varAccNombre, $varNivel) VALUES ('$formUsuarionom1','$formUsuarionom2','$formUsuarioape1','$formUsuarioape2','$formUsuariopass','$formUsuariomote','$formUsuariotipo');";
 
 		    $checkValidation="SELECT * FROM $tablaUsuarios WHERE  $varAccNombre='$formUsuariomote';";
 

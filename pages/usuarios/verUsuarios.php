@@ -9,7 +9,6 @@
        } 
  ?>
     <!--CONTENEDOR PARA TABLA DE Usuarios/MODALES PARA AGREGAR Y ELIMINAR Usuarios--> 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <?php
        
@@ -116,37 +115,44 @@
         </button>
       </div>
          <div class="modal-body">
-                 <form id="formNuevoUsuario" name="formNuevoUsuario">
+                 <form id="formNuevoUsuario" name="formNuevoUsuario" autocomplete="off">
           <div class="row">        
           
             <table class="table">
             <tr>              
               <th>Primer Nombre</th>
               <th>Segundo Nombre</th>
-              <th>Primer Apellido</th>              
+                           
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="formUsuarionom1" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="formUsuarionom2" id="formUsuarionom2" aria-describedby="formUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              
             </tr>
-            <tr>       
+            <tr> 
+              <th>Primer Apellido</th>       
               <th>Segundo Apellido</th>
-              <th>Usuario</th>
-              <th>Contraseña</th>               
+                          
             </tr>
             <tr>
+              <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
+              
+            </tr> 
+            <tr>
+              <th>Usuario</th>
+              <th>Contraseña</th>   
+            </tr>         
+           
+            <tr>
               <td><input type="text" class="form-control" name="formUsuariomote" id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
               <td><input type="password" class="form-control" name="formUsuariopass" id="formUsuariopass" aria-describedby="formUsuariopass" placeholder=""></td>
-            </tr>           
-            <tr>
-              <th>Correo</th>
+            </tr>
+             <tr>              
               <th>Tipo de cuenta</th> 
               <th>Bachillerato</th> 
             </tr>
-            <tr>
-              <td><input type="text" class="form-control" name="formUsuariocorreo" id="formUsuariocorreo" aria-describedby="formUsuariocorreo" placeholder=""></td>
+            <tr>              
               <td>
                <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
                  # code...
@@ -231,7 +237,7 @@
         </button>
       </div>
       <div class="modal-body" style="background: #D5D9DF;">
-        <form id="formEditUsuario" name="formEditUsuario">
+        <form id="formEditUsuario" name="formEditUsuario" autocomplete="off">
           <div class="row">
         <div class="form-group">
 
@@ -241,33 +247,36 @@
             <tr>              
               <th>Primer Nombre</th>
               <th>Segundo Nombre</th>
-              <th>Primer Apellido</th>              
+                          
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="editUsuarionom1" id="editUsuarionom1" aria-describedby="editUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="editUsuarionom2" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+             
             </tr>
             <tr>              
-              
+              <th>Primer Apellido</th>  
               <th>Segundo Apellido</th> 
-              <th>Usuario</th>
-              <th>Contraseña Nueva:</th>                
+                              
             </tr>
             <tr>
-              
-              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="editUsuariomote" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
-              <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""></td>
+              <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>              
             </tr>
-           
+           <tr>
+             <th>Usuario</th>
+              <th>Contraseña Nueva:</th>
+           </tr>
+           <tr>
+             <td><input type="text" class="form-control" name="editUsuariomote" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
+              <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""></td>
+           </tr>
             <tr>              
-              <th>Correo</th>
+             
               <th>Tipo de cuenta</th> 
               <th>Bachillerato</th>             
             </tr>
-            <tr>
-              <td><input type="text" class="form-control" name="editUsuariocorreo" id="editUsuariocorreo" aria-describedby="editUsuariocorreo" placeholder=""></td> 
+            <tr>             
               <td>
                 <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
                   # code...
@@ -633,6 +642,9 @@ function insertarUsuario(){
   }else if ($("#formUsuariomote").val()=="") {
     $("#respuestaNuevoUsuario").show();
     $("#respuestaNuevoUsuario").html("Campo Usuario esta Vacio");
+  }else if ($("#formUsuariomote").val().length<6) {
+    $("#respuestaNuevoUsuario").show();
+    $("#respuestaNuevoUsuario").html("usuario debe tener 6 digitos minimo");
   }else if ($("#formUsuariopass").val()=="") {
     $("#respuestaNuevoUsuario").show();
     $("#respuestaNuevoUsuario").html("Campo de Contraseña del Usuario esta Vacio");
@@ -771,9 +783,14 @@ function editarUsuario(){
   }else if ($("#editUsuariomote").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Usuario esta Vacio");
-  }else if ($("#editUsuariopass").val().length<6) {
+  }else if ($("#editUsuariomote").val().length<6) {
     $("#respuestaEditarUsuario").show();
-    $("#respuestaEditarUsuario").html("Contraseña debe tener 6 digitos minimo");
+    $("#respuestaEditarUsuario").html("usuario debe tener 6 digitos minimo");
+  }else if ($("#editUsuariopass").val()!="" && $("#editUsuariopass").val().length<6) {
+     
+      $("#respuestaEditarUsuario").show();
+      $("#respuestaEditarUsuario").html("Contraseña debe tener 6 digitos minimo");
+     
   }else if ($("#editUsuarionivel").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Tipo de Usuario esta Vacio");
@@ -792,7 +809,8 @@ function editarUsuario(){
         }
             else{
                 $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/usuarios/editarUsuario.php";
+    var url = "pages/usuarios/editarUsuario.php";        
+       
             $.ajax({
               type: "POST",
               url: url,
@@ -800,6 +818,8 @@ function editarUsuario(){
               success: function (data){               
                 if (data==1) {
                   //success
+                 
+                    document.getElementById('editUsuariopass').value ="";
                   $("#accionFeedback").show();
                   $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Usuario ha sido editado </div>");
                   recargarTabla();                  
@@ -850,6 +870,7 @@ function editarUsuario(){
               success: function (data){               
                 if (data==1) {
                   //success
+                     document.getElementById('editUsuariopass').value ="";
                   $("#accionFeedback").show();
                   $("#accionFeedback").html("<div class='alert alert-success' role='alert'>Usuario ha sido editado </div>");
                   recargarTabla();
@@ -936,9 +957,8 @@ function limpiarFormularioUsuario(){
        document.getElementById('editUsuarionom1').value = varusuarionom1;
        document.getElementById('editUsuarionom2').value = varusuarionom2;
        document.getElementById('editUsuarioape1').value = varusuarioape1;
-       document.getElementById('editUsuarioape2').value = varusuarioape2;
-      
-       document.getElementById('editUsuariocorreo').value = varusuariocorreo;      
+       document.getElementById('editUsuarioape2').value = varusuarioape2;      
+           
        document.getElementById('editUsuariomote').value = varusuariomote;
        document.getElementById('editUsuarioaniobachi').value = varusuarioaniobachi;
        document.getElementById('editUsuarioseccion').value = varusuarioaula;

@@ -13,7 +13,7 @@
    
     
     
-    $editUsuariocorreo=mb_strtoupper ($_POST['editUsuariocorreo']);
+   // $editUsuariocorreo=mb_strtoupper ($_POST['editUsuariocorreo']);
     
     $editUsuarionivel=$_POST['editUsuarionivel'];
 
@@ -74,12 +74,12 @@
           if (empty($_POST['editUsuariopass'])) {
          	# code...
                     
-			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";
          }else{
 
          	$editUsuariopass=md5($_POST['editUsuariopass']);
             
-            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel', $varusucodbar='$formejemplarcodbarra' WHERE  $varUsuCodigo='$editUsuariocod'";	    
 
          }
 
@@ -133,12 +133,12 @@
           if (empty($_POST['editUsuariopass'])) {
          	# code...
                     
-			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";
+			$sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";
          }else{
 
          	$editUsuariopass=md5($_POST['editUsuariopass']);
             
-            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varCorreo='$editUsuariocorreo',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";	    
+            $sql="UPDATE $tablaUsuarios SET $varPriNombre='$editUsuarionom1',$varSegNombre='$editUsuarionom2',$varPriApellido='$editUsuarioape1',$varSegApellido='$editUsuarioape2',$varCarnet='$editUsuariocarnet',$varContrasena='$editUsuariopass',$varAccNombre='$editUsuariomote',$varAnoBachi='$editUsuarioaniobachi',$varSecAula='$editUsuarioseccion',$varTipBachi='$editUsuariobachi',$varNivel='$editUsuarionivel' WHERE  $varUsuCodigo='$editUsuariocod'";	    
 
          }
 
