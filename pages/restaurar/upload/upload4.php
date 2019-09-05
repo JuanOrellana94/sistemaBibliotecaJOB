@@ -15,7 +15,7 @@ if (!$fileTmpLoc) { // if file not chosen
     exit();
 }
 if(move_uploaded_file($fileTmpLoc, "upload/$fileName")){
-    echo '<div style="color: green; font-weight: bold; text-align: center;"><h5>Recuerde que sta accion remplazara los datos actuales, le recomendamos realizar un respaldo de la data actual</div>';    
+    echo '<div style="color: green; font-weight: bold; text-align: center;"><h5>Recuerde que esta accion remplazara los datos actuales, le recomendamos realizar un respaldo de la data actual</div>';    
     echo "$fileName el archivo esta listo para restaurarse: Siga los pasos del manual de restauracion de datos &nbsp;&nbsp;";   
 
 
