@@ -47,53 +47,26 @@
         }
     }
 
-   $sql1 = ("SELECT  ejemcod+1 as codigo from ejemplareslibros order by ejemcod desc limit 1");
+    $sql1 = ("SELECT  ejemcod+1 as codigo from ejemplareslibros order by ejemcod desc limit 1");
     $consulta1=mysqli_query($conexion, $sql1) or die(mysqli_error($conexion));
     if (mysqli_num_rows($consulta1)==0) {
-    	 $sql=("SELECT t1.$vardewcodcla as dewe, t3.$varautseud as cutter  FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod join $tablAutor as t3 on t3.$varautcod = t2.$varautcod WHERE t2.$varlibcod = $formejemplarcodlib");
-    	 $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
-    	 while ($datacodigo=mysqli_fetch_assoc($consulta)){
+       $sql=("SELECT t1.$vardewcodcla as dewe, t3.$varautseud as cutter  FROM $tablaDewey as t1 join $tablaLibros as t2 on t2.$varlibDew = t1.$vardewcod join $tablAutor as t3 on t3.$varautcod = t2.$varautcod WHERE t2.$varlibcod = $formejemplarcodlib");
+       $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
+       while ($datacodigo=mysqli_fetch_assoc($consulta)){
 
-    	 	$formejemplarcodbarra="1"."222222222";
-    	 }
-    	}else{
+        $formejemplarcodbarra="1"."2222222";
+       }
+      }else{
      while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
-     	
-               $tamaño=strlen($datacodigo3['codigo']);
-          switch ($tamaño) {
-              case '1':
-              # code... 
-                     $digitos="222222222";
-              break;            
-              case '2':
-              # code...
-                     $digitos="22222222";
-              break;
-              case '3':
-              # code...
-                    $digitos="2222222";
-              break;
-              case '4':
-              # code...
-                    $digitos="222222";
-              break;
-              case '5':
-              # code...
-                    $digitos="22222";
-              break;
-              case '6':
-              # code...
-                    $digitos="2222";
-              break;
-              case '7':
-              # code...
-                    $digitos="222";
-              break;
-          }
+      
+               
+               $digitos="2222222";
+        
                $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
               
         }
    }
+
 
 
 

@@ -49,43 +49,14 @@
              $sql=("SELECT $varequicodifi as codifi FROM $tablaEquipo  WHERE $varequicod = $formExistenciaequipoCod");
              $consulta=mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
              while ($datacodigo=mysqli_fetch_assoc($consulta)){	
-             $formejemplarcodbarra="1"."333333333";
+             $formejemplarcodbarra="1"."3333333";
                                         
               }
          }else{
                 while ($datacodigo3=mysqli_fetch_assoc($consulta1)){
      	
-               $tamaño=strlen($datacodigo3['codigo']);
-          switch ($tamaño) {
-              case '1':
-              # code... 
-                     $digitos="333333333";
-              break;            
-              case '2':
-              # code...
-                     $digitos="33333333";
-              break;
-              case '3':
-              # code...
-                    $digitos="3333333";
-              break;
-              case '4':
-              # code...
-                    $digitos="333333";
-              break;
-              case '5':
-              # code...
-                    $digitos="33333";
-              break;
-              case '6':
-              # code...
-                    $digitos="3333";
-              break;
-              case '7':
-              # code...
-                    $digitos="333";
-              break;
-          }
+                     $digitos="3333333";
+              
                $formejemplarcodbarra=$datacodigo3['codigo'] ."". $digitos ;
               
         }
