@@ -53,7 +53,8 @@
 		$varlibtit LIKE '%$textBusqueda%' OR
 		$varautnom LIKE '%$textBusqueda%' OR
 		$vareditnom LIKE '%$textBusqueda%' OR
-		$vardewtipcla LIKE '%$textBusqueda%'
+		$vardewtipcla LIKE '%$textBusqueda%' OR
+		$varlibisbn LIKE '%$textBusqueda%'
 	 ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -229,7 +230,8 @@
 								$varlibtit LIKE '%$textBusqueda%' OR
 								$varautnom LIKE '%$textBusqueda%' OR
 								$vareditnom LIKE '%$textBusqueda%' OR
-								$vardewtipcla LIKE '%$textBusqueda%'
+								$vardewtipcla LIKE '%$textBusqueda%' OR
+		                        $varlibisbn LIKE '%$textBusqueda%'
 								
 								";
 
