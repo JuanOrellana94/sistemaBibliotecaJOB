@@ -84,7 +84,7 @@ $pdf->Cell(100);
 $pdf->SetY(60);
 
 $pdf->SetFont('Arial','',14);
-$pdf->MultiCell(155,7,utf8_decode('Este informe hace constar que durante el año '.$selectYear.', se han adquirido dentro de la biblioteca '.$countBook[0].' nuevos libros, con un total de 17 ejemplares únicos. El listado de cada libro y su respectiva cantidad de ejemplares se lista a continuación:
+$pdf->MultiCell(155,7,utf8_decode('Este informe hace constar que durante el año '.$selectYear.', se han adquirido dentro de la biblioteca '.$countBook[0].' nuevos libros, con un total de '.$countEjem[0].' ejemplares únicos. El listado de cada libro y su respectiva cantidad de ejemplares se lista a continuación:
 '),0,'J');
 
 
@@ -114,7 +114,7 @@ $result=mysqli_query($conexion,"
 	FROM libros AS libro
 	INNER JOIN autorlibro AS aut ON libro.autcod=aut.autcod
 	LEFT JOIN ejemplareslibros AS ejem ON  ejem.libcod=libro.libcod
-	WHERE DATE_FORMAT($varlibfecreg,'%Y')='$selectYear'
+	WHERE DATE_FORMAT($varejemfecreg,'%Y')='$selectYear'
 	GROUP BY libro.libcod
 	ORDER BY libro.libisbn
 	;");

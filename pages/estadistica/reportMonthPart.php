@@ -65,7 +65,6 @@ if (isset($_GET["month"])) {
 
   $sql="SELECT count($varejemcod) FROM $tablaEjemplares WHERE DATE_FORMAT($varejemfecreg,'%Y')='$selectYear' AND DATE_FORMAT($varejemfecreg,'%c')='$selectMonth';";
   $profileData=mysqli_query($conexion,$sql);
-
   $countEjem = mysqli_fetch_array($profileData);
 
   $sql="SELECT COUNT($varejemcod) from $tablaEjemplares WHERE $varejemestu='3' AND DATE_FORMAT($varejemfecest,'%Y')='$selectYear' AND DATE_FORMAT($varejemfecest,'%c' )='$selectMonth';";
@@ -159,7 +158,7 @@ $pdf->Cell(100);
 $pdf->SetY(60);
 
 $pdf->SetFont('Arial','',14);
-$pdf->MultiCell(155,7,utf8_decode('Este informe hace constar que durante el mes de: '. $monthName.', año '.$selectYear.', se han adquirido dentro de la biblioteca '.$countBook[0].' nuevos libros, con un total de 17 ejemplares únicos. El listado de cada libro y su respectiva cantidad de ejemplares se lista a continuación:
+$pdf->MultiCell(155,7,utf8_decode('Este informe hace constar que durante el mes de: '. $monthName.', año: '.$selectYear.', se han adquirido dentro de la biblioteca '.$countBook[0].' nuevos libros y se agrego un total de '.$countEjem[0].' ejemplares únicos para libros existentes. El listado de cada libro y su respectiva cantidad de ejemplares se lista a continuación:
 '),0,'J');
 
 
@@ -167,7 +166,7 @@ $pdf->SetXY(15,150);
 
 $pdf->SetAutoPageBreak(false);
 
-$y_axis_initial = 95;
+$y_axis_initial = 97;
 
 //print column titles
 $pdf->SetFillColor(232,232,232);
@@ -182,22 +181,21 @@ $pdf->Cell(31,6,'# Ejemplares',1,0,'R',1);
 
 //Select the Products you want to show in your PDF file
 
-
-
-$result=mysqli_query($conexion,"
-  SELECT libro.libisbn,libro.libtit,aut.autnom, aut.autape, COUNT(ejem.ejemcod) as counter
+$sql="SELECT libro.libisbn,libro.libtit,aut.autnom, aut.autape, COUNT(ejem.ejemcod) as counter
   FROM libros AS libro
   INNER JOIN autorlibro AS aut ON libro.autcod=aut.autcod
   LEFT JOIN ejemplareslibros AS ejem ON  ejem.libcod=libro.libcod
-  WHERE DATE_FORMAT($varlibfecreg,'%Y')='$selectYear' 
-  AND DATE_FORMAT($varlibfecreg,'%c')='$selectMonth'
+  WHERE DATE_FORMAT($varejemfecreg,'%Y')='$selectYear'
+  AND DATE_FORMAT($varejemfecreg,'%c')='$selectMonth'
   GROUP BY libro.libcod
   ORDER BY libro.libisbn
-  ;");
+  ;";
+
+$result=mysqli_query($conexion,$sql);
 
 
 //initialize counter
-$y_axis_initial = 101;
+$y_axis_initial = 103;
 $i = 0;
 
 //Set maximum rows per page
