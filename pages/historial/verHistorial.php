@@ -101,7 +101,7 @@
                        <div class="btn-group btn-group-toggle " data-toggle="buttons">
 
                     
-                      <input type="input" onkeypress="return isNumberKey(event)" id="codigoLibro" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
+                      <input type="input"  id="codigoLibro" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo / Carnet">
                       
 
                         <button class="btn btn-primary" onclick="recargarPrestamosGeneral()" type="button"> <small> Buscar  </small></button>
@@ -138,7 +138,7 @@
                        <div class="btn-group btn-group-toggle " data-toggle="buttons">
 
                     
-                      <input type="input" onkeypress="return isNumberKey(event)" id="codigoEquipo" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo">
+                      <input type="input"  id="codigoEquipo" class="form-control" aria-describedby="codigoLibroInLine" placeholder="Registro de Prestamo / Carnet">
                       
 
                         <button class="btn btn-primary" onclick="recargarPrestamosGeneralEquipo()" type="button"> <small> Buscar  </small></button>

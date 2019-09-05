@@ -47,28 +47,32 @@
 
 
 	$textBusqueda=$_GET['busqueda'];
+
 	$filterall=$_GET['filter'];
-	$sql = "SELECT COUNT($varprestcod) as Contador
-      FROM $varresumenlibroprestamo  
+	$sql = "SELECT COUNT(resumen.$varprestcod) as Contador
+      FROM $varresumenlibroprestamo  as resumen
+      INNER JOIN $tablaUsuarios as usuarios ON resumen.$varusuCodigoF=usuarios.$varUsuCodigo
       WHERE ";
 
     if ($filterall=='0'){
-    	$sql .= "  $varprestcod >= '0' ";
+    	$sql .= "  resumen.$varprestcod >= '0' ";
     }
      else if ($filterall=='1'){
-     	$sql .= "  $varprestest='0'";
+     	$sql .= "  resumen.$varprestest='0'";
      	
     } else if ($filterall=='2') {
-    	$sql .= "  $varprestest='1' ";    	
+    	$sql .= "  resumen.$varprestest='1' ";    	
     } else if ($filterall=='3') {
-    	$sql .= "  $varprestest='0' AND $varprestfec < NOW() ";
+    	$sql .= "  resumen.$varprestest='0' AND $varprestfec < NOW() ";
     }
 
    if($textBusqueda && !empty($textBusqueda)){
-		$sql .= " AND $varprestcod = '$textBusqueda'";
+		$sql .= " AND resumen.$varprestcod = '$textBusqueda' OR usuarios.$varCarnet = '$textBusqueda' OR usuarios.$varAccNombre = '$textBusqueda'";
 	}
 
 	$sql .= ";";
+
+
 
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
@@ -118,7 +122,7 @@
 								INNER JOIN $vardetallesprestamolibro as detalles on resumen.$varprestcod =detalles.$varprestcodlib
 								INNER JOIN $tablaUsuarios as usuarios on resumen.$varusuCodigoF = usuarios.$varUsuCodigo ";
 
-								    if ($filterall=='4'){
+								    if ($filterall=='0'){
 								    	$sql .= " WHERE resumen.$varprestcod >= '0' ";
 								    }
 								     else if ($filterall=='1'){
@@ -130,17 +134,16 @@
 								    	$sql .= " WHERE (resumen.$varprestest='0' AND  DATE_FORMAT(resumen.$varprestdev,'$formatDateSend') < DATE_FORMAT(NOW(), '$formatDateSend' )) ";
 								    }
 
-
-									
-
 								   if($textBusqueda && !empty($textBusqueda)){
-										$sql .= " AND resumen.$varprestcod = '$textBusqueda' ";
+										$sql .= " AND resumen.$varprestcod = '$textBusqueda' OR usuarios.$varCarnet = '$textBusqueda' OR usuarios.$varAccNombre = '$textBusqueda' ";
 									}
 
 								$sql .= " GROUP by resumen.$varprestcod	
 								ORDER BY resumen.$varprestfec DESC							
 								LIMIT $inicia_desde, $limite
 								;";
+
+              
 
 							$selTable=mysqli_query($conexion, $sql);
 					if (mysqli_num_rows($selTable)==0){

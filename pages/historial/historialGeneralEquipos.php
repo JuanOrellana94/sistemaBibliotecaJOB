@@ -49,23 +49,24 @@
 	$textBusqueda=$_GET['busqueda'];
 	$filterall=$_GET['filter'];
 	$sql = "SELECT COUNT($varprestcodequi) as Contador
-      FROM $varresumenequipoprestamo  
+      FROM $varresumenequipoprestamo  as resumen
+      INNER JOIN $tablaUsuarios as usuarios ON resumen.$varusuCodigoFEquipo=usuarios.$varUsuCodigo
       WHERE ";
 
     if ($filterall=='0'){
-    	$sql .= "  $varprestcodequi >= '0' ";
+    	$sql .= "  resumen.$varprestcodequi >= '0' ";
     }
      else if ($filterall=='1'){
-     	$sql .= "  $varprestestequi='0'";
+     	$sql .= "  resumen.$varprestestequi='0'";
      	
     } else if ($filterall=='2') {
-    	$sql .= "  $varprestestequi='1' ";    	
+    	$sql .= "  resumen.$varprestestequi='1' ";    	
     } else if ($filterall=='3') {
-    	$sql .= "  $varprestestequi='0' AND $varprestfecequi < NOW() ";
+    	$sql .= "  resumen.$varprestestequi='0' AND $varprestfecequi < NOW() ";
     }
 
    if($textBusqueda && !empty($textBusqueda)){
-		$sql .= " AND $varprestcodequi = '$textBusqueda'";
+		$sql .= " AND resumen.$varprestcodequi = '$textBusqueda' OR usuarios.$varCarnet = '$textBusqueda' OR usuarios.$varAccNombre = '$textBusqueda'";
 	}
 
 	$sql .= ";";
@@ -117,7 +118,7 @@
 								INNER JOIN $vardetallesprestamoequipo as detalles on resumen.$varprestcodequi =detalles.$varprestcodequiDet
 								INNER JOIN $tablaUsuarios as usuarios on resumen.$varusuCodigoFEquipo = usuarios.$varUsuCodigo ";
 
-								    if ($filterall=='4'){
+								    if ($filterall=='0'){
 								    	$sql .= " WHERE resumen.$varprestcodequi >= '0' ";
 								    }
 								     else if ($filterall=='1'){
@@ -131,7 +132,7 @@
 	
 
 								   if($textBusqueda && !empty($textBusqueda)){
-										$sql .= " AND resumen.$varprestcodequi = '$textBusqueda' ";
+										$sql .= " AND resumen.$varprestcodequi = '$textBusqueda' OR usuarios.$varCarnet = '$textBusqueda' OR usuarios.$varAccNombre = '$textBusqueda'";
 									}
 
 								$sql .= " GROUP by resumen.$varprestcodequi	
