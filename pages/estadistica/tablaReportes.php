@@ -79,7 +79,7 @@ function getmonth($x){
                     }
                   ?>
                 </select>
-                <button class="btn btn-outline-secondary rounded-0" type="button" onclick="reportGenMnoth()">
+                <button class="btn btn-outline-primary rounded-0" type="button" onclick="reportGenMnoth()">
                   <img src="img/icons/PDF_32.png" width="30" height="30" alt=""> Generar .PDF
                 </button>
               </div>
@@ -130,7 +130,7 @@ function getmonth($x){
                     }
                   ?>
                 </select>
-                <button class="btn btn-outline-secondary rounded-0" type="button" onclick="reportGen()">
+                <button class="btn btn-outline-primary rounded-0" type="button" onclick="reportGen()">
                   <img src="img/icons/PDF_32.png" width="30" height="30" alt=""> Generar .PDF
                 </button>
               </div>
@@ -143,6 +143,59 @@ function getmonth($x){
               <p>* Numero de ejemplares registrados a cada libro en el año seleccionado</p>
               <p>* Total de libros extraviados en el año seleccionado</p>
               <p>* Total de libros registrados</p>
+
+            </div>
+          </div>
+        </div> 
+      </div>
+      
+      <div class="card-footer">
+        <div class="text-muted">
+          Reportes - Anual
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6  col-sm-12  d-flex align-items-stretch" style="margin-bottom:9px;">
+    <div class="card">
+      <div class="card-header">
+        <h5>Reporte - Prestamos de biblioteca</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <a class="font-weight-normal text-justify">Generar un Informe de actividad, cambios y detalles de relevancia referentes a los prestamos de libros durante el año:</a>
+            <form id="reportYearProcs" name="reportYearProcs">
+              <div class="input-group mb-3" style="margin-top: 5px;">
+                <div class="input-group-prepend rounded-0">
+                <label class="input-group-text rounded-0" for="yearSelect"> Año</label>
+                </div>
+                <?php
+                  $currentYear=date("Y");
+                ?>
+                <select class="custom-select rounded-0" id="yearSelectProcs" name="yearSelectProcs">                 
+                  <option selected value="<?php echo $currentYear;?>"><?php echo $currentYear;?> </option>
+                  <?php
+                    $limitYear=$currentYear-10;
+                    $counter=$currentYear-1;
+                    for($i = $counter ; $i > $limitYear; $i--){
+                      echo "<option value='$i'>$i</option>";
+                    }
+                  ?>
+                </select>
+                <button class="btn btn-outline-danger rounded-0" type="button" onclick="reportPresProc()">
+                  <img src="img/icons/PDF_32.png" width="30" height="30" alt=""> Generar .PDF
+                </button>
+              </div>
+            </form>
+            <div id="lastGenYear"></div>
+            <div id="printReturnanual"></div>
+            <div class="alert alert-warning" role="alert">
+              <p>Este reporte contiene:</p>
+              <p>* Listado de los prestamos realizados, activos y finalizados, en el sistema durante el  año seleccionado</p>
+              <p>* Conteo de los prestamos realizados, incluyendo estudiantes y personal</p>
+              <p>* Conteo de la multa acumulada de los prestamos realizados, activos y finalizados, que fueron devueltos o estan en retraso durante el año selecccionado</p>
+           
 
             </div>
           </div>

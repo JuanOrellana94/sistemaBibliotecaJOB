@@ -196,7 +196,7 @@
 
             	$now = time(); 
             	$your_date = strtotime($dateItems[$varprestdev]);
-				$datediff = $now - $your_date -60 * 60 * 24;
+				$datediff = $now - $your_date;
 
 				
 

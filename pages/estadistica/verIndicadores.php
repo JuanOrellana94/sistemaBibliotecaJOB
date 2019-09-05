@@ -132,6 +132,19 @@ function reportGen(){
     });
 }
 
+function reportPresProc(){
+  var url = "pages/estadistica/printReportVars.php";
+   var yearSS=$("#yearSelectProcs").val();
+    $.ajax({
+      type: "POST",
+      url: url,
+      data:  $("#reportYearProcs").serialize(),
+      success: function (data){
+                open("pages/estadistica/reportGlobalProc.php?year="+yearSS, true,'newwin');
+      }
+    });
+}
+
 function reportGenMnoth(){
   var url = "pages/estadistica/printReportVars.php";
    var yearSS=$("#yearSelectMonth").val();
