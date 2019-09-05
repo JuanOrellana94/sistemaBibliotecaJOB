@@ -290,7 +290,7 @@ $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetX(13);
 $pdf->Cell(13,6,'',1,0,'L',1);
-$pdf->Cell(120,6,'Total de prestamos','L T B',0,'L',1);
+$pdf->Cell(119,6,'Total de prestamos','L T B',0,'L',1);
 $pdf->Cell(60,6,mysqli_num_rows($result),'T B R',0,'R',1);
 $pdf->Cell(43,6,'Multa acumulada:','L T B',0,'L',1);
 $pdf->Cell(20,6, '$'.$deCounter,'T B R',0,'R',1);
