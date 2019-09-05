@@ -14,10 +14,12 @@ if (!$fileTmpLoc) { // if file not chosen
     echo "ERROR: porfavor seleccione el archivo sql de respaldo";
     exit();
 }
-if(move_uploaded_file($fileTmpLoc, "upload/bdrespaldo.sql")){
-    echo '<div style="color: red; font-weight: bold; text-align: center;"><h5>Esta accion remplazara los datos actuales, le recomendamos realizar un respaldo de la data actual</div>';    
-    echo "$fileName el archivo esta listo para restaurarse: &nbsp;&nbsp;";   
-    echo '<a href="pages/restaurar/upload/upload/restore.php"><img src="img/icons/restaurar.png"  width="50" height="50"alt="restaurar" /></a></h5>'; 
+if(move_uploaded_file($fileTmpLoc, "upload/$fileName")){
+    echo '<div style="color: green; font-weight: bold; text-align: center;"><h5>Recuerde que sta accion remplazara los datos actuales, le recomendamos realizar un respaldo de la data actual</div>';    
+    echo "$fileName el archivo esta listo para restaurarse: Siga los pasos del manual de restauracion de datos &nbsp;&nbsp;";   
+
+
+    // echo '<a href="pages/restaurar/upload/upload/restore.php"><img src="img/icons/restaurar.png"  width="50" height="50"alt="restaurar" /></a></h5>'; 
     // array_map('unlink', glob("upload/$fileName")); 
     // echo "$fileName upload is delete";
 } else {

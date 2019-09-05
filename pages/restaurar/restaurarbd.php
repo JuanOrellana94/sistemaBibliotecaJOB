@@ -28,9 +28,7 @@ progress[value] {
         <div class="card-header">
           <div class="row mx-auto">
             <div style="vertical-align: middle; margin: 5px">
-               <p class="font-weight-light"> <h3>  Restauracion de datos</h3>  Seleccione el archivo sql en su equipo mediante el boton Elegir archivos: <br>Posteriormente  realice click en Subir archivos, finalizado tendra la opcion de restaurar los datos.
-               Presione <img src="img/icons/restaurar.png"  width="30" height="30"alt="restaurar" />
-                para realizar la restauracion de los datos, </p>       
+               <p class="font-weight-light"> <h3> Subir respaldo de datos</h3>  Seleccione el archivo sql en su equipo mediante el boton Elegir archivos: <br>Posteriormente  realice click en Subir archivos, finalizado puede continuar con la restauracion de los datos.      
             </div>           
           </div>     
         </div>
@@ -93,6 +91,7 @@ function uploadFile(){
   ajax.addEventListener("abort", abortHandler, false);
   ajax.open("POST", "pages/restaurar/upload/upload4.php");
   ajax.send(formdata);
+  $("#file1").val('');
 }
 function progressHandler(event){
   _("peso_cargado").innerHTML = "Subiendo "+event.loaded+" bytes de "+event.total;
