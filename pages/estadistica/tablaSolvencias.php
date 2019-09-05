@@ -32,7 +32,7 @@ function getmonth($x){
 
 ?>
 <div class="row">
-  <div class="col-lg-4 col-md-12 mx-auto d-flex align-items-stretch" style="margin-bottom: 9px;">
+  <div class="col-lg-5 col-md-12 mx-auto d-flex align-items-stretch" style="margin-bottom: 9px;">
     <div class="card" >
       <div class="card-header">
         <h5>Reporte - Solvencia de Estudiante</h5>
@@ -90,8 +90,8 @@ function getmonth($x){
                     <label class="input-group-text rounded-0" for="carnetCod"> Carnet: </label>
                   </div>
                   <input type="text" class="form-control" id="carnetCodCancelSolv" name="carnetCodCancelSolv" placeholder="Carnet del estudiante" aria-label="Carnet" aria-describedby="Carnet INPUT">
-                   <button class="btn btn-outline-secondary rounded-0" type="button" onclick="cancelarSolvencias()">
-                    Buscar
+                   <button class="btn btn-danger rounded-0" type="button" onclick="cancelarSolvencias()">
+                    CANCELAR MULTA
                   </button>
                 </div>             
               </form>
