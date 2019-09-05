@@ -21,7 +21,7 @@
 							$selTable=mysqli_query($conexion,"
 								SELECT * FROM $tablaLibros
 								WHERE $varlibedit='$deleditorialcod'
-								ORDER BY $varlibcod;");
+								ORDER BY $varlibcod LIMIT 5;");
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>

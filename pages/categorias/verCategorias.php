@@ -183,7 +183,7 @@
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delcategoriacod" id="delcategoriacod" aria-describedby="delcategoriacod" placeholder="categoria" hidden="true">
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="delcategorianom" id="delcategorianom" aria-describedby="delcategorianom" placeholder="categoria" hidden="true">
                            
-                  <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
+                  <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
     
               </div>
@@ -418,7 +418,7 @@ function deletecategoria(){
               success: function (data){
                   $("#labelBorrar").show();
                   $("#notificationLabel").html("");
-                  $("#labelBorrar").html("No se puede borrar a este categoria. pues esta siendo usado por los libros:");
+                  $("#labelBorrar").html("No se puede borrar esta categoria. pues esta siendo usado por los libros:");
                   $("#cargarTablaRequisito").show();
                   $("#cargarTablaRequisito").html(data);                           
               }

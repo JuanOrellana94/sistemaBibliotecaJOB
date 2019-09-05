@@ -21,7 +21,7 @@
 							$selTable=mysqli_query($conexion,"
 								SELECT * FROM $tablaLibros
 								WHERE $varlibDew='$delcategoriacod'
-								ORDER BY $varlibDew;");
+								ORDER BY $varlibDew LIMIT 5;");
 							while ($dataLibros=mysqli_fetch_assoc($selTable)){
 						?>
 						<tr>

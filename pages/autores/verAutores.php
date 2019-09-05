@@ -214,7 +214,7 @@
                 <input type="text" class="form-control" name="delautcod" id="delautcod" aria-describedby="delautcod" placeholder="Editorial" hidden="true">
                 <input type="text" class="form-control" name="delautnom" id="delautnom" aria-describedby="delautnom" placeholder="Editorial" hidden="true">
                 <input type="text" class="form-control" name="delautape" id="delautape" aria-describedby="delautape" placeholder="Editorial" hidden="true">            
-                  <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
+                  <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
     
               </div>

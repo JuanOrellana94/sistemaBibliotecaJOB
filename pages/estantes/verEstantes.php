@@ -178,7 +178,7 @@
                 <input type="text" class="form-control" name="delestantecod" id="delestantecod" aria-describedby="delestantecod" placeholder="Estante" hidden="true">
                 <input type="text" class="form-control" name="delestantenom" id="delestantenom" aria-describedby="delestantenom" placeholder="Estante" hidden="true">
                            
-                  <div id="labelBorrar" style="color: black; font-weight: bold; text-align: center;"></div>
+                  <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
     
               </div>

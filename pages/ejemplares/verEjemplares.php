@@ -256,7 +256,7 @@
          <div id="respuestaNuevoEjemplar" style="color: red; font-weight: bold; text-align: center;"></div>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="insertarEjemplar()">Insertar</button>
+        <button type="button" id="insertarbutton"  class="btn btn-primary" onclick="insertarEjemplar()">Insertar</button>
       </div>
           
     </div>
@@ -700,13 +700,16 @@ function insertarEjemplar(){
   }else if ($("#formestantcod").val()=="") {
     $("#respuestaNuevoEjemplar").show();
     $("#respuestaNuevoEjemplar").html("seleccione un estante del Ejemplar");  
+  }else if ($("#formejemplarescantidad").val()<1 || $("#formejemplarescantidad").val()>400 ) {
+    $("#respuestaNuevoEjemplar").show();
+    $("#respuestaNuevoEjemplar").html("Cantidad minima de ejemplares a registrar es 1 y la maxima cantidad es 400, por favor verifique el dato "); 
   }else if ($("#formejemplarfecha").val()=="") {
     $("#respuestaNuevoEjemplar").show();
     $("#respuestaNuevoEjemplar").html("seleccione una fecha de adquisicion del Ejemplar"); 
   }
   else {
-    $("#respuestaNuevoEjemplar").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-
+    $("#respuestaNuevoEjemplar").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);  
+    $("#insertarbutton").attr("disabled", true);
     var url = "pages/ejemplares/insertarEjemplar.php";
             $.ajax({
               type: "POST",
@@ -726,6 +729,8 @@ function insertarEjemplar(){
                     }, 6000);
                     $("#respuestaNuevoEjemplar").hide(500);
                     $('#newEjemplarModal').modal('hide');
+
+                     $("#insertarbutton").attr("disabled", false);   
 
                 } else if (data==0) {
                   //error

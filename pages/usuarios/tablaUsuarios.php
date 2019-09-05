@@ -101,7 +101,7 @@
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%')
 		)
-	ORDER BY $varUsuCodigo DESC";  
+	ORDER BY $varCueEstatus DESC";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -199,7 +199,7 @@
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%') )		
-								ORDER BY $varUsuCodigo DESC
+								ORDER BY $varCueEstatus DESC
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
@@ -357,40 +357,25 @@
 								 ?>
 								 <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#modalusuariodesactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
+                  data-varnombremodificarusuario="<?php echo $dataLibros[$varPriNombre]." ".$dataLibros[$varPriApellido] ;?>" 
 									title="Desactivar cuenta">
 								 	<img  src="img/icons/usuarioDesactivar.png" width="35" height="30">
 								 </button>
-								 <!-- OPCION DE SUSPENDER / REANUDAR EN PROCESO -->
-<!-- 								 <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariosuspender"
-								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="Suspender Cuenta">
-								 	<img  src="img/icons/usuarioSuspender.png" width="35" height="30">
-								 </button> -->
 								 <?php 
-                                    }elseif ($Estado=='INACTIVA') {
+                     }elseif ($Estado=='INACTIVA') {
                                     	# code...                                   	
                                      
 								  ?>
 								  <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#modalusuarioactivar"
 								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
+                  data-varnombremodificarusuario="<?php echo $dataLibros[$varPriNombre]." ".$dataLibros[$varPriApellido] ;?>" 
 									title="activar cuenta">
 								 	<img  src="img/icons/usuarioActivar.png" width="35" height="30">
 								 </button>
-
-
-								 <!-- <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuariosuspender"
-								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="Suspender Cuenta">
-								 	<img  src="img/icons/usuarioSuspender.png" width="35" height="30">
-								 </button> -->
 								 <?php 
 								     }else{
- 								  ?>
-                                  <!-- <button type="button" class="btn btn-light" <?php echo $bloqueo ?> data-toggle="modal" data-target="#modalusuarioareanudar"
-								 	data-varusuariomodificarcodigo="<?php echo $dataLibros[$varUsuCodigo];?>"	
-									title="Reanudar">
-								 	<img  src="img/icons/usuarioReanudar.png" width="35" height="30">
-								 </button> -->								 
+                     			  ?>
+                        			 
 							<?php
 							
                                  }

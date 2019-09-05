@@ -402,9 +402,10 @@
                   <div id="labelActivar" style="color: black; font-weight: bold; text-align: center;"></div>
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;">
             <div class="form-group" >
-         <label for="TituloLabel"> <h6>Desea</h6><h4><b>ACTIVAR</b></h4><h6>la cuenta:</h6> </label>       
+         <label for="TituloLabel"> <h6>Desea</h6><h4><p style="color: green;">ACTIVAR</p></h4><h6>la cuenta:</h6> </label>       
                <div id="respuestaactivarusuario" style="color: red; font-weight: bold; text-align: center;"></div>
-                    <input type="hidden" class="form-control" name="varactivarusuariocod" id="varactivarusuariocod" aria-describedby="varactivarusuariocod" placeholder=""> 
+                    <input type="hidden" class="form-control" name="varactivarusuariocod" id="varactivarusuariocod" aria-describedby="varactivarusuariocod" placeholder="">
+                    <div id="codigomodificarusuario"></div> 
                     
                   </div>
                  </div>
@@ -441,9 +442,10 @@
                   <div id="labeDesactivar" style="color: black; font-weight: bold; text-align: center;"></div>
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;">
             <div class="form-group" >
-         <label for="TituloLabel">  <h6>Desea</h6><h4><b>DESACTIVAR</b></h4><h6>la cuenta:</h6></label>       
+         <label for="TituloLabel">  <h6>Desea</h6><h4><p style="color: red;">DESACTIVAR</p></h4><h6>la cuenta:</h6></label>       
                <div id="respuestadesactivarusuario" style="color: red; font-weight: bold; text-align: center;"></div>
                      <input type="hidden" class="form-control" name="vardesactivarusuariocod" id="vardesactivarusuariocod" aria-describedby="vardesactivarusuariocod" placeholder=""> 
+                     <div id="codigomodificarusuario2"></div> 
                     
                   </div>
                  </div>
@@ -454,7 +456,7 @@
       </div>
       <div class="modal-footer" style="background: #D5D9DF;">
       
-            <button type="button"  id="desactivarButton" name="desactivarButton" class="btn btn-danger" onclick="desactivarUsuario()">Aceptar</button>
+            <button type="button"  id="desactivarButton" name="desactivarButton" class="btn btn-danger" onclick="desactivarUsuario()">Desactivar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <div class="modal-footer" style="background: #D5D9DF;">
                
@@ -979,17 +981,22 @@ function limpiarFormularioUsuario(){
   $('#modalusuarioactivar').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // 
        
-
+       
        var varusuariomodificarcodigo = button.data('varusuariomodificarcodigo')
+        var varnombremodificarusuario = button.data('varnombremodificarusuario')
+       $("#codigomodificarusuario").html(varnombremodificarusuario);
        var modal = $(this)      
-       document.getElementById('varactivarusuariocod').value = varusuariomodificarcodigo;      
+       document.getElementById('varactivarusuariocod').value = varusuariomodificarcodigo;
+
       
     })
   $('#modalusuariodesactivar').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // 
-       
+      var button = $(event.relatedTarget) //        
 
        var varusuariomodificarcodigo = button.data('varusuariomodificarcodigo')
+        var varnombremodificarusuario = button.data('varnombremodificarusuario')
+       
+       $("#codigomodificarusuario2").html(varnombremodificarusuario);
        var modal = $(this)      
        document.getElementById('vardesactivarusuariocod').value = varusuariomodificarcodigo;      
       
