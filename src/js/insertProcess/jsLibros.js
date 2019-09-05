@@ -332,7 +332,7 @@ function insertAuthor(){
 		$("#answerAuthorPrint").html("Nombre del Autor vacio");
 	}else if ($("#formautseud").val()==""){
 		$("#answerAuthorPrint").show();
-		$("#answerAuthorPrint").html("Pseudonimo del Autor vacio");
+		$("#answerAuthorPrint").html("Cutter del Autor vacio");
 	} else {
 		$("#answerAuthorPrint").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
 		var url = "src/libs/insertProcess/insertAuthor.php";

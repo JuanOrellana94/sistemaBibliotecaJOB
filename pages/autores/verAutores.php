@@ -303,7 +303,7 @@ function insertarAutor(){
     $("#respuestaNuevoAutor").html("Campo de Nombre del Autor esta Vacio");
   }else if ($("#formautseud").val()==""){
     $("#respuestaNuevoAutor").show();
-    $("#respuestaNuevoAutor").html("Campo de Pseudonimo del Autor esta Vacio");
+    $("#respuestaNuevoAutor").html("Campo de Cutter del Autor esta Vacio");
   }else {
     $("#respuestaNuevoAutor").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/autores/insertarAutor.php";
@@ -361,7 +361,7 @@ function editarAutor(){
     $("#respuestaEditarAutor").html("Campo de Nombre del Autor esta Vacio");
   }else if ($("#editautseud").val()==""){
     $("#respuestaEditarAutor").show();
-    $("#respuestaEditarAutor").html("Campo de Pseudonimo del Autor esta Vacio");
+    $("#respuestaEditarAutor").html("Campo de Cutter del Autor esta Vacio");
   }else {
     $("#respuestaEditarAutor").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/autores/editarAutores.php";
