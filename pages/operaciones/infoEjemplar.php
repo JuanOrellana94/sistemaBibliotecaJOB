@@ -15,8 +15,8 @@ if (!empty($_GET["usuario"])) {
 	if (!empty($_GET["busqueda"])) { 
 		// CRITERIO DE BUSQUEDA EXISTE.
 		$textUsuario  = $_GET["usuario"]; 
-		$textBusqueda  = $_GET["busqueda"]; 
-		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varejemcodbar),'%');";
+		$textBusqueda  = rtrim($_GET["busqueda"], '0');
+		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda';";
 		$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 		$dataRow = mysqli_fetch_array($resultado);	
 		if(isset($dataRow)){ 
@@ -40,7 +40,7 @@ if (!empty($_GET["usuario"])) {
 				//OBTENER EL CODIGO INTERNO DEL EJEMPLAR INGRESADO
 				$checkEjemplar="SELECT * from $tablaEjemplares 
 
-				 WHERE $varejemcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varejemcodbar),'%'); ";
+				 WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda'; ";
 
 				$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -166,7 +166,7 @@ if (!empty($_GET["usuario"])) {
 		} else{
 			//CHECKEA SI EL CODIGO ES DE UN EQUIPO
 			$checkEjemplar="
-				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varexistcodbar),'%');";
+				SELECT * FROM $tablaExistenciaequipo WHERE $varexistcodreg = '$textBusqueda' OR  $varexistcodbar='$textBusqueda';";
 
 			$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 
@@ -192,7 +192,7 @@ if (!empty($_GET["usuario"])) {
 					//OBTENER EL CODIGO INTERNO DEL EQUIPO INGRESADO
 					$checkEjemplar="SELECT * from $tablaExistenciaequipo 
 
-					 WHERE $varexistcodreg='$textBusqueda' OR '$textBusqueda' LIKE Concat(Concat('%',$varexistcodbar),'%');;";
+					 WHERE $varexistcodreg='$textBusqueda' OR $varexistcodbar='$textBusqueda';";
 
 					$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 

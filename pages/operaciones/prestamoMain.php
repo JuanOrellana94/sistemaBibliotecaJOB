@@ -43,7 +43,7 @@
 		    <div class="row">
 				<div class="col-sm-8" data-toggle="tooltip" data-placement="right"  title="Ingresa el codigo del ejemplar de libro que deseas prestar">
 					<div class="form-group" >
-					 	<h6 class="card-subtitle mb-2 text-muted" >Codigo del Ejemplar:</h6>
+					 	<h6 class="card-subtitle mb-2 text-muted" >Codigo del articulo:</h6>
       	                <input disabled type="text" class="form-control" onfocus="this.value=''" name="textEjemplar" id="textEjemplar" aria-describedby="textEjemplar" placeholder="">
       	                <div id="infoListaLibros"></div>
       	                <div id="solicitudDetallesDiv"></div>
