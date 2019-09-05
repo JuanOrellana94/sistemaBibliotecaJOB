@@ -197,7 +197,7 @@ while($row = mysqli_fetch_array($result))
         $pdf->Cell(43,6,'Fecha',1,0,'R',1);
         $pdf->Cell(20,6,'Multa',1,0,'R',1);
         //Go to next row
-        $y_axis = 43;
+        $y_axis = 44;
         $y_axis = $y_axis + $row_height;
         
         //Set $i variable to 0 (first row)
