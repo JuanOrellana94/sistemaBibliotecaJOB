@@ -218,6 +218,11 @@ while($row = mysqli_fetch_array($result))
       $varsBorder="L T R B ";
     }
 
+    if ($i == $max-1) { 
+      $varsBorder .= " B ";
+    }
+ 
+
     $pdf->SetX(13);
     $pdf->Cell(13,6,$counterNum,1,0,'L',1);
     $pdf->Cell(11,6,$varCodigoPrestamo,$varsBorder,0,'R',1);
@@ -226,7 +231,6 @@ while($row = mysqli_fetch_array($result))
     $pdf->Cell(60,6,utf8_decode($row['libtit']),1,0,'L',1);
     $date=date_create($row['prestfeclib']);
 
-    
       
      $totalCosto='0.00';
     if ($row['usunivel']=="3") {
