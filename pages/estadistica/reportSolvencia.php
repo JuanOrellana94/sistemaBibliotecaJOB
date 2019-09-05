@@ -208,23 +208,13 @@ $pdf->SetFont('Arial','',14);
 $pdf->MultiCell(155,7,utf8_decode('Se hace constar que el estudiante '.$itemsName[$varPriNombre].' '.$itemsName[$varSegNombre].' '.$itemsName[$varPriApellido].' '.$itemsName[$varSegApellido].', con el carnet: '.$itemsName[$varCarnet].' del bachillerato, tiene un monto total en base a multas por atrasos en la entrega de libros de $'.$costoRetrasoActivedias.'.'.$mensajeActivos.' 
 '),0,'J');
 
-
-$y_axis_initial=85;
+$y_axis_initial=90;
 $y_axis=$y_axis_initial;
-
 $pdf->SetY($y_axis);
-
 if ($printRows==1) {
-
-
-
-
 //$pdf->SetXY(15,150);
-
 $pdf->SetAutoPageBreak(false);
-
-$y_axis_initial = 90;
-
+$y_axis_initial = 95;
 //print column titles
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
@@ -250,14 +240,11 @@ $result=mysqli_query($conexion,"
 
 
 //initialize counter
-$y_axis_initial = 96;
+$y_axis_initial = 101;
 $i = 0;
-
 //Set maximum rows per page
 $max = 17;
-
 $y_axis=$y_axis_initial;
-
 //Set Row Height
 $row_height = 6;
 $counterNum=0;
