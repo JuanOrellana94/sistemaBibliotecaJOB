@@ -128,8 +128,8 @@ $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetY($y_axis_initial);
 $pdf->SetX(13);
-$pdf->Cell(11,6,'',1,0,'L',1);
-$pdf->Cell(14,6,'RP',1,0,'L',1);
+$pdf->Cell(13,6,'',1,0,'L',1);
+$pdf->Cell(11,6,'RP',1,0,'L',1);
 $pdf->Cell(60,6,'Usuario',1,0,'L',1);
 $pdf->Cell(48,6,'Ejemplar',1,0,'L',1);
 $pdf->Cell(60,6,'Titulo',1,0,'L',1);
@@ -189,8 +189,8 @@ while($row = mysqli_fetch_array($result))
         $pdf->SetFillColor(232,232,232);
         $pdf->SetFont('Arial','B',12);
         $pdf->SetX(13);
-        $pdf->Cell(11,6,'n',1,0,'L',1);
-        $pdf->Cell(14,6,'RP',1,0,'L',1);
+        $pdf->Cell(13,6,'n',1,0,'L',1);
+        $pdf->Cell(11,6,'RP',1,0,'L',1);
         $pdf->Cell(60,6,'Usuario',1,0,'L',1);
         $pdf->Cell(48,6,'Ejemplar',1,0,'L',1);
         $pdf->Cell(60,6,'Titulo',1,0,'L',1);
@@ -219,8 +219,8 @@ while($row = mysqli_fetch_array($result))
     }
 
     $pdf->SetX(13);
-    $pdf->Cell(11,6,$counterNum,1,0,'L',1);
-    $pdf->Cell(14,6,$varCodigoPrestamo,1,0,'R',1);
+    $pdf->Cell(13,6,$counterNum,1,0,'L',1);
+    $pdf->Cell(11,6,$varCodigoPrestamo,$varsBorder,0,'R',1);
     $pdf->Cell(60,6,utf8_decode($row['usuprinom'].' '.$row['usupriape']),1,0,'L',1);
     $pdf->Cell(48,6,$row['ejemcodreg'],1,0,'L',1);
     $pdf->Cell(60,6,utf8_decode($row['libtit']),1,0,'L',1);
@@ -285,8 +285,8 @@ $pdf->SetY($y_axis);
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetX(13);
-$pdf->Cell(11,6,'',1,0,'L',1);
-$pdf->Cell(122,6,'Total de prestamos','L T B',0,'L',1);
+$pdf->Cell(13,6,'',1,0,'L',1);
+$pdf->Cell(120,6,'Total de prestamos','L T B',0,'L',1);
 $pdf->Cell(60,6,mysqli_num_rows($result),'T B R',0,'R',1);
 $pdf->Cell(43,6,'Multa acumulada:','L T B',0,'L',1);
 $pdf->Cell(20,6, '$'.$deCounter,'T B R',0,'R',1);
