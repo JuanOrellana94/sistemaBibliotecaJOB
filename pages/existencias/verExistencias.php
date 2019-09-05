@@ -116,11 +116,11 @@
                     <div class="col-sm-2">
                       <div class="btn-group float-right" role="group" aria-label="Opciones"> 
                         <button class="btn btn-light float-right" type="button" onclick="recargarTablaLimpiar();" data-toggle="tooltip" data-placement="top" title="Recargar Tabla">
-                          <img src="img/icons/BookediorialReload.png" width="45" height="45">
+                          <img src="img/icons/equiporeload.png" width="45" height="45">
                         </button>
 
                         <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newExistenciaModal"  >
-                          <img data-toggle="tooltip" data-placement="top"  title="Nuevo Existencia" src="img/icons/Bookadd.png" width="45" height="45">
+                          <img data-toggle="tooltip" data-placement="top"  title="Nuevo Existencia" src="img/icons/equipmentadd.png" width="45" height="45">
                         </button>
                         
                       </div>
@@ -154,7 +154,7 @@
     <div class="modal-content">
      
      <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newExistenciaModal"><img src="img/icons/Bookadd.png" width="30" height="30"> Nuevo Existencia</h5>
+        <h5 class="modal-title" id="newExistenciaModal"><img src="img/icons/equipmentadd.png" width="30" height="30"> Nuevo Existencia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -260,7 +260,7 @@
     <div class="modal-content">
      
      <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newExistenciaModal"><img src="img/icons/Bookadd.png" width="30" height="30">Editar Existencia</h5>
+        <h5 class="modal-title" id="newExistenciaModal"><img src="img/icons/equipmentadd.png" width="30" height="30">Editar Existencia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

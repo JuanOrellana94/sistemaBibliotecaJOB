@@ -48,11 +48,11 @@
                     <div class="col-sm-2">
                       <div class="btn-group float-right" role="group" aria-label="Opciones"> 
                         <button class="btn btn-light float-right" type="button" onclick="recargarTablaLimpiar();" data-toggle="tooltip" data-placement="top" title="Recargar Tabla">
-                          <img src="img/icons/BookediorialReload.png" width="45" height="45">
+                          <img src="img/icons/equiporeload.png" width="45" height="45">
                         </button>
 
                         <button type="button" class="btn btn-light float-right" <?php echo $bloqueo ?>  data-toggle="modal" data-target="#newequipoModal"  >
-                          <img data-toggle="tooltip" data-placement="top"  title="Nuevo equipo" src="img/icons/Bookcatego+.png" width="45" height="45">
+                          <img data-toggle="tooltip" data-placement="top"  title="Nuevo equipo" src="img/icons/equipmentadd.png" width="45" height="45">
                         </button>
                         
                       </div>
@@ -79,7 +79,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newequipoModal"><img src="img/icons/Bookcatego+.png" width="30" height="30"> Nuevo equipo</h5>
+        <h5 class="modal-title" id="newequipoModal"><img src="img/icons/equipmentadd.png" width="30" height="30"> Nuevo equipo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -122,7 +122,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="newequipoModal"><img src="img/icons/Bookcatego+.png" width="30" height="30">Editar equipo</h5>
+        <h5 class="modal-title" id="newequipoModal"><img src="img/icons/equipmentadd.png" width="30" height="30">Editar equipo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
