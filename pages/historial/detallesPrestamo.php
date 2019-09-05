@@ -78,11 +78,27 @@
     	$Estado="En espera";
     }
 
+    if( $dateItems[$varNivel] == 0 ){
+     $tipo="ADMINISTRADOR";
+    }else  if( $dateItems[$varNivel] == 1 ){
+     $tipo="BIBLIOTECARIO";
+    }else  if($dateItems[$varNivel] == 2 ){
+     $tipo="PERSONAL";
+    }else  if( $dateItems[$varNivel] == 3 ){
+      $tipo="ESTUDIANTE";
+    }else  if($dateItems[$varNivel] == 4 ){
+      $tipo="AUXILIAR";
+    }
 
-	?>		<div class="row"><div class="col-lg-6"><p class="font-weight-bold"> Registro: <?php echo  $textBusqueda;?> </div>  <div class="col-lg-6"><p  class="font-weight-bold" style="text-align: right"> Estado: <?php echo  $Estado;?> </p></div> </div>	
+
+    
+
+
+	?>		<div class="row"><div class="col-lg-6"><p class="font-weight-bold"> Registro: <span class='badge badge-pill badge-primary'> <?php echo  $textBusqueda;?> </span> </div>  <div class="col-lg-6"><p  class="font-weight-bold" style="text-align: right"> Estado: <?php echo  $Estado;?> </p></div> </div>	
 			
-			<p> Nombre: <?php echo $dateItems[$varPriNombre]." ".$dateItems[$varPriApellido]; ?></p>
-			<p> Usuario: <?php echo $dateItems[$varAccNombre] ?> </p>
+			<p> Nombre: <?php echo $dateItems[$varPriNombre]." ".$dateItems[$varPriApellido]." - ". $tipo; ?></p>
+
+			<p> Usuario: <?php echo $dateItems[$varAccNombre]?></span> </p>
 			
 			<?php
 			//FECHA DE PRESTAMO
