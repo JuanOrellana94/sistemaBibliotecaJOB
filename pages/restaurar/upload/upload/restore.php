@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+/*    session_start();
     include("../../../../src/libs/vars.php");
     include("../../../../src/libs/sessionControl/conection.php");
     $usuCodigo=$_SESSION['usuCodigo'];
