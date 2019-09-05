@@ -131,7 +131,8 @@ $pdf->SetX(13);
 $pdf->Cell(13,6,'',1,0,'L',1);
 $pdf->Cell(11,6,'RP',1,0,'L',1);
 $pdf->Cell(60,6,'Usuario',1,0,'L',1);
-$pdf->Cell(108,6,'Ejemplar',1,0,'L',1);
+$pdf->Cell(48,6,'Ejemplar',1,0,'L',1);
+$pdf->Cell(60,6,'Titulo',1,0,'L',1);
 $pdf->Cell(43,6,'Fecha',1,0,'R',1);
 $pdf->Cell(20,6,'Multa',1,0,'R',1);
 
@@ -191,7 +192,8 @@ while($row = mysqli_fetch_array($result))
         $pdf->Cell(13,6,'n',1,0,'L',1);
         $pdf->Cell(11,6,'RP',1,0,'L',1);
         $pdf->Cell(60,6,'Usuario',1,0,'L',1);
-        $pdf->Cell(108,6,'Ejemplar',1,0,'L',1);    
+        $pdf->Cell(48,6,'Ejemplar',1,0,'L',1);
+        $pdf->Cell(60,6,'Titulo',1,0,'L',1);
         $pdf->Cell(43,6,'Fecha',1,0,'R',1);
         $pdf->Cell(20,6,'Multa',1,0,'R',1);
         //Go to next row
@@ -211,28 +213,22 @@ while($row = mysqli_fetch_array($result))
     if ($debtReprint==$row['prestcodlib']) {
       $varCodigoPrestamo="";
       $varsBorder="L R";
-       $varName="";
     }else{
       $varCodigoPrestamo=$row['prestcodlib'];
       $varsBorder="L T R B ";
-      $varName=utf8_decode($row['usuprinom'].' '.$row['usupriape']);
     }
 
     if ($i == $max-1) { 
       $varsBorder .= " B ";
-    }
-    if ($i == 0) {
-      $varCodigoPrestamo=$row['prestcodlib'];
-      $varName=utf8_decode($row['usuprinom'].' '.$row['usupriape']);
     }
  
 
     $pdf->SetX(13);
     $pdf->Cell(13,6,$counterNum,1,0,'L',1);
     $pdf->Cell(11,6,$varCodigoPrestamo,$varsBorder,0,'R',1);
-    $pdf->Cell(60,6,$varName,$varsBorder,0,'L',1);
-    $pdf->Cell(108,6,utf8_decode($row['libtit'])." #".$row['ejemcodreg'],1,0,'L',1);
-  
+    $pdf->Cell(60,6,utf8_decode($row['usuprinom'].' '.$row['usupriape']),1,0,'L',1);
+    $pdf->Cell(48,6,$row['ejemcodreg'],1,0,'L',1);
+    $pdf->Cell(60,6,utf8_decode($row['libtit']),1,0,'L',1);
     $date=date_create($row['prestfeclib']);
 
       
@@ -281,7 +277,7 @@ while($row = mysqli_fetch_array($result))
       $deCounter=$deCounter+number_format($costoRetrasoActivedias, 2);
       $costoRetrasoActivedias= "$".$costoRetrasoActivedias;
     }
-    $pdf->Cell(43,6,date_format($date,"d/m/Y").' - '.$date2,1,0,'L',1);
+    $pdf->Cell(43,6,date_format($date,"d/m/Y").' - '.$date2,1,0,'R',1);
     $pdf->Cell(20,6,$costoRetrasoActivedias,$varsBorder,0,'R',1);
 
     //Go to next row
@@ -294,7 +290,7 @@ $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetX(13);
 $pdf->Cell(13,6,'',1,0,'L',1);
-$pdf->Cell(119,6,'Total de libros prestados','L T B',0,'L',1);
+$pdf->Cell(119,6,'Total de prestamos','L T B',0,'L',1);
 $pdf->Cell(60,6,mysqli_num_rows($result),'T B R',0,'R',1);
 $pdf->Cell(43,6,'Multa acumulada:','L T B',0,'L',1);
 $pdf->Cell(20,6, '$'.$deCounter,'T B R',0,'R',1);
@@ -307,7 +303,7 @@ $pdf->SetX(15);
 $pdf->SetFont('Arial','I',9);
 
 
-$pdf->MultiCell(250,4,utf8_decode('RP: Registro de Prestamo. El informe muestra cada ejemplar prestado durante el periodo designado, con su fecha de prestamo y fecha en la que fue devuelto o se indica que aun no ha sido devuelto de ser el caso. La multa, si la hay, es el resultado de la cantidad de dias que el estudiante se retraso en la devolucion de su prestamo por el valor de la multa/dia de: $'.$costoMulta).'   * Usuarios de tipo personal estan exentos de multas por retraso.',0,'J');
+$pdf->MultiCell(250,4,utf8_decode('RP: Registro de Prestamo. El informe muestra cada ejemplar prestado durante el periodo designado, con su fecha de prestamo y fecha en la que fue devuelto o se indica que aun no ha sido devuelto de ser el caso. La multa, si la hay, es el resultado de la cantidad de dias que el estudiante se retraso en la devolucion de su prestamo por el valor de la multap/dia de: $'.$costoMulta).' * Usuarios de tipo personal estan exentos de multas por retraso.',0,'J');
 
 $pdf->SetX(15);
 $pdf->SetFont('Arial','B',14);
