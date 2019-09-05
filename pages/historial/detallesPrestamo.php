@@ -174,12 +174,13 @@
             } else if ($dateItems[$varprestest]=='0' AND date("Y-m-d",$fechaColor)< $fechaHoyColor) {
 
             	//$OldDate = strtotime($dateItems[$varprestdev]);
-            	//$NewDate = date('M j, Y', $OldDate);
-            	//$diff = date_diff(date_create($NewDate),date_create(date("M j, Y")));
+            	//$NewDate = date("Y-m-d", $OldDate);
+            	//$datediff = date_diff(date_create($NewDate),date_create(date("Y-m-d")));
+            	//TEMPORAL FIX $datediff = $now - $your_date -60 * 60 * 24;
 
             	$now = time(); 
             	$your_date = strtotime($dateItems[$varprestdev]);
-				$datediff = $now - $your_date;
+				$datediff = $now - $your_date -60 * 60 * 24;
 
 				
 
