@@ -254,21 +254,18 @@
       var varprestcodlibDel = button.data('varprestamocodigo')
       var vartipoDel = button.data('vartipo')
       $('#borrarButton').attr("disabled", false);  
-
       var modal = $(this)
       
       $("#respuestaBorrarItem").html(" ");
-
        $("#notificationLabel").html('Remover este articulo?');
- 
-
       document.getElementById('varejemcodlibs').value = varejemcodlibDel;
       document.getElementById('varprestcodlibs').value = varprestcodlibDel;
       document.getElementById('vartipo').value = vartipoDel;
-
-      
-      
     })
+
+ 	$('#borrarItemModal').on('hide.bs.modal', function (event) {
+ 		$(".modal-backdrop").remove();
+	})
                       	
     $("#pagination li").on('click',function(e){
     e.preventDefault();

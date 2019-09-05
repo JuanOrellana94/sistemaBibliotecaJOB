@@ -228,11 +228,7 @@
           var paginaNumero = this.id;
         $("#solicitudesPendientes").load("pages/operaciones/tablaPendientes.php?pagina="+ paginaNumero +"&busqueda=" + $("#textPendientes").val());
       });
-
-   
+    
 </script>
-
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
-
 
 				

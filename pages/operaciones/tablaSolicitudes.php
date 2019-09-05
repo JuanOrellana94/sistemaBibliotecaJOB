@@ -148,8 +148,7 @@
 
                     ?>
 					</ul>
-				 </nav>		
-
+				 </nav>
  <script>
                       	
     $("#pagination li").on('click',function(e){
@@ -161,8 +160,5 @@
         $("#solicitudesUsuarios").load("pages/operaciones/tablaSolicitudes.php?pagina="+ paginaNumero +"&busqueda=" + $("#textSolicitudes").val());
       });
 </script>
-
-				<!--<a href="catalogos.php?pageLocation=pfL&id=<?php echo $dataLibros[$varlibcod];?>">Ver detalles</a>  -->
-
 
 				
