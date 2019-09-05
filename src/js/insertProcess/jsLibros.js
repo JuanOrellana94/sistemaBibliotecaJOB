@@ -95,7 +95,10 @@ function insertBook(){
 									      $("#accionFeedback").hide(500);
 									      $("#answerPrint").hide(500);     
 									}, 6000);
+									$('#libtags').removeTag('');
 									$('#newBookModal').modal('hide');
+
+									
 
 								}else if (data==0){
 									//error
@@ -181,6 +184,7 @@ function updateBook(){
 									      
 									     
 									}, 6000);
+									$('#editlibtags').removeTag('');
 									$('#editBookModal').modal('hide');
 
 								} else if (data==0) {
