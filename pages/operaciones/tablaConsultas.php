@@ -22,14 +22,12 @@
 		inner join $tablaEditoral as edito on libro.$varlibedit = edito.$vareditcod 								
 		inner join $tablAutor as aut on libro.$varautcod=aut.$varautcod 
       WHERE 
-			 $varlibtit LIKE '%$textBusqueda%' OR
-			'%$textBusqueda%' LIKE  Concat(Concat('%',$varautnom),'%') OR	
-			'%$textBusqueda%' LIKE Concat(Concat('%',$varautape),'%') OR
-			'%$textBusqueda%' LIKE  Concat(Concat('%',$varautseud),'%') OR
-			'%$textBusqueda%' LIKE Concat(Concat('%',$vareditnom),'%') OR
-			'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%') OR
-			$varlibtags LIKE '%$textBusqueda%' OR
-			'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%')
+				 $varlibtit LIKE '%$textBusqueda%' OR
+				'%$textBusqueda%' LIKE Concat(Concat(Concat(Concat('%',$varautnom),'%'),$varautape),'%')	OR						
+				$vardewtipcla LIKE '%$textBusqueda%' OR
+				$vareditnom LIKE '%$textBusqueda%' OR
+				$varautseud	= '$textBusqueda' OR
+				$varlibtags LIKE '%$textBusqueda%'
 	ORDER BY $varlibcod; ";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);
@@ -115,21 +113,22 @@
 
 
 							<?php 
-								$selTable=mysqli_query($conexion,"SELECT * FROM $tablaLibros as libro 
+							$sql="SELECT * FROM $tablaLibros as libro 
 									inner join $tablaDewey as dewey on libro.$varlibDew = dewey.$vardewcod 
 									inner join $tablaEditoral as edito on libro.$varlibedit = edito.$vareditcod 								
 									inner join $tablAutor as aut on libro.$varautcod=aut.$varautcod
 									WHERE 
 									 $varlibtit LIKE '%$textBusqueda%' OR
-									'%$textBusqueda%' LIKE  Concat(Concat('%',$varautnom),'%') OR	
-									'%$textBusqueda%' LIKE Concat(Concat('%',$varautape),'%') OR
-									'%$textBusqueda%' LIKE  Concat(Concat('%',$varautseud),'%') OR
-									'%$textBusqueda%' LIKE Concat(Concat('%',$vareditnom),'%') OR
-									'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%') OR									
-									 $varlibtags LIKE '%$textBusqueda%' OR
-									'%$textBusqueda%' LIKE  Concat(Concat('%',$vardewtipcla),'%')
+									'%$textBusqueda%' LIKE Concat(Concat(Concat(Concat('%',$varautnom),'%'),$varautape),'%')	OR					
+									$vardewtipcla LIKE '%$textBusqueda%' OR
+									$vareditnom LIKE '%$textBusqueda%' OR
+									$varautseud	= '$textBusqueda' OR
+									$varlibtags LIKE '%$textBusqueda%'
 									ORDER BY libro.$varlibcod
-									LIMIT $inicia_desde, $limite;");
+									LIMIT $inicia_desde, $limite;";
+								$selTable=mysqli_query($conexion,$sql);
+
+						
 
 							if (mysqli_num_rows($selTable)==0){
 							 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
