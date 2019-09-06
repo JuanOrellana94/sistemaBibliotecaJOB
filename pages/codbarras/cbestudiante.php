@@ -43,7 +43,7 @@
                              </tr>
                              <tr>                            
                              <td><select class="form-control js-Dropdown-Busqueda" name='seccion' id='seccion'>
-                             <option value="">Seleccione un libro</option>
+                             <option value="">Seleccione la seccion</option>
                              <option value="0">SECCION A</option>
                              <option value="1">SECCION B</option>
                              <option value="2">SECCION C</option>                            
