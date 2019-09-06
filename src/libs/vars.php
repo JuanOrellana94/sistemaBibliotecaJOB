@@ -8,7 +8,7 @@
   $base="sistemabiblioteca";
 
 
-  $sistemaVersion="BETA 1.1";
+  $sistemaVersion="1.0";
 
   $tabla2="...";
   $carta="612x792";
