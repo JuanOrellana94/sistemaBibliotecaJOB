@@ -231,7 +231,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="editUsuarioModal"><img src="img/icons/Bookstand.png" width="30" height="30">Editar Usuario</h5>
+        <h5 class="modal-title" id="editUsuarioModal"><img src="img/icons/usuarioEditar.png" width="30" height="30">Editar Usuario</p></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -932,13 +932,10 @@ function limpiarFormularioUsuario(){
       var varusuariobachi = button.data('varusuariobachi')
       var varusuarionivel = button.data('varusuarionivel')
       var varusuarioestado = button.data('varusuarioestado')
-
-
-
-
-        
+  
+            
       var modal = $(this)
-      modal.find('.modal-title').text('Editar Usuario: ' + varusuarionom1 );
+      
 
       if (button.data('varusuarionivel') == 3) {
         $("#editUsuariobachi").prop("disabled", false);
