@@ -19,8 +19,8 @@
           <div class="row mx-auto">
             <div style="vertical-align: middle;">
                <h4 class="card-title"> <a class="navbar-brand">
-             <img src="img/icons/Bookstand.png" width="80" height="80" alt="" style="margin-top: -10%; margin-bottom: -35%; ">
-            </a> Estantes </h4>
+             
+           <p class="font-weight-light"> </a>Catalogo de Estantes</h4> Administrar informacion de Estantes.</p>
           </div>     
         </div>
         <!--Cuerpo del panel--> 
