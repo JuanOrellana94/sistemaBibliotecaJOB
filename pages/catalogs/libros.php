@@ -477,7 +477,7 @@
                 <input type="text" class="form-control" name="modallibtit" id="modallibtit" aria-describedby="modallibtit" placeholder="Editorial" hidden="true">
 
                 <h4>
-                  <div id="deleteLabel" style="color: black; font-weight: bold; text-align: center;"></div>
+                  <div id="deleteLabel" style="color: red; font-weight: bold; text-align: center;"></div>
                 </h4>
               </div>
             </div>
