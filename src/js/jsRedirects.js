@@ -32,6 +32,13 @@ function rediMenuOPT(){
 }
 
 
+function rediMenuCred(){
+	window.location = "creditos.php";
+
+}
+
+
+
 
 
 
