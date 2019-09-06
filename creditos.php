@@ -104,7 +104,7 @@
   <br><br>
   <div class="row">
     <div class="col-lg-12" >
-      <img  src="img/icons/menuRegresar2.png" class="rounded mx-auto d-block" onclick="rediMenuOPT();" style="max-width: 18%; cursor: pointer;" alt="Responsive image" data-toggle="tooltip" data-placement="right"  title="Devolucion">   
+      <img  src="img/icons/menuRegresar2.png" class="rounded mx-auto d-block" onclick="rediMenuOPT();" style="max-width: 18%; cursor: pointer;" alt="Responsive image" data-toggle="tooltip" data-placement="right"  title="Regresar">   
     </div>
   </div>
   <br><br>
