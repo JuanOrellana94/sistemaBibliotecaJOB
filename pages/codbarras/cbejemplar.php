@@ -45,7 +45,7 @@
                                <?php } ?>                                                    
                                </select> </td></tr><tr> 
                               <td>                        
-                               <button type="submit" class="btn btn-primary btn-block" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
+                               <button type="submit" target="_blank" class="btn btn-primary btn-block" onclick="generarpdf();"  >Mostrar PDF</button></td>                                
                              </div></tr><tr>
                              <td><div id="respuesta" style="color: red; font-weight: bold; text-align: center;"></div></td>
                            </tr>
@@ -94,9 +94,8 @@
     $("#respuesta").show();
     $("#respuesta").html("&nbsp;&nbsp;Seleccione un titulo de libro"); 
       }else{
-       var codlib = document.getElementById('codlib').value;
-          var url = 'pages/codbarras/cbarraxloteejempdf.php?codlib='+codlib;
-          $(location).attr('href',url);         
+         var codlib = document.getElementById('codlib').value;         
+         window.open('pages/codbarras/cbarraxloteejempdf.php?codlib='+codlib);         
          
          
           }

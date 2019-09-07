@@ -22,7 +22,7 @@
       }      
   ?>
 
-      <?php echo "<br><br><a href=\"pages/codbarras/cbarraequipo.php?codequi=" . $xequipo. "\">Mostrar PDF</a>"; ?>
+      <?php echo "<br><br><a href=\"pages/codbarras/cbarraequipo.php?codequi=" . $xequipo. "\" target='_blank'>Mostrar PDF</a>"; ?>
 </p>
 </body>
 </html>

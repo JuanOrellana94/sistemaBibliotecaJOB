@@ -2,7 +2,6 @@
   require '../../fpdf/fpdf.php';
   include("../../src/libs/vars.php");
   include("../../src/libs/sessionControl/conection.php");
-  include 'barcode.php';
   $conexion=mysqli_connect("$servidor","$usuario","$clave")or die ("Error al conectar");
    mysqli_select_db($conexion,"$base");
    date_default_timezone_set("America/El_Salvador");
@@ -21,9 +20,8 @@
       while($equipo = mysqli_fetch_assoc($resultado)) {    
            $numequipo= substr($equipo[$varexistcodreg],-5);      
            $datos = $equipo[$varequitip] . ", equipo #" . $numequipo;           
-           $code =$equipo[$varexistcodbar];           
+           $code =$equipo[$varexistcodbar];                     
            
-            barcode('codigos/'.$code.'.png', $code, 20, 'horizontal', 'code128', true);
             $pdf->Cell(50,15,$datos,0,1,'C');
             $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');       
     

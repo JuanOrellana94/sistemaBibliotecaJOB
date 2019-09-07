@@ -95,8 +95,8 @@
     $("#respuesta").html("&nbsp;&nbsp;Seleccione un titulo de libro"); 
       }else{
        var equitip = document.getElementById('equitip').value;
-          var url = 'pages/codbarras/cbarraxloteequipopdf.php?equitip='+equitip;
-          $(location).attr('href',url);         
+         window.open('pages/codbarras/cbarraxloteequipopdf.php?equitip='+equitip);
+               
          
          
           }

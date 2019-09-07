@@ -127,8 +127,8 @@
          $("#respuesta2").show();
            $("#respuesta2").html("&nbsp;&nbsp;PDF generado con exito");
             $("#respuesta2").hide(5000);
-          var url = 'pages/codbarras/cbarraxloteusupdf.php?codseccion='+seccion+"&codanio="+anio+"&codbachi="+bachi;
-          $(location).attr('href',url);         
+          window.open('pages/codbarras/cbarraxloteusupdf.php?codseccion='+seccion+"&codanio="+anio+"&codbachi="+bachi);
+                
          
          
           }

@@ -24,7 +24,7 @@
       
      
   ?>
-      <?php echo "<br><br><a href=\"pages/codbarras/cbarraejempdf.php?codeje=" . $xejemplar. "\">Mostrar PDF</a>"; ?>
+      <?php echo "<br><br><a  href=\"pages/codbarras/cbarraejempdf.php?codeje=" . $xejemplar. "\" target='_blank'>Mostrar PDF</a>"; ?>
 </p>
 </body>
 </html>

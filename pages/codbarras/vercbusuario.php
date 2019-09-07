@@ -23,7 +23,7 @@
       }
     
      ?>
-    <?php echo "<a href=\"pages/codbarras/cbarrausupdf.php?codusu=" . $xusuario. "\">Mostrar PDF</a>"; ?>
+    <?php echo "<a href=\"pages/codbarras/cbarrausupdf.php?codusu=" . $xusuario. "\" target='_blank'>Mostrar PDF</a>"; ?>
 </p>
 </body>
 </html>
