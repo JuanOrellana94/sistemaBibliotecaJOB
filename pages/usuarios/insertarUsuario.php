@@ -9,8 +9,8 @@
 	$formUsuarionom2=mb_strtoupper ($_POST['formUsuarionom2']);
     $formUsuarioape1=mb_strtoupper ($_POST['formUsuarioape1']);
     $formUsuarioape2=mb_strtoupper ($_POST['formUsuarioape2']);
-    $formUsuariomote=mb_strtoupper ($_POST['formUsuariomote']);
-    $formUsuariopass=md5($_POST['formUsuariopass']);
+    $formUsuariomote=$_POST['formUsuariomote'];
+    $formUsuariopass=md5($_POST['formUsuariomote']);
   //  $formUsuariocorreo=mb_strtoupper ($_POST['formUsuariocorreo']);   
     $formUsuariotipo=$_POST['formUsuariotipo'];
 

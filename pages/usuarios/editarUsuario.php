@@ -9,7 +9,7 @@
 	$editUsuarionom2=mb_strtoupper ($_POST['editUsuarionom2']);
     $editUsuarioape1=mb_strtoupper ($_POST['editUsuarioape1']);
     $editUsuarioape2=mb_strtoupper ($_POST['editUsuarioape2']);
-    $editUsuariomote=mb_strtoupper ($_POST['editUsuariomote']);
+    $editUsuariomote=$_POST['editUsuariomote'];
    
     
     

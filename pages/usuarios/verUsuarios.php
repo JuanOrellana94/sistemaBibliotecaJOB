@@ -106,7 +106,7 @@
 
 <!--MODAL PARA INSERTAR NUEVO Usuario-->
 <div class="modal fade" id="modalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="modalNuevoUsuario" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
         <h5 class="modal-title" id="modalNuevoUsua"><img src="img/icons/usuarioNuevo.png" width="30" height="30"> Nuevo Usuario</h5>
@@ -141,18 +141,10 @@
             </tr> 
             <tr>
               <th>Usuario</th>
-              <th>Contraseña</th>   
+              <th>Tipo de cuenta</th> 
             </tr>         
-           
             <tr>
               <td><input type="text" class="form-control" name="formUsuariomote" id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
-              <td><input type="password" class="form-control" name="formUsuariopass" id="formUsuariopass" aria-describedby="formUsuariopass" placeholder=""></td>
-            </tr>
-             <tr>              
-              <th>Tipo de cuenta</th> 
-              <th>Bachillerato</th> 
-            </tr>
-            <tr>              
               <td>
                <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
                  # code...
@@ -171,23 +163,21 @@
                              <option value="2">PERSONAL</option>           
                                                        
                  </select> </td> 
-                 <?php } ?>  
+                 <?php } ?> 
+            </tr>
+             <tr>     
+              <th>Bachillerato</th> 
+              <th>Seccion</th>
+            </tr>
+            <tr>              
+               
                  <td> <select class="form-control " name='formUsuariobachi' id='formUsuariobachi' disabled="">
                              <option value="">Seleccione bachillerato</option>
                              <option value="0">SALUD</option>
                              <option value="1">MECANICA</option>
                              <option value="2">CONTADURIA</option>                            
                                                        
-                 </select> </td>              
-            </tr>
-            <tr>          
-              
-               <th>Seccion</th>
-               <th>Año</th> 
-                        
-            </tr>
-            <tr>             
-                          
+                 </select> </td>
                  <td> <select class="form-control" name='formUsuarioseccion' id='formUsuarioseccion' disabled="">
                              <option value="">Seleccione la seccion</option>
                              <option value="0">SECCION A</option>
@@ -195,7 +185,12 @@
                              <option value="2">SECCION C</option>                            
                              <option value="3">SECCION D</option>                            
                                                        
-                 </select></td>        
+                 </select></td>                 
+            </tr>
+            <tr>        
+               <th>Año</th> 
+            </tr>
+            <tr>       
                  <td>           
               <select class="form-control" name='formUsuarioanio' id='formUsuarioanio' disabled="">
                              <option value="">Seleccione el año</option>
@@ -226,24 +221,21 @@
 </div>
 
 <!--MODAL PARA MODIFICAR  Usuario-->
-
 <div class="modal fade" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEditarUsuario" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #D5D9DF;">
-        <h5 class="modal-title" id="editUsuarioModal"><img src="img/icons/usuarioEditar.png" width="30" height="30">Editar Usuario</p></h5>
+        <h5 class="modal-title" id="modalNuevoUsua"><img src="img/icons/usuarioEditar.png" width="30" height="30"> Editar Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="background: #D5D9DF;">
-        <form id="formEditUsuario" name="formEditUsuario" autocomplete="off">
-          <div class="row">
-        <div class="form-group">
-
-          <input type="text" class="form-control" name="editUsuariocod" id="editUsuariocod" aria-describedby="editUsuariocod" placeholder="" hidden>
-
-         <table class="table">
+         <div class="modal-body">
+                 <form id="formEditUsuario" name="formEditUsuario" autocomplete="off">
+          <div class="row">        
+             <input type="text" class="form-control" name="editUsuariocod" id="editUsuariocod" aria-describedby="editUsuariocod" placeholder="" hidden>
+             
+            <table class="table">
             <tr>              
               <th>Primer Nombre</th>
               <th>Segundo Nombre</th>
@@ -269,7 +261,8 @@
            </tr>
            <tr>
              <td><input type="text" class="form-control" name="editUsuariomote" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
-              <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""></td>
+              <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""><br><b>Repita contraseña:</b>
+              <input type="password" class="form-control" name="editUsuariopass2" id="editUsuariopass2" aria-describedby="editUsuariopass2" placeholder=""></td>
            </tr>
             <tr>              
              
@@ -329,33 +322,23 @@
                              <option value="2">TERCER AÑO</option>                         
                                                        
                  </select> </td> 
-                      
-               
             </tr>             
-            
           </table>
-              
-              </div>
-             
-            
-         
-           </div>          
+           </div>        
             
         </form>
-
-      </div>
+            </div>
+     
       <div class="modal-footer" style="background: #D5D9DF;">
-         <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div><br>
+         <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div>
 
-        <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="editarUsuario()">Editar</button>
       </div>
-     
+      </div>
     </div>
   </div>
 </div>
-
-
 
 
 <!--MODAL PARA ELIMINAR Usuario-->
@@ -645,15 +628,9 @@ function insertarUsuario(){
   }else if ($("#formUsuariomote").val().length<6) {
     $("#respuestaNuevoUsuario").show();
     $("#respuestaNuevoUsuario").html("usuario debe tener 6 digitos minimo");
-  }else if ($("#formUsuariopass").val()=="") {
-    $("#respuestaNuevoUsuario").show();
-    $("#respuestaNuevoUsuario").html("Campo de Contraseña del Usuario esta Vacio");
-  }else if ($("#formUsuariopass").val().length<6) {
-    $("#respuestaNuevoUsuario").show();
-    $("#respuestaNuevoUsuario").html("Contraseña debe tener 6 digitos minimo");
   }else if ($("#formUsuariotipo").val()=="") {
     $("#respuestaNuevoUsuario").show();
-    $("#respuestaNuevoUsuario").html("Campo Tipo de Usuario esta Vacio");
+    $("#respuestaNuevoUsuario").html("Campo Tipo de Cuenta esta Vacio");
 
   }else if ($("#formUsuariotipo").val()=="3") {
 
@@ -783,17 +760,18 @@ function editarUsuario(){
   }else if ($("#editUsuariomote").val()=="") {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("Campo Usuario esta Vacio");
-  }else if ($("#editUsuariomote").val().length<6) {
+  }else if ($("#editUsuariomote").val().length<6 ) {
     $("#respuestaEditarUsuario").show();
     $("#respuestaEditarUsuario").html("usuario debe tener 6 digitos minimo");
-  }else if ($("#editUsuariopass").val()!="" && $("#editUsuariopass").val().length<6) {
-     
+  }else if ($("#editUsuariopass").val()!="" && $("#editUsuariopass").val().length<6) {     
       $("#respuestaEditarUsuario").show();
-      $("#respuestaEditarUsuario").html("Contraseña debe tener 6 digitos minimo");
-     
+      $("#respuestaEditarUsuario").html("Contraseña debe tener 6 digitos minimo");     
+  }else if($("#editUsuariopass").val()!=$("#editUsuariopass2").val()){
+      $("#respuestaEditarUsuario").show();
+      $("#respuestaEditarUsuario").html("las contraseñas no coinciden");
   }else if ($("#editUsuarionivel").val()=="") {
     $("#respuestaEditarUsuario").show();
-    $("#respuestaEditarUsuario").html("Campo Tipo de Usuario esta Vacio");
+    $("#respuestaEditarUsuario").html("Campo Tipo de Cuenta esta Vacio");
 
   }else if ($("#editUsuarionivel").val()=="3") {
 
@@ -961,6 +939,8 @@ function limpiarFormularioUsuario(){
        document.getElementById('editUsuarioseccion').value = varusuarioaula;
        document.getElementById('editUsuariobachi').value = varusuariobachi;
        document.getElementById('editUsuarionivel').value = varusuarionivel;
+       document.getElementById('editUsuariopass2').value = "";
+       document.getElementById('editUsuariopass').value = "";
        
 
       

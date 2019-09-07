@@ -19,12 +19,13 @@
 
       while($equipo = mysqli_fetch_assoc($resultado)) {    
            $numequipo= substr($equipo[$varexistcodreg],-5);      
-           $datos = $equipo[$varequitip] . ", equipo #" . $numequipo;           
+           $datos = $equipo[$varequitip] . ", equipo #" . $numequipo;  
+            $datos2 = $equipo[$varexistcodreg];          
            $code =$equipo[$varexistcodbar];                     
            
             $pdf->Cell(50,15,$datos,0,1,'C');
             $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',10,$y+10,50,10,'gif');       
-    
+           $pdf->Cell(45,15,$datos2,0,1,'C'); 
             $y = $y+25;          
         }
       $pdf->Output();
