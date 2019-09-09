@@ -12,16 +12,17 @@
 	};
 	if (!empty($_GET["busqueda"])) { 
 		// CRITERIO DE CODIGO HA SIDO AGREGADO.
-		$textCodigo  = $_GET["busqueda"];
+		$textCodigo  = rtrim($_GET["busqueda"], '0');
+		$textCodigo  = ltrim($textCodigo, '0');
 		//CHECKEAR SI EL CODIGO ES DE UN LIBRO
 		$selTable=mysqli_query($conexion," SELECT * FROM $tablaEjemplares 
-						WHERE $varejemcodreg='$textCodigo'	OR'$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%')								
+						WHERE $varejemcodreg='$textCodigo'	OR  $varejemcodbar ='$textCodigo';							
 							;");
 		//$dataRow = mysqli_fetch_array($resultado);	
 		if (mysqli_num_rows($selTable)==0){
 			//CHECKEAR SI EL CODIGO ES DE EQUIPO
 			$selTable=mysqli_query($conexion," SELECT * FROM $tablaExistenciaequipo 
-				WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%')									
+				WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar ='$textCodigo'								
 				;");
 			if (mysqli_num_rows($selTable)==0){
 				//CODIGO ERROR =1
@@ -45,7 +46,7 @@
 					$selTable=mysqli_query($conexion," SELECT * FROM $varresumenequipoprestamo as resumen
 					INNER JOIN $vardetallesprestamoequipo as detalles on detalles.$varprestcodequiDet=resumen.$varprestcodequi
 					INNER JOIN $tablaExistenciaequipo as existencias on detalles.$varexistcodDet=existencias.$varexistcod
-					WHERE (existencias.$varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',existencias.$varexistcodbar),'%')) AND resumen.$varprestestequi='0';					
+					WHERE (existencias.$varexistcodreg='$textCodigo' OR $varexistcodbar = '$textCodigo') AND resumen.$varprestestequi='0'					
 					;");
 					if (mysqli_num_rows($selTable)==0){
 						//CODIGO ERROR =No existe un registro para este libro que esta prestado
@@ -55,7 +56,7 @@
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%');")
+								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar ='$textCodigo';")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						 $insRegistro=mysqli_query($conexion,"
@@ -82,7 +83,7 @@
 						$insRegistro=mysqli_query($conexion,"
 									UPDATE $tablaExistenciaequipo SET
 									$varexistestu='0'			
-								    WHERE $varexistcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varexistcodbar),'%');")
+								    WHERE $varexistcodreg='$textCodigo' OR $varexistcodbar ='$textCodigo';")
 								   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 						$insRegistro=mysqli_query($conexion,"
@@ -213,7 +214,7 @@
 					$selTable=mysqli_query($conexion," SELECT * FROM $varresumenlibroprestamo as resumen
 					INNER JOIN $vardetallesprestamolibro as detalles on detalles.$varprestcodlib=resumen.$varprestcod
 					INNER JOIN $tablaEjemplares as ejemplares on detalles.$varejemcodlib=ejemplares.$varejemcod
-					WHERE (ejemplares.$varejemcodreg='$textCodigo' OR  '$textCodigo' LIKE Concat(Concat('%',ejemplares.$varejemcodbar),'%')) AND resumen.$varprestest='0';									
+					WHERE (ejemplares.$varejemcodreg='$textCodigo' OR  ejemplares.$varejemcodbar = '$textCodigo') AND resumen.$varprestest='0';									
 					;");
 				if (mysqli_num_rows($selTable)==0){
 					//CODIGO ERROR =No existe un registro para este libro que esta prestado
@@ -224,7 +225,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo' OR'$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%');")
+							    WHERE $varejemcodreg='$textCodigo' OR$varejemcodbar ='$textCodigo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					 $insRegistro=mysqli_query($conexion,"
@@ -257,7 +258,7 @@
 					$insRegistro=mysqli_query($conexion,"
 								UPDATE $tablaEjemplares SET
 								$varejemestu='0'			
-							    WHERE $varejemcodreg='$textCodigo' OR '$textCodigo' LIKE Concat(Concat('%',$varejemcodbar),'%');")
+							    WHERE $varejemcodreg='$textCodigo' OR $varejemcodbar ='$textCodigo';")
 							   or die ('ERROR INS-INS:'.mysqli_error($conexion));
 
 					$insRegistro=mysqli_query($conexion,"

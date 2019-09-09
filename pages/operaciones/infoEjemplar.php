@@ -16,6 +16,7 @@ if (!empty($_GET["usuario"])) {
 		// CRITERIO DE BUSQUEDA EXISTE.
 		$textUsuario  = $_GET["usuario"]; 
 		$textBusqueda  = rtrim($_GET["busqueda"], '0');
+		$textBusqueda  = ltrim($textBusqueda, '0');
 		$checkEjemplar="SELECT * from $tablaEjemplares WHERE $varejemcodreg='$textBusqueda' OR $varejemcodbar='$textBusqueda';";
 		$resultado=mysqli_query($conexion, $checkEjemplar) or die(mysqli_error($conexion));
 		$dataRow = mysqli_fetch_array($resultado);	
