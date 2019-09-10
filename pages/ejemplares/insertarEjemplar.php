@@ -96,7 +96,7 @@
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      ' ingreso un nuevo ejemplar: $varejemcodreg',
+		      ' ingreso un nuevo ejemplar: $newcodigo',
 		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
