@@ -541,6 +541,7 @@ function isNumberSysmbolKey(evt)
                 $("#libisbn").removeAttr("disabled");
                 $("#libisbn").focus();
             } else {
+            	document.getElementById('libisbn').value = "";
                 $("#libisbn").attr("disabled", "disabled");
             }
         });
