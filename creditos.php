@@ -92,7 +92,7 @@
         <p class="card-text text-right">Hno. César Gonzáles</p>
        
         <p class="card-text text-right">Lic. Hilda Gomez</p>
-          <p class="card-text text-right">Lic. Verónica Herrera</p> 
+          <p class="card-text text-right">Verónica Herrera</p> 
       </div>
       <div class="col-lg-6">
          <p class="card-text text-left">Vilma Yaneth Alfaro</p>
