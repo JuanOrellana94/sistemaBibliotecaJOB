@@ -10,17 +10,24 @@
 	
 	$libfecedi=$_POST['editlibfecedi'];
 	$libnumpag=$_POST['editlibnumpag'];
-	$libisbn=$_POST['editlibisbn'];
+
 	$libgenaut=mb_strtoupper ($_POST['editgenautcod']);
 	$libDew=$_POST['editdewcod'];
 	$libedit=$_POST['editeditcod'];
 	$libtags=$_POST['editlibtags'];
 	$current_date=date("d-m-Y h:i:s");
 
+	
+	if (isset($_POST["libisbn"])) { 
+		$libisbn=$_POST['libisbn']; 
+	} else {
+		$libisbn="000-0-00-000000-0"; 
+	};
+
 	$usuCodigo=$_SESSION['usuCodigo'];
     $bitPersonaName=$_SESSION['nombreComp'];
 
-$checkValidation="SELECT * FROM $tablaLibros WHERE $varlibisbn='$libisbn' AND  $varlibcod!='$libcod';";
+$checkValidation="SELECT * FROM $tablaLibros WHERE $varlibisbn='$libisbn' AND  $varlibcod!='$libcod' AND $varlibisbn != '000-0-00-000000-0';";
 
 $resultado=mysqli_query($conexion, $checkValidation) or die(mysqli_error($conexion));
 

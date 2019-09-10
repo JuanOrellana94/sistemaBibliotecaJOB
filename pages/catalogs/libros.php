@@ -103,7 +103,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Titulo</label>
-                <input type="text" class="form-control" name="libtit" id="libtit" aria-describedby="libtit" placeholder="Titulo del libro">
+                <input type="text" class="form-control" name="libtit"  maxlength="150" id="libtit" aria-describedby="libtit" placeholder="Titulo del libro">
               </div>
 
               <div class="form-group">
@@ -182,8 +182,15 @@
 
           
                 <div class="form-group">
-                <label for="TituloLabel">Codigo ISBN</label>
-                <input type="text" class="form-control" name="libisbn" id="libisbn" maxlength="27" onkeypress="return isNumberSysmbolKey(event);"  aria-describedby="libisbn" placeholder="">
+                <label for="libisbn">Codigo ISBN</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend" style="max-width: 10%">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="Checkbox for following text input"  id="checkISBN"  checked style="max-width: 5%"  data-toggle="tooltip" data-placement="left" title="Habilitar uso de Codigo ISBN para este libro" >
+                    </div>
+                  </div>
+                <input type="text" class="form-control" name="libisbn" id="libisbn" maxlength="27" onkeypress="return isNumberSysmbolKey(event);"  aria-describedby="libisbn" placeholder="000-0-00-000000-0">
+              </div>
               </div>
               <div class="form-group">
                 <label for="DeweyLabel">Codigo Dewey</label>
@@ -245,7 +252,7 @@
               <div class="form-group">
                 <input type="text" class="form-control" name="editlibcod" id="editlibcod" aria-describedby="editlibcod" placeholder="Titulo del libro" hidden="true">
                 <label for="TituloLabel">Titulo</label>
-                <input type="text" class="form-control" name="editlibtit" id="editlibtit" aria-describedby="editlibtit" placeholder="Titulo del libro">
+                <input type="text" class="form-control" name="editlibtit"   maxlength="150" id="editlibtit" aria-describedby="editlibtit" placeholder="Titulo del libro">
               </div>
 
               <div class="form-group">
@@ -671,5 +678,7 @@ window.onload = function () {
       
       
     })
+
+
 
 </script>

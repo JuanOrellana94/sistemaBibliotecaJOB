@@ -40,6 +40,8 @@ function recargarTablaLimpiar(){
 
 function insertBook(){
 
+
+
 	if ($("#libtit").val()==""){
 		$("#answerPrint").show();
 		$("#answerPrint").html("Campo de Titulo Vacio");
@@ -64,10 +66,11 @@ function insertBook(){
 	}else if ($("#libfecedi").val()==""){
 		$("#answerPrint").show();
 		$("#answerPrint").html("Indique la fecha de publicacion");
-	}else if ($("#libisbn").val()==""){
+
+	}else if ($("#libisbn").val()=="" && $("#checkISBN").is(":checked")){
 		$("#answerPrint").show();
 		$("#answerPrint").html("Ingrese el codigo ISBN del libro");
-	}else if ($("#libisbn").val().length<"5"){
+	}else if ($("#libisbn").val().length<"5" && $("#checkISBN").is(":checked")){
 		$("#answerPrint").show();
 		$("#answerPrint").html("Codigo ISBN Erroneo");
 	}else if ($("#dewcod").val()==""){ 
@@ -151,9 +154,9 @@ function updateBook(){
 	}else if ($("#editlibfecedi").val()==""){
 		$("#answerEditPrint").show();
 		$("#answerEditPrint").html("Indique la fecha de publicacion");
-	}else if ($("#editlibisbn").val()==""){
-		$("#answerEditPrint").show();
-		$("#answerEditPrint").html("Ingrese el codigo ISBN del libro");
+	}else if ($("#editlibisbn").val()=="" && $("#checkISBN").is(":checked")){
+		$("#answerPrint").show();
+		$("#answerPrint").html("Ingrese el codigo ISBN del libro");
 	}else if ($("#editlibisbn").val().length<"5"){
 		$("#answerEditPrint").show();
 		$("#answerEditPrint").html("Codigo ISBN Erroneo");
@@ -531,3 +534,14 @@ function isNumberSysmbolKey(evt)
         return false;
     return true;
 }
+
+ $(function () {
+        $("#checkISBN").click(function () {
+            if ($(this).is(":checked")) {
+                $("#libisbn").removeAttr("disabled");
+                $("#libisbn").focus();
+            } else {
+                $("#libisbn").attr("disabled", "disabled");
+            }
+        });
+    });
