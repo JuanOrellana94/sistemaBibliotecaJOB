@@ -16,7 +16,7 @@
       <?php
       while($ejemplar = mysqli_fetch_assoc($resultado)) { 
           $numejemplar= $ejemplar['ejemcod'];           
-          echo "<h5 align=left>".  $ejemplar['libtit'] . "</b>, Ejemplar #" . $numejemplar ."</h5>";         
+          echo "<h5 align=left>".  substr($ejemplar['libtit'], 0, 45)."". "..." . "</b> Ejemplar #" . $numejemplar ."</h5>";         
         
           $codbarra = $ejemplar['ejemcodbar']; 
           echo "<div align=left> <img  src='pages/codbarras/cbarra.php?xvalor=".$codbarra. "'  width='400' height='100'>  </div>";          

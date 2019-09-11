@@ -27,43 +27,43 @@
           $contador=$contador+1;
           if ($orden==1) {
               $numejemplar= $ejemplar['ejemcod'];      
-              $datos = utf8_decode(substr($ejemplar['libtit'], 0, 22)."". "...") . " Ej. #" . $numejemplar;       
+              $datos = substr($ejemplar['libtit'], 0, 22)."". "..." . " Ej. #" . $numejemplar;       
               $datos2 = $ejemplar['ejemcodreg'];          
 
               $code = $ejemplar['ejemcodbar'];         
               
                
                $pdf->SetXY($x, $y);
-               $pdf->Cell($x+35,5,$datos,0,1,'C');
+               $pdf->Cell($x+35,5,utf8_decode($datos),0,1,'C');
                $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+5,$y+5,50,10,'gif');
-               $pdf->Cell($x+45,25,$datos2,0,1,'C');              
+               $pdf->Cell($x+45,25,utf8_decode($datos2),0,1,'C');              
                $orden=2;
              }
              elseif ($orden==2) {
                   $numejemplar= $ejemplar['ejemcod'];      
-                  $datos = utf8_decode(substr($ejemplar['libtit'], 0, 22)."". "...") . " Ej. #" . $numejemplar;       
+                  $datos = substr($ejemplar['libtit'], 0, 22)."". "...". " Ej. #" . $numejemplar;       
                   $datos2 = $ejemplar['ejemcodreg']; 
 
                  $code = $ejemplar['ejemcodbar'];           
                 
                  
                     $pdf->SetXY($x+65, $y);
-                    $pdf->Cell($x+35,5,$datos,0,1,'C');
+                    $pdf->Cell($x+35,5,utf8_decode($datos),0,1,'C');
                     $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+70,$y+5,50,10,'gif');
-                    $pdf->Cell($x+175,25,$datos2,0,1,'C'); 
+                    $pdf->Cell($x+175,25,utf8_decode($datos2),0,1,'C'); 
                     $orden=3;
                 }else{
                      $numejemplar= $ejemplar['ejemcod'];      
-                     $datos = utf8_decode(substr($ejemplar['libtit'], 0, 22)."". "...") . " Ej. #" . $numejemplar;        
+                     $datos = substr($ejemplar['libtit'], 0, 22)."". "...". " Ej. #" . $numejemplar;        
                      $datos2 = $ejemplar['ejemcodreg']; 
 
                     $code = $ejemplar['ejemcodbar']; 
                                    
                         
                          $pdf->SetXY($x+135, $y);
-                         $pdf->Cell($x+35,5,$datos,0,1,'C');
+                         $pdf->Cell($x+35,5,utf8_decode($datos),0,1,'C');
                          $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',$x+140,$y+5,50,10,'gif');
-                         $pdf->Cell($x+315,25,$datos2,0,1,'C');     
+                         $pdf->Cell($x+315,25,utf8_decode($datos2),0,1,'C');     
                     $y = $y+21; //posicion de Y en la columna n+1
                     $orden=1;
                 } 

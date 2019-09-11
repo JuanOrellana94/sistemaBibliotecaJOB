@@ -20,14 +20,14 @@
 
       while($ejemplar = mysqli_fetch_assoc($resultado)) {    
            $numejemplar= substr($ejemplar['ejemcodreg'],-5);      
-           $datos = $ejemplar['libtit'] . ", Ejemplar #" . $numejemplar; 
+           $datos = substr($ejemplar['libtit'], 0, 22)."". "..." . " Ej. #" . $numejemplar; 
            $datos2 = $ejemplar['ejemcodreg']; 
-          $tamaño=strlen(utf8_decode($ejemplar['ejemcod']));          
+           $tamaño=strlen($ejemplar['ejemcod']);          
            $code = $ejemplar['ejemcodbar'];
             
-            $pdf->Cell(55,15,$datos,0,1,'C');
+            $pdf->Cell(55,15,utf8_decode($datos),0,1,'C');
             $pdf->Image('http://localhost/sistemabiblioteca/pages/codbarras/cbarra.php?xvalor='.$code.'.gif',15,$y+10,50,10,'gif');
-          $pdf->Cell(55,15,$datos2,0,1,'C');   
+          $pdf->Cell(55,15,utf8_decode($datos2),0,1,'C');   
     
             $y = $y+25;          
         }

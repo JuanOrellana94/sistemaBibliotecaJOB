@@ -41,7 +41,7 @@
                               <select class="form-control js-Dropdown-Busqueda" name='codlib' id='codlib'>
                                 <option value="">Seleccione un libro</option>
                                <?php  while ($dataLibros=mysqli_fetch_assoc($selTable)){  ?>                              
-                               <option value="<?php echo $dataLibros['libcod'];  ?>"><?php echo $dataLibros['libtit'];  ?></option>
+                               <option value="<?php echo $dataLibros['libcod'];  ?>"><?php echo substr($dataLibros['libtit'], 0, 45)."". "...";  ?></option>
                                <?php } ?>                                                    
                                </select> </td></tr><tr> 
                               <td>                        

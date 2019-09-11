@@ -52,7 +52,7 @@
 
                         
 
-              <td  align="center" height="100" width="200"><button type="button" class="btn btn-primary btn-lg btn-block"><p class="font-weight-light"><h4><?php echo $dataLibros['Titulo'];?></h4> <hr style="color: #0056b2;" /> </p>
+              <td  align="center" height="100" width="200"><button type="button" class="btn btn-primary btn-lg btn-block"><p class="font-weight-light"><h4 align="left"><?php echo substr($dataLibros['Titulo'], 0, 45)."". "...";?></h4> <hr style="color: #0056b2;" /> </p>
                             <div align="left"><br>AUTOR:<br><p style="color:black"><?php echo $dataLibros['Autor'];?> <?php echo $dataLibros['Autorape'];?></p>EDITORIAL:<p style="color:black"><?php echo $dataLibros['Editorial'];?></p></div> 
               </button> </td>                       
                     
@@ -1025,7 +1025,7 @@ function deleteEjemplar(){
 
        
       var modal = $(this)
-      modal.find('.modal-title').text('Editar Ejemplar: ' + varejemplartitulo );
+      modal.find('.modal-title').text('Editar Ejemplar: ' + varejemplartitulo.substring(0, 45) + "..." );
        if (button.data('varejemplartipoingreso')== 0) {
               $("#inputprecio").prop("disabled", true);
               $("#inputdetalle").prop("disabled", false);
@@ -1183,15 +1183,12 @@ $('#modalBarraEjemplar').on('show.bs.modal', function (event) {
       var varejemplarcodigoreg  = button.data('varejemplarcodigoreg')       
       var varejemplartitulo = button.data('varejemplartitulo')
       var varejemplarnumero = button.data('varejemplarnumero')
-      
 
-          
-varejemplarnumero
       var modal = $(this)
        
        var codigoLib=$("#codigoLib").val();   
        $("#cargarcodigodebarra").load("pages/codbarras/vercbejemplar.php?codeje="+varejemplarcodigoreg+"&codigoLib=" + codigoLib); 
-       $("#codigobarra").html('<h4 align=center>'+varejemplartitulo+', Ejemplar #'+varejemplarnumero+' '+'<h4> ')      
+       $("#codigobarra").html('<h4 align=left>'+varejemplartitulo.substring(0, 45) + "..." +' Eje.#'+varejemplarnumero+' '+'<h4> ')      
 
         
        
