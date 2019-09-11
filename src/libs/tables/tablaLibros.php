@@ -281,9 +281,25 @@
 								  data-varlibtit="<?php echo $dataLibros[$varlibtit];?>"
 
 								  title="Eliminar Libro"		
-								  ><img src="img/icons/BookEditWideDel.png" width="35" height="30"></button>
-                                 <a href="catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>" title="ver ejemplares"><img src="img/icons/detalle.png" align="center" width="40" height="35"></a>
-								  
+								  ><img src="img/icons/BookEditWideDel.png" width="35" height="30">
+								</button>
+                                  <?php 
+
+                                  $sql="SELECT COUNT(t1.$varejemcod) as numejemplares 
+                                  FROM $tablaEjemplares as t1 join $tablaLibros as t2 on t2.$varlibcod = t1.$varlibcod where t1.$varlibcod = $dataLibros[$varlibcod]"; 
+
+                                      $cantidad=mysqli_query($conexion,$sql);
+                                      if (mysqli_num_rows($cantidad)==0){
+                                      	$numejemplares=0;
+                                      }else{
+                                      	while ($datacantidad=mysqli_fetch_assoc($cantidad)){
+                                      		$numejemplares = $datacantidad['numejemplares'];
+                                        }
+                                      }
+
+                                 ?>
+								<button type="button" title="Ver ejemplares" class="btn btn-primary" onclick="location.href='catalogos.php?pageLocation=ejemplares&codigoLib=<?php echo $dataLibros[$varlibcod];?>'" >Ejemplares <span class="badge badge-light"><?php echo  $numejemplares; ?></span>
+                                </button>	
 								</div>
 							</td>
 						</tr>

@@ -156,11 +156,22 @@
 									title="Eliminar equipo">
 								 	<img  src="img/icons/BookEditWideDel.png" width="35" height="30">
 								 </button>
+								 <?php 
 
-								 <a href="catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>" title="ver equipos"><img src="img/icons/ver-detalles.png" width="40" height="35"></a> 
+                                  $sql="SELECT COUNT(t1.$varexistcod) as numeequipos 
+                                  FROM $tablaExistenciaequipo as t1 join $tablaEquipo as t2 on t2.$varequicod = t1.$varequicod where t1.$varequicod = $dataLibros[$varequicod]"; 
 
-								
-								</div>
+                                      $cantidad=mysqli_query($conexion,$sql);
+                                      if (mysqli_num_rows($cantidad)==0){
+                                      	$numeequipos=0;
+                                      }else{
+                                      	while ($datacantidad=mysqli_fetch_assoc($cantidad)){
+                                      		$numeequipos = $datacantidad['numeequipos'];
+                                        }
+                                      }
+
+                                 ?>
+								<button title="ver equipos" type="button" class="btn btn-primary" onclick="location.href='catalogos.php?pageLocation=existencias&equipoCod=<?php echo $dataLibros[$varequicod];?>'" >Existencias <span class="badge badge-light"><?php echo  $numeequipos; ?></span>                                </button></div>
 							</td>
 						</tr>
 						<?php }
