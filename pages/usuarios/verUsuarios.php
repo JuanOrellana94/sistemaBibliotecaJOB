@@ -513,14 +513,25 @@
 function sendInsert(elemento,content){
   document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13){
-          insertarUsuario();
+        if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            insertarUsuario(); 
+        }, 500); 
+ 
     }
   });
 }
 function sendEditar(elemento,content){
   document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13){
-          editarUsuario();
+         if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            editarUsuario(); 
+        }, 500); 
     }
   });
 }
