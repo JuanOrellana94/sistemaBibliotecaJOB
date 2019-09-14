@@ -16,7 +16,12 @@ function sendEditar(elemento,content){
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-          updateBook();
+        if(keyTimer){
+	            clearTimeout(keyTimer);
+	        }
+	        keyTimer = setTimeout(function () {
+	             updateBook(); 
+	        }, 500); 
         }
 
     });

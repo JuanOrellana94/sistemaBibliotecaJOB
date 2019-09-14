@@ -526,7 +526,7 @@ function sendInsert(elemento,content){
 function sendEditar(elemento,content){
   document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13){
-         if(keyTimer){
+        if(keyTimer){
             clearTimeout(keyTimer);
         }
         keyTimer = setTimeout(function () {

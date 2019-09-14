@@ -274,14 +274,25 @@
 function sendInsert(elemento,content){
   document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13){
-          insertarequipo();
+        if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            insertarequipo(); 
+        }, 500); 
+          
     }
   });
 }
 function sendEditar(elemento,content){
   document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13){
-          editarequipo();
+        if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            editarequipo(); 
+        }, 500); 
     }
   });
 }

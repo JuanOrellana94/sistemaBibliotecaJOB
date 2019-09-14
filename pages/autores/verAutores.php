@@ -286,7 +286,12 @@ function saltoForm2(elemento,content)
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-          insertarAutor();
+          if(keyTimer){
+              clearTimeout(keyTimer);
+          }
+          keyTimer = setTimeout(function () {
+              insertarAutor(); 
+          }, 500); 
         }
 
     });
@@ -318,7 +323,12 @@ function saltoFormEdit2(elemento,content)
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-          editarAutor();
+        if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            editarAutor(); 
+        }, 500); 
         }
 
     });

@@ -225,7 +225,12 @@ function insertarModal(elemento,content)
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-          insertarEditorial();
+          if(keyTimer){
+              clearTimeout(keyTimer);
+          }
+          keyTimer = setTimeout(function () {
+              insertarEditorial(); 
+          }, 500); 
         }
 
     });
@@ -235,7 +240,12 @@ function editarModal(elemento,content)
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-          editarEditorial();
+          if(keyTimer){
+              clearTimeout(keyTimer);
+          }
+          keyTimer = setTimeout(function () {
+              editarEditorial(); 
+          }, 500);
         }
 
     });
