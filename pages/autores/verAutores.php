@@ -101,14 +101,14 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="">
+                <input type="text"  class="form-control" onkeyup="saltoForm(this,this.value)" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="formautape" placeholder="" onkeypress="" >
+                <input type="text" class="form-control" name="formautape" onkeyup="saltoForm2(this,this.value)"  id="formautape" aria-describedby="formautape" placeholder="" onkeypress="" >
               </div>
 
             </div>
@@ -116,10 +116,9 @@
            <div class="row">
              <div class="col-sm-12">
                 <div class="form-group">
-                <label for="TituloLabel">Codigo Cutter</label>
-                <input type="text" class="form-control" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
-              </div>
-
+                  <label for="TituloLabel">Codigo Cutter</label>
+                  <input type="text" tabindex="2" class="form-control" onkeyup="sendInsert(this,this.value)" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
+                </div>
              </div>
            </div>
             
@@ -156,14 +155,14 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input type="text" class="form-control" name="editautcod" id="editautcod" aria-describedby="editautcod" placeholder="" hidden>
-                <input type="text" class="form-control" name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="">
+                <input type="text" class="form-control" onkeyup="saltoFormEdit(this,this.value)"  name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="">
+                <input type="text" class="form-control" onkeyup="saltoFormEdit2(this,this.value)"  name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="">
               </div>
 
             </div>
@@ -172,7 +171,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                 <label for="TituloLabel">Codigo Cutter</label>
-                <input type="text" class="form-control" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
+                <input type="text" class="form-control" onkeyup="sendEditar(this,this.value)" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
               </div>
 
              </div>
@@ -247,13 +246,85 @@
 
       $(window).keydown(function(event){
         if(event.keyCode == 13) {
-          recargarTabla();
+          recargarTabla();        
           event.preventDefault();
           return false;
         
         }
       });
+
+
   };
+
+//ACTIVE FUNCTION WHEN PRESSING ENTER
+function saltoForm(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+        next=elemento.tabIndex+1;
+        document.formNuevoAutor.elements[next].focus()
+        }
+
+    });
+}
+
+function saltoForm2(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+
+       document.getElementById("formautseud").focus(); 
+        }
+
+    });
+  }
+
+  function sendInsert(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          insertarAutor();
+        }
+
+    });
+  }
+//FIN FUNCTIONES SALTO/INSERT VIA ENTER NUEVO AUTOR
+
+//FUNCION SALTO/INSERT VIA ENTER EDITAR AUTIR
+function saltoFormEdit(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+      {
+       document.getElementById("editautape").focus(); 
+      }
+
+    });
+}
+function saltoFormEdit2(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+       document.getElementById("editautseud").focus(); 
+      }
+    });
+}
+  function sendEditar(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          editarAutor();
+        }
+
+    });
+  }
+
+
 //Funcion para recargar tabla
 function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda

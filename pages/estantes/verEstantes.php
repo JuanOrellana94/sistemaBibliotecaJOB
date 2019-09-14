@@ -94,7 +94,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre del Estante</label>
-                <input type="text" class="form-control" name="formEstantenom" id="formEstantenom" aria-describedby="formEstantenom" placeholder="">
+                <input type="text" class="form-control" name="formEstantenom" onkeyup="insertarModal(this,this.value);" id="formEstantenom" aria-describedby="formEstantenom" placeholder="">
               </div>
              
             </div>          
@@ -133,7 +133,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                 <input type="text" class="form-control" name="editestantecod" id="editestantecod" aria-describedby="editestantecod" placeholder="" hidden>
+                 <input type="text" class="form-control"  onkeyup="editarModal(this,this.value);" name="editestantecod" id="editestantecod" aria-describedby="editestantecod" placeholder="" hidden>
                 <input type="text" class="form-control" name="editestantenom" id="editestantenom" aria-describedby="editestantenom" placeholder="">
               </div>
              
@@ -199,7 +199,7 @@
 
 
 
-
+ 
 
 
 
@@ -219,6 +219,29 @@
         }
       });
   };
+//ON ENTER INSERTAR/EDITAR ESTANTE
+function insertarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          insertarEstante();
+        }
+
+    });
+}
+function editarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          editarEstante();
+        }
+
+    });
+}
+
+
 //Funcion para recargar tabla
 function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda

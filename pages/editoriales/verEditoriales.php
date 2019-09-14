@@ -93,7 +93,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre del editorial</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();insertarModal(this,this.value);" type="text" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
               </div>
              
             </div>          
@@ -133,7 +133,7 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editeditorialcod" id="editeditorialcod" aria-describedby="editeditorialcod" placeholder="" hidden>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();editarModal(this,this.value);"  type="text" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
               </div>
              
             </div>
@@ -175,7 +175,7 @@
               <div class="form-group">
                 <div id=notificationLabel style="color: black; font-weight: bold; text-align: center;"><label for="TituloLabel">Eliminar Editorial es una accion <b> Permanente </b> desea eliminar Editorial:</label></div>                
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="deleditorialcod" id="deleditorialcod" aria-describedby="deleditorialcod" placeholder="Editorial" hidden="true">
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="deleditorialnom" id="deleditorialnom" aria-describedby="deleditorialnom" placeholder="Editorial" hidden="true">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();"  onkeyup=""  type="text" class="form-control" name="deleditorialnom" id="deleditorialnom" aria-describedby="deleditorialnom" placeholder="Editorial" hidden="true">
                            
                   <div id="labelBorrar" style="color: red; font-weight: bold; text-align: center;"></div>
                   <div align="center" name="cargarTablaRequisito" id="cargarTablaRequisito"></div>
@@ -218,6 +218,31 @@
         }
       });
   };
+///ON ENTER HACER INSERT/UPDATE
+
+function insertarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          insertarEditorial();
+        }
+
+    });
+}
+function editarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          editarEditorial();
+        }
+
+    });
+}
+
+
+
 //Funcion para recargar tabla
 function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda

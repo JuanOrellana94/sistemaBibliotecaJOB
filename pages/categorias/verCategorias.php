@@ -95,9 +95,9 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="" onkeypress="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();saltoForm2(this,this.value);" type="text" class="form-control" name="formcategorianom" id="formcategorianom" aria-describedby="formcategorianom" placeholder="" onkeypress="">
                  <label for="TituloLabel">Codigo dewey de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="formcategoriacod" id="formcategoriacod" aria-describedby="formcategoriacod" placeholder="" onkeypress="return soloNumeros(event);">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();insertarModal(this,this.value);" type="text" class="form-control" name="formcategoriacod" id="formcategoriacod" aria-describedby="formcategoriacod" placeholder="" onkeypress="return soloNumeros(event);">
               </div>
              
             </div>          
@@ -137,9 +137,9 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la categoria</label>                 
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriacod" id="editcategoriacod" aria-describedby="editcategoriacod" placeholder="" hidden>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" onkeypress="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();saltoForm(this,this.value);" type="text" class="form-control" name="editcategoriaclanom" id="editcategoriaclanom" aria-describedby="editcategoriaclanom" placeholder="" onkeypress="">
                 <label for="TituloLabel">Codigo dewey de la categoria</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editcategoriadewcod" id="editcategoriadewcod" aria-describedby="editcategoriadewcod" placeholder="" onkeypress="return soloNumeros(event);">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();editarModal(this,this.value);" type="text" class="form-control" name="editcategoriadewcod" id="editcategoriadewcod" aria-describedby="editcategoriadewcod" placeholder="" onkeypress="return soloNumeros(event);">
               </div>
              
             </div>
@@ -224,6 +224,60 @@
         }
       });
   };
+var keyTimer;
+//ON ENTER SALTO FORM
+function saltoForm(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+       document.getElementById("editcategoriadewcod").focus(); 
+        }
+    });
+}
+function saltoForm2(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+       document.getElementById("formcategoriacod").focus(); 
+        }
+    });
+}
+//ON ENTER EDITAR/NUEVO CATEGORIA
+function insertarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+        if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            insertarcategoria(); 
+        }, 500); 
+ 
+        }
+
+    });
+}
+function editarModal(elemento,content)
+    {
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+           if(keyTimer){
+            clearTimeout(keyTimer);
+        }
+        keyTimer = setTimeout(function () {
+            editarcategoria(); 
+        }, 500); 
+        }
+
+    });
+}
+
+
 //Funcion para recargar tabla
 function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda
