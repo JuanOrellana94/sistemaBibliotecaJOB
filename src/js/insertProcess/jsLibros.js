@@ -1,3 +1,28 @@
+//INSERTAR/EDITAR AL PRESIONAR ENTER
+var keyTimer;
+function sendInsert(elemento,content){
+    document.addEventListener('keyup', function(event) {
+	    if (event.keyCode == 13){
+	    	if(keyTimer){
+	            clearTimeout(keyTimer);
+	        }
+	        keyTimer = setTimeout(function () {
+	             insertBook(); 
+	        }, 500); 
+		}
+    });
+ }
+function sendEditar(elemento,content){
+    document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13)
+        {
+          updateBook();
+        }
+
+    });
+}
+
+
 //CARGAR  RECARGAR TABLAS BUSQUEDA DE LIBROS SI BUSQUEDA TIENE VALOR
 function recargarTabla(){
 

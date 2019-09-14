@@ -117,7 +117,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                   <label for="TituloLabel">Codigo Cutter</label>
-                  <input type="text" tabindex="2" class="form-control" onkeyup="sendInsert(this,this.value)" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
+                  <input type="text" tabindex="2" class="form-control" onkeyup="sendInsert(this,this.value);" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
                 </div>
              </div>
            </div>
@@ -171,7 +171,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                 <label for="TituloLabel">Codigo Cutter</label>
-                <input type="text" class="form-control" onkeyup="sendEditar(this,this.value)" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
+                <input type="text" class="form-control" onkeyup="sendEditar(this,this.value);" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
               </div>
 
              </div>
@@ -274,7 +274,7 @@ function saltoForm2(elemento,content)
     document.addEventListener('keyup', function(event) {
     if (event.keyCode == 13)
         {
-
+          
        document.getElementById("formautseud").focus(); 
         }
 

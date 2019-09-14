@@ -125,7 +125,7 @@
                            
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="formUsuarionom1" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="formUsuarionom1"  onkeyup="sendInsert(this,this.value);" id="formUsuarionom1" aria-describedby="formUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
               <td><input type="text" class="form-control" name="formUsuarionom2" id="formUsuarionom2" aria-describedby="formUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
               
             </tr>
@@ -135,8 +135,8 @@
                           
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="formUsuarioape1" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="formUsuarioape2" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="formUsuarioape1" onkeyup="sendInsert(this,this.value);" id="formUsuarioape1" aria-describedby="formUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="formUsuarioape2" onkeyup="sendInsert(this,this.value);" id="formUsuarioape2" aria-describedby="formUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>
               
             </tr> 
             <tr>
@@ -144,7 +144,7 @@
               <th>Tipo de cuenta</th> 
             </tr>         
             <tr>
-              <td><input type="text" class="form-control" name="formUsuariomote" id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
+              <td><input type="text" class="form-control" name="formUsuariomote"  onkeyup="sendInsert(this,this.value);"id="formUsuariomote" aria-describedby="formUsuariomote" placeholder=""></td>
               <td>
                <?php if ($_SESSION['usuNivelNombre']=='Administrador') {
                  # code...
@@ -242,8 +242,8 @@
                           
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="editUsuarionom1" id="editUsuarionom1" aria-describedby="editUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="editUsuarionom2" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarionom1" onkeyup="sendEditar(this,this.value);" id="editUsuarionom1"  aria-describedby="editUsuarionom1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarionom2" onkeyup="sendEditar(this,this.value);" id="editUsuarionom2" aria-describedby="editUsuarionom2" placeholder="" onkeypress="return soloLetras(event);"></td>
              
             </tr>
             <tr>              
@@ -252,17 +252,17 @@
                               
             </tr>
             <tr>
-              <td><input type="text" class="form-control" name="editUsuarioape1" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
-              <td><input type="text" class="form-control" name="editUsuarioape2" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>              
+              <td><input type="text" class="form-control" name="editUsuarioape1" onkeyup="sendEditar(this,this.value);" id="editUsuarioape1" aria-describedby="editUsuarioape1" placeholder="" onkeypress="return soloLetras(event);"></td>
+              <td><input type="text" class="form-control" name="editUsuarioape2" onkeyup="sendEditar(this,this.value);" id="editUsuarioape2" aria-describedby="editUsuarioape2" placeholder="" onkeypress="return soloLetras(event);"></td>              
             </tr>
            <tr>
              <th>Usuario</th>
               <th>Contraseña Nueva:</th>
            </tr>
            <tr>
-             <td><input type="text" class="form-control" name="editUsuariomote" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
+             <td><input type="text" class="form-control" name="editUsuariomote" onkeyup="sendEditar(this,this.value);" id="editUsuariomote" aria-describedby="editUsuariomote" placeholder=""></td>
               <td><input type="password" class="form-control" name="editUsuariopass" id="editUsuariopass" aria-describedby="editUsuariopass" placeholder=""><br><b>Repita contraseña:</b>
-              <input type="password" class="form-control" name="editUsuariopass2" id="editUsuariopass2" aria-describedby="editUsuariopass2" placeholder=""></td>
+              <input type="password" class="form-control" name="editUsuariopass2"  id="editUsuariopass2" aria-describedby="editUsuariopass2" placeholder=""></td>
            </tr>
             <tr>              
              
@@ -509,6 +509,22 @@
         }
       });
   };
+
+function sendInsert(elemento,content){
+  document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13){
+          insertarUsuario();
+    }
+  });
+}
+function sendEditar(elemento,content){
+  document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13){
+          editarUsuario();
+    }
+  });
+}
+
 //Funcion para recargar tabla
 function recargarTabla(){
    //Mostrar gif de cargando a la par de la barra de busqueda

@@ -103,7 +103,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Titulo</label>
-                <input type="text" class="form-control" name="libtit"  maxlength="150" id="libtit" aria-describedby="libtit" placeholder="Titulo del libro">
+                <input type="text" class="form-control" name="libtit"  maxlength="150" id="libtit" aria-describedby="libtit" placeholder="Titulo del libro" onkeyup="sendInsert(this,this.value)">
               </div>
 
               <div class="form-group">
@@ -138,12 +138,12 @@
 
                 <label for="Descripcion">Descripcion</label>
                 <div class="input-group">
-                  <textarea class="form-control" style="height: 135px" aria-label="libdes" id="libdes" name="libdes"></textarea>
+                  <textarea class="form-control" style="height: 135px" aria-label="libdes" id="libdes" name="libdes" onkeyup="sendInsert(this,this.value)"></textarea>
                 </div>
               </div> 
               <div class="form-group">
                 <label for="TituloLabel">Numero de paginas</label>
-                <input type="text" class="form-control" name="libnumpag" id="libnumpag"  maxlength="10" onkeypress="return isNumberKey(event);" aria-describedby="libnumpag" placeholder="">
+                <input type="text" class="form-control" name="libnumpag" id="libnumpag"  maxlength="10" onkeypress="return isNumberKey(event);" onkeyup="sendInsert(this,this.value)" aria-describedby="libnumpag" placeholder="">
               </div> 
             </div>
             <div class="col-sm-6">            
@@ -189,7 +189,7 @@
                       <input type="checkbox" aria-label="Checkbox for following text input"  id="checkISBN"  checked style="max-width: 5%"  data-toggle="tooltip" data-placement="left" title="Habilitar uso de Codigo ISBN para este libro" >
                     </div>
                   </div>
-                <input type="text" class="form-control" name="libisbn" id="libisbn" maxlength="27" onkeypress="return isNumberSysmbolKey(event);"  aria-describedby="libisbn" placeholder="000-0-00-000000-0">
+                <input type="text" class="form-control" name="libisbn" id="libisbn" maxlength="27" onkeypress="return isNumberSysmbolKey(event);"  onkeyup="sendInsert(this,this.value)" aria-describedby="libisbn" placeholder="000-0-00-000000-0">
               </div>
               </div>
               <div class="form-group">
@@ -211,7 +211,7 @@
               </div>
                <div class="form-group">
                 <label for="TituloLabel">Criterios de Busqueda (Usa Tab entre cada criterio)</label>
-                <input  class="block-tab" name="libtags" id="libtags" maxlength="27" aria-describedby="editlibisbn" placeholder="">
+                <input  class="block-tab" name="libtags" id="libtags" maxlength="27" aria-describedby="editlibisbn" placeholder="" onkeyup="sendInsert(this,this.value)">
               </div>             
             </div>
           </div>
