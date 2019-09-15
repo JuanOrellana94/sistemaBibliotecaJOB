@@ -101,14 +101,14 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                <input type="text"  class="form-control" onkeyup="saltoForm(this,this.value)" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="">
+                <input type="text" maxlength="40"  class="form-control" onkeyup="saltoForm(this,this.value)" name="formautnom" id="formautnom" aria-describedby="formautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="formautape" onkeyup="saltoForm2(this,this.value)"  id="formautape" aria-describedby="formautape" placeholder="" onkeypress="" >
+                <input type="text" maxlength="40" class="form-control" name="formautape" onkeyup="saltoForm2(this,this.value)"  id="formautape" aria-describedby="formautape" placeholder="" onkeypress="" >
               </div>
 
             </div>
@@ -117,7 +117,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                   <label for="TituloLabel">Codigo Cutter</label>
-                  <input type="text" tabindex="2" class="form-control" onkeyup="sendInsert(this,this.value);" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
+                  <input type="text" maxlength="40" tabindex="2" class="form-control" onkeyup="sendInsert(this,this.value);" name="formautseud" id="formautseud" aria-describedby="formautseud" placeholder="">
                 </div>
              </div>
            </div>
@@ -155,14 +155,14 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input type="text" class="form-control" name="editautcod" id="editautcod" aria-describedby="editautcod" placeholder="" hidden>
-                <input type="text" class="form-control" onkeyup="saltoFormEdit(this,this.value)"  name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="">
+                <input type="text" maxlength="40" class="form-control" onkeyup="saltoFormEdit(this,this.value)"  name="editautnom" id="editautnom" aria-describedby="editautnom" placeholder="" onkeypress="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" onkeyup="saltoFormEdit2(this,this.value)"  name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="">
+                <input type="text" maxlength="40" class="form-control" onkeyup="saltoFormEdit2(this,this.value)"  name="editautape" id="editautape" aria-describedby="editautape" placeholder="" onkeypress="">
               </div>
 
             </div>
@@ -171,7 +171,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                 <label for="TituloLabel">Codigo Cutter</label>
-                <input type="text" class="form-control" onkeyup="sendEditar(this,this.value);" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
+                <input type="text" maxlength="40" class="form-control" onkeyup="sendEditar(this,this.value);" name="editautseud" id="editautseud" aria-describedby="editautseud" placeholder="">
               </div>
 
              </div>

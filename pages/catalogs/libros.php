@@ -427,14 +427,14 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
-                <input type="text" class="form-control" name="formautnom" id="formautnom" aria-describedby="varautnom" placeholder="">
+                <input type="text" maxlength="40" class="form-control" name="formautnom" id="formautnom" aria-describedby="varautnom" placeholder="">
               </div>
              
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="TituloLabel">Apellido</label>
-                <input type="text" class="form-control" name="formautape" id="formautape" aria-describedby="varautape" placeholder="">
+                <input type="text" maxlength="40" class="form-control" name="formautape" id="formautape" aria-describedby="varautape" placeholder="">
               </div>
 
             </div>
@@ -443,7 +443,7 @@
              <div class="col-sm-12">
                 <div class="form-group">
                 <label for="TituloLabel">Codigo Cutter</label>
-                <input type="text" class="form-control" name="formautseud" id="formautseud" aria-describedby="autseud" placeholder="">
+                <input type="text" maxlength="40" class="form-control" name="formautseud" id="formautseud" aria-describedby="autseud" placeholder="">
               </div>
 
              </div>
