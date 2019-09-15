@@ -93,7 +93,7 @@
 
               <div class="form-group">
                 <label for="TituloLabel">Nombre del editorial</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();insertarModal(this,this.value);" type="text" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();insertarModal(this,this.value);" type="text" maxlength="60" class="form-control" name="formeditorialnom" id="formeditorialnom" aria-describedby="formeditorialnom" placeholder="">
               </div>
              
             </div>          
@@ -133,7 +133,7 @@
               <div class="form-group">
                 <label for="TituloLabel">Nombre</label>
                  <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" name="editeditorialcod" id="editeditorialcod" aria-describedby="editeditorialcod" placeholder="" hidden>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();editarModal(this,this.value);"  type="text" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
+                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();editarModal(this,this.value);"  type="text" maxlength="60" class="form-control" name="editeditorialnom" id="editeditorialnom" aria-describedby="editeditorialnom" placeholder="">
               </div>
              
             </div>

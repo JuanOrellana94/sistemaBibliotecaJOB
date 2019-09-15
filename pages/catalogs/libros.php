@@ -391,7 +391,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="TituloLabel">Nombre de la Editorial</label>
-                <input type="text" class="form-control" name="modaleditnom" id="modaleditnom" aria-describedby="modaleditnom" placeholder="Editorial">
+                <input type="text" maxlength="60" class="form-control" name="modaleditnom" id="modaleditnom" aria-describedby="modaleditnom" placeholder="Editorial">
               </div>
      
             </div>
