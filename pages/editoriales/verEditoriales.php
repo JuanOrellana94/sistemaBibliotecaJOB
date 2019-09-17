@@ -474,7 +474,7 @@ function deleteEditorial(){
       var vareditorialnom = button.data('vareditorialnom')
         
       var modal = $(this)
-      modal.find('.modal-title').text('Editar Editorial: ' + vareditorialnom );
+      modal.find('.modal-title').text('Editar Editorial: ' + vareditorialnom);
      
       document.getElementById('editeditorialcod').value = vareditorialcod;
       document.getElementById('editeditorialnom').value = vareditorialnom;

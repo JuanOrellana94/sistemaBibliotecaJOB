@@ -179,7 +179,7 @@
                              <option value="1">COMPRA</option>                            
                          </select>    
                          <p>Ingrese el detalle de ingreso:</p>
-                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="formdetalle" id="formdetalle"  />                        
+                           <input maxlength="450" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="formdetalle" id="formdetalle"  />                        
                      <p>Ingrese el precio unitario:</p>
                            <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="formprecio" id="formprecio" disabled="" /> 
                                                    
@@ -291,7 +291,7 @@
                              <option value="1">COMPRA</option>                            
                          </select>
                       <p>Ingrese el detalle de ingreso:</p>
-                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputdetalle" id="inputdetalle"  /> 
+                           <input maxlength="450" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputdetalle" id="inputdetalle"  /> 
                      <p>Ingrese el precio unitario:</p>
                            <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputprecio" id="inputprecio"  />
                                                

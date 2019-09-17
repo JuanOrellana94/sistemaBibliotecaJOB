@@ -92,11 +92,11 @@
 
               <div class="form-group">               
                 <label for="TituloLabel">CODIGO</label>                 
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendInsert(this,this.value);"  type="text" class="form-control" name="formequicodifi" id="formequicodifi" aria-describedby="formequicodifi" placeholder="" onkeypress="return soloNumeros(event);" ><br>
+                <input maxlength="45"  type="text" class="form-control" name="formequicodifi" id="formequicodifi" aria-describedby="formequicodifi" placeholder="" onkeypress="return soloNumeros(event);" ><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendInsert(this,this.value);" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress=""><br>
+                <input maxlength="45" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendInsert(this,this.value);" type="text" class="form-control" name="formequiponom" id="formequiponom" aria-describedby="formequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendInsert(this,this.value);" type="text" class="form-control" maxlength="95" name="formequipodes" id="formequipodes" aria-describedby="formequipodes" placeholder="" >
+                <input  maxlength="100" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendInsert(this,this.value);" type="text" class="form-control" maxlength="95" name="formequipodes" id="formequipodes" aria-describedby="formequipodes" placeholder="" >
               </div>
              
             </div>          
@@ -134,13 +134,13 @@
             <div class="col-sm-10">
 
               <div class="form-group">
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" name="editequicod" id="editequicod" aria-describedby="editequicod" placeholder="" hidden="">
+                <input  type="text" class="form-control" name="editequicod" id="editequicod" aria-describedby="editequicod" placeholder="" hidden="">
                 <label for="TituloLabel">CODIGO</label>                 
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" name="editequicodifi" id="editequicodifi" aria-describedby="editequicodifi" placeholder="" onkeypress="return soloNumeros(event);"><br>
+                <input maxlength="45" type="text" class="form-control" name="editequicodifi" id="editequicodifi" aria-describedby="editequicodifi" placeholder="" onkeypress="return soloNumeros(event);"><br>
                 <label for="TituloLabel">NOMBRE EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress=""><br>
+                <input maxlength="45" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" name="editequiponom" id="editequiponom" aria-describedby="editequiponom" placeholder="" onkeypress=""><br>
                 <label for="TituloLabel">DESCRIPCION DEL EQUIPO</label>
-                <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" maxlength="95" name="editequipodes" id="editequipodes" aria-describedby="editequipodes" placeholder="" >
+                <input maxlength="100" style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();sendEditar(this,this.value);" type="text" class="form-control" maxlength="95" name="editequipodes" id="editequipodes" aria-describedby="editequipodes" placeholder="" >
               </div>
              
             </div>
