@@ -162,12 +162,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     <div class="modal-body" style="background: #D5D9DF;">
-        <form id="formNuevoEjemplar" name="formNuevoEjemplar">                
-           <table class="table" >
-            <tr>
-              <th>Detalles de adquisición</td>
-            </tr>
+     <div class="modal-body">
+        <form id="formNuevoEjemplar" name="formNuevoEjemplar"> 
+        <label><h5>Detalles de adquisición</h5></label>               
+           <table class="table" WIDTH="150%" >
+          
             <tr>             
                  
                   <td>
@@ -185,10 +184,8 @@
                      <p>Ingrese el precio unitario:</p>
                            <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="number" min="0.01" step="0.01" name="formprecio" id="formprecio" disabled="" onkeypress="return soloNumeros(event);" /> 
                                                    
-                 </div>
-                  </td>
-                <tr>                                  
-                  <td>
+                 </div>                        
+               
                <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
                     <label>Estado fisico:</label>               
                     <div>
@@ -202,8 +199,8 @@
                          </select>                      
                     </div>
                   </td>
-                  </tr>   
-            <tr>
+                  
+           
                   <td>
                   <label for="formestantcod">Estantes</label>
                       <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" style="width:100%"  type="text" name="formestantcod" id="formestantcod">
@@ -219,24 +216,17 @@
                           
                         ?>
                       </select>
-                  </td> 
-            </tr>                  
-            </tr>  
-             <td>
+            
                <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
                     <label>Cantidad de ejemplares a registrar: </label>               
                     <div>
                         <input class="form-control" type="number" name="formejemplarescantidad" id="formejemplarescantidad" value="1">                  
                     </div>
-                  </td>                   
-            <tr>
-             <td>
+                                  
+          
                 <label for="PublishDate">Fecha de Adquisicion</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="date" name="formejemplarfecha" id="formejemplarfecha" value="">
-             </td>
-           </tr>
-            <tr>              
-              <td>
+            
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
                              <textarea maxlength="250" class="form-control rounded-0" name="formejemplarcomentario" id="formejemplarcomentario" aria-describedby="formejemplarcomentario" placeholder="" rows="3"></textarea>
@@ -274,21 +264,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="background: #D5D9DF;">
+      <div class="modal-body">
         <form id="formEditEjemplar" name="formEditEjemplar">
-          
+          <label><h5>Detalles de adquisición</h5></label>
            
         <div align="center">        
-          <table class="table" s>   
-       
-
-           
-             
-                                        
-            </tr>
-            <tr>
-              <th>Detalles de adquisición</td>
-            </tr>
+          <table class="table">      
+          
             <tr>             
                  
                   <td>
@@ -302,12 +284,8 @@
                       <p>Ingrese el detalle de ingreso:</p>
                            <input style="text-transform:uppercase" maxlength="250" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" type="" name="inputdetalle" id="inputdetalle"  /> 
                      <p>Ingrese el precio unitario:</p>
-                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  type="" name="inputprecio" id="inputprecio"  />
-                                               
-                 
-                  </td> 
-                <tr>
-                  <td>
+                           <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  type="" name="inputprecio" id="inputprecio"  />                                      
+                
 
                <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
                     <label>Estado fisico:</label>               
@@ -321,9 +299,7 @@
                              <option value="4">MUY MALA</option>                           
                          </select>                      
                     </div>
-                  </td>  
-              </tr>
-               <tr>
+                  </td>
                   <td>
                   <label for="labelestantcod">Estantes</label>
                       <select style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control js-Dropdown-Busqueda" style="width:100%"  type="text" name="editestantcod" id="editestantcod">
@@ -339,28 +315,21 @@
                           
                         ?>
                       </select>
-                  </td> 
-            </tr> 
-            </tr> 
-            <td>                    
+                           
+                                
                   <div class="form-group">    
                 <label>Fecha de Adquisicion</label>
                 <input style="text-transform:uppercase" onkeyup="javascript:this.value=this.value.toUpperCase();" type="date" name="editejemplarfecha" id="editejemplarfecha" value="">                
               </div>
-              </td>
-            <tr>              
-              <td>
+             
+                     
+           
                            <div class="form-group">
                               <label for="exampleFormControlTextarea2">Detalle del estado fisico:</label>
                              <textarea maxlength="250" class="form-control rounded-0" name="editejemplarcomentario" id="editejemplarcomentario" aria-describedby="editejemplarcomentario" placeholder="" rows="3"></textarea>
                            </div>
-               </td>           
-                   
-          
-              
+               </td>        
             </tr>
-        
-           
           </tbody> 
         </table>         
        </div>                
