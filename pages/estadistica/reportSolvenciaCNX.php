@@ -25,7 +25,7 @@ $mensajeActivos="";
     //get   usuanobac, ususecaul, usutipbac,
     $sql="SELECT usu.$varCarnet, resumen.$varprestest,usu.$varPriNombre, usu.$varSegNombre, usu.$varPriApellido, usu.$varSegApellido, usu.$varAnoBachi,usu.$varSecAula,usu.$varTipBachi
         FROM usuario as usu
-        INNER JOIN $varresumenlibroprestamo as resumen on usu.$varUsuCodigo=resumen.$varusuCodigoF
+        LEFT JOIN $varresumenlibroprestamo as resumen on usu.$varUsuCodigo=resumen.$varusuCodigoF
         WHERE usu.$varNivel='3' AND usu.$varCarnet='$varCarnetSearch'
         GROUP by usu.$varUsuCodigo;";
     //echo $sql;
