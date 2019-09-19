@@ -148,7 +148,7 @@
          <div id="respuestaEditarEstante" style="color: red; font-weight: bold; text-align: center;"></div>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="editarEstante()">Editar</button>
+        <button type="button" id="btneditar" class="btn btn-primary" onclick="editarEstante()">Editar</button>
       </div>
      
     </div>
@@ -359,6 +359,7 @@ function editarEstante(){
   else {
     $("#respuestaEditarEstante").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/estantes/editarEstante.php";
+    $("#btneditar").attr("disabled", true);
             $.ajax({
               type: "POST",
               url: url,
@@ -376,6 +377,7 @@ function editarEstante(){
                   }, 6000);
                   $("#respuestaEditarEstante").hide(500);    
                   $("#modalEditarEstante").modal('hide');
+                  $("#btneditar").attr("disabled", false);
 
                 } else if (data==0) {
                   //error

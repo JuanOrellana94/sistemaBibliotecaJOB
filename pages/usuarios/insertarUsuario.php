@@ -64,8 +64,8 @@
 		      $varNomPersona
 		      ) VALUES(
 		      NOW(),
-		      ' ingreso un nuevo Usuario: $formUsuarionom1',
-		      '$formUsuariocarnet',
+		      ' Ingreso un nuevo Usuario: $formUsuarionom1 $formUsuarioape1',
+		      '$usuCodigo',
 		      '---',
 		      '$bitPersonaName');")
 		    or die ('ERROR INS-INS:'.mysqli_error($conexion));

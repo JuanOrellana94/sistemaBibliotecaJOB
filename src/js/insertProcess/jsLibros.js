@@ -199,6 +199,7 @@ function updateBook(){
 	}else {
 		$("#answerEditPrint").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
 		var url = "src/libs/insertProcess/updateBook.php";
+		           $("#btneditar").attr("disabled", true);
 						$.ajax({
 							type: "POST",
 							url: url,
@@ -219,6 +220,7 @@ function updateBook(){
 									}, 6000);
 									$('#editlibtags').removeTag('');
 									$('#editBookModal').modal('hide');
+									$("#btneditar").attr("disabled", false);
 
 								} else if (data==0) {
 									//error

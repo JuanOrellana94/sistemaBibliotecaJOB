@@ -333,7 +333,7 @@
          <div id="respuestaEditarUsuario" style="color: red; font-weight: bold; text-align: center;"></div>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="editarUsuario()">Editar</button>
+        <button type="button" id="btneditar" class="btn btn-primary" onclick="editarUsuario()">Editar</button>
       </div>
       </div>
     </div>
@@ -814,8 +814,8 @@ function editarUsuario(){
         }
             else{
                 $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
-    var url = "pages/usuarios/editarUsuario.php";        
-       
+    var url = "pages/usuarios/editarUsuario.php";
+      $("#btneditar").attr("disabled", true);    
             $.ajax({
               type: "POST",
               url: url,
@@ -835,7 +835,7 @@ function editarUsuario(){
                   }, 6000);
                   $("#respuestaEditarUsuario").hide(500);    
                   $("#modalEditarUsuario").modal('hide');
-
+                  $("#btneditar").attr("disabled", false);
                 } else if (data==0) {
                   //error
                   $("#respuestaEditarUsuario").show();
@@ -868,6 +868,7 @@ function editarUsuario(){
   else {
     $("#respuestaEditarUsuario").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/usuarios/editarUsuario.php";
+         $("#btneditar").attr("disabled", true);
             $.ajax({
               type: "POST",
               url: url,
@@ -886,7 +887,7 @@ function editarUsuario(){
                   }, 6000);
                   $("#respuestaEditarUsuario").hide(500);    
                   $("#modalEditarUsuario").modal('hide');
-
+                  $("#btneditar").attr("disabled", false);
                 } else if (data==0) {
                   //error
                   $("#respuestaEditarUsuario").show();

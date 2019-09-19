@@ -363,7 +363,7 @@
          <div id="respuestaEditarExistencia" style="color: red; font-weight: bold; text-align: center;"></div>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="editarExistencia()">Editar</button>
+        <button type="button" id="btneditar" class="btn btn-primary" onclick="editarExistencia()">Editar</button>
       </div>
      
     </div>
@@ -764,6 +764,7 @@ function editarExistencia(){
   else {
     $("#respuestaEditarExistencia").html('<img src="img/structures/replace.gif" style="max-width: 50%">').show(500);
     var url = "pages/existencias/editarExistencia.php";
+      $("#btneditar").attr("disabled", true);
             $.ajax({
               type: "POST",
               url: url,
@@ -781,7 +782,7 @@ function editarExistencia(){
                   }, 6000);
                   $("#respuestaEditarExistencia").hide(500);    
                   $("#modalEditarExistencia").modal('hide');
-
+                    $("#btneditar").attr("disabled", false);
                 } else if (data==0) {
                   //error
                   $("#respuestaEditarExistencia").show();
