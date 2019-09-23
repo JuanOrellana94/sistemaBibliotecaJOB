@@ -220,7 +220,7 @@
                <!--  Condicion fisica: 0=Optimo 1=Muy bueno 2=Regular 3=Mala 4=Muy mala -->
                     <label>Cantidad de ejemplares a registrar: </label>               
                     <div>
-                        <input class="form-control" type="number" name="formejemplarescantidad" id="formejemplarescantidad" value="1">                  
+                        <input class="form-control" type="number" name="formejemplarescantidad" id="formejemplarescantidad" value="1" onkeypress="return soloNumeros(event);">                  
                     </div>
                                   
           
