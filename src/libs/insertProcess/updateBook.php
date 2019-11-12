@@ -17,9 +17,10 @@
 	$libtags=$_POST['editlibtags'];
 	$current_date=date("d-m-Y h:i:s");
 
+	//$libisbn=$_POST['editlibisbn']; 
 	
-	if (isset($_POST["libisbn"])) { 
-		$libisbn=$_POST['libisbn']; 
+	if (isset($_POST["editlibisbn"])) { 
+		$libisbn=$_POST['editlibisbn']; 
 	} else {
 		$libisbn="000-0-00-000000-0"; 
 	};
