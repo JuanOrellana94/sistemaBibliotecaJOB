@@ -101,7 +101,7 @@
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
 		'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%')
 		)
-	ORDER BY $varCueEstatus DESC";  
+	ORDER BY $varUsuCodigo DESC";  
       $filas_resultado = mysqli_query($conexion, $sql);  
       $filas = mysqli_fetch_row($filas_resultado);  
       $todal_filas = $filas[0];  
@@ -157,7 +157,7 @@
       $("#pagination li").removeClass('active');
       $(this).addClass('active');
           var paginaNumero = this.id;
-        $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina="+ paginaNumero +"&busqueda=" + $("#textBusqueda").val() +"&ordenar="+$("#textBusquedaordenar").val());
+        $("#cargarTabla").load("pages/usuarios/tablaUsuarios.php?pagina="+ paginaNumero + "&busqueda=" + $("#textBusqueda").val() + "&ordenar="+$("#textBusquedaordenar").val());
       });
 </script>
 
@@ -199,7 +199,7 @@
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegNombre),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varPriApellido),'%') OR
 								'%$textBusqueda%' LIKE  Concat(Concat('%',$varSegApellido),'%') )		
-								ORDER BY $varCueEstatus DESC
+								ORDER BY $varUsuCodigo DESC
 								LIMIT $inicia_desde, $limite;");
 					if (mysqli_num_rows($selTable)==0){
 						 echo "<div id='respuesta' style='color: red; font-weight: bold; text-align: center;'>	
